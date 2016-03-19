@@ -37,6 +37,7 @@ public class AppTest
     	String[] args= {"parametro","parametro"};
     	
     	App.main(args);
+    	
         assertTrue( app.tres() == 3 );
     }
 }
