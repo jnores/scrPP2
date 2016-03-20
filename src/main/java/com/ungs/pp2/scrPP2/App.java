@@ -1,9 +1,5 @@
 package com.ungs.pp2.scrPP2;
 
-/**
- * Hello world!
- *
- */
 public class App 
 {
 	public int tres()
