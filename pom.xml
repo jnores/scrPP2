@@ -62,6 +62,15 @@
                 <repoToken>${env.coveralls_repo_token}</repoToken>
             </configuration>
         </plugin>
+        
+        <plugin>
+  			<groupId>com.googlecode.maven-java-formatter-plugin</groupId>
+  			<artifactId>maven-java-formatter-plugin</artifactId>
+			<version>0.3.1</version>
+			<configuration>
+			<configFile>${project.basedir}/formatStyle/EclipsePP2.xml</configFile>
+			</configuration>
+		</plugin>
     </plugins>
   </build>
 </project>

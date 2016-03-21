@@ -9,7 +9,6 @@ import com.ungs.pp2.scrPP2.View.StudentView;
 import junit.framework.Test;
 import junit.framework.TestCase;
 import junit.framework.TestSuite;
-import mockit.Mock;
 import mockit.MockUp;
 
 
@@ -47,9 +46,6 @@ public void  setUp()
 }
 
 
-/**
- * Rigourous Test :-)
- */
 public void testStudentController()
 {
    StudentController controller = new StudentController(consultaMock.getMockInstance(),model,view);
@@ -59,9 +55,6 @@ public void testStudentController()
 }
 
 
-/**
- * Rigourous Test :-P
- */
 public void testStudentControllerSets()
 {
 	String  studentName="Roger",
@@ -71,7 +64,7 @@ public void testStudentControllerSets()
 	controller.setStudentName(studentName);
 	controller.setStudentRollNo(studentRoll);
 	controller.updateView();
-    assertTrue( controller.getStudentName().equals(studentName) );
-    assertTrue( controller.getStudentRollNo().equals(studentRoll) );
+   assertTrue( controller.getStudentName().equals(studentName) );
+   assertTrue( controller.getStudentRollNo().equals(studentRoll) );
 }
 }
