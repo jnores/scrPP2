@@ -17,7 +17,7 @@ public class App {
 	      //Create a view : to write student details on console
 	      StudentView view = new StudentView();
 
-	      StudentController controller = new StudentController(model, view);
+	      StudentController controller = new StudentController(null, model, view);
 
 	      controller.updateView();
 
