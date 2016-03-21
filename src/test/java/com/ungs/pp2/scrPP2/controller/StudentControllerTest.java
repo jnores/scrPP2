@@ -1,9 +1,9 @@
 package com.ungs.pp2.scrPP2.controller;
 
-import com.ungs.pp2.scrPP2.controller.StudentController;
+import com.ungs.pp2.scrPP2.Controller.StudentController;
 import com.ungs.pp2.scrPP2.controller.StudentControllerTest;
-import com.ungs.pp2.scrPP2.model.Student;
-import com.ungs.pp2.scrPP2.view.StudentView;
+import com.ungs.pp2.scrPP2.Dominio.Dto.StudentDto;
+import com.ungs.pp2.scrPP2.View.StudentView;
 
 import junit.framework.Test;
 import junit.framework.TestCase;
@@ -13,7 +13,7 @@ import junit.framework.TestSuite;
 public class StudentControllerTest 
 extends TestCase
 {
-	private Student model;
+	private StudentDto model;
 	private StudentView view;
 /**
  * Create the test case
@@ -35,7 +35,7 @@ public static Test suite()
 
 public void  setUp()
 {
-	model = new Student();
+	model = new StudentDto();
 	model.setName("Veronica");
 	model.setRollNo("123");
 	view = new StudentView();

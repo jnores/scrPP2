@@ -1,6 +1,7 @@
-package com.ungs.pp2.scrPP2.model;
+package com.ungs.pp2.scrPP2.Dominio.Dto;
 
-public class Student {
+public class StudentDto 
+{
 	   private String rollNo;
 	   private String name;
 	   
@@ -19,4 +20,4 @@ public class Student {
 	   public void setName(String name) {
 	      this.name = name;
 	   }
-	}
+}

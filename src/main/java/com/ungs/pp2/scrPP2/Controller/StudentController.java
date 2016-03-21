@@ -1,13 +1,13 @@
-package com.ungs.pp2.scrPP2.controller;
+package com.ungs.pp2.scrPP2.Controller;
 
-import com.ungs.pp2.scrPP2.model.Student;
-import com.ungs.pp2.scrPP2.view.StudentView;
+import com.ungs.pp2.scrPP2.Dominio.Dto.StudentDto;
+import com.ungs.pp2.scrPP2.View.StudentView;
 
 public class StudentController {
-	   private Student model;
+	   private StudentDto model;
 	   private StudentView view;
 
-	   public StudentController(Student model, StudentView view){
+	   public StudentController(StudentDto model, StudentView view){
 	      this.model = model;
 	      this.view = view;
 	   }

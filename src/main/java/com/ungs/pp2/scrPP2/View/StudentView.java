@@ -1,4 +1,4 @@
-package com.ungs.pp2.scrPP2.view;
+package com.ungs.pp2.scrPP2.View;
 
 public class StudentView {
 	   public void printStudentDetails(String studentName, String studentRollNo){
