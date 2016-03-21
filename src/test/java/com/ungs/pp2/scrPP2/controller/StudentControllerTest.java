@@ -49,7 +49,24 @@ public void testStudentController()
 {
 	StudentController controller = new StudentController(model,view);
 	controller.updateView();
-    assertTrue( controller.getStudentName() == "Veronica" );
-    assertTrue( controller.getStudentRollNo() == "123" );
+    assertTrue( controller.getStudentName().equals("Veronica") );
+    assertTrue( controller.getStudentRollNo().equals("123") );
+}
+
+
+/**
+ * Rigourous Test :-P
+ */
+public void testStudentControllerSets()
+{
+	String  studentName="Roger",
+			studentRoll="11";
+	
+	StudentController controller = new StudentController(model,view);
+	controller.setStudentName(studentName);
+	controller.setStudentRollNo(studentRoll);
+	controller.updateView();
+    assertTrue( controller.getStudentName().equals(studentName) );
+    assertTrue( controller.getStudentRollNo().equals(studentRoll) );
 }
 }

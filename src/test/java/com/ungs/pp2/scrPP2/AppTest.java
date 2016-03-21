@@ -38,6 +38,6 @@ public class AppTest
     	
     	App.main(args);
     	
-        assertTrue( app.tres() == 3 );
+        assertEquals( app.tres() , 3 );
     }
 }
