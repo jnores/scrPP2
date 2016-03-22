@@ -5,32 +5,29 @@ import com.ungs.pp2.scrPP2.Dominio.Dto.StudentDto;
 import com.ungs.pp2.scrPP2.View.StudentView;
 
 public class App {
-	   public int tres()
-	   {
-			return 3;
-	   }
-	   public static void main(String[] args) {
 
-	      //fetch student record based on his roll no from the database
-	      StudentDto model  = retriveStudentFromDatabase();
+	public static void main(String[] args) {
 
-	      //Create a view : to write student details on console
-	      StudentView view = new StudentView();
+		//fetch student record based on his roll no from the database
+		StudentDto model  = retriveStudentFromDatabase();
 
-	      StudentController controller = new StudentController(null, model, view);
+		//Create a view : to write student details on console
+		StudentView view = new StudentView();
 
-	      controller.updateView();
+		StudentController controller = new StudentController(null, model, view);
 
-	      //update model data
-	      controller.setStudentName("John");
+		controller.updateView();
 
-	      controller.updateView();
-	   }
+		//update model data
+		controller.setStudentName("John");
 
-	   private static StudentDto retriveStudentFromDatabase(){
-	      StudentDto student = new StudentDto();
-	      student.setName("Robert");
-	      student.setRollNo("10");
-	      return student;
-	   }
+		controller.updateView();
 	}
+
+	private static StudentDto retriveStudentFromDatabase(){
+		StudentDto student = new StudentDto();
+		student.setName("Robert");
+		student.setRollNo("10");
+		return student;
+	}
+}
