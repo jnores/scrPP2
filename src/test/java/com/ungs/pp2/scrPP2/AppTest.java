@@ -33,7 +33,7 @@ public class AppTest
      */
     public void testApp()
     {
-    	App app = new App();
+    	MainUserStory app = new MainUserStory();
         assertTrue( true );
     }
     
@@ -43,7 +43,7 @@ public class AppTest
     public void testAppMAin()
     {
     	String[] args= {"parametro","parametro"};
-    	App.main(args);
+    	MainUserStory.main(args);
         assertTrue( true);
     }
 }

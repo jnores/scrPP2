@@ -1,6 +1,7 @@
 package com.ungs.pp2.scrPP2.Dominio.Entidad;
 
-public class Customer extends java.util.Observable  {
+public class Customer extends java.util.Observable  
+{
 	private String razon_Social;
 	private String cuit;
 
