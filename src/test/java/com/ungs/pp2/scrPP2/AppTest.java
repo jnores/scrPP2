@@ -1,7 +1,5 @@
 package com.ungs.pp2.scrPP2;
 
-import com.ungs.pp2.scrPP2.MainUserStory;
-
 import junit.framework.Test;
 import junit.framework.TestCase;
 import junit.framework.TestSuite;
@@ -27,23 +25,22 @@ public class AppTest
      */
     public static Test suite()
     {
-        return new TestSuite( MainUserStory.class );
+        return new TestSuite( AppTest.class );
     }
 
     /**
      * Rigourous Test :-)
      */
-    public void doCreate()
+    public void testMainUserStory()
     {
     	MainUserStory main = new MainUserStory();
-    	boolean ret=true;
-        assertTrue( ret );
+        assertTrue( true );
     }
     
     /**
      * Rigourous Test :-P
      */
-    public void doMain()
+    public void testMainUserStoryMain()
     {
     	String[] args= {"parametro","parametro"};
     	MainUserStory.main(args);
