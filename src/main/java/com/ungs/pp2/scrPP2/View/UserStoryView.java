@@ -1,24 +1,23 @@
 package com.ungs.pp2.scrPP2.View;
 
-import javax.swing.JLabel;
-import javax.swing.JTextField;
-import javax.swing.JButton;
-import java.awt.event.ActionListener;
 import java.awt.BorderLayout;
-import java.awt.event.ActionEvent;
 import java.util.Observable;
 import java.util.Observer;
+
 import javax.swing.JFrame;
 import javax.swing.JPanel;
-import javax.swing.border.EmptyBorder;
-
-import com.ungs.pp2.scrPP2.Controller.UserStoryController;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.JTableHeader;
 
+import com.ungs.pp2.scrPP2.Controller.UserStoryController;
+
 public class UserStoryView extends JFrame implements Observer
 {
+	/**
+	 * default serial version
+	 */
+	private static final long serialVersionUID = 1L;
 	private UserStoryController Controller;
 	private JTable table;
 	private JPanel contentPane;
@@ -65,7 +64,7 @@ public class UserStoryView extends JFrame implements Observer
 	        };
 		DefaultTableModel model = new DefaultTableModel(data, columnNames);
 		
-		JTable table = new JTable(model);
+		table = new JTable(model);
 		JTableHeader header = table.getTableHeader();
 		setContentPane(contentPane);
 		contentPane.setLayout(new BorderLayout());

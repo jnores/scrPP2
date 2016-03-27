@@ -18,8 +18,7 @@ public class UserStory extends java.util.Observable
 	private List<Criterio> Criterios;
 	private List<Tarea> Tareas;
 	
-	public UserStory(String titulo, String detalle, String autor, String responsable, int horasEstimadas, int storyPoints, int iteracion, Estado estado, List<Criterio> criterios, List<Tarea> tareas) 
-	{
+	public UserStory(String titulo, String detalle, String autor, String responsable, int horasEstimadas, int storyPoints, int iteracion, Estado estado, List<Criterio> criterios, List<Tarea> tareas) {
 		Titulo = titulo;
 		Detalle = detalle;
 		Autor = autor;
@@ -130,10 +129,8 @@ public class UserStory extends java.util.Observable
 		fueModificado();
 	}
 	
-	private void fueModificado()
-	{
+	private void fueModificado() {
 		setChanged();
 		notifyObservers();
 	}
-
 }
