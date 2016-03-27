@@ -18,6 +18,10 @@ import java.awt.event.ActionEvent;
 
 public class CustomerView extends JFrame implements Observer
 {
+	/**
+	 * default serial version
+	 */
+	private static final long serialVersionUID = 1L;
 	private JPanel contentPane;
 	private CustomerController controller;	
 	private JTextField txtRazonSocial;
@@ -80,7 +84,7 @@ public class CustomerView extends JFrame implements Observer
 		if (arg0 instanceof Customer)
 		{
 			Customer cm = (Customer)arg0;
-			txtRazonSocialActual.setText(cm.getRazon_Social());
+			txtRazonSocialActual.setText(cm.getRazonSocial());
 		}
 	}
 
