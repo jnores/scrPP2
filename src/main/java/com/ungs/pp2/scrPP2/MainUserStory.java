@@ -1,11 +1,8 @@
 package com.ungs.pp2.scrPP2;
 
-import com.ungs.pp2.scrPP2.Controller.CustomerController;
 import com.ungs.pp2.scrPP2.Controller.UserStoryController;
-import com.ungs.pp2.scrPP2.Dominio.Dto.StudentDto;
 import com.ungs.pp2.scrPP2.Dominio.Entidad.UserStory;
 import com.ungs.pp2.scrPP2.Dominio.Enums.Estado;
-import com.ungs.pp2.scrPP2.View.CustomerView;
 import com.ungs.pp2.scrPP2.View.UserStoryView;
 
 public class MainUserStory {

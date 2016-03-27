@@ -1,7 +1,7 @@
-package com.ungs.pp2.scrPP2.controller;
+package com.ungs.pp2.scrPP2.Controller;
 
 import com.ungs.pp2.scrPP2.Controller.UserStoryController;
-import com.ungs.pp2.scrPP2.controller.UserStoryControllerTest;
+import com.ungs.pp2.scrPP2.Controller.UserStoryControllerTest;
 import com.ungs.pp2.scrPP2.Dominio.Dto.StudentDto;
 import com.ungs.pp2.scrPP2.Dominio.Entidad.UserStory;
 import com.ungs.pp2.scrPP2.Dominio.Interfaz.IConsulta;
