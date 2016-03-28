@@ -6,29 +6,36 @@ import com.ungs.pp2.scrPP2.Dominio.Enums.Estado;
 public class UserStory extends java.util.Observable
 {
 	
-	private int Id;
-	private String Titulo;
-	private String Detalle;
-	private String Autor;
-	private String Responsable;
-	private int HorasEstimadas;
-	private int StoryPoints;
-	private int Iteracion;
-	private Estado Estado;
-	private List<Criterio> Criterios;
-	private List<Tarea> Tareas;
+	private int id;
+	private String titulo;
+	private String detalle;
+	private String autor;
+	private String responsable;
+	private int horasEstimadas;
+	private int storyPoints;
+	private int iteracion;
+	private Estado estado;
+	private List<Criterio> criterios;
+	private List<Tarea> tareas;
 	
 	public UserStory(String titulo, String detalle, String autor, String responsable, int horasEstimadas, int storyPoints, int iteracion, Estado estado, List<Criterio> criterios, List<Tarea> tareas) {
-		Titulo = titulo;
-		Detalle = detalle;
-		Autor = autor;
-		Responsable = responsable;
-		HorasEstimadas = horasEstimadas;
-		StoryPoints = storyPoints;
-		Iteracion = iteracion;
-		Estado = estado;
-		Criterios = criterios;
-		Tareas = tareas;
+		this.titulo = titulo;
+		this.detalle = detalle;
+		this.autor = autor;
+		this.responsable = responsable;
+		this.horasEstimadas = horasEstimadas;
+		this.storyPoints = storyPoints;
+		this.iteracion = iteracion;
+		this.estado = estado;
+		this.criterios = criterios;
+		this.tareas = tareas;
+	}
+	
+	public UserStory(String titulo, String detalle, String autor) {
+		this.titulo = titulo;
+		this.detalle = detalle;
+		this.autor = autor;
+		this.estado = Estado.ToDo;
 	}
 
 	public UserStory() {
@@ -36,96 +43,96 @@ public class UserStory extends java.util.Observable
 	}
 
 	public int getId() {
-		return Id;
+		return this.id;
 	}
 
 	public String getTitulo() {
-		return Titulo;
+		return this.titulo;
 	}
 
 	public String getDetalle() {
-		return Detalle;
+		return this.detalle;
 	}
 
 	public String getAutor() {
-		return Autor;
+		return this.autor;
 	}
 
 	public String getResponsable() {
-		return Responsable;
+		return this.responsable;
 	}
 
 	public int getHorasEstimadas() {
-		return HorasEstimadas;
+		return this.horasEstimadas;
 	}
 
 	public int getStoryPoints() {
-		return StoryPoints;
+		return this.storyPoints;
 	}
 
 	public int getIteracion() {
-		return Iteracion;
+		return this.iteracion;
 	}
 
 	public Estado getEstado() {
-		return Estado;
+		return this.estado;
 	}
 
 	public List<Criterio> getCriterios() {
-		return Criterios;
+		return this.criterios;
 	}
 
 	public List<Tarea> getTareas() {
-		return Tareas;
+		return this.tareas;
 	}
 
 	public void setTitulo(String titulo) {
-		Titulo = titulo;
+		this.titulo = titulo;
 		fueModificado();
 	}
 
 	public void setDetalle(String detalle) {
-		Detalle = detalle;
+		this.detalle = detalle;
 		fueModificado();
 	}
 
 	public void setAutor(String autor) {
-		Autor = autor;
+		this.autor = autor;
 		fueModificado();
 	}
 
 	public void setResponsable(String responsable) {
-		Responsable = responsable;
+		this.responsable = responsable;
 		fueModificado();
 	}
 
 	public void setHorasEstimadas(int horasEstimadas) {
-		HorasEstimadas = horasEstimadas;
+		this.horasEstimadas = horasEstimadas;
 		fueModificado();
 	}
 
 	public void setStoryPoints(int storyPoints) {
-		StoryPoints = storyPoints;
+		this.storyPoints = storyPoints;
 		fueModificado();
 	}
 
 	public void setIteracion(int iteracion) {
-		Iteracion = iteracion;
+		this.iteracion = iteracion;
 		fueModificado();
 	}
 
 	public void setEstado(Estado estado) {
-		Estado = estado;
+		this.estado = estado;
 		fueModificado();
 	}
 
 	public void setCriterios(List<Criterio> criterios) {
-		Criterios = criterios;
+		this.criterios = criterios;
 		fueModificado();
 	}
 
 	public void setTareas(List<Tarea> tareas) {
-		Tareas = tareas;
+		this.tareas = tareas;
 		fueModificado();
 	}
 	

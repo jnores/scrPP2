@@ -1,86 +1,95 @@
 package com.ungs.pp2.scrPP2.View;
 
-import java.awt.BorderLayout;
 import java.util.Observable;
 import java.util.Observer;
 
-import javax.swing.JFrame;
+import javax.swing.JLabel;
 import javax.swing.JPanel;
-import javax.swing.JTable;
-import javax.swing.table.DefaultTableModel;
-import javax.swing.table.JTableHeader;
+import javax.swing.JTextField;
 
 import com.ungs.pp2.scrPP2.Controller.UserStoryController;
+import com.ungs.pp2.scrPP2.Controller.UserStoryHelper;
 
-public class UserStoryView extends JFrame implements Observer
+public class UserStoryView extends JPanel implements Observer
 {
 	/**
 	 * default serial version
 	 */
 	private static final long serialVersionUID = 1L;
-	private UserStoryController Controller;
-	private JTable table;
-	private JPanel contentPane;
+	private UserStoryController controller;
+	private UserStoryHelper userStoryHelper;
 	
-	public UserStoryView(UserStoryController controller ) 
+	private JTextField txtTitulo;
+	private JTextField txtDetalle;
+	private JTextField txtAutor;
+	
+	public UserStoryView(UserStoryHelper userStoryHelper) 
 	{
-		Controller = controller;
-		setTitle("Historias de Usuario");
-		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(400, 400, 500, 200);
+		this.userStoryHelper =userStoryHelper;
 		
-		contentPane = new JPanel();
-		/*
-      contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
-      setContentPane(contentPane);
-      contentPane.setLayout(null);
-		table.setModel(new DefaultTableModel(
-		   new Object[][] {
-		      {null, null, null, null, null},
-		      {null, null, null, null, null},
-		      {null, null, null, null, null},
-		      {null, null, null, null, null},
-		      {null, null, null, null, null},
-		      {null, null, null, null, null},
-		   },
-		   new String[] {
-		      "Titulo", "Responsable", "Estado", "Puntos", "Estimacion"
-		   }
-		));
-		table.setBounds(0, 0, 510, 96);
-		contentPane.add(table);
-		*/
+		this.setLayout(null);
 		
-		int rows = 5;
-		int cols = 5;
-		String[] columnNames = {"Titulo", "Descripcion","Responsable","Estado","Puntos"};
-		Object[][] data =
-	        {
-	              {null, null, null, null, null},
-	              {null, null, null, null, null},
-	              {null, null, null, null, null},
-	              {null, null, null, null, null},
-	              {null, null, null, null, null}
-	        };
-		DefaultTableModel model = new DefaultTableModel(data, columnNames);
+		JLabel lblTitulo = new JLabel("Titulo");
+		lblTitulo.setBounds(12, 12, 70, 15);
+		this.add(lblTitulo);
 		
-		table = new JTable(model);
-		JTableHeader header = table.getTableHeader();
-		setContentPane(contentPane);
-		contentPane.setLayout(new BorderLayout());
-		contentPane.add(header, BorderLayout.NORTH);
-		contentPane.add(table, BorderLayout.CENTER);		
+		JLabel lblDetalle = new JLabel("Detalle");
+		lblDetalle.setBounds(12, 39, 70, 15);
+		this.add(lblDetalle);
+		
+		JLabel lblAutor = new JLabel("Autor");
+		lblAutor.setBounds(12, 66, 70, 15);
+		this.add(lblAutor);
+		
+		txtTitulo = new JTextField();
+		txtTitulo.setBounds(100, 10, 200, 19);
+		this.add(txtTitulo);
+		txtTitulo.setColumns(10);
+		txtTitulo.setEditable(false);
+		
+		txtDetalle = new JTextField();
+		txtDetalle.setBounds(100, 37, 200, 19);
+		this.add(txtDetalle);
+		txtDetalle.setColumns(10);
+		txtDetalle.setEditable(false);
+		
+		txtAutor = new JTextField();
+		txtAutor.setBounds(100, 64, 200, 19);
+		this.add(txtAutor);
+		txtAutor.setColumns(10);
+		txtAutor.setEditable(false);
+		
+		this.cargarUserStory();
+	}
+	
+	public void setController(UserStoryController controller) {
+		this.controller = controller;
+		this.updateEditable();
+	}
+
+	private boolean isEditable() {
+		return this.controller != null;
+	}
+	
+	private void updateEditable() {
+		boolean isEditable = this.isEditable();
+		
+		txtTitulo.setEditable(isEditable);
+		txtDetalle.setEditable(isEditable);
+		txtAutor.setEditable(isEditable);
+	}
+
+	private void cargarUserStory() {
+		this.txtTitulo.setText(this.userStoryHelper.getTitulo());
+		this.txtDetalle.setText(this.userStoryHelper.getDetalle());
+		this.txtAutor.setText(this.userStoryHelper.getAutor());
 	}
 
 
 	@Override
 	public void update(Observable o, Object arg) {
 		// TODO Auto-generated method stub
-		
+		this.cargarUserStory();
 	}
-	
-	public void showWindow(boolean b) {
-		// TODO Auto-generated method stub
-		setVisible(b);
-	}
+
 }

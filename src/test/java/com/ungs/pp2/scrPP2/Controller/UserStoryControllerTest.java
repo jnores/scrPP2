@@ -1,11 +1,8 @@
 package com.ungs.pp2.scrPP2.Controller;
 
-import com.ungs.pp2.scrPP2.Controller.UserStoryController;
-import com.ungs.pp2.scrPP2.Controller.UserStoryControllerTest;
-import com.ungs.pp2.scrPP2.Dominio.Dto.StudentDto;
 import com.ungs.pp2.scrPP2.Dominio.Entidad.UserStory;
+import com.ungs.pp2.scrPP2.Dominio.Enums.Estado;
 import com.ungs.pp2.scrPP2.Dominio.Interfaz.IConsulta;
-import com.ungs.pp2.scrPP2.View.UserStoryView;
 
 import junit.framework.Test;
 import junit.framework.TestCase;
@@ -16,10 +13,10 @@ import mockit.MockUp;
 public class UserStoryControllerTest 
 extends TestCase
 {
-   private MockUp<IConsulta> consultaMock;
+	private MockUp<IConsulta> consultaMock;
 	private UserStory model;
-	private UserStoryView view;
-	private UserStoryController controller;
+
+	
 /**
  * Create the test case
  *
@@ -40,42 +37,26 @@ public static Test suite()
 
 public void  setUp()
 {
-   consultaMock = new MockUp<IConsulta>(){};
-	model = new UserStory();
-	controller = new UserStoryController(consultaMock.getMockInstance(), model);
-	/*
-	model.setName("Veronica");
-	model.setRollNo("123");
-	*/
-	view = new UserStoryView(controller);
+	consultaMock = new MockUp<IConsulta>(){};
+	model = new UserStory("Titulo1", "Detalle1", "Autor1", "Responsable1", 10, 40, 1, Estado.ToDo, null, null);
 }
 
 
-public void testStudentController()
+public void testUserStoryController()
 {
    UserStoryController controller = new UserStoryController(consultaMock.getMockInstance(),model);
-   /*
-   controller.updateView();
-   assertTrue( controller.getStudentName().equals("Veronica") );
-   assertTrue( controller.getStudentRollNo().equals("123") );
-   */
+
    assertTrue(true);
 }
 
 
-public void testStudentControllerSets()
+public void testUserStoryControllerSets()
 {
 	String  studentName="Roger",
 			studentRoll="11";
 	
    UserStoryController controller = new UserStoryController(consultaMock.getMockInstance(),model);
-   /*
-   controller.setStudentName(studentName);
-   controller.setStudentRollNo(studentRoll);
-   controller.updateView();
-   assertTrue( controller.getStudentName().equals(studentName) );
-   assertTrue( controller.getStudentRollNo().equals(studentRoll) );
-   */
+
    assertTrue(true);
 }
 }

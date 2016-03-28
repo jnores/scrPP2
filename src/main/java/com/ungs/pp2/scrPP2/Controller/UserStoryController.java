@@ -13,5 +13,13 @@ public class UserStoryController extends Controller
 	      this.model = model;
 	   }
 
+	   /**
+	    * Genera un helper mediante el cual la vista accede a los datos que tiene que mostrar
+	    * @return UserStpryHelper 
+	    */
+	   public UserStoryHelper getUserStoryHelper() {
+		   UserStoryHelper ush = new UserStoryHelper(model);
+		   return ush;
+	   }
 	
 }
