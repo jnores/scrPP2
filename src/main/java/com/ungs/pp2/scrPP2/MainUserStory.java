@@ -33,12 +33,12 @@ public class MainUserStory {
 		
 		// Simulo una modificacion externa, pasados 2 segundos de iniciado el sistema
 		// espero 2 segundos
-		try {
-		    Thread.sleep(2000);                 //en milisegundos
-		} catch(InterruptedException ex) {
-		    Thread.currentThread().interrupt();
-		}
-		story.setAutor("Veronica");
+		//try {
+		//    Thread.sleep(2000);                 //en milisegundos
+		//} catch(InterruptedException ex) {
+		//    Thread.currentThread().interrupt();
+		//}
+		//story.setAutor("Veronica");
 		
 	}
 	private static UserStory retriveUserStoryFromDatabase(){
