@@ -4,5 +4,20 @@ public enum Estado
 {
 	ToDo,
 	Doing,
-	Done
+	Done;
+	private static Estado[] valores = values();
+	
+	public static Estado getDefault() {
+		return Estado.ToDo;
+	}
+	
+	public Estado siguiente()
+    {
+        return Estado.valores[(this.ordinal()+1) % Estado.valores.length];
+    }
+	
+	public Estado anterior()
+    {
+        return Estado.valores[(this.ordinal()-1 + Estado.valores.length) % Estado.valores.length];
+    }
 }
