@@ -1,5 +1,6 @@
 package com.ungs.pp2.scrPP2.Dominio.Entidad;
 
+import java.util.Date;
 import java.util.List;
 import com.ungs.pp2.scrPP2.Dominio.Enums.Estado;
 
@@ -11,6 +12,7 @@ public class UserStory extends java.util.Observable
 	private String detalle;
 	private String autor;
 	private String responsable;
+	private Date fechaDone;
 	private int horasEstimadas;
 	private int storyPoints;
 	private int iteracion;
@@ -29,13 +31,18 @@ public class UserStory extends java.util.Observable
 		this.estado = estado;
 		this.criterios = criterios;
 		this.tareas = tareas;
+		this.fechaDone=null;
 	}
 	
 	public UserStory(String titulo, String detalle, String autor) {
 		this.titulo = titulo;
 		this.detalle = detalle;
 		this.autor = autor;
-		this.estado = Estado.getDefault();
+		this.estado = Estado.ToDo;
+	}
+
+	public UserStory() {
+		// TODO Auto-generated constructor stub
 	}
 
 	public int getId() {
@@ -117,7 +124,15 @@ public class UserStory extends java.util.Observable
 		fueModificado();
 	}
 
+	//NO SIRVE es de PRUEBA...
+	public void setFecha(Date fecha){
+		this.fechaDone=fecha;
+	}
+	
+	//Agregue la fecha en que se culmina la user story para graficar el chart
 	public void setEstado(Estado estado) {
+		if(estado.compareTo(Estado.Done)==0)
+		{this.fechaDone=new Date();}
 		this.estado = estado;
 		fueModificado();
 	}
@@ -130,6 +145,10 @@ public class UserStory extends java.util.Observable
 	public void setTareas(List<Tarea> tareas) {
 		this.tareas = tareas;
 		fueModificado();
+	}
+	
+	public Date getFechaDone(){
+		return this.fechaDone;
 	}
 	
 	private void fueModificado() {
