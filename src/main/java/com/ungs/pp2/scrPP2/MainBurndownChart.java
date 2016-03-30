@@ -5,8 +5,7 @@ import com.ungs.pp2.scrPP2.View.BurndownChartView;
 import com.ungs.pp2.scrPP2.Dominio.Composite.DataComponent;
 
 public class MainBurndownChart {
-	public static void main( String[ ] args ) 
-	{
+	public static void main( String[ ] args ) {
 
 		DataComponent data=null;
 		
