@@ -12,6 +12,7 @@ import javax.swing.table.DefaultTableModel;
 import javax.swing.table.JTableHeader;
 
 import com.ungs.pp2.scrPP2.Controller.UserStoryPaginadoController;
+import com.ungs.pp2.scrPP2.Dominio.ListaPaginada;
 import com.ungs.pp2.scrPP2.Dominio.Entidad.UserStory;
 import javax.swing.JButton;
 import javax.swing.ImageIcon;
@@ -59,7 +60,7 @@ public class UserStoryPaginadoView extends JFrame implements Observer
 		int rows = 5;
 		int cols = 5;
 		String[] columnNames = {"Titulo", "Descripcion","Responsable","Estado","Puntos"};
-		List<UserStory> stories = controller.getModel();
+		ListaPaginada<UserStory> stories = controller.getModel();
 		
 		
 		Object[][] data = new Object[5][] ;
