@@ -8,6 +8,7 @@ import org.jfree.data.xy.*;
 
 import com.ungs.pp2.scrPP2.Dominio.Entidad.Iteracion;
 import com.ungs.pp2.scrPP2.Dominio.Entidad.UserStory;
+import com.ungs.pp2.scrPP2.Dominio.Interfaz.DataComponent;
 
 /**
  * Componente hoja, muestra la situación idealizada, 

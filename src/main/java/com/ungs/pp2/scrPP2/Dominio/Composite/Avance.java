@@ -9,6 +9,7 @@ import org.jfree.data.xy.*;
 
 import com.ungs.pp2.scrPP2.Dominio.Entidad.Iteracion;
 import com.ungs.pp2.scrPP2.Dominio.Entidad.UserStory;
+import com.ungs.pp2.scrPP2.Dominio.Interfaz.DataComponent;
 
 public class Avance implements DataComponent{
 	private XYSeries avance; 
@@ -27,11 +28,11 @@ public class Avance implements DataComponent{
 	private Integer getStoryPointsDone(Date fecha,Iteracion iteracion)
 	{
 		Integer storyPointsDone=0;
-		Iterator it=iteracion.getUserStories().iterator();
+		Iterator<UserStory> it=iteracion.getUserStories().iterator();
 		
 		while(it.hasNext())
 		{
-			UserStory story=(UserStory) it.next();
+			UserStory story= it.next();
 			Date fechaDone=story.getFechaDone();
 			if(fechaDone!=null)
 				if(fecha.compareTo(story.getFechaDone())==0){

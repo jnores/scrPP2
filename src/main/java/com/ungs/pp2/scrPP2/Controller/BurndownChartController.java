@@ -11,6 +11,7 @@ import com.ungs.pp2.scrPP2.Dominio.Entidad.Iteracion;
 import com.ungs.pp2.scrPP2.Dominio.Entidad.UserStory;
 import com.ungs.pp2.scrPP2.Dominio.Enums.Estado;
 import com.ungs.pp2.scrPP2.Dominio.Enums.OpcionGrafico;
+import com.ungs.pp2.scrPP2.Dominio.Interfaz.DataComponent;
 import com.ungs.pp2.scrPP2.Dominio.Interfaz.IConsulta;
 import com.ungs.pp2.scrPP2.View.BurndownChartView;
 

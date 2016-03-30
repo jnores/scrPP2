@@ -6,6 +6,7 @@ import java.util.Iterator;
 import org.jfree.data.xy.*;
 
 import com.ungs.pp2.scrPP2.Dominio.Entidad.Iteracion;
+import com.ungs.pp2.scrPP2.Dominio.Interfaz.DataComponent;
 
 public class DataComposite  implements DataComponent{
 	private ArrayList<DataComponent> dataGraficos;
