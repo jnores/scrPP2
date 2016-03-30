@@ -34,7 +34,7 @@ public class MainUserPaginadoStory
 		UserStoryPaginadoView view = new UserStoryPaginadoView(controller);
 		
 		//Agrego la vista que es un observador del modelo
-		for (UserStory story : stories)
+		for (UserStory story : controller.getModel())
 		{
 		   story.addObserver(view);
 		}
