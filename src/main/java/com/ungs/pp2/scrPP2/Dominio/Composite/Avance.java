@@ -9,9 +9,9 @@ import org.jfree.data.xy.*;
 
 import com.ungs.pp2.scrPP2.Dominio.Entidad.Iteracion;
 import com.ungs.pp2.scrPP2.Dominio.Entidad.UserStory;
-import com.ungs.pp2.scrPP2.Dominio.Interfaz.DataComponent;
+import com.ungs.pp2.scrPP2.Dominio.Interfaz.IDataComponent;
 
-public class Avance implements DataComponent{
+public class Avance implements IDataComponent{
 	private XYSeries avance; 
 	private XYSeriesCollection dataset;
 	

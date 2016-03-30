@@ -11,7 +11,7 @@ import com.ungs.pp2.scrPP2.Dominio.Entidad.Iteracion;
 import com.ungs.pp2.scrPP2.Dominio.Entidad.UserStory;
 import com.ungs.pp2.scrPP2.Dominio.Enums.Estado;
 import com.ungs.pp2.scrPP2.Dominio.Enums.OpcionGrafico;
-import com.ungs.pp2.scrPP2.Dominio.Interfaz.DataComponent;
+import com.ungs.pp2.scrPP2.Dominio.Interfaz.IDataComponent;
 import com.ungs.pp2.scrPP2.Dominio.Interfaz.IConsulta;
 import com.ungs.pp2.scrPP2.View.BurndownChartView;
 
@@ -19,7 +19,7 @@ import com.ungs.pp2.scrPP2.Dominio.Composite.*;
 
 public class BurndownChartController extends Controller
 {
-	private DataComponent modelo;
+	private IDataComponent modelo;
 	private BurndownChartView vista;
 	private OpcionGrafico Opcion;
 
@@ -27,7 +27,7 @@ public class BurndownChartController extends Controller
 		super(consulta);
 	}
 	
-	public BurndownChartController(IConsulta consulta,DataComponent modelo) 
+	public BurndownChartController(IConsulta consulta,IDataComponent modelo) 
 	{
 		super (consulta);
 		this.modelo= modelo;

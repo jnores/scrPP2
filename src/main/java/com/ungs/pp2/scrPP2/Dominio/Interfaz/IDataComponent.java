@@ -9,7 +9,7 @@ import com.ungs.pp2.scrPP2.Dominio.Entidad.Iteracion;
  * con los puntos de historia en función del día. 
  **/ 
 
-public interface DataComponent
+public interface IDataComponent
 {
    
    public XYSeriesCollection getData(Iteracion iteracion);

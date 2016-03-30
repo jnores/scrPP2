@@ -8,14 +8,14 @@ import org.jfree.data.xy.*;
 
 import com.ungs.pp2.scrPP2.Dominio.Entidad.Iteracion;
 import com.ungs.pp2.scrPP2.Dominio.Entidad.UserStory;
-import com.ungs.pp2.scrPP2.Dominio.Interfaz.DataComponent;
+import com.ungs.pp2.scrPP2.Dominio.Interfaz.IDataComponent;
 
 /**
  * Componente hoja, muestra la situación idealizada, 
  * con un ritmo constante de realización de story points. 
  **/
 
-public class Estimado implements DataComponent 
+public class Estimado implements IDataComponent 
 {
 	private Integer storyPointsPactados, dias;
 
