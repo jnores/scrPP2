@@ -57,6 +57,14 @@
                 <maxmem>256m</maxmem>
                 <!-- aggregated reports for multi-module projects -->
                 <aggregate>true</aggregate>
+                <instrumentation>
+            <ignores>
+              <ignore></ignore>
+            </ignores>
+            <excludes>
+              <exclude>com/ungs/pp2/scrPP2/View/*</exclude>
+            </excludes>
+          </instrumentation>
             </configuration>
         </plugin>
 
