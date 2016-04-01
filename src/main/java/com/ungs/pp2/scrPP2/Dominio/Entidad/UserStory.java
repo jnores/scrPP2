@@ -45,6 +45,10 @@ public class UserStory extends java.util.Observable
 	public UserStory() {
 		// TODO Auto-generated constructor stub
 	}
+	
+	public void setId(int id) {
+		this.id = id;
+	}
 
 	public int getId() {
 		return this.id;

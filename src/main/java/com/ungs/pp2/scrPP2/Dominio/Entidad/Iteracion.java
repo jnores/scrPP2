@@ -1,8 +1,5 @@
 package com.ungs.pp2.scrPP2.Dominio.Entidad;
 
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
-import java.util.Calendar;
 import java.util.Date;
 import java.util.GregorianCalendar;
 import java.util.Iterator;
@@ -27,9 +24,8 @@ public class Iteracion {
 	private void setStoryPointsPactados(){
 		int puntos=0;
 		if(this.historias!=null){
-			Iterator it=historias.iterator();
-			while(it.hasNext()){
-				puntos=puntos + ((UserStory)it.next()).getStoryPoints();
+			for (UserStory us: this.historias) {
+				puntos+=us.getStoryPoints();
 			}
 		}
 		this.StoryPointsPactados=puntos;
