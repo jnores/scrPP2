@@ -36,34 +36,14 @@ public class UserStoryPaginadoView extends JFrame implements Observer
 		setBounds(400, 400, 500, 200);
 		
 		contentPane = new JPanel();
-		/*
-      contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
-      setContentPane(contentPane);
-      contentPane.setLayout(null);
-		table.setModel(new DefaultTableModel(
-		   new Object[][] {
-		      {null, null, null, null, null},
-		      {null, null, null, null, null},
-		      {null, null, null, null, null},
-		      {null, null, null, null, null},
-		      {null, null, null, null, null},
-		      {null, null, null, null, null},
-		   },
-		   new String[] {
-		      "Titulo", "Responsable", "Estado", "Puntos", "Estimacion"
-		   }
-		));
-		table.setBounds(0, 0, 510, 96);
-		contentPane.add(table);
-		*/
 		
 		int rows = 5;
 		int cols = 5;
 		String[] columnNames = {"Titulo", "Descripcion","Responsable","Estado","Puntos"};
-		ListaPaginada<UserStory> stories = controller.getModel();
+		List<UserStory> stories = controller.ListarUserStories(null);
 		
 		
-		Object[][] data = new Object[5][] ;
+		Object[][] data = new Object[stories.size()][] ;
 		int i = 0;
 		for (UserStory story : stories)
 		{
@@ -71,16 +51,6 @@ public class UserStoryPaginadoView extends JFrame implements Observer
 		   data[i] = fila;
 		   i++;
 		}
-		/*
-		Object[][] data =
-	        {
-	              {"Titulo", "Descripcion","Responsable","Estado","Puntos"},
-	              {null, null, null, null, null},
-	              {null, null, null, null, null},
-	              {null, null, null, null, null},
-	              {null, null, null, null, null}
-	        };
-	        */
 		DefaultTableModel model = new DefaultTableModel(data, columnNames);
 		
 		table = new JTable(model);
@@ -102,7 +72,7 @@ public class UserStoryPaginadoView extends JFrame implements Observer
 		btnAnterior.setIcon(new ImageIcon(UserStoryPaginadoView.class.getResource("/com/ungs/pp2/scrPP2/Resources/Images/Anterior.png")));
 		panel.add(btnAnterior);
 		
-		JLabel pageNumberLabel = new JLabel("1");
+		JLabel pageNumberLabel = new JLabel(controller.getPaginaActual().getPagina()+ " / " +controller.getPaginasTotales());
 		panel.add(pageNumberLabel);
 		
 		JButton btnSiguiente = new JButton("");
