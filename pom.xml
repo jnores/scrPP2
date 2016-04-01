@@ -59,10 +59,10 @@
                 <aggregate>true</aggregate>
                 <instrumentation>
             		<ignores>
-              			<ignore>src/main/java/com/ungs/pp2/scrPP2/View</ignore>
+              			<ignore></ignore>
 		            </ignores>
 		            <excludes>
-		              	<exclude></exclude>
+		              	<exclude>src/main/java/com/ungs/pp2/scrPP2/View/*.java</exclude>
 		            </excludes>
 		          </instrumentation>
 		     </configuration>
