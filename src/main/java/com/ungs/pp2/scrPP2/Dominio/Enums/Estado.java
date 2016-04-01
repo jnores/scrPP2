@@ -5,7 +5,7 @@ public enum Estado
 	ToDo,
 	Doing,
 	Done;
-	private static Estado[] valores = values();
+	//private static Estado[] valores = values();
 	
 	public static Estado getDefault() {
 		return Estado.ToDo;
@@ -13,11 +13,11 @@ public enum Estado
 	
 	public Estado siguiente()
     {
-        return Estado.valores[(this.ordinal()+1) % Estado.valores.length];
+        return Estado.values()[(this.ordinal()+1) % Estado.values().length];
     }
 	
 	public Estado anterior()
     {
-        return Estado.valores[(this.ordinal()-1 + Estado.valores.length) % Estado.valores.length];
+        return Estado.values()[(this.ordinal()-1 + Estado.values().length) % Estado.values().length];
     }
 }

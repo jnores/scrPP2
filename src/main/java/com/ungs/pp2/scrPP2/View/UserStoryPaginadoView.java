@@ -12,7 +12,11 @@ import javax.swing.table.DefaultTableModel;
 import javax.swing.table.JTableHeader;
 
 import com.ungs.pp2.scrPP2.Controller.UserStoryPaginadoController;
+import com.ungs.pp2.scrPP2.Dominio.ListaPaginada;
 import com.ungs.pp2.scrPP2.Dominio.Entidad.UserStory;
+import javax.swing.JButton;
+import javax.swing.ImageIcon;
+import javax.swing.JLabel;
 
 public class UserStoryPaginadoView extends JFrame implements Observer
 {
@@ -56,7 +60,7 @@ public class UserStoryPaginadoView extends JFrame implements Observer
 		int rows = 5;
 		int cols = 5;
 		String[] columnNames = {"Titulo", "Descripcion","Responsable","Estado","Puntos"};
-		List<UserStory> stories = controller.getModel();
+		ListaPaginada<UserStory> stories = controller.getModel();
 		
 		
 		Object[][] data = new Object[5][] ;
@@ -84,7 +88,30 @@ public class UserStoryPaginadoView extends JFrame implements Observer
 		setContentPane(contentPane);
 		contentPane.setLayout(new BorderLayout());
 		contentPane.add(header, BorderLayout.NORTH);
-		contentPane.add(table, BorderLayout.CENTER);		
+		contentPane.add(table, BorderLayout.CENTER);
+		
+		JPanel panel = new JPanel();
+		contentPane.add(panel, BorderLayout.SOUTH);
+		
+		JButton btnPrimero = new JButton("");
+		ImageIcon primero = new ImageIcon(UserStoryPaginadoView.class.getResource("/com/ungs/pp2/scrPP2/Resources/Images/Primero.png"));
+		btnPrimero.setIcon(primero);
+		panel.add(btnPrimero);
+		
+		JButton btnAnterior = new JButton("");
+		btnAnterior.setIcon(new ImageIcon(UserStoryPaginadoView.class.getResource("/com/ungs/pp2/scrPP2/Resources/Images/Anterior.png")));
+		panel.add(btnAnterior);
+		
+		JLabel pageNumberLabel = new JLabel("1");
+		panel.add(pageNumberLabel);
+		
+		JButton btnSiguiente = new JButton("");
+		btnSiguiente.setIcon(new ImageIcon(UserStoryPaginadoView.class.getResource("/com/ungs/pp2/scrPP2/Resources/Images/Siguiente.png")));
+		panel.add(btnSiguiente);
+		
+		JButton btnUltimo = new JButton("");
+		btnUltimo.setIcon(new ImageIcon(UserStoryPaginadoView.class.getResource("/com/ungs/pp2/scrPP2/Resources/Images/Ultimo.png")));
+		panel.add(btnUltimo);
 	}
 
 
