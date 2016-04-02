@@ -27,6 +27,9 @@ public class UserStoryPaginadoView extends JFrame implements Observer
 	private UserStoryPaginadoController Controller;
 	private JTable table;
 	private JPanel contentPane;
+	private Object[][] data;
+	private JLabel PageNumberLabel;
+	private List<UserStory> Stories;
 	
 	public UserStoryPaginadoView(UserStoryPaginadoController controller ) 
 	{
@@ -36,21 +39,12 @@ public class UserStoryPaginadoView extends JFrame implements Observer
 		setBounds(400, 400, 500, 200);
 		
 		contentPane = new JPanel();
-		
-		int rows = 5;
-		int cols = 5;
+
 		String[] columnNames = {"Titulo", "Descripcion","Responsable","Estado","Puntos"};
-		List<UserStory> stories = controller.ListarUserStories(null);
+		Stories = controller.ListarUserStories(null);
+		setearVista();
 		
 		
-		Object[][] data = new Object[stories.size()][] ;
-		int i = 0;
-		for (UserStory story : stories)
-		{
-		   Object[] fila = {story.getTitulo(), story.getDetalle(),story.getResponsable(),story.getEstado(),story.getStoryPoints()};
-		   data[i] = fila;
-		   i++;
-		}
 		DefaultTableModel model = new DefaultTableModel(data, columnNames);
 		
 		table = new JTable(model);
@@ -72,8 +66,8 @@ public class UserStoryPaginadoView extends JFrame implements Observer
 		btnAnterior.setIcon(new ImageIcon(UserStoryPaginadoView.class.getResource("/com/ungs/pp2/scrPP2/Resources/Images/Anterior.png")));
 		panel.add(btnAnterior);
 		
-		JLabel pageNumberLabel = new JLabel(controller.getPaginaActual().getPagina()+ " / " +controller.getPaginasTotales());
-		panel.add(pageNumberLabel);
+		
+		panel.add(PageNumberLabel);
 		
 		JButton btnSiguiente = new JButton("");
 		btnSiguiente.setIcon(new ImageIcon(UserStoryPaginadoView.class.getResource("/com/ungs/pp2/scrPP2/Resources/Images/Siguiente.png")));
@@ -87,12 +81,25 @@ public class UserStoryPaginadoView extends JFrame implements Observer
 
 	@Override
 	public void update(Observable o, Object arg) {
-		// TODO Auto-generated method stub
+		// TODO
 		
 	}
 	
 	public void showWindow(boolean b) {
-		// TODO Auto-generated method stub
 		setVisible(b);
+	}
+	
+	private void setearVista()
+	{
+	   data = new Object[Stories.size()][] ;
+      int i = 0;
+      for (UserStory story : Stories)
+      {
+         Object[] fila = {story.getTitulo(), story.getDetalle(),story.getResponsable(),story.getEstado(),story.getStoryPoints()};
+         data[i] = fila;
+         i++;
+      }
+      
+      PageNumberLabel = new JLabel(Controller.getPaginaActual().getPagina()+ " / " + Controller.getPaginasTotales());
 	}
 }
