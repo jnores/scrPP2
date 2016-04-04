@@ -137,23 +137,23 @@ public class UserStoryPaginadoView extends JFrame implements Observer
       contentPane.add(panel, BorderLayout.SOUTH);
       
       
-      ImageIcon primero = new ImageIcon(UserStoryPaginadoView.class.getResource("/com/ungs/pp2/scrPP2/Resources/Images/Primero.png"));
+      ImageIcon primero = new ImageIcon(this.getClass().getResource("/com/ungs/pp2/scrPP2/Resources/Images/Primero.png"));
       btnPrimero.setIcon(primero);
       panel.add(btnPrimero);
       
       
-      btnAnterior.setIcon(new ImageIcon(UserStoryPaginadoView.class.getResource("/com/ungs/pp2/scrPP2/Resources/Images/Anterior.png")));
+      btnAnterior.setIcon(new ImageIcon(this.getClass().getResource("/com/ungs/pp2/scrPP2/Resources/Images/Anterior.png")));
       panel.add(btnAnterior);
       
       
       panel.add(PageNumberLabel);
       
       
-      btnSiguiente.setIcon(new ImageIcon(UserStoryPaginadoView.class.getResource("/com/ungs/pp2/scrPP2/Resources/Images/Siguiente.png")));
+      btnSiguiente.setIcon(new ImageIcon(this.getClass().getResource("/com/ungs/pp2/scrPP2/Resources/Images/Siguiente.png")));
       panel.add(btnSiguiente);
       
       
-      btnUltimo.setIcon(new ImageIcon(UserStoryPaginadoView.class.getResource("/com/ungs/pp2/scrPP2/Resources/Images/Ultimo.png")));
+      btnUltimo.setIcon(new ImageIcon(this.getClass().getResource("/com/ungs/pp2/scrPP2/Resources/Images/Ultimo.png")));
       panel.add(btnUltimo);
       SwingUtilities.updateComponentTreeUI(this);
 	}
