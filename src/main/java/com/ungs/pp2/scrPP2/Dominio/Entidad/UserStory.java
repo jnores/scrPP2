@@ -41,10 +41,6 @@ public class UserStory extends java.util.Observable
 		this.estado = Estado.getDefault();
 		this.fechaDone=null;
 	}
-
-	public UserStory() {
-		// TODO Auto-generated constructor stub
-	}
 	
 	public void setId(int id) {
 		this.id = id;

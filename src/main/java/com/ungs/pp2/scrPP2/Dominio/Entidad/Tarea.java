@@ -12,8 +12,7 @@ public class Tarea extends java.util.Observable
 	 * @param id
 	 * @param tareas
 	 */
-	public Tarea(int id, Estado estado) {
-		Id = id;
+	public Tarea(Estado estado) {
 		Estado = estado;
 	}
 	/**
@@ -37,7 +36,7 @@ public class Tarea extends java.util.Observable
 	/**
 	 * @param tareas the tareas to set
 	 */
-	public void setTareas(Estado estado) {
+	public void setEstado(Estado estado) {
 	   Estado = estado;
 	}
 }

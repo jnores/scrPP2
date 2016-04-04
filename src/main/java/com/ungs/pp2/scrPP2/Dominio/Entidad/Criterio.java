@@ -8,8 +8,7 @@ public class Criterio extends java.util.Observable
 	 * @param id
 	 * @param descripcion
 	 */
-	public Criterio(int id, String descripcion) {
-		Id = id;
+	public Criterio(String descripcion) {
 		Descripcion = descripcion;
 	}
 	/**

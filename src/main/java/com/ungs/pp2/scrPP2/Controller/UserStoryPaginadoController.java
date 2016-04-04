@@ -23,6 +23,7 @@ public class UserStoryPaginadoController extends Controller
 	      model = MainUserPaginadoStory.obtenerUserStoriesDB();
 	      paginaDefault = new Paginacion(null, null, 1, 5);
 	      paginaActual = paginaDefault;
+	      itemsTotales = model.size();
 	   }
 
       public List<UserStory> getModel()
@@ -37,7 +38,7 @@ public class UserStoryPaginadoController extends Controller
       
       public int getPaginasTotales()
       {
-         return (itemsTotales / paginaActual.getItemsPorPagina()) + 1;
+         return itemsTotales != 0 ? (itemsTotales / paginaActual.getItemsPorPagina()) + 1 : 0 ;
       }
       
       public Paginacion getPaginaActual()

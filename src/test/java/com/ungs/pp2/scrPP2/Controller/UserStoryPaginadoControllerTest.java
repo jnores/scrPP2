@@ -35,13 +35,14 @@ public class UserStoryPaginadoControllerTest extends TestCase
       UserStoryPaginadoController controller = new UserStoryPaginadoController(consultaMock.getMockInstance());
       
       controller.getModel();
-      controller.getPaginaActual();
-      controller.getPaginasTotales();
       
       assertEquals(controller.getPaginaActual().getPagina(), 1);
-      assertEquals(controller.getItemsTotales(), 0);
+      assertEquals(controller.getItemsTotales(), 11);
+      assertEquals(controller.getPaginasTotales(), 3);
+      assertTrue(controller.getModel() != null);
       List<UserStory> lista = controller.ListarUserStories(null);
       assertEquals(lista.size(), 5);
+      controller.setModel(null);
    }
 
 }
