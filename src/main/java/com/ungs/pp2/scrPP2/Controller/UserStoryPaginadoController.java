@@ -14,7 +14,6 @@ public class UserStoryPaginadoController extends Controller
 	   private List<UserStory> model;
 	   private Paginacion paginaDefault;
 	   private Paginacion paginaActual;
-	   private Paginacion paginaUltima;
 	   private int itemsTotales;
 
 	   //La consulta se pasa a cada controller para hacer consultas a la base y son pasadas a su padre
