@@ -79,5 +79,13 @@
 			</configuration>
 		</plugin>
     </plugins>
+    <resources>
+        <resource>
+            <directory>${basedir}/com/ungs/pp2/scrPP2/Resources/Images</directory>
+            <includes>
+                <include>**/*</include>
+            </includes>
+        </resource>
+     </resources>
   </build>
 </project>
