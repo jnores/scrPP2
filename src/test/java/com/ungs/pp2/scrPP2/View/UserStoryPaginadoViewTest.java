@@ -1,9 +1,8 @@
 package com.ungs.pp2.scrPP2.View;
 
-import com.ungs.pp2.scrPP2.MainUserStory;
 import com.ungs.pp2.scrPP2.Controller.UserStoryPaginadoController;
-import com.ungs.pp2.scrPP2.Dominio.Entidad.ProyectoTest;
 import com.ungs.pp2.scrPP2.Dominio.Interfaz.IConsulta;
+import com.ungs.pp2.scrPP2.View.UserStoryPaginadoView;
 
 import junit.framework.Test;
 import junit.framework.TestCase;
