@@ -20,7 +20,11 @@ public class UserStoryHelper
 		this.userStory = us;
 		this.miembro   = miembro;
 	}
-	
+
+	public int getId() {
+		return userStory.getId();
+	}
+
 	public String getTitulo() {
 		return this.userStory.getTitulo();
 	}

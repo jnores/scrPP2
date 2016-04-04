@@ -9,8 +9,6 @@ public class Miembro {
 	private String nombre;
 	private String perfil;
 	
-	@SuppressWarnings("unused")
-	private Miembro() {	}
 	/**
 	 * @param nombre the nombre to set
 	 */

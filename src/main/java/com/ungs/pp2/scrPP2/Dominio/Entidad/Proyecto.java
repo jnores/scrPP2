@@ -106,5 +106,23 @@ public class Proyecto {
 			this.asignaciones.put(userStory, miembro);
 		}
 	}
+
+	public UserStory getUserStoryPorId(int id) {
+		UserStory userStory = null;
+		if (this.backlog.containsKey(id))
+			userStory = this.backlog.get(id);
+		return userStory;
+	}
+
+	public Miembro getResponsable(UserStory userStory) {
+		Miembro miembro = null;
+		if ( userStory != null ) {
+			if ( this.asignaciones.containsKey(userStory) ) {
+				miembro = this.asignaciones.get(userStory);  
+			}
+		}
+		return miembro;
+	}
+	
 	
 }
