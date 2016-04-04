@@ -28,7 +28,7 @@ public class MainUserPaginadoStory
 
 		//Creo el controlador y le envío el modelo
 	   Paginacion paginacion = new Paginacion(null, null, 1, 5);
-		UserStoryPaginadoController controller = new UserStoryPaginadoController(null, ListarPaginadoUserStories(paginacion));
+		UserStoryPaginadoController controller = new UserStoryPaginadoController(null);
 		
 		//La vista recibe el controlador
 		UserStoryPaginadoView view = new UserStoryPaginadoView(controller);
@@ -45,7 +45,7 @@ public class MainUserPaginadoStory
 		view.showWindow(true);
 		
 	}
-	private static List<UserStory> obtenerUserStoriesDB(){
+	public static List<UserStory> obtenerUserStoriesDB(){
 	   
 	   List<UserStory> stories = new ArrayList<UserStory>();
 		stories.add(new UserStory("Titulo1", "Detalle1", "Autor1", "Responsable1", 10, 40, 1, Estado.ToDo, null, null));
@@ -57,20 +57,4 @@ public class MainUserPaginadoStory
 		stories.add(new UserStory("Titulo7", "Detalle7", "Autor7", "Responsable7", 10, 40, 1, Estado.ToDo, null, null));
 		return stories;
 	}
-
-	private static ListaPaginada<UserStory> ListarPaginadoUserStories(Paginacion paginacion)
-   {
-      int itemsTotales = stories.size();
-      int indice = (paginacion.getPagina() - 1) * paginacion.getItemsPorPagina();
-      List<UserStory> historias = new ArrayList<UserStory>();
-      int i = 0;
-      while(i < paginacion.getItemsPorPagina() && (indice + i) < itemsTotales)
-      {
-         UserStory story = stories.get(indice + i);
-         historias.add(new UserStory(story.getTitulo(), story.getDetalle(), story.getAutor(), story.getResponsable(), story.getHorasEstimadas(), story.getStoryPoints(), story.getIteracion(), story.getEstado(), null, null));       
-         i++;
-      }
-      
-      return new ListaPaginada<UserStory>(historias, paginacion.getPagina(), paginacion.getItemsPorPagina(), itemsTotales);
-   }
 }

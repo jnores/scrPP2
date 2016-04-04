@@ -27,6 +27,9 @@ public class UserStoryPaginadoView extends JFrame implements Observer
 	private UserStoryPaginadoController Controller;
 	private JTable table;
 	private JPanel contentPane;
+	private Object[][] data;
+	private JLabel PageNumberLabel;
+	private List<UserStory> Stories;
 	
 	public UserStoryPaginadoView(UserStoryPaginadoController controller ) 
 	{
@@ -36,51 +39,12 @@ public class UserStoryPaginadoView extends JFrame implements Observer
 		setBounds(400, 400, 500, 200);
 		
 		contentPane = new JPanel();
-		/*
-      contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
-      setContentPane(contentPane);
-      contentPane.setLayout(null);
-		table.setModel(new DefaultTableModel(
-		   new Object[][] {
-		      {null, null, null, null, null},
-		      {null, null, null, null, null},
-		      {null, null, null, null, null},
-		      {null, null, null, null, null},
-		      {null, null, null, null, null},
-		      {null, null, null, null, null},
-		   },
-		   new String[] {
-		      "Titulo", "Responsable", "Estado", "Puntos", "Estimacion"
-		   }
-		));
-		table.setBounds(0, 0, 510, 96);
-		contentPane.add(table);
-		*/
-		
-		int rows = 5;
-		int cols = 5;
+
 		String[] columnNames = {"Titulo", "Descripcion","Responsable","Estado","Puntos"};
-		ListaPaginada<UserStory> stories = controller.getModel();
+		Stories = controller.ListarUserStories(null);
+		setearVista();
 		
 		
-		Object[][] data = new Object[5][] ;
-		int i = 0;
-		for (UserStory story : stories)
-		{
-		   Object[] fila = {story.getTitulo(), story.getDetalle(),story.getResponsable(),story.getEstado(),story.getStoryPoints()};
-		   data[i] = fila;
-		   i++;
-		}
-		/*
-		Object[][] data =
-	        {
-	              {"Titulo", "Descripcion","Responsable","Estado","Puntos"},
-	              {null, null, null, null, null},
-	              {null, null, null, null, null},
-	              {null, null, null, null, null},
-	              {null, null, null, null, null}
-	        };
-	        */
 		DefaultTableModel model = new DefaultTableModel(data, columnNames);
 		
 		table = new JTable(model);
@@ -102,8 +66,8 @@ public class UserStoryPaginadoView extends JFrame implements Observer
 		btnAnterior.setIcon(new ImageIcon(UserStoryPaginadoView.class.getResource("/com/ungs/pp2/scrPP2/Resources/Images/Anterior.png")));
 		panel.add(btnAnterior);
 		
-		JLabel pageNumberLabel = new JLabel("1");
-		panel.add(pageNumberLabel);
+		
+		panel.add(PageNumberLabel);
 		
 		JButton btnSiguiente = new JButton("");
 		btnSiguiente.setIcon(new ImageIcon(UserStoryPaginadoView.class.getResource("/com/ungs/pp2/scrPP2/Resources/Images/Siguiente.png")));
@@ -117,12 +81,25 @@ public class UserStoryPaginadoView extends JFrame implements Observer
 
 	@Override
 	public void update(Observable o, Object arg) {
-		// TODO Auto-generated method stub
+		// TODO
 		
 	}
 	
 	public void showWindow(boolean b) {
-		// TODO Auto-generated method stub
 		setVisible(b);
+	}
+	
+	private void setearVista()
+	{
+	   data = new Object[Stories.size()][] ;
+      int i = 0;
+      for (UserStory story : Stories)
+      {
+         Object[] fila = {story.getTitulo(), story.getDetalle(),story.getResponsable(),story.getEstado(),story.getStoryPoints()};
+         data[i] = fila;
+         i++;
+      }
+      
+      PageNumberLabel = new JLabel(Controller.getPaginaActual().getPagina()+ " / " + Controller.getPaginasTotales());
 	}
 }

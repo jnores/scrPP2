@@ -57,14 +57,6 @@
                 <maxmem>256m</maxmem>
                 <!-- aggregated reports for multi-module projects -->
                 <aggregate>true</aggregate>
-                <instrumentation>
-            		<ignores>
-              			<ignore>/src/main/java/com/ungs/pp2/scrPP2/View/*</ignore>
-		            </ignores>
-		            <excludes>
-		              	<exclude></exclude>
-		            </excludes>
-		          </instrumentation>
 		     </configuration>
         </plugin>
 
