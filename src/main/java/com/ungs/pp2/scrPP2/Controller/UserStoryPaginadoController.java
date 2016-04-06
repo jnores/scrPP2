@@ -3,8 +3,6 @@ package com.ungs.pp2.scrPP2.Controller;
 import java.util.ArrayList;
 import java.util.List;
 
-import com.ungs.pp2.scrPP2.MainUserPaginadoStory;
-import com.ungs.pp2.scrPP2.Dominio.ListaPaginada;
 import com.ungs.pp2.scrPP2.Dominio.Paginacion;
 import com.ungs.pp2.scrPP2.Dominio.Entidad.UserStory;
 import com.ungs.pp2.scrPP2.Dominio.Interfaz.IConsulta;
