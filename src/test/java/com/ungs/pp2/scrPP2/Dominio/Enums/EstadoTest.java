@@ -46,19 +46,4 @@ public class EstadoTest extends TestCase {
 		estado = estado.siguiente();
 		assertEquals(estado,Estado.Done);
 	}
-	
-
-	/**
-	 * Verifico que al pedir el anterior se siga la logica de estados
-	 */
-	public void testEstadoAnterior() {
-		Estado estado = Estado.Done;
-		
-		assertEquals(estado,Estado.Done);
-		estado = estado.anterior();
-		assertEquals(estado,Estado.Doing);
-		estado = estado.anterior();
-		assertEquals(estado,Estado.ToDo);
-	}
-	
 }

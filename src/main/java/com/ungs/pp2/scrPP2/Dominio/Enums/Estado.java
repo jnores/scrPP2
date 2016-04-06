@@ -15,9 +15,4 @@ public enum Estado
     {
         return Estado.values()[(this.ordinal()+1) % Estado.values().length];
     }
-	
-	public Estado anterior()
-    {
-        return Estado.values()[(this.ordinal()-1 + Estado.values().length) % Estado.values().length];
-    }
 }

@@ -33,7 +33,9 @@ public class Avance implements IDataComponent{
 		while(it.hasNext())
 		{
 			UserStory story= it.next();
+			//ver
 			Date fechaDone=story.getFechaDone();
+			
 			if(fechaDone!=null)
 				if(fecha.compareTo(story.getFechaDone())==0){
 					storyPointsDone=storyPointsDone+story.getStoryPoints();
