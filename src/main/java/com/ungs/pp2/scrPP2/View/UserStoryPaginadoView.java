@@ -107,7 +107,7 @@ public class UserStoryPaginadoView extends JFrame implements Observer
          int i = 0;
          for (UserStory story : Stories)
          {
-            Object[] fila = {story.getTitulo(), story.getDetalle(),story.getResponsable(),story.getEstado(),story.getStoryPoints()};
+            Object[] fila = {story.getTitulo(), story.getDetalle(),story.getStoryPoints()};
             data[i] = fila;
             i++;
             story.addObserver(this);
@@ -115,7 +115,7 @@ public class UserStoryPaginadoView extends JFrame implements Observer
          PageNumberLabel = new JLabel(Controller.getPaginaActual().getPagina()+ " / " + Controller.getPaginasTotales());
          habilitarBotones(true);
 	   }
-	   String[] columnNames = {"Titulo", "Descripcion","Responsable","Estado","Puntos"};
+	   String[] columnNames = {"Titulo", "Descripcion","Puntos"};
 	   @SuppressWarnings("serial")
       TableModel model = new DefaultTableModel(data, columnNames){
 	      @Override
@@ -128,6 +128,7 @@ public class UserStoryPaginadoView extends JFrame implements Observer
       contentPane = new JPanel();
       panel = new JPanel();
       JTableHeader header = table.getTableHeader();
+      header.setReorderingAllowed(false);
       setContentPane(contentPane);
       contentPane.setLayout(new BorderLayout());
       contentPane.add(header, BorderLayout.NORTH);
@@ -173,7 +174,7 @@ public class UserStoryPaginadoView extends JFrame implements Observer
 	   Paginacion actual = Controller.getPaginaActual();
 	   if (actual.getPagina() != 1)
 	   {
-	      Stories = Controller.ListarUserStories(new Paginacion(actual.getOrdenarPor(), actual.getDireccionOrden(), actual.getPagina() - 1, actual.getItemsPorPagina()));
+	      Stories = Controller.ObtenerPaginaAnterior();
 	      setearVista();
 	   }
 	}
@@ -183,7 +184,7 @@ public class UserStoryPaginadoView extends JFrame implements Observer
 	   Paginacion actual = Controller.getPaginaActual();
       if (actual.getPagina() != Controller.getPaginasTotales())
       {
-         Stories = Controller.ListarUserStories(new Paginacion(actual.getOrdenarPor(), actual.getDireccionOrden(), actual.getPagina() + 1, actual.getItemsPorPagina()));
+         Stories = Controller.ObtenerPaginaSiguiente();
          setearVista();
       }
    }
@@ -193,7 +194,7 @@ public class UserStoryPaginadoView extends JFrame implements Observer
 	   Paginacion actual = Controller.getPaginaActual();
       if (actual.getPagina() != 1)
       {
-         Stories = Controller.ListarUserStories(new Paginacion(actual.getOrdenarPor(), actual.getDireccionOrden(), 1, actual.getItemsPorPagina()));
+         Stories = Controller.ObtenerPaginaPrimera();
          setearVista();
       }
    }
@@ -203,7 +204,7 @@ public class UserStoryPaginadoView extends JFrame implements Observer
 	   Paginacion actual = Controller.getPaginaActual();
       if (actual.getPagina() != Controller.getPaginasTotales())
       {
-         Stories = Controller.ListarUserStories(new Paginacion(actual.getOrdenarPor(), actual.getDireccionOrden(), Controller.getPaginasTotales(), actual.getItemsPorPagina()));
+         Stories = Controller.ObtenerPaginaUltima();
          setearVista();
       }      
    }

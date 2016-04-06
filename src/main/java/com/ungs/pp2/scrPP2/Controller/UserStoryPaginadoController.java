@@ -20,7 +20,7 @@ public class UserStoryPaginadoController extends Controller
 	   public UserStoryPaginadoController(IConsulta consulta)
 	   {
 		   super (consulta);
-	      model = MainUserPaginadoStory.obtenerUserStoriesDB();
+	      model = consulta.ObtenerUserStoriesDB();
 	      paginaDefault = new Paginacion(null, null, 1, 5);
 	      paginaActual = paginaDefault;
 	      itemsTotales = model.size();
@@ -70,6 +70,26 @@ public class UserStoryPaginadoController extends Controller
          paginaActual = paginacion;
          this.itemsTotales = itemsTotales;
          return historias;
+      }
+
+      public List<UserStory> ObtenerPaginaAnterior()
+      { 
+         return paginaActual.getPagina() == 1 ? getModel() : ListarUserStories(new Paginacion(paginaActual.getOrdenarPor(), paginaActual.getDireccionOrden(), paginaActual.getPagina() - 1, paginaActual.getItemsPorPagina()));  
+      }
+
+      public List<UserStory> ObtenerPaginaSiguiente()
+      {
+         return paginaActual.getPagina() == getPaginasTotales() ? getModel() : ListarUserStories( new Paginacion(paginaActual.getOrdenarPor(), paginaActual.getDireccionOrden(), paginaActual.getPagina() + 1, paginaActual.getItemsPorPagina()));
+      }
+
+      public List<UserStory> ObtenerPaginaPrimera()
+      {
+         return paginaActual.getPagina() == 1 ? getModel() : ListarUserStories( new Paginacion(paginaActual.getOrdenarPor(), paginaActual.getDireccionOrden(), 1, paginaActual.getItemsPorPagina()));
+      }
+
+      public List<UserStory> ObtenerPaginaUltima()
+      {
+         return paginaActual.getPagina() == getPaginasTotales() ? getModel() : ListarUserStories( new Paginacion(paginaActual.getOrdenarPor(), paginaActual.getDireccionOrden(), getPaginasTotales(), paginaActual.getItemsPorPagina()));
       }
 
 	
