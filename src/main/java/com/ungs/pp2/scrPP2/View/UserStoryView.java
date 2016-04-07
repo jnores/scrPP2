@@ -9,7 +9,6 @@ import javax.swing.JPanel;
 import javax.swing.JTextArea;
 import javax.swing.JTextField;
 
-import com.ungs.pp2.scrPP2.Controller.UserStoryController;
 import com.ungs.pp2.scrPP2.Controller.UserStoryHelper;
 
 public class UserStoryView extends JPanel implements Observer
@@ -18,7 +17,6 @@ public class UserStoryView extends JPanel implements Observer
 	 * default serial version
 	 */
 	private static final long serialVersionUID = 1L;
-	private UserStoryController controller;
 	private UserStoryHelper userStoryHelper;
 	
 	private JTextArea txtTitulo;
@@ -64,23 +62,6 @@ public class UserStoryView extends JPanel implements Observer
 		this.cargarUserStory();
 	}
 	
-	public void setController(UserStoryController controller) {
-		this.controller = controller;
-		this.updateEditable();
-	}
-
-	private boolean isEditable() {
-		return this.controller != null;
-	}
-	
-	private void updateEditable() {
-		boolean isEditable = this.isEditable();
-		
-		txtTitulo.setEditable(isEditable);
-		txtAutor.setEditable(isEditable);
-		txtResponsable.setEditable(isEditable);
-	}
-
 	private void cargarUserStory() {
 		this.txtTitulo.setText(this.userStoryHelper.getTitulo());
 		this.txtAutor.setText(this.userStoryHelper.getAutor());
