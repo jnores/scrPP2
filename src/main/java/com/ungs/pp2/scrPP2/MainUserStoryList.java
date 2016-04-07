@@ -4,6 +4,7 @@ import com.ungs.pp2.scrPP2.Controller.ProyectoController;
 import com.ungs.pp2.scrPP2.Dominio.Entidad.Miembro;
 import com.ungs.pp2.scrPP2.Dominio.Entidad.Proyecto;
 import com.ungs.pp2.scrPP2.Dominio.Entidad.UserStory;
+import com.ungs.pp2.scrPP2.Dominio.Enums.Estado;
 import com.ungs.pp2.scrPP2.View.UserStoryListView;
 import com.ungs.pp2.scrPP2.windows.UserStoryOrderableWindow;
 
@@ -33,33 +34,50 @@ public class MainUserStoryList {
 	}
 	private static Proyecto retriveProyectoFromDatabase(){
 		Proyecto proyecto;
+
 		Miembro miembro1
-			   ,miembro2
-			   ;
+		   ,miembro2
+		   ,miembro3
+		   ,miembro4
+		   ;
 		UserStory userStory1
 				 ,userStory2
 				 ,userStory3
+				 ,userStory4
 				 ;
-		miembro1 = new Miembro("Victoria","Desarrollador");
-		miembro2 = new Miembro("Ivo","Diseñador");
-		userStory1 =  new UserStory("Como recepcionista necesito poder registrar el ingreso de cada lote de insumos para que el mismo se valide con los pedidos realizados", "Detalle1", "Autor1");
-		userStory2 =  new UserStory("Como administrador necesito poder generar un reporte de avances de cada empleado para poder analizar el desempeño de los mismos", "Detalle2", "Autor2");
-		userStory3 =  new UserStory("Como gerente de finanzas necesito generar reportes de compra de insumos para evaluar el cierre de activos y pasivos a fin de cada mes", "Detalle3", "Autor3");
-
+		miembro1 = new Miembro("Victoria");
+		miembro2 = new Miembro("Ivo");
+		miembro3 = new Miembro("Jualian");
+		miembro4 = new Miembro("Nores");
+		
+		userStory1 =  new UserStory("Como Recepcionista ...", "Detalle1", "Autor1");
 		userStory1.setId(1);
+		userStory1.setEstado(Estado.Done);
+		userStory2 =  new UserStory("Como Administrador ...", "Detalle2", "Autor2");
 		userStory2.setId(2);
+		userStory2.setEstado(Estado.Doing);
+		userStory3 =  new UserStory("Como Gerente ...", "Detalle3", "Autor3");
 		userStory3.setId(3);
+		userStory3.setEstado(Estado.ToDo);
+		userStory4 =  new UserStory("Como Vendedor ...", "Detalle4", "Autor4");
+		userStory4.setId(4);
+		userStory4.setEstado(Estado.ToDo);
 		
 		proyecto= new Proyecto();
 		proyecto.addMiembro(miembro1);
 		proyecto.addMiembro(miembro2);
+		proyecto.addMiembro(miembro3);
+		proyecto.addMiembro(miembro4);
 		
 		proyecto.addUserStory(userStory1);
 		proyecto.addUserStory(userStory2);
 		proyecto.addUserStory(userStory3);
+		proyecto.addUserStory(userStory4);
 		
-		proyecto.asignarUserStory(userStory2, miembro1);
 		proyecto.asignarUserStory(userStory3, miembro2);
+		proyecto.asignarUserStory(userStory2, miembro1);
+		proyecto.asignarUserStory(userStory4, miembro4);
+		proyecto.asignarUserStory(userStory1, miembro3);
 		
 		return proyecto;
 	}

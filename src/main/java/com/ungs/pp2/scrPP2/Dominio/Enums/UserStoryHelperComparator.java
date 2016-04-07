@@ -40,6 +40,16 @@ public enum UserStoryHelperComparator implements Comparator<UserStoryHelper> {
 		    public String toString() {
 		        return "Estado";
 		    }
+	    }, 
+	RESPONSABLE_SORT {
+		    @Override
+		    public int compare(UserStoryHelper o1, UserStoryHelper o2) {
+		        return o1.getResponsable().compareTo(o2.getResponsable());
+		    }
+		    @Override
+		    public String toString() {
+		        return "Responsable";
+		    }
 	    };
 	
 	public static Comparator<UserStoryHelper> decending(final Comparator<UserStoryHelper> other) {
