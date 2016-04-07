@@ -1,6 +1,7 @@
 package com.ungs.pp2.scrPP2.View;
 
 import java.awt.Dimension;
+import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 import java.util.Observable;
@@ -56,10 +57,23 @@ public class UserStoryListView extends JPanel implements Observer
 
 
 	public void ordenarPorTitulo() {
-		Collections.sort(userStoriesHelper, UserStoryHelperComparator.getComparator(UserStoryHelperComparator.TITLE_SORT));
+		Collections.sort(userStoriesHelper, UserStoryHelperComparator.getComparator(UserStoryHelperComparator.valueOf("TITLE_SORT")));
 		removeAll();
 		cargarUserStories();
-		
+	}
+	
+	public void ordenarPorOpcion(String opcion) {
+		Collections.sort(userStoriesHelper, UserStoryHelperComparator.getComparator(UserStoryHelperComparator.valueOf(opcion)));
+		removeAll();
+		cargarUserStories();
+	}
+	
+	public List<String> getOrdenOptions() {
+		List<String> opciones = new ArrayList<String>();
+		for (UserStoryHelperComparator opt: UserStoryHelperComparator.values()) {
+			opciones.add(opt.toString());
+		}
+		return opciones;
 	}
 
 }
