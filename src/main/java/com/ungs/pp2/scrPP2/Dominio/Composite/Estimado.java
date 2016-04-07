@@ -6,7 +6,7 @@ import java.util.List;
 
 import org.jfree.data.xy.*;
 
-import com.ungs.pp2.scrPP2.Dominio.Entidad.Iteracion;
+import com.ungs.pp2.scrPP2.Dominio.Entidad.Sprint;
 import com.ungs.pp2.scrPP2.Dominio.Entidad.UserStory;
 import com.ungs.pp2.scrPP2.Dominio.Interfaz.IDataComponent;
 
@@ -20,7 +20,7 @@ public class Estimado implements IDataComponent
 	private Integer storyPointsPactados, dias;
 
 	//Contempla solo la iteración, no el proyecto.
-	public Estimado(Iteracion iteracion)
+	public Estimado(Sprint iteracion)
 	{
 		
 	}
@@ -58,7 +58,7 @@ public class Estimado implements IDataComponent
 	}
 
 	@Override
-	public XYSeriesCollection getData(Iteracion iteracion) {
+	public XYSeriesCollection getData(Sprint iteracion) {
 		this.dias=iteracion.getDuracion();
 		Integer storyPoints,reduccion;
 		storyPoints=this.getTotalStoryPoints(iteracion.getUserStories());

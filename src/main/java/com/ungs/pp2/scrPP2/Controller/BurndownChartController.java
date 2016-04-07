@@ -7,7 +7,7 @@ import java.util.List;
 
 import org.jfree.data.xy.XYSeriesCollection;
 
-import com.ungs.pp2.scrPP2.Dominio.Entidad.Iteracion;
+import com.ungs.pp2.scrPP2.Dominio.Entidad.Sprint;
 import com.ungs.pp2.scrPP2.Dominio.Entidad.UserStory;
 import com.ungs.pp2.scrPP2.Dominio.Enums.Estado;
 import com.ungs.pp2.scrPP2.Dominio.Enums.OpcionGrafico;
@@ -33,7 +33,7 @@ public class BurndownChartController extends Controller
 		this.modelo= modelo;
 	}
 	
-	private void setModelo(OpcionGrafico opcion,Iteracion iteracion){
+	private void setModelo(OpcionGrafico opcion,Sprint iteracion){
 		if(opcion.compareTo(opcion.Estimado)==0){
 			modelo=new Estimado(iteracion);
 		}
@@ -47,7 +47,7 @@ public class BurndownChartController extends Controller
 	
 	public XYSeriesCollection getData(OpcionGrafico opcion, Integer it)
 	{	
-		Iteracion iteracion=retriveFromDatabase();
+		Sprint iteracion=retriveFromDatabase();
 		//Tengo que ver quien levanta esa maldita iteracion como tal, por ahora me cargo una berreta 
 		setModelo(opcion,iteracion);
 		if(it==iteracion.getIdIteracion())
@@ -62,7 +62,7 @@ public class BurndownChartController extends Controller
 	
 	
 	//Esto es una porqueria, parcialmente lo copie de alguien
-	private static Iteracion retriveFromDatabase(){
+	private static Sprint retriveFromDatabase(){
 		   UserStory us1,us2,us3; 
 		   List<UserStory> stories = new ArrayList<UserStory>();
 			stories.add(us3=new UserStory("Titulo1", "Detalle1", "Autor1", "Responsable1", 10, 40, 1, Estado.Done, null, null));
@@ -75,7 +75,7 @@ public class BurndownChartController extends Controller
 			us1.setFecha(fecha2);
 			us2.setFecha(fecha2);
 			us3.setFecha(fecha3);
-			Iteracion iteracion=new Iteracion(1,fecha1, 21, stories);
+			Sprint iteracion=new Sprint(1,fecha1, 21, stories);
 			return iteracion;
 		}
 	

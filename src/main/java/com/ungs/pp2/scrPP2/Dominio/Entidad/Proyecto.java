@@ -16,13 +16,13 @@ import java.util.TreeMap;
 public class Proyecto {
 	Map<Integer,UserStory> backlog;
 	Map<String,Miembro> miembros;
-	List<Iteracion> iteraciones;
+	List<Sprint> iteraciones;
 	Map<UserStory,Miembro> asignaciones;
 
 	public Proyecto() {
 		this.backlog      = new TreeMap<Integer,UserStory>();
 		this.miembros     = new HashMap<String,Miembro>();
-		this.iteraciones  = new ArrayList<Iteracion>();
+		this.iteraciones  = new ArrayList<Sprint>();
 		this.asignaciones = new HashMap<UserStory,Miembro>();
 	}
 	
@@ -46,7 +46,7 @@ public class Proyecto {
 	public Set<UserStory> getAllUserStories() {
 		ArrayList<UserStory> allStories;
 		allStories = new ArrayList<UserStory>( this.backlog.values() );
-		for (Iteracion it: iteraciones) {
+		for (Sprint it: iteraciones) {
 			allStories.addAll(it.getUserStories());
 		}
 		return new HashSet<UserStory>(allStories);

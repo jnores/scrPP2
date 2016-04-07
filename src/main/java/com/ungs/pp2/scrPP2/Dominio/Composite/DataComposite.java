@@ -5,15 +5,15 @@ import java.util.Iterator;
 
 import org.jfree.data.xy.*;
 
-import com.ungs.pp2.scrPP2.Dominio.Entidad.Iteracion;
+import com.ungs.pp2.scrPP2.Dominio.Entidad.Sprint;
 import com.ungs.pp2.scrPP2.Dominio.Interfaz.IDataComponent;
 
 public class DataComposite  implements IDataComponent{
 	private ArrayList<IDataComponent> dataGraficos;
 	private XYSeriesCollection series;
-	private Iteracion iteracion;
+	private Sprint iteracion;
 	
-	public DataComposite(Iteracion iteracion)
+	public DataComposite(Sprint iteracion)
 	{
 		this.iteracion=iteracion;
 		this.dataGraficos=new ArrayList<IDataComponent>();
@@ -44,7 +44,7 @@ public class DataComposite  implements IDataComponent{
 	}
 
 	@Override
-	public XYSeriesCollection getData(Iteracion iteracion) {
+	public XYSeriesCollection getData(Sprint iteracion) {
 		Iterator it=this.dataGraficos.iterator();
 		this.series = new XYSeriesCollection();
 		int indice=0;

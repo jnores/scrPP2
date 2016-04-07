@@ -42,7 +42,7 @@ public class UserStoryOrderableWindow extends JFrame {
 		JButton btnOrdenar = new JButton("Ordenar");
 		btnOrdenar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-				userStoriesPane.ordenarPorOpcion(cmbOpciones.getSelectedItem().toString());
+				userStoriesPane.ordenarPorOpcion(cmbOpciones.getItemAt(cmbOpciones.getSelectedIndex()));
 			}
 		});
 		panel.setLayout(new FlowLayout(FlowLayout.CENTER, 5, 5));

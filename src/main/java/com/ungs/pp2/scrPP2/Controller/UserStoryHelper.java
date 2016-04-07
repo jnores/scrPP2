@@ -2,6 +2,7 @@ package com.ungs.pp2.scrPP2.Controller;
 
 import com.ungs.pp2.scrPP2.Dominio.Entidad.Miembro;
 import com.ungs.pp2.scrPP2.Dominio.Entidad.UserStory;
+import com.ungs.pp2.scrPP2.Dominio.Enums.Estado;
 
 public class UserStoryHelper
 {
@@ -42,6 +43,10 @@ public class UserStoryHelper
 		if (miembro != null)
 			responsable=miembro.getNombre();
 		return responsable;
+	}
+
+	public Estado getEstado() {
+		return userStory.getEstado();
 	}
 	
 }

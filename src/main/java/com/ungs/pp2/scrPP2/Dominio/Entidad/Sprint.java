@@ -5,7 +5,7 @@ import java.util.GregorianCalendar;
 import java.util.Iterator;
 import java.util.List;
 
-public class Iteracion {
+public class Sprint {
 	private int idIteracion;
 	private Date fechaInicio;
 	private int duracion;
@@ -13,7 +13,7 @@ public class Iteracion {
 	private int StoryPointsPactados; 
 	private GregorianCalendar calendario;
 	
-	public Iteracion(int idIteracion,Date fechaInicio, int duracion, List<UserStory> historias) {
+	public Sprint(int idIteracion,Date fechaInicio, int duracion, List<UserStory> historias) {
 		this.idIteracion = idIteracion;
 		this.setfechaInicio(fechaInicio);
 		this.duracion = duracion;

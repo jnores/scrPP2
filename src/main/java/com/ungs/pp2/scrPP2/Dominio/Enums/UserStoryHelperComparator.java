@@ -9,15 +9,38 @@ import com.ungs.pp2.scrPP2.Controller.UserStoryHelper;
  *
  */
 public enum UserStoryHelperComparator implements Comparator<UserStoryHelper> {
-	Número {
-		@Override
-	    public int compare(UserStoryHelper o1, UserStoryHelper o2) {
-	        return Integer.valueOf(o1.getId()).compareTo(o2.getId());
-	    }},
-	Título {
-	    public int compare(UserStoryHelper o1, UserStoryHelper o2) {
-	        return o1.getTitulo().compareTo(o2.getTitulo());
-	    }};
+	NUMERO_SORT {
+			@Override
+		    public int compare(UserStoryHelper o1, UserStoryHelper o2) {
+		        return Integer.valueOf(o1.getId()).compareTo(o2.getId());
+		    }
+	
+		    @Override
+		    public String toString() {
+		        return "Número";
+		    }
+		},
+	TITULO_SORT {
+		    @Override
+		    public int compare(UserStoryHelper o1, UserStoryHelper o2) {
+		        return o1.getTitulo().compareTo(o2.getTitulo());
+		    }
+	
+		    @Override
+		    public String toString() {
+		        return "Título";
+		    }
+	    },
+	ESTADO_SORT {
+		    @Override
+		    public int compare(UserStoryHelper o1, UserStoryHelper o2) {
+		        return o1.getEstado().compareTo(o2.getEstado());
+		    }
+		    @Override
+		    public String toString() {
+		        return "Estado";
+		    }
+	    };
 	
 	public static Comparator<UserStoryHelper> decending(final Comparator<UserStoryHelper> other) {
 	    return new Comparator<UserStoryHelper>() {

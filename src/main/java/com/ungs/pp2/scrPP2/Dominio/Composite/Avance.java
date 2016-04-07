@@ -7,7 +7,7 @@ import java.util.Iterator;
 
 import org.jfree.data.xy.*;
 
-import com.ungs.pp2.scrPP2.Dominio.Entidad.Iteracion;
+import com.ungs.pp2.scrPP2.Dominio.Entidad.Sprint;
 import com.ungs.pp2.scrPP2.Dominio.Entidad.UserStory;
 import com.ungs.pp2.scrPP2.Dominio.Interfaz.IDataComponent;
 
@@ -15,7 +15,7 @@ public class Avance implements IDataComponent{
 	private XYSeries avance; 
 	private XYSeriesCollection dataset;
 	
-	public Avance(Iteracion iteracion)
+	public Avance(Sprint iteracion)
 	{
 		
 	}
@@ -25,7 +25,7 @@ public class Avance implements IDataComponent{
 		return null;
 	}
 	
-	private Integer getStoryPointsDone(Date fecha,Iteracion iteracion)
+	private Integer getStoryPointsDone(Date fecha,Sprint iteracion)
 	{
 		Integer storyPointsDone=0;
 		Iterator<UserStory> it=iteracion.getUserStories().iterator();
@@ -46,7 +46,7 @@ public class Avance implements IDataComponent{
 
 	
 	@Override
-	public XYSeriesCollection getData(Iteracion iteracion) {
+	public XYSeriesCollection getData(Sprint iteracion) {
 		avance = new XYSeries( "Avance" );
 		
 		Date fecha=iteracion.getfechaInicio();

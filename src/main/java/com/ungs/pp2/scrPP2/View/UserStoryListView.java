@@ -54,26 +54,11 @@ public class UserStoryListView extends JPanel implements Observer
 		// TODO Auto-generated method stub
 		this.cargarUserStories();
 	}
-
-
-	public void ordenarPorTitulo() {
-		Collections.sort(userStoriesHelper, UserStoryHelperComparator.getComparator(UserStoryHelperComparator.valueOf("TITLE_SORT")));
+	
+	public void ordenarPorOpcion(UserStoryHelperComparator opcion) {
+		Collections.sort(userStoriesHelper, UserStoryHelperComparator.getComparator(opcion));
 		removeAll();
 		cargarUserStories();
 	}
 	
-	public void ordenarPorOpcion(String opcion) {
-		Collections.sort(userStoriesHelper, UserStoryHelperComparator.getComparator(UserStoryHelperComparator.valueOf(opcion)));
-		removeAll();
-		cargarUserStories();
-	}
-	
-	public List<String> getOrdenOptions() {
-		List<String> opciones = new ArrayList<String>();
-		for (UserStoryHelperComparator opt: UserStoryHelperComparator.values()) {
-			opciones.add(opt.toString());
-		}
-		return opciones;
-	}
-
 }
