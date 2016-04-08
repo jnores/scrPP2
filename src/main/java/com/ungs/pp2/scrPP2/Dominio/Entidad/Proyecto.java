@@ -2,6 +2,7 @@ package com.ungs.pp2.scrPP2.Dominio.Entidad;
 
 import java.util.ArrayList;
 import java.util.Collection;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
@@ -14,10 +15,11 @@ import java.util.TreeMap;
  *
  */
 public class Proyecto {
-	Map<Integer,UserStory> backlog;
-	Map<String,Miembro> miembros;
-	List<Sprint> iteraciones;
-	Map<UserStory,Miembro> asignaciones;
+	private Date fechaInicio,fechaFin;
+	private Map<Integer,UserStory> backlog;
+	private Map<String,Miembro> miembros;
+	private List<Sprint> iteraciones;
+	private Map<UserStory,Miembro> asignaciones;
 
 	public Proyecto() {
 		this.backlog      = new TreeMap<Integer,UserStory>();

@@ -9,7 +9,7 @@ public class Sprint {
 	private int idIteracion;
 	private Date fechaInicio;
 	private int duracion;
-	private List<UserStory> historias;
+	private List<UserStory> sprintBacklog;
 	private int StoryPointsPactados; 
 	private GregorianCalendar calendario;
 	
@@ -17,14 +17,14 @@ public class Sprint {
 		this.idIteracion = idIteracion;
 		this.setfechaInicio(fechaInicio);
 		this.duracion = duracion;
-		this.historias = historias;
+		this.sprintBacklog = historias;
 		this.setStoryPointsPactados();
 	}
 	
 	private void setStoryPointsPactados(){
 		int puntos=0;
-		if(this.historias!=null){
-			for (UserStory us: this.historias) {
+		if(this.sprintBacklog!=null){
+			for (UserStory us: this.sprintBacklog) {
 				puntos+=us.getStoryPoints();
 			}
 		}
@@ -40,7 +40,7 @@ public class Sprint {
 	}
 	
 	public List<UserStory> getUserStories() {
-		return this.historias;
+		return this.sprintBacklog;
 	}
 
 	public void setfechaInicio(Date fechaInicio) {
@@ -52,12 +52,12 @@ public class Sprint {
 	}
 
 	public void setUserStories(List<UserStory> historias) {
-		this.historias=historias;
+		this.sprintBacklog=historias;
 	}
 	
 	public void setUserStory(UserStory historia) {
 		this.StoryPointsPactados=+historia.getStoryPoints();
-		this.historias.add(historia);
+		this.sprintBacklog.add(historia);
 	}
 
 	public int getDuracion() {
