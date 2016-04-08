@@ -16,9 +16,9 @@ public class Consulta implements IConsulta
    public ListaPaginada<UserStory> ListarPaginadoUserStories(Paginacion paginacion)
    {
       return null;
-   }
-   
-   public List<UserStory> ObtenerUserStoriesDB(){
+   }   
+   public List<UserStory> ObtenerUserStoriesDB()
+   {
       
       List<UserStory> stories = new ArrayList<UserStory>();
       stories.add(new UserStory("Titulo1", "Detalle1", "Autor1", "Responsable1", 10, 40, 1, Estado.ToDo, null, null));

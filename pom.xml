@@ -52,12 +52,28 @@
             <groupId>org.codehaus.mojo</groupId>
             <artifactId>cobertura-maven-plugin</artifactId>
             <version>2.7</version>
-            <configuration>
-                <format>xml</format>
+            <configuration>           	
+		          <check>
+		            <haltOnFailure>true</haltOnFailure>
+		            <!-- Per-class thresholds -->
+		            <!--<lineRate>80</lineRate>-->
+		            <!-- Project-wide thresholds -->
+		            <totalLineRate>70</totalLineRate>
+		          </check>
+                <format>xml</format>             
                 <maxmem>256m</maxmem>
                 <!-- aggregated reports for multi-module projects -->
                 <aggregate>true</aggregate>
 		     </configuration>
+		     <executions>
+		          <execution>
+		            <phase>verify</phase>
+		            <goals>
+		              <!--<goal>clean</goal>--><!-- works if uncommented -->
+		              <goal>check</goal>
+		            </goals>
+		          </execution>
+		        </executions>
         </plugin>
 
         <!-- coveralls -->
