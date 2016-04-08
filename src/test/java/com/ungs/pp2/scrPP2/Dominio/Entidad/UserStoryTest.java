@@ -13,7 +13,7 @@ import junit.framework.TestSuite;
 public class UserStoryTest extends TestCase {
 	
    UserStory story;
-   Criterio criterio;
+   CriterioAceptacion criterio;
    Tarea tarea;
 	
 	/**
@@ -34,7 +34,7 @@ public class UserStoryTest extends TestCase {
 	
 	public void  setUp() {
 		story = new UserStory("Titulo1", "Detalle1", "Autor1", "Responsable1", 10, 40, 1, Estado.ToDo, null, null);
-		criterio = new Criterio("criterio1");
+		criterio = new CriterioAceptacion("criterio1");
 		tarea = new Tarea(Estado.ToDo);
 	}
 	
@@ -43,7 +43,7 @@ public class UserStoryTest extends TestCase {
 	 */
 	public void testStory() {
 	   
-	   List<Criterio> criterios = new ArrayList<Criterio>();
+	   List<CriterioAceptacion> criterios = new ArrayList<CriterioAceptacion>();
 	   List<Tarea> tareas = new ArrayList<Tarea>();
 	   tareas.add(tarea);
 	   criterios.add(criterio);

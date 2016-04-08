@@ -17,10 +17,10 @@ public class UserStory extends java.util.Observable
 	private int storyPoints;
 	private int iteracion;
 	private Estado estado;
-	private List<Criterio> criterios;
+	private List<CriterioAceptacion> criterios;
 	private List<Tarea> tareas;
 	
-	public UserStory(String titulo, String detalle, String autor, String responsable, int horasEstimadas, int storyPoints, int iteracion, Estado estado, List<Criterio> criterios, List<Tarea> tareas) {
+	public UserStory(String titulo, String detalle, String autor, String responsable, int horasEstimadas, int storyPoints, int iteracion, Estado estado, List<CriterioAceptacion> criterios, List<Tarea> tareas) {
 		this.titulo = titulo;
 		this.detalle = detalle;
 		this.autor = autor;
@@ -82,7 +82,7 @@ public class UserStory extends java.util.Observable
 		return this.estado;
 	}
 
-	public List<Criterio> getCriterios() {
+	public List<CriterioAceptacion> getCriterios() {
 		return this.criterios;
 	}
 
@@ -138,7 +138,7 @@ public class UserStory extends java.util.Observable
 		fueModificado();
 	}
 
-	public void setCriterios(List<Criterio> criterios) {
+	public void setCriterios(List<CriterioAceptacion> criterios) {
 		this.criterios = criterios;
 		fueModificado();
 	}

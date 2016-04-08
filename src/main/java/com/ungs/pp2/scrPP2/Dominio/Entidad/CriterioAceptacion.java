@@ -1,6 +1,6 @@
 package com.ungs.pp2.scrPP2.Dominio.Entidad;
 
-public class Criterio extends java.util.Observable
+public class CriterioAceptacion extends java.util.Observable
 {
 	private int Id;
 	private String Descripcion;
@@ -8,7 +8,7 @@ public class Criterio extends java.util.Observable
 	 * @param id
 	 * @param descripcion
 	 */
-	public Criterio(String descripcion) {
+	public CriterioAceptacion(String descripcion) {
 		Descripcion = descripcion;
 	}
 	/**
