@@ -23,7 +23,7 @@ public class BurndownChartController extends Controller
 	private BurndownChartView vista;
 	private OpcionGrafico Opcion;
 
-	protected BurndownChartController(IConsulta consulta) {
+	public BurndownChartController(IConsulta consulta) {
 		super(consulta);
 	}
 	

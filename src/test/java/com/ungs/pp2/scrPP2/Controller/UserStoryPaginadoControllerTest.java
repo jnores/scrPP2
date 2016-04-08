@@ -4,7 +4,10 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
+import com.ungs.pp2.scrPP2.Consulta.Consulta;
+import com.ungs.pp2.scrPP2.Dominio.Paginacion;
 import com.ungs.pp2.scrPP2.Dominio.Entidad.UserStory;
+import com.ungs.pp2.scrPP2.Dominio.Enums.DirOrden;
 import com.ungs.pp2.scrPP2.Dominio.Enums.Estado;
 import com.ungs.pp2.scrPP2.Dominio.Interfaz.IConsulta;
 
@@ -84,6 +87,23 @@ public class UserStoryPaginadoControllerTest extends TestCase
       
       lista = controller.ObtenerPaginaUltima();
       assertEquals(controller.getPaginaActual().getPagina(), 3);
+      
+      Paginacion paginacion = new Paginacion("Id", DirOrden.Desc, 1, 5);
+      listaDefault = controller.ListarUserStories(paginacion);
+      assertEquals(controller.getPaginaActual().getDireccionOrden(), DirOrden.Desc);
+      paginacion.setDireccionOrden(DirOrden.Asc);
+      paginacion.setItemsPorPagina(4);
+      paginacion.setOrdenarPor("Id");
+      paginacion.setPagina(2);
+      
+      assertEquals(controller.getPaginaActual().getDireccionOrden(), DirOrden.Asc);
+      assertEquals(controller.getPaginaActual().getPagina(), 2);
+      
    }
-
+   
+   public void testConsulta()
+   { 
+      Consulta consulta = new Consulta();
+      consulta.ObtenerUserStoriesDB();
+   }
 }

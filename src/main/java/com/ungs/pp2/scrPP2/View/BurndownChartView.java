@@ -31,7 +31,11 @@ import org.jfree.chart.renderer.xy.XYLineAndShapeRenderer;
 
 public class BurndownChartView  extends JFrame implements ActionListener
 {
-	private ChartPanel panel;
+	/**
+    * 
+    */
+   private static final long serialVersionUID = 1L;
+   private ChartPanel panel;
 	private BurndownChartController controller;	
 	private JMenuBar menuBar;
 	private JMenu menuP,menuI;
