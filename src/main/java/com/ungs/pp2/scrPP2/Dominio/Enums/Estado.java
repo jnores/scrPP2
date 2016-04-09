@@ -5,14 +5,16 @@ public enum Estado
 	ToDo,
 	Doing,
 	Done;
-	//private static Estado[] valores = values();
+
 	
 	public static Estado getDefault() {
 		return Estado.ToDo;
 	}
 	
-	public Estado siguiente()
+	public Estado avanzar() throws RuntimeException
     {
-        return Estado.values()[(this.ordinal()+1) % Estado.values().length];
+		if ( (this.ordinal()+1) == Estado.values().length )
+			throw new RuntimeException("No existe un estado posterior a Done."); 
+		return Estado.values()[(this.ordinal()+1)];
     }
 }

@@ -1,42 +1,51 @@
 package com.ungs.pp2.scrPP2.Dominio.Entidad;
 
-import java.util.List;
+
 
 import com.ungs.pp2.scrPP2.Dominio.Enums.Estado;
 
 public class Tarea extends java.util.Observable
 {
-	private int Id;
-	private Estado Estado;
+	private int id;
+	private Estado estado;
 	/**
 	 * @param id
 	 * @param tareas
 	 */
-	public Tarea(Estado estado) {
-		Estado = estado;
+//	public Tarea(int id) {
+//		this.id=id;
+//		estado = Estado.getDefault();
+//	}
+	
+	public Tarea() {
+	
+		estado = Estado.getDefault();
 	}
 	/**
 	 * @return the id
 	 */
 	public int getId() {
-		return Id;
+		return id;
 	}
 	/**
 	 * @param id the id to set
 	 */
+	
+	//esto no va
 	public void setId(int id) {
-		Id = id;
+		this.id = id;
 	}
 	/**
 	 * @return the tareas
 	 */
 	public Estado getEstado() {
-		return Estado;
+		return estado;
 	}
 	/**
 	 * @param tareas the tareas to set
 	 */
-	public void setEstado(Estado estado) {
-	   Estado = estado;
+	public void avanzarEstado()
+	{
+		estado = estado.avanzar();
 	}
 }

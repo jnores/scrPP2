@@ -31,6 +31,7 @@ public class EstadoTest extends TestCase {
 	 * Verifico que el estado por default sea ToDo
 	 */
 	public void testEstadoDefault() {
+		
 		Estado estadoDefault = Estado.getDefault();
 		assertEquals(estadoDefault,Estado.ToDo);
 	}
@@ -41,9 +42,9 @@ public class EstadoTest extends TestCase {
 	public void testEstadoSiguiente() {
 		Estado estado = Estado.ToDo;
 		assertEquals(estado,Estado.ToDo);
-		estado = estado.siguiente();
+		estado = estado.avanzar();
 		assertEquals(estado,Estado.Doing);
-		estado = estado.siguiente();
+		estado = estado.avanzar();
 		assertEquals(estado,Estado.Done);
 	}
 }

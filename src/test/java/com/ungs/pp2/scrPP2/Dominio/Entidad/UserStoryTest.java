@@ -35,7 +35,7 @@ public class UserStoryTest extends TestCase {
 	public void  setUp() {
 		story = new UserStory("Titulo1", "Detalle1", "Autor1", "Responsable1", 10, 40, 1, Estado.ToDo, null, null);
 		criterio = new CriterioAceptacion("criterio1");
-		tarea = new Tarea(Estado.ToDo);
+		tarea = new Tarea();
 	}
 	
 	/**
@@ -50,7 +50,10 @@ public class UserStoryTest extends TestCase {
 	   
 	   assertTrue(tarea.getEstado() == Estado.ToDo);
 	   assertTrue(tarea.getId() == 0);
-	   tarea.setEstado(Estado.Done);
+	   
+	 //tarea.setEstado(Estado.Done);
+	   tarea.avanzarEstado();
+	   
 	   tarea.setId(1);
 	   
 	   assertTrue(criterio.getDescripcion() == "criterio1");
