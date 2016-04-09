@@ -55,8 +55,12 @@ public class UserStoryListView extends JPanel implements Observer
 		this.cargarUserStories();
 	}
 	
-	public void ordenarPorOpcion(UserStoryHelperComparator opcion) {
-		Collections.sort(userStoriesHelper, UserStoryHelperComparator.getComparator(opcion));
+	public void ordenarPorOpcion(UserStoryHelperComparator opcion,boolean desc) {
+		if (desc) {
+			Collections.sort(userStoriesHelper, UserStoryHelperComparator.decending(opcion));
+		} else {
+			Collections.sort(userStoriesHelper, opcion);
+		}
 		removeAll();
 		cargarUserStories();
 	}

@@ -66,7 +66,7 @@ public class Estimado implements IDataComponent
 		
 		reduccion=this.storyPointsPactados/this.dias;
 
-		for(int dia=0;dia<this.dias+1;dia++){
+		for(int dia=0;dia<=this.dias;dia++){
 			estimado.add(dia,storyPoints);
 			storyPoints=storyPoints-reduccion;
 		}             

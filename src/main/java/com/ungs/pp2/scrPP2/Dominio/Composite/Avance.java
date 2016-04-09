@@ -52,8 +52,12 @@ public class Avance implements IDataComponent{
 		Date fecha=iteracion.getfechaInicio();
 		Date fechaF= new Date();
 		int dias=iteracion.getDiasTranscurridos();
+		
+		if (dias > iteracion.getDuracion())
+			dias = iteracion.getDuracion();
+		
 		Integer storyPoints=iteracion.getStoryPointsPactados();
-		for(int i=0;i<dias+1;i++){
+		for(int i=0;i<=dias;i++){
 			storyPoints=storyPoints-this.getStoryPointsDone(fecha, iteracion);
 			fecha = this.sumarDia(fecha);
 			avance.add(i,storyPoints);

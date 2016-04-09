@@ -113,6 +113,7 @@ public class BurndownChartView  extends JFrame implements ActionListener
 	public void actionPerformed(ActionEvent evento) {
 		String comando=evento.getActionCommand();
 		Integer iteracion=null;
+		XYSeriesCollection datos = null;
 		if (evento.getSource().equals(menu4)||
 				evento.getSource().equals(menu5)||
 				evento.getSource().equals(menu6))
@@ -123,19 +124,25 @@ public class BurndownChartView  extends JFrame implements ActionListener
 			{JOptionPane.showMessageDialog(null, "Hubo un error al ingresar la iteración");}
 		}
 		
-		if (evento.getSource().equals(menu1))
-		{this.controller.getData(OpcionGrafico.Avance);}
-		if (evento.getSource().equals(menu2))
-		{this.controller.getData(OpcionGrafico.Estimado);}
-		if (evento.getSource().equals(menu3))
-		{this.controller.getData(OpcionGrafico.Comparativo);}
-		if (evento.getSource().equals(menu4))
-		{this.dibujarGrafico(this.controller.getData(OpcionGrafico.Avance,iteracion));}
-		if (evento.getSource().equals(menu5))
-		{this.dibujarGrafico(this.controller.getData(OpcionGrafico.Estimado,iteracion));}
-		if (evento.getSource().equals(menu6))
-		{this.dibujarGrafico(this.controller.getData(OpcionGrafico.Comparativo,iteracion));}
+		if (evento.getSource().equals(menu1)) {
+			datos = this.controller.getData(OpcionGrafico.Avance);
+		} else if (evento.getSource().equals(menu2)) { 
+			datos = this.controller.getData(OpcionGrafico.Estimado);
+		} else if (evento.getSource().equals(menu3)) { 
+			datos = this.controller.getData(OpcionGrafico.Comparativo);
+		} else if (evento.getSource().equals(menu4)) {
+			datos = this.controller.getData(OpcionGrafico.Avance,iteracion);
+		} else if (evento.getSource().equals(menu5)) {
+			datos = this.controller.getData(OpcionGrafico.Estimado,iteracion);
+		} else if (evento.getSource().equals(menu6)) {
+			datos = this.controller.getData(OpcionGrafico.Comparativo,iteracion);
+		}
 		
+		if (datos != null) {
+			this.dibujarGrafico(datos);
+		} else {
+			JOptionPane.showMessageDialog(null, "No se poseen suficientes datos para realizar el gráfico");
+		}
 	}
 
 }

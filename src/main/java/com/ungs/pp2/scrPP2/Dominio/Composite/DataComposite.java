@@ -1,9 +1,9 @@
 package com.ungs.pp2.scrPP2.Dominio.Composite;
 
 import java.util.ArrayList;
-import java.util.Iterator;
 
-import org.jfree.data.xy.*;
+import org.jfree.data.xy.XYSeries;
+import org.jfree.data.xy.XYSeriesCollection;
 
 import com.ungs.pp2.scrPP2.Dominio.Entidad.Sprint;
 import com.ungs.pp2.scrPP2.Dominio.Interfaz.IDataComponent;
@@ -27,10 +27,8 @@ public class DataComposite  implements IDataComponent{
 	public XYSeriesCollection getData() {
 		System.out.println("ESTOY");
 		XYSeriesCollection series=new XYSeriesCollection();
-		Iterator it=this.dataGraficos.iterator();
-		while (it.hasNext()){
-			IDataComponent var=(IDataComponent)it.next();
-			series.addSeries(var.getData().getSeries(0));
+		for (IDataComponent it: this.dataGraficos) {
+			series.addSeries(it.getData().getSeries(0));
 		}
 		return series;
 	}
@@ -45,13 +43,12 @@ public class DataComposite  implements IDataComponent{
 
 	@Override
 	public XYSeriesCollection getData(Sprint iteracion) {
-		Iterator it=this.dataGraficos.iterator();
 		this.series = new XYSeriesCollection();
 		int indice=0;
 		XYSeriesCollection data=new XYSeriesCollection();
-		while(it.hasNext()){
-			IDataComponent datos= (IDataComponent) it.next();
-			XYSeries serie=datos.getData(iteracion).getSeries(indice);
+		
+		for (IDataComponent it: this.dataGraficos) {
+			XYSeries serie=it.getData(iteracion).getSeries(indice);
 			data.addSeries(serie);
 		}
 		return data;
