@@ -25,13 +25,17 @@ public void testTareaEstadoDefault()
 		assertEquals(tarea.getEstado(),Estado.Done);
 		
 		//estado invalido
+		//esto se puede hacer de una forma mas elegante, ver de cambiar la version de junit (4.xx)
 		try 
 		 {
 			tarea.avanzarEstado();
 		 }	 
-		catch (RuntimeException e) 
+		catch (Exception e) 
 		{   		
    		assertTrue(e instanceof RuntimeException);
+   		
+   		//no se si esta linea que sigue esta bien
+   		assertTrue(e.getMessage().equals("No existe un estado posterior a Done."));
 		}
 	}
 

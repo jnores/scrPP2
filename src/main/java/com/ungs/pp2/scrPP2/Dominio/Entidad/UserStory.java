@@ -38,6 +38,7 @@ public class UserStory extends java.util.Observable
 		this.titulo = titulo;
 		this.detalle = detalle;
 		this.autor = autor;
+		//Estado por defecto al crear la user story
 		this.estado = Estado.getDefault();
 		this.fechaDone=null;
 	}
