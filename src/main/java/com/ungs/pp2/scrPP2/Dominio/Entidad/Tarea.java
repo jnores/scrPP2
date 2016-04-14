@@ -44,7 +44,7 @@ public class Tarea extends java.util.Observable
 	/**
 	 * @param tareas the tareas to set
 	 */
-	public void avanzarEstado()
+	public void avanzarEstado() throws RuntimeException
 	{
 		estado = estado.avanzar();
 	}

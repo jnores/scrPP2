@@ -11,8 +11,7 @@ public enum Estado
 		return Estado.ToDo;
 	}
 	
-	public Estado avanzar() throws RuntimeException
-    {
+	public Estado avanzar() throws RuntimeException {
 		if ( (this.ordinal()+1) == Estado.values().length )
 			throw new RuntimeException("No existe un estado posterior a Done."); 
 		return Estado.values()[(this.ordinal()+1)];

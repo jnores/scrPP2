@@ -46,5 +46,12 @@ public class EstadoTest extends TestCase {
 		assertEquals(estado,Estado.Doing);
 		estado = estado.avanzar();
 		assertEquals(estado,Estado.Done);
+		try {
+			estado=estado.avanzar();
+		} catch (RuntimeException e) {
+			//no se si esta linea que sigue esta bien
+	   		assertTrue(e.getMessage().equals("No existe un estado posterior a Done."));
+			
+		}
 	}
 }
