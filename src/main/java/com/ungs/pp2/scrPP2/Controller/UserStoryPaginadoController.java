@@ -36,7 +36,8 @@ public class UserStoryPaginadoController extends Controller
       
       public int getPaginasTotales()
       {
-         return itemsTotales != 0 ? (itemsTotales / paginaActual.getItemsPorPagina()) + 1 : 0 ;
+         return itemsTotales / paginaActual.getItemsPorPagina() + (itemsTotales % paginaActual.getItemsPorPagina() == 0 ? 0 : 1);
+         //return itemsTotales != 0 ? (itemsTotales / paginaActual.getItemsPorPagina()) + 1 : 0 ;
       }
       
       public Paginacion getPaginaActual()
@@ -88,6 +89,11 @@ public class UserStoryPaginadoController extends Controller
       public List<UserStory> ObtenerPaginaUltima()
       {
          return paginaActual.getPagina() == getPaginasTotales() ? getModel() : ListarUserStories( new Paginacion(paginaActual.getOrdenarPor(), paginaActual.getDireccionOrden(), getPaginasTotales(), paginaActual.getItemsPorPagina()));
+      }
+      
+      public List<UserStory> ObtenerPaginaActual()
+      {
+         return ListarUserStories( new Paginacion(paginaActual.getOrdenarPor(), paginaActual.getDireccionOrden(), paginaActual.getPagina(), paginaActual.getItemsPorPagina()));
       }
 
 	

@@ -18,6 +18,8 @@ import javax.swing.table.TableModel;
 import com.ungs.pp2.scrPP2.Controller.UserStoryPaginadoController;
 import com.ungs.pp2.scrPP2.Dominio.Paginacion;
 import com.ungs.pp2.scrPP2.Dominio.Entidad.UserStory;
+import com.ungs.pp2.scrPP2.Dominio.Enums.Estado;
+
 import javax.swing.JButton;
 import javax.swing.ImageIcon;
 import javax.swing.JLabel;
@@ -34,7 +36,7 @@ public class UserStoryPaginadoView extends JFrame implements Observer
 	private Object[][] data;
 	private JLabel PageNumberLabel;
 	private List<UserStory> Stories;
-	private JButton btnPrimero,btnAnterior,btnSiguiente,btnUltimo ;
+	private JButton btnadd, btnPrimero,btnAnterior,btnSiguiente,btnUltimo ;
 	
 	public UserStoryPaginadoView(UserStoryPaginadoController controller ) 
 	{
@@ -43,6 +45,7 @@ public class UserStoryPaginadoView extends JFrame implements Observer
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(400, 400, 500, 200);
 		
+		btnadd = new JButton("add");
 		btnPrimero = new JButton("");
 		btnAnterior = new JButton("");
 		btnSiguiente = new JButton("");
@@ -50,9 +53,21 @@ public class UserStoryPaginadoView extends JFrame implements Observer
 		
 
 		// Seteo la lista paginada con la 1º pagina por defecto
-		Stories = controller.ListarUserStories(null);
+		Stories = Controller.ListarUserStories(null);
 		setearVista();
 			
+		
+		btnadd.addActionListener(new ActionListener() 
+      { 
+         public void actionPerformed(ActionEvent e) 
+         { 
+            List<UserStory> lista = Controller.getModel();
+            lista.add(new UserStory("Added1", "Detalle11", "Autor11", "Responsable11", 10, 40, 1, Estado.ToDo, null, null));
+            Controller.setModel(lista);
+            Stories = Controller.ObtenerPaginaActual();
+            setearVista();
+         } 
+      });
 		btnAnterior.addActionListener(new ActionListener() 
 		{ 
 		   public void actionPerformed(ActionEvent e) 
@@ -95,11 +110,11 @@ public class UserStoryPaginadoView extends JFrame implements Observer
 	
 	private void setearVista()
 	{
+	   habilitarBotones(false);
 	   if (Stories.size() == 0)
 	   {
 	      data = new Object[][] {{"No hay Historias"}} ;
-	      PageNumberLabel = new JLabel(" - ");
-	      habilitarBotones(false);
+	      PageNumberLabel = new JLabel(" - ");      
 	   }
 	   else 
 	   {	      	   
@@ -113,8 +128,17 @@ public class UserStoryPaginadoView extends JFrame implements Observer
             story.addObserver(this);
          }    
          PageNumberLabel = new JLabel(Controller.getPaginaActual().getPagina()+ " / " + Controller.getPaginasTotales());
-         habilitarBotones(true);
+         if (Controller.getPaginasTotales() > 1){
+            habilitarBotones(true);
+            if (Controller.getPaginaActual().getPagina() == 1){
+               habilitarAtras(false);
+            }
+            if (Controller.getPaginaActual().getPagina() == Controller.getPaginasTotales()){
+               habilitarAdelante(false);
+            }
+         }
 	   }
+	   
 	   String[] columnNames = {"Titulo", "Descripcion","Puntos"};
 	   @SuppressWarnings("serial")
       TableModel model = new DefaultTableModel(data, columnNames){
@@ -142,6 +166,7 @@ public class UserStoryPaginadoView extends JFrame implements Observer
       
       ImageIcon primero = new ImageIcon(classloader.getResource("images/Primero.png"));
       btnPrimero.setIcon(primero);
+      panel.add(btnadd);
       panel.add(btnPrimero);
       
       
@@ -168,6 +193,18 @@ public class UserStoryPaginadoView extends JFrame implements Observer
 	    btnSiguiente.setEnabled(bool);
 	    btnAnterior.setEnabled(bool);
 	}
+	
+	private void habilitarAdelante(boolean bool)
+   {
+       btnUltimo.setEnabled(bool);
+       btnSiguiente.setEnabled(bool);
+   }
+	
+	  private void habilitarAtras(boolean bool)
+	   {
+	       btnPrimero.setEnabled(bool);
+	       btnAnterior.setEnabled(bool);
+	   }
 	
 	private void obtenerPaginaAnterior()
 	{
