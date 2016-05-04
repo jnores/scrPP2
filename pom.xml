@@ -12,7 +12,6 @@
 
   <properties>
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-
   </properties>
 
   <dependencies>
@@ -34,6 +33,22 @@
       <artifactId>jfreechart</artifactId>
       <version>1.0.13</version>
     </dependency>
+    <dependency>
+      <groupId>com.google.api-client</groupId>
+      <artifactId>google-api-client</artifactId>
+      <version>1.20.0</version>
+    </dependency>
+    <dependency>
+	  <groupId>com.google.http-client</groupId>
+	  <artifactId>google-http-client-jackson</artifactId>
+	  <version>1.19.0</version>
+	  <type>jar</type>
+    </dependency>
+    <dependency>
+	  <groupId>com.google.gdata</groupId>
+	  <artifactId>core</artifactId>
+	  <version>1.47.1</version>
+    </dependency> 
   </dependencies>
   
   <build>
