@@ -4,7 +4,8 @@ import com.ungs.pp2.scrPP2.Controller.BurndownChartController;
 import com.ungs.pp2.scrPP2.Dominio.Enums.OpcionGrafico;
 
 import javax.swing.JOptionPane;
-
+import javax.swing.JPanel;
+import javax.swing.JTabbedPane;
 import javax.swing.JFrame;
 import javax.swing.JMenu;
 import javax.swing.JMenuBar;
@@ -29,13 +30,15 @@ import org.jfree.chart.ChartFactory;
 import org.jfree.chart.plot.PlotOrientation; 
 import org.jfree.chart.renderer.xy.XYLineAndShapeRenderer;
 
-public class BurndownChartView  extends JFrame implements ActionListener
+public class BurndownChartView  extends JTabbedPane implements ActionListener
 {
 	/**
     * 
     */
    private static final long serialVersionUID = 1L;
-   private ChartPanel panel;
+   private JPanel panelAvance;
+   private JPanel panelEstimado;
+   private JPanel panelComparativo;
 	private BurndownChartController controller;	
 	private JMenuBar menuBar;
 	private JMenu menuP,menuI;
@@ -44,14 +47,28 @@ public class BurndownChartView  extends JFrame implements ActionListener
 
 	public BurndownChartView (BurndownChartController controller)
 	{
-		setTitle("Burndown Chart");
+		//setTitle("Burndown Chart");
 		this.setLayout(new FlowLayout());
 		this.controller=controller;
-		this.setJMenuBar(cargarMenu());
-		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		this.setSize(600,400);
-		this.setLocationRelativeTo(null);
+		//this.setJMenuBar(cargarMenu());
+		//setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		this.setSize(500,300);
+		//this.setLocationRelativeTo(null);
+		panelAvance = new JPanel();
+      panelEstimado = new JPanel();
+      panelComparativo = new JPanel();
+		panelAvance.setSize(500,300);
+		panelEstimado.setSize(500,300);
+		panelComparativo.setSize(500,300);
 
+		dibujarGrafico(controller.getData(OpcionGrafico.Avance,1),panelAvance);
+		dibujarGrafico(controller.getData(OpcionGrafico.Estimado,1),panelEstimado);
+		dibujarGrafico(controller.getData(OpcionGrafico.Comparativo,1),panelComparativo);
+	// Create a tabbed pane
+      this.addTab( "Avance", panelAvance);
+      this.addTab( "Estimado", panelEstimado );
+      this.addTab( "Comparativo", panelComparativo );
+      //topPanel.add( tabbedPane, BorderLayout.CENTER ); BORRAR
 	}
 
 	//Menu donde se selecciona el tipo de chart
@@ -82,14 +99,14 @@ public class BurndownChartView  extends JFrame implements ActionListener
 	}
 
 	/*Esta función es la que propiamente dibuja el gráfico*/
-	private void dibujarGrafico(XYSeriesCollection datos){
+	private void dibujarGrafico(XYSeriesCollection datos,JPanel panel){
 		this.xylineChart = ChartFactory.createXYLineChart(
 				"Burndown Chart","Días","Story Points",datos,
 				PlotOrientation.VERTICAL,true,true,false);
-		this.panel = new ChartPanel(xylineChart);
-		this.panel.setBorder(new EmptyBorder(5, 5, 5, 5));
-		setContentPane(this.panel);
-		this.panel.setLayout(null);
+		panel = new ChartPanel(xylineChart);
+		panel.setBorder(new EmptyBorder(5, 5, 5, 5));
+		//setContentPane(this.panel);
+		panel.setLayout(null);
 
 		final XYPlot plot = xylineChart.getXYPlot( );
 		XYLineAndShapeRenderer renderer = new XYLineAndShapeRenderer( );
@@ -98,15 +115,15 @@ public class BurndownChartView  extends JFrame implements ActionListener
 		renderer.setSeriesStroke( 0 , new BasicStroke( 2.0f ) );
 		renderer.setSeriesStroke( 1 , new BasicStroke( 2.0f ) );
 		plot.setRenderer( renderer ); 
-		setContentPane( this.panel );
-		this.panel.setVisible(true);
-		this.showWindow(true);
+		//setContentPane( this.panel );
+		//panel.setVisible(true);
+		//this.showWindow(true);
 	}
 
 
-	public void showWindow(boolean esVisible) {
+	/*public void showWindow(boolean esVisible) {
 		setVisible(esVisible);
-	}
+	}*/
 
 	//Se encarga de informar al controlador del evento.
 	@Override
@@ -138,11 +155,11 @@ public class BurndownChartView  extends JFrame implements ActionListener
 			datos = this.controller.getData(OpcionGrafico.Comparativo,iteracion);
 		}
 		
-		if (datos != null) {
+		/*if (datos != null) {
 			this.dibujarGrafico(datos);
 		} else {
 			JOptionPane.showMessageDialog(null, "No se poseen suficientes datos para realizar el gráfico");
-		}
+		}*/
 	}
 
 }

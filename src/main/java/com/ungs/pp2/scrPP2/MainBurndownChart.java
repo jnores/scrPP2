@@ -15,7 +15,7 @@ public class MainBurndownChart {
 		//La vista recibe el controlador o algo 
 		BurndownChartView view = new BurndownChartView(controller);
 		
-		view.showWindow(true);
+		//view.showWindow(true);
 		
 	}	
 
