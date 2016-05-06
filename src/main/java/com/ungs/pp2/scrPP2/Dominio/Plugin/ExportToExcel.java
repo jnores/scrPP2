@@ -2,6 +2,10 @@ package com.ungs.pp2.scrPP2.Dominio.Plugin;
 
 import java.io.File;
 import java.io.IOException;
+import java.util.List;
+
+import com.ungs.pp2.scrPP2.Controller.UserStoryHelper;
+
 
 import jxl.Workbook;
 import jxl.write.Label;
@@ -11,31 +15,48 @@ import jxl.write.WriteException;
 import jxl.write.biff.RowsExceededException;
 
 public class ExportToExcel implements Exporter {
+	private String pathExl;
 
 	@Override
-	public void export() {
+	public void export(String path, List<UserStoryHelper> userStoriesHlpr) {
+		this.pathExl=path;
 		try {
-			//ruta de archivo hiper cochina. Asumo windows asumo que hay unidad C, etc.. esto se va a cambiar despues
-			//con filechooser  y eso
-			File exlFile = new File("c:/archivo_excel.xls");
-			WritableWorkbook writableWorkbook = Workbook
-					.createWorkbook(exlFile);
+
+			File exlFile = new File(pathExl);
+			WritableWorkbook writableWorkbook = Workbook.createWorkbook(exlFile);
 
 			WritableSheet writableSheet = writableWorkbook.createSheet("hoja1", 0);
 			
-			//------------------columna, fila
-			Label primero = new Label(0, 0, "Soy el primer dato");
-			Label segundo = new Label(1, 1, "Soy el segundo dato");
-			Label tercero = new Label(2, 0, "Soy el tercer dato");
-			Label cuarto = new Label(3, 0, "Soy el cuarto dato");
+			//Cabeceras - esto no me gusta que esté fijo aca. Estoy acoplando la exportación solo a historias de usuario
+			Label headerID = new Label(0, 0, "ID HISTORIA");
+			Label headerTitulo = new Label(1, 0, "TITULO");
+			Label headerEstado= new Label(2, 0, "ESTADO");
+			Label headerResponsable = new Label(3, 0, "RESPONSABLE");
+			Label headerPtsHistoria = new Label(4, 0, "PTS. HISTORIA");
 			
-			//Agrego a la hoja
-			writableSheet.addCell(primero);
-			writableSheet.addCell(segundo);
-			writableSheet.addCell(tercero);
-			writableSheet.addCell(cuarto);
+			//Agrego a la hoja las cabeceras
+			writableSheet.addCell(headerID);
+			writableSheet.addCell(headerTitulo);
+			writableSheet.addCell(headerEstado);
+			writableSheet.addCell(headerResponsable);
+			writableSheet.addCell(headerPtsHistoria);
+			
+			//Datos del excel
+			for (int i = 0; i<userStoriesHlpr.size();i++)
+			{	
+				writableSheet.addCell(new Label(0,i+1,userStoriesHlpr.get(i).getId()+""));
+				writableSheet.addCell(new Label(1,i+1,userStoriesHlpr.get(i).getTitulo()));
+				writableSheet.addCell(new Label(2,i+1,userStoriesHlpr.get(i).getEstado().name()));
+				writableSheet.addCell(new Label(3,i+1,userStoriesHlpr.get(i).getResponsable()));
+				writableSheet.addCell(new Label(4,i+1,userStoriesHlpr.get(i).getStoryPoints()+""));
+			}
 
-			//no se para que cierra y abre el documento pero es necesario
+//------------------columna, fila
+//			Label primero = new Label(0, 0, "Soy el primer dato");
+//			Label segundo = new Label(1, 1, "Soy el segundo dato");
+//			Label tercero = new Label(2, 0, "Soy el tercer dato");
+//			Label cuarto = new Label(3, 0, "Soy el cuarto dato");
+//			
 			writableWorkbook.write();
 			writableWorkbook.close();
 

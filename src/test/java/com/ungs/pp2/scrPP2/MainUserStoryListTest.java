@@ -1,5 +1,6 @@
 package com.ungs.pp2.scrPP2;
 
+
 import junit.framework.Test;
 import junit.framework.TestCase;
 import junit.framework.TestSuite;
@@ -41,4 +42,5 @@ public class MainUserStoryListTest extends TestCase {
     	MainUserStoryList.main(args);
         assertTrue( true );
     }
-}
+    
+    }

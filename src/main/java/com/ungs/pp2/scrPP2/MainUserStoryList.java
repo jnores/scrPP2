@@ -53,15 +53,19 @@ public class MainUserStoryList {
 		userStory1 =  new UserStory("Como Recepcionista ...", "Detalle1", "Autor1");
 		userStory1.setId(1);
 		userStory1.setEstado(Estado.Done);
+		userStory1.setStoryPoints(10);
 		userStory2 =  new UserStory("Como Administrador ...", "Detalle2", "Autor2");
 		userStory2.setId(2);
 		userStory2.setEstado(Estado.Doing);
+		userStory2.setStoryPoints(40);
 		userStory3 =  new UserStory("Como Gerente ...", "Detalle3", "Autor3");
 		userStory3.setId(3);
 		userStory3.setEstado(Estado.ToDo);
+		userStory3.setStoryPoints(100);
 		userStory4 =  new UserStory("Como Vendedor ...", "Detalle4", "Autor4");
 		userStory4.setId(4);
 		userStory4.setEstado(Estado.ToDo);
+		userStory4.setStoryPoints(100);
 		
 		proyecto= new Proyecto();
 		proyecto.addMiembro(miembro1);

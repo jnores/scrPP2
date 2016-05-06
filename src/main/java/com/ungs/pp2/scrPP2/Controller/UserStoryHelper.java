@@ -38,6 +38,11 @@ public class UserStoryHelper
 		return this.userStory.getAutor();
 	}
 	
+	public int getStoryPoints()
+	{
+		return this.userStory.getStoryPoints();
+	}
+	
 	public String getResponsable() {
 		String responsable="-";
 		if (miembro != null)

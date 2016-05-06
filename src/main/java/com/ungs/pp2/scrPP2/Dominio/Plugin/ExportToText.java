@@ -4,17 +4,22 @@ import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.util.List;
+
+import com.ungs.pp2.scrPP2.Controller.UserStoryHelper;
 
 public class ExportToText implements Exporter {
-
+	private String pathTxt;
+	
 	@Override
-	public void export() {
+	public void export(String path, List<UserStoryHelper> userStoriesHlpr) {
+		this.pathTxt=path;
 		// TODO Auto-generated method stub
 		try {
 
 			String content = "Aca va la frula";
 
-			File file = new File("c:/archivo_txt");
+			File file = new File(pathTxt);
 
 			//si no existe el archivo, lo creo
 			if (!file.exists()) {

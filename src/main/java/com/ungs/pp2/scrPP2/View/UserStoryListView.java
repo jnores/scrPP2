@@ -1,6 +1,7 @@
 package com.ungs.pp2.scrPP2.View;
 
 import java.awt.Dimension;
+import java.io.File;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
@@ -8,16 +9,20 @@ import java.util.Observable;
 import java.util.Observer;
 
 import javax.swing.BoxLayout;
+import javax.swing.JFileChooser;
 import javax.swing.JPanel;
+import javax.swing.filechooser.FileNameExtensionFilter;
 
 import com.ungs.pp2.scrPP2.Controller.UserStoryHelper;
 import com.ungs.pp2.scrPP2.Dominio.Enums.UserStoryHelperComparator;
+import com.ungs.pp2.scrPP2.Dominio.Plugin.Exporter;
 
 public class UserStoryListView extends JPanel implements Observer
 {
 	/**
 	 * default serial version
 	 */
+	private JFileChooser archivo;
 	private static final long serialVersionUID = 1L;
 	private List<UserStoryHelper> userStoriesHelper;
 	
@@ -34,7 +39,7 @@ public class UserStoryListView extends JPanel implements Observer
 		int width=0, height=0;
 
 		for(UserStoryHelper userStoryHelper: userStoriesHelper) {
-			UserStoryView usv = new UserStoryView(userStoryHelper);
+			UserStoryView usv = new UserStoryView(userStoryHelper);	
 			width = (int)usv.getBounds().getWidth();
 			height += (int)usv.getBounds().getHeight();
 			
@@ -63,6 +68,21 @@ public class UserStoryListView extends JPanel implements Observer
 		}
 		removeAll();
 		cargarUserStories();
+	}
+
+
+	public void exportar() {
+		// TODO Auto-generated method stub
+		archivo = new JFileChooser();
+		//Ver.. aca solo estoy permitiendo xls
+		FileNameExtensionFilter filter = new FileNameExtensionFilter("XLS files", "xls");
+		archivo.setFileFilter(filter);
+		//solo navego por directorios
+		archivo.setFileSelectionMode( JFileChooser.DIRECTORIES_ONLY );
+		if( archivo.showOpenDialog(this) == JFileChooser.APPROVE_OPTION )
+		{	//Exporter.INSTANCE.export("c:/archivo_excel.xls",userStoriesHelper);
+			Exporter.INSTANCE.export(archivo.getSelectedFile().getAbsolutePath(),userStoriesHelper);
+		}
 	}
 	
 }

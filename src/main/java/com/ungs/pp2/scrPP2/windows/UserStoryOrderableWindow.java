@@ -28,6 +28,7 @@ public class UserStoryOrderableWindow extends JFrame {
 	private JComboBox<UserStoryHelperComparator> cmbOpciones;
 	private JToggleButton tglbtnAscdesc;
 	private JButton btnOrdenar;
+	private JButton btnExportar;
 
 	/**
 	 * Create the frame.
@@ -76,6 +77,14 @@ public class UserStoryOrderableWindow extends JFrame {
 		cmbOpciones.setEnabled(controlsEnabled);
 		tglbtnAscdesc.setEnabled(controlsEnabled);
 		btnOrdenar.setEnabled(controlsEnabled);
+		
+		btnExportar = new JButton("Exportar");
+		btnExportar.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				userStoriesPane.exportar();
+			}
+		});
+		panel.add(btnExportar);
 			
 		JScrollPane scrollPane = new JScrollPane(userStoriesList);
 		//scrollPane.setBounds(5, 5, 380, 160);
