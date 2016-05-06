@@ -84,10 +84,13 @@ extends TestCase
 		//test basico de exportacion. Esto despues va en otro lado.
 		//esto rompió el commit
 		
-//		String path="C:\\hola.xls";
-//		List<UserStoryHelper> lst = new ArrayList<>();
-//		lst.add(userStoryHelper);
-//		Exporter.INSTANCE.export(path, lst);
+		String path="/prueba.xls";
+		List<UserStoryHelper> lst = new ArrayList<>();
+		lst.add(userStoryHelper);
+		Exporter.INSTANCE.export(path, lst);
+		//esto rompió el commit- creo que es porque exporta a un path que no existe en el repo de la nube, cuando
+		//ejecuta todas lsa pruebas
+		
 //		
 //		//Esto lo voy a usar despues para testear que los datos del excel que exporté sean correctos y
 //		//cotejarlos con los criterios de aceptación
