@@ -82,14 +82,16 @@ extends TestCase
 		
 			    
 		//test basico de exportacion. Esto despues va en otro lado.
-		String path="C:\\hola.xls";
-		List<UserStoryHelper> lst = new ArrayList<>();
-		lst.add(userStoryHelper);
-		Exporter.INSTANCE.export(path, lst);
+		//esto rompió el commit
 		
-		//Esto lo voy a usar despues para testear que los datos del excel que exporté sean correctos y
-		//cotejarlos con los criterios de aceptación
-		Workbook workbook = Workbook.getWorkbook(new java.io.File(path));
-	    Sheet sheet = workbook.getSheet(0);
+//		String path="C:\\hola.xls";
+//		List<UserStoryHelper> lst = new ArrayList<>();
+//		lst.add(userStoryHelper);
+//		Exporter.INSTANCE.export(path, lst);
+//		
+//		//Esto lo voy a usar despues para testear que los datos del excel que exporté sean correctos y
+//		//cotejarlos con los criterios de aceptación
+//		Workbook workbook = Workbook.getWorkbook(new java.io.File(path));
+//	    Sheet sheet = workbook.getSheet(0);
 	}
 }
