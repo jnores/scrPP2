@@ -24,7 +24,7 @@ import javax.swing.JButton;
 import javax.swing.ImageIcon;
 import javax.swing.JLabel;
 
-public class UserStoryPaginadoView extends JFrame implements Observer
+public class UserStoryPaginadoView extends JPanel implements Observer
 {
 	/**
 	 * default serial version
@@ -41,9 +41,9 @@ public class UserStoryPaginadoView extends JFrame implements Observer
 	public UserStoryPaginadoView(UserStoryPaginadoController controller ) 
 	{
 		Controller = controller;
-		setTitle("Historias de Usuario");
-		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(400, 400, 500, 200);
+		//setTitle("Historias de Usuario");
+		//setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		//setBounds(400, 400, 500, 200);
 		
 		btnadd = new JButton("add");
 		btnPrimero = new JButton("");
@@ -108,7 +108,7 @@ public class UserStoryPaginadoView extends JFrame implements Observer
 		setVisible(b);
 	}
 	
-	private void setearVista()
+	public void setearVista()
 	{
 	   habilitarBotones(false);
 	   if (Stories.size() == 0)
@@ -149,17 +149,17 @@ public class UserStoryPaginadoView extends JFrame implements Observer
 	      }
 	   };
       table = new JTable(model);
-      contentPane = new JPanel();
+      //contentPane = new JPanel();
       panel = new JPanel();
       JTableHeader header = table.getTableHeader();
       header.setReorderingAllowed(false);
-      setContentPane(contentPane);
-      contentPane.setLayout(new BorderLayout());
-      contentPane.add(header, BorderLayout.NORTH);
-      contentPane.add(table, BorderLayout.CENTER);
+      //setContentPane(contentPane);
+      this.setLayout(new BorderLayout());
+      this.add(header, BorderLayout.NORTH);
+      this.add(table, BorderLayout.CENTER);
       
       
-      contentPane.add(panel, BorderLayout.SOUTH);
+      this.add(panel, BorderLayout.SOUTH);
       
       ClassLoader classloader = Thread.currentThread().getContextClassLoader();
       
@@ -183,7 +183,9 @@ public class UserStoryPaginadoView extends JFrame implements Observer
       
       btnUltimo.setIcon(new ImageIcon(classloader.getResource("images/Ultimo.png")));
       panel.add(btnUltimo);
-      SwingUtilities.updateComponentTreeUI(this);
+      this.validate();
+      this.repaint();
+      //SwingUtilities.updateComponentTreeUI(this);
 	}
 	
 	private void habilitarBotones(boolean bool)
