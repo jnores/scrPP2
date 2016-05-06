@@ -161,8 +161,6 @@ public class HomeView  extends JFrame implements ActionListener
 	
 	private void setearVista()
 	{
-	   SwingUtilities.updateComponentTreeUI(burndownChartViewpanel);	   
-	   SwingUtilities.updateComponentTreeUI(listadoPaginadoHistorias);
 	   SwingUtilities.updateComponentTreeUI(this);
 	}
 
