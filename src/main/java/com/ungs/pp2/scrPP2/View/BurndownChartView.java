@@ -13,6 +13,7 @@ import javax.swing.JMenuItem;
 import javax.swing.border.EmptyBorder;
 
 import java.awt.FlowLayout;
+import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
@@ -40,26 +41,23 @@ public class BurndownChartView  extends JTabbedPane implements ActionListener
    private JPanel panelEstimado;
    private JPanel panelComparativo;
 	private BurndownChartController controller;	
-	private JMenuBar menuBar;
-	private JMenu menuP,menuI;
-	private JMenuItem menu1,menu2,menu3,menu4,menu5,menu6;
 	private JFreeChart xylineChart;
 
 	public BurndownChartView (BurndownChartController controller)
 	{
 		//setTitle("Burndown Chart");
-		this.setLayout(new FlowLayout());
 		this.controller=controller;
-		//this.setJMenuBar(cargarMenu());
 		//setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		this.setSize(500,300);
+		//this.setSize(500,300);
 		//this.setLocationRelativeTo(null);
-		panelAvance = new JPanel();
+		/*panelAvance = new JPanel();
       panelEstimado = new JPanel();
       panelComparativo = new JPanel();
-		panelAvance.setSize(500,300);
-		panelEstimado.setSize(500,300);
-		panelComparativo.setSize(500,300);
+      */
+		//panelAvance.setLayout(new GridLayout(1, 1));
+		//panelEstimado.setLayout(new GridLayout(1, 1));
+		//panelComparativo.setLayout(new GridLayout(1, 1));
+		
 
 		dibujarGrafico(controller.getData(OpcionGrafico.Avance,1),panelAvance);
 		dibujarGrafico(controller.getData(OpcionGrafico.Estimado,1),panelEstimado);
@@ -68,35 +66,11 @@ public class BurndownChartView  extends JTabbedPane implements ActionListener
       this.addTab( "Avance", panelAvance);
       this.addTab( "Estimado", panelEstimado );
       this.addTab( "Comparativo", panelComparativo );
+      //this.setLayout(null);
       //topPanel.add( tabbedPane, BorderLayout.CENTER ); BORRAR
 	}
 
 	//Menu donde se selecciona el tipo de chart
-	private JMenuBar cargarMenu(){
-
-		menuBar= new JMenuBar();
-		menuP= new JMenu("Proyecto");
-		menuI= new JMenu("Iteracion");
-		
-		//menuP.add(menu1=new JMenuItem("Avance"));
-		//menuP.add(menu2=new JMenuItem("Estimado"));
-		//menuP.add(menu3=new JMenuItem("Comparativo"));
-
-		menuI.add(menu4=new JMenuItem("Avance"));
-		menuI.add(menu5=new JMenuItem("Estimado"));
-		menuI.add(menu6=new JMenuItem("Comparativo"));
-
-		menuBar.add(menuP);
-		menuBar.add(menuI);
-
-		//this.menu1.addActionListener(this);
-		//this.menu2.addActionListener(this);
-		//this.menu3.addActionListener(this);
-		this.menu4.addActionListener(this);
-		this.menu5.addActionListener(this);
-		this.menu6.addActionListener(this);
-		return menuBar;
-	}
 
 	/*Esta función es la que propiamente dibuja el gráfico*/
 	private void dibujarGrafico(XYSeriesCollection datos,JPanel panel){
@@ -105,7 +79,7 @@ public class BurndownChartView  extends JTabbedPane implements ActionListener
 				PlotOrientation.VERTICAL,true,true,false);
 		panel = new ChartPanel(xylineChart);
 		panel.setBorder(new EmptyBorder(5, 5, 5, 5));
-		//setContentPane(this.panel);
+		//setContentPane(panel);
 		panel.setLayout(null);
 
 		final XYPlot plot = xylineChart.getXYPlot( );
@@ -120,13 +94,20 @@ public class BurndownChartView  extends JTabbedPane implements ActionListener
 		//this.showWindow(true);
 	}
 
+   @Override
+   public void actionPerformed(ActionEvent e)
+   {
+      // TODO Auto-generated method stub
+      
+   }
+
 
 	/*public void showWindow(boolean esVisible) {
 		setVisible(esVisible);
 	}*/
 
-	//Se encarga de informar al controlador del evento.
-	@Override
+
+	/*
 	public void actionPerformed(ActionEvent evento) {
 		String comando=evento.getActionCommand();
 		Integer iteracion=null;
@@ -159,7 +140,7 @@ public class BurndownChartView  extends JTabbedPane implements ActionListener
 			this.dibujarGrafico(datos);
 		} else {
 			JOptionPane.showMessageDialog(null, "No se poseen suficientes datos para realizar el gráfico");
-		}*/
-	}
+		}
+	}*/
 
 }

@@ -68,7 +68,7 @@ public class HomeView  extends JFrame implements ActionListener
 		
 		panel_Top = new JPanel();
 		panel_Top.setBorder(new LineBorder(new Color(0, 0, 0)));
-		panel_Top.setBounds(0, 0, 584, 20);
+		panel_Top.setBounds(0, 0, 584, 26);
 		getContentPane().add(panel_Top);
 		
 		JLabel lblProyecto = new JLabel("Proyecto");
@@ -83,14 +83,17 @@ public class HomeView  extends JFrame implements ActionListener
 		JLabel lblIteracin = new JLabel("Iteración");
 		panel_Top.add(lblIteracin);
 		
-		panel_Main = new JPanel();
-		panel_Main.setLayout(new BorderLayout());			
-		getContentPane().add(panel_Main);
+		//panel_Main = new JPanel();
+		//panel_Main.setLayout(new BorderLayout());	
 		
+		burndownChartViewpanel.setBorder(new LineBorder(new Color(0, 0, 0)));
+		burndownChartViewpanel.setBounds(0, 28, 584, 312);
+		getContentPane().add(burndownChartViewpanel);
 		
-      panel_Main.add(burndownChartViewpanel);
+		//burndownChartViewpanel.setVisible(true);
+      /*panel_Main.add(burndownChartViewpanel);
       panel_Main.setBorder(new LineBorder(new Color(0, 0, 0)));
-      panel_Main.setBounds(0, 21, 584, 319);
+      panel_Main.setBounds(0, 21, 584, 319);*/
 	}
 
 	//Menu donde se selecciona el tipo de chart
