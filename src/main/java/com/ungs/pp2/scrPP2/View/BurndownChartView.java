@@ -19,7 +19,8 @@ import java.awt.event.ActionListener;
 
 
 import java.awt.Color;
-import java.awt.BasicStroke; 
+import java.awt.BasicStroke;
+import java.awt.BorderLayout;
 
 import org.jfree.chart.ChartPanel; 
 import org.jfree.chart.JFreeChart; 
@@ -50,10 +51,10 @@ public class BurndownChartView  extends JTabbedPane implements ActionListener
 		//setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		//this.setSize(500,300);
 		//this.setLocationRelativeTo(null);
-		/*panelAvance = new JPanel();
+		panelAvance = new JPanel();
       panelEstimado = new JPanel();
       panelComparativo = new JPanel();
-      */
+      
 		//panelAvance.setLayout(new GridLayout(1, 1));
 		//panelEstimado.setLayout(new GridLayout(1, 1));
 		//panelComparativo.setLayout(new GridLayout(1, 1));
@@ -66,6 +67,8 @@ public class BurndownChartView  extends JTabbedPane implements ActionListener
       this.addTab( "Avance", panelAvance);
       this.addTab( "Estimado", panelEstimado );
       this.addTab( "Comparativo", panelComparativo );
+      revalidate();
+      repaint();
       //this.setLayout(null);
       //topPanel.add( tabbedPane, BorderLayout.CENTER ); BORRAR
 	}
@@ -90,7 +93,7 @@ public class BurndownChartView  extends JTabbedPane implements ActionListener
 		renderer.setSeriesStroke( 1 , new BasicStroke( 2.0f ) );
 		plot.setRenderer( renderer ); 
 		//setContentPane( this.panel );
-		//panel.setVisible(true);
+		panel.setVisible(true);
 		//this.showWindow(true);
 	}
 

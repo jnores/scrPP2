@@ -36,6 +36,7 @@ public class UserStoryPaginadoView extends JPanel implements Observer
 	private Object[][] data;
 	private JLabel PageNumberLabel;
 	private List<UserStory> Stories;
+	private TableModel modelTabla;
 	private JButton btnadd, btnPrimero,btnAnterior,btnSiguiente,btnUltimo ;
 	
 	public UserStoryPaginadoView(UserStoryPaginadoController controller ) 
@@ -54,7 +55,7 @@ public class UserStoryPaginadoView extends JPanel implements Observer
 
 		// Seteo la lista paginada con la 1º pagina por defecto
 		Stories = Controller.ListarUserStories(null);
-		setearVista();
+		cargarVista();
 			
 		
 		btnadd.addActionListener(new ActionListener() 
@@ -108,17 +109,17 @@ public class UserStoryPaginadoView extends JPanel implements Observer
 		setVisible(b);
 	}
 	
-	public void setearVista()
+	private void setearVista()
 	{
 	   habilitarBotones(false);
-	   if (Stories.size() == 0)
-	   {
-	      data = new Object[][] {{"No hay Historias"}} ;
-	      PageNumberLabel = new JLabel(" - ");      
-	   }
-	   else 
-	   {	      	   
-   	   data = new Object[Stories.size()][] ;
+      if (Stories.size() == 0)
+      {
+         data = new Object[][] {{"No hay Historias"}} ;
+         PageNumberLabel = new JLabel(" - ");      
+      }
+      else 
+      {              
+         data = new Object[Stories.size()][] ;
          int i = 0;
          for (UserStory story : Stories)
          {
@@ -137,19 +138,38 @@ public class UserStoryPaginadoView extends JPanel implements Observer
                habilitarAdelante(false);
             }
          }
-	   }
-	   
-	   String[] columnNames = {"Titulo", "Descripcion","Puntos"};
-	   @SuppressWarnings("serial")
-      TableModel model = new DefaultTableModel(data, columnNames){
-	      @Override
-	      public boolean isCellEditable(int row, int column) {
-	         //No editable
-	         return false;
-	      }
-	   };
-      table = new JTable(model);
-      //contentPane = new JPanel();
+      }
+      
+      String[] columnNames = {"Titulo", "Descripcion","Puntos"};
+      //@SuppressWarnings("serial")
+      modelTabla = new DefaultTableModel(data, columnNames){
+         @Override
+         public boolean isCellEditable(int row, int column) {
+            //No editable
+            return false;
+         }
+      };
+      try{
+         JTable s = (JTable) this.getComponent(1);
+         s.setModel(modelTabla);
+         
+         JPanel p = (JPanel) this.getComponent(2);
+         JLabel l = (JLabel) p.getComponent(3);
+         l.setText(PageNumberLabel.getText());
+      }
+      catch( Exception e){
+         
+      }
+      
+      this.revalidate();
+      this.repaint();
+	}
+	private void cargarVista()
+	{
+	   //this.removeAll();
+	   setearVista();
+      //this = new JPanel();
+	   table = new JTable(modelTabla);
       panel = new JPanel();
       JTableHeader header = table.getTableHeader();
       header.setReorderingAllowed(false);
@@ -183,12 +203,12 @@ public class UserStoryPaginadoView extends JPanel implements Observer
       
       btnUltimo.setIcon(new ImageIcon(classloader.getResource("images/Ultimo.png")));
       panel.add(btnUltimo);
-      this.revalidate();
-      this.repaint();
+      
+      //SwingUtilities.updateComponentTreeUI(this);     
       /*
       if (this.getRootPane() != null) this.getRootPane().validate();
       if (this.getRootPane() != null) this.getRootPane().repaint();
-      //SwingUtilities.updateComponentTreeUI(this);
+      
       JFrame topFrame = (JFrame) SwingUtilities.getWindowAncestor(this);
       if (topFrame != null)                  
       {
