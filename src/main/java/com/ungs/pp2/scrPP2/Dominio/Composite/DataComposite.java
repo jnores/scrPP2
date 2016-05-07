@@ -25,7 +25,6 @@ public class DataComposite  implements IDataComponent{
 
 	@Override
 	public XYSeriesCollection getData() {
-		System.out.println("ESTOY");
 		XYSeriesCollection series=new XYSeriesCollection();
 		for (IDataComponent it: this.dataGraficos) {
 			series.addSeries(it.getData().getSeries(0));

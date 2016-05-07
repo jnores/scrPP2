@@ -44,7 +44,6 @@ public class UserStoryListView extends JPanel implements Observer
 			height += (int)usv.getBounds().getHeight();
 			
 			add( usv, -1 );
-			System.out.println("print story "+userStoryHelper.getTitulo() );
 		}
 		setPreferredSize( new Dimension(width, height));
 		setMaximumSize( new Dimension(width, height));
