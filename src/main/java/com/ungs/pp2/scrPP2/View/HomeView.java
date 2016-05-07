@@ -2,8 +2,11 @@ package com.ungs.pp2.scrPP2.View;
 
 import com.ungs.pp2.scrPP2.Controller.BurndownChartController;
 import com.ungs.pp2.scrPP2.Controller.HomeController;
+import com.ungs.pp2.scrPP2.Controller.ProyectoController;
 import com.ungs.pp2.scrPP2.Controller.UserStoryPaginadoController;
 import com.ungs.pp2.scrPP2.Dominio.Enums.OpcionGrafico;
+import com.ungs.pp2.scrPP2.windows.UserStoryOrderableWindow;
+import com.ungs.pp2.scrPP2.MainUserStoryList;
 import com.ungs.pp2.scrPP2.Consulta.Consulta;
 
 import javax.swing.JOptionPane;
@@ -50,15 +53,17 @@ public class HomeView  extends JFrame implements ActionListener
 	private HomeController controller;
 	private BurndownChartView burndownChartViewpanel;
 	private UserStoryPaginadoView listadoPaginadoHistorias;
+	private UserStoryOrderableWindow filtradoHistorias;
 	private JMenuBar menuBar;
 	private JMenu menuP,menuI,mnHistoria,mnBacklog;
-	private JMenuItem mnListadoHistoriasItem,mnBurnDownchartItem,menu5,menu6;
+	private JMenuItem mnListadoHistoriasItem,mnBurnDownchartItem,mnFiltradoItem,menu5,menu6;
 
 	public HomeView (HomeController controller)
 	{
-	   this.setLayout(new BorderLayout());
+	   getContentPane().setLayout(new BorderLayout());
 	   burndownChartViewpanel = new BurndownChartView(new BurndownChartController(null, null));
 	   listadoPaginadoHistorias = new UserStoryPaginadoView(new UserStoryPaginadoController(new Consulta()));
+	   filtradoHistorias = new UserStoryOrderableWindow(new UserStoryListView(new ProyectoController(null, MainUserStoryList.retriveProyectoFromDatabase()).getAllUserStories()));
 	   
 		setTitle("Scrummer");
 		this.controller=controller;
@@ -72,7 +77,7 @@ public class HomeView  extends JFrame implements ActionListener
 		
 		panel_Top = new JPanel();
 		panel_Top.setBorder(new LineBorder(new Color(0, 0, 0)));
-		this.add(panel_Top,BorderLayout.NORTH);
+		getContentPane().add(panel_Top,BorderLayout.NORTH);
 		//panel_Top.setLayout(new BorderLayout(0, 0));
 		
 		JLabel lblProyecto = new JLabel("Proyecto");
@@ -91,7 +96,7 @@ public class HomeView  extends JFrame implements ActionListener
 		//panel_Main.setLayout(new BorderLayout());	
 		
 		burndownChartViewpanel.setBorder(new LineBorder(new Color(0, 0, 0)));
-		this.add(burndownChartViewpanel,BorderLayout.CENTER);
+		getContentPane().add(burndownChartViewpanel,BorderLayout.CENTER);
 		
 		//burndownChartViewpanel.setVisible(true);
       /*panel_Main.add(burndownChartViewpanel);
@@ -112,6 +117,15 @@ public class HomeView  extends JFrame implements ActionListener
          public void actionPerformed(ActionEvent e) 
          { 
             MostrarBurndownChart();
+            setearVista();
+         } 
+      });
+		
+		mnFiltradoItem.addActionListener(new ActionListener() 
+      { 
+         public void actionPerformed(ActionEvent e) 
+         { 
+            MostrarFiltradoHistorias();
             setearVista();
          } 
       });
@@ -143,6 +157,9 @@ public class HomeView  extends JFrame implements ActionListener
       
       mnListadoHistoriasItem = new JMenuItem("Listado");
       mnHistoria.add(mnListadoHistoriasItem);
+      
+      mnFiltradoItem = new JMenuItem("Filtrado");
+      mnHistoria.add(mnFiltradoItem);
 		return menuBar;
 	}
 	
@@ -157,6 +174,13 @@ public class HomeView  extends JFrame implements ActionListener
 	   getContentPane().remove(1);
 	   burndownChartViewpanel.setBorder(new LineBorder(new Color(0, 0, 0)));
       getContentPane().add(burndownChartViewpanel,BorderLayout.CENTER);
+   }
+	
+	private void MostrarFiltradoHistorias()
+   {
+      getContentPane().remove(1);
+      //burndownChartViewpanel.setBorder(new LineBorder(new Color(0, 0, 0)));
+      getContentPane().add(filtradoHistorias,BorderLayout.CENTER);
    }
 	
 	private void setearVista()

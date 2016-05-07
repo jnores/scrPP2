@@ -18,7 +18,7 @@ import javax.swing.JToggleButton;
 import javax.swing.event.ChangeListener;
 import javax.swing.event.ChangeEvent;
 
-public class UserStoryOrderableWindow extends JFrame {
+public class UserStoryOrderableWindow extends JPanel {
 
 	/**
 	 * 
@@ -36,14 +36,15 @@ public class UserStoryOrderableWindow extends JFrame {
 	public UserStoryOrderableWindow( UserStoryListView userStoriesList) {
 		this.userStoriesPane = userStoriesList;
 
-		setTitle("Historia de Usuario");
-		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(400, 400, 520, 300);
-		setResizable(false);
-		getContentPane().setLayout(new BorderLayout(0, 0));
+		//setTitle("Historia de Usuario");
+		//setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		//setBounds(400, 400, 520, 300);
+		//setResizable(false);
+		//getContentPane().setLayout(new BorderLayout(0, 0));
+		this.setLayout(new BorderLayout());
 		
 		JPanel panel = new JPanel();
-		getContentPane().add(panel, BorderLayout.NORTH);
+		this.add(panel, BorderLayout.NORTH);
 		
 		panel.setLayout(new FlowLayout(FlowLayout.CENTER, 5, 5));
 
@@ -91,7 +92,7 @@ public class UserStoryOrderableWindow extends JFrame {
 		scrollPane.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_ALWAYS);
 		scrollPane.setHorizontalScrollBarPolicy(JScrollPane.HORIZONTAL_SCROLLBAR_NEVER);
 		scrollPane.setBounds(0, 0, 350, 160);
-		getContentPane().add(scrollPane, BorderLayout.CENTER);
+		this.add(scrollPane, BorderLayout.CENTER);
 		scrollPane.validate();
 	}
 	

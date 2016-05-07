@@ -32,7 +32,7 @@ public class MainUserStoryList {
 		userStoryWindow.showWindow(true);
 		
 	}
-	private static Proyecto retriveProyectoFromDatabase(){
+	public static Proyecto retriveProyectoFromDatabase(){
 		Proyecto proyecto;
 
 		Miembro miembro1

@@ -51,10 +51,10 @@ public class BurndownChartView  extends JTabbedPane implements ActionListener
 		//setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		//this.setSize(500,300);
 		//this.setLocationRelativeTo(null);
-		panelAvance = new JPanel();
+		/*panelAvance = new JPanel();
       panelEstimado = new JPanel();
       panelComparativo = new JPanel();
-      
+      */
 		//panelAvance.setLayout(new GridLayout(1, 1));
 		//panelEstimado.setLayout(new GridLayout(1, 1));
 		//panelComparativo.setLayout(new GridLayout(1, 1));
@@ -64,6 +64,7 @@ public class BurndownChartView  extends JTabbedPane implements ActionListener
 		dibujarGrafico(controller.getData(OpcionGrafico.Estimado,1),panelEstimado);
 		dibujarGrafico(controller.getData(OpcionGrafico.Comparativo,1),panelComparativo);
 	// Create a tabbed pane
+		//this.setLayout(new BorderLayout());
       this.addTab( "Avance", panelAvance);
       this.addTab( "Estimado", panelEstimado );
       this.addTab( "Comparativo", panelComparativo );
@@ -83,7 +84,7 @@ public class BurndownChartView  extends JTabbedPane implements ActionListener
 		panel = new ChartPanel(xylineChart);
 		panel.setBorder(new EmptyBorder(5, 5, 5, 5));
 		//setContentPane(panel);
-		panel.setLayout(null);
+		panel.setLayout(new BorderLayout());
 
 		final XYPlot plot = xylineChart.getXYPlot( );
 		XYLineAndShapeRenderer renderer = new XYLineAndShapeRenderer( );
@@ -93,7 +94,8 @@ public class BurndownChartView  extends JTabbedPane implements ActionListener
 		renderer.setSeriesStroke( 1 , new BasicStroke( 2.0f ) );
 		plot.setRenderer( renderer ); 
 		//setContentPane( this.panel );
-		panel.setVisible(true);
+		panel.revalidate();
+		panel.repaint();
 		//this.showWindow(true);
 	}
 
