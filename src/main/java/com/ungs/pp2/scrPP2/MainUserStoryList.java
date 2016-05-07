@@ -62,7 +62,7 @@ public class MainUserStoryList {
 		userStory3.setId(3);
 		userStory3.setEstado(Estado.ToDo);
 		userStory3.setStoryPoints(100);
-		userStory4 =  new UserStory("Como Vendedor ...", "Detalle4", "Autor4");
+		userStory4 =  new UserStory("Como Vendedora ...", "Detalle4", "Autor4");
 		userStory4.setId(4);
 		userStory4.setEstado(Estado.ToDo);
 		userStory4.setStoryPoints(100);
