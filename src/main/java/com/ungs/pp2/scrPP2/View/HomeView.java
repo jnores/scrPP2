@@ -4,6 +4,7 @@ import com.ungs.pp2.scrPP2.Controller.BurndownChartController;
 import com.ungs.pp2.scrPP2.Controller.HomeController;
 import com.ungs.pp2.scrPP2.Controller.ProyectoController;
 import com.ungs.pp2.scrPP2.Controller.UserStoryPaginadoController;
+import com.ungs.pp2.scrPP2.Dominio.Entidad.Proyecto;
 import com.ungs.pp2.scrPP2.Dominio.Enums.OpcionGrafico;
 import com.ungs.pp2.scrPP2.windows.UserStoryOrderableWindow;
 import com.ungs.pp2.scrPP2.MainUserStoryList;
@@ -54,9 +55,10 @@ public class HomeView  extends JFrame implements ActionListener
 	private BurndownChartView burndownChartViewpanel;
 	private UserStoryPaginadoView listadoPaginadoHistorias;
 	private UserStoryOrderableWindow filtradoHistorias;
+	private ProyectoNuevoView proyectoNuevo;
 	private JMenuBar menuBar;
 	private JMenu menuP,menuI,mnHistoria,mnBacklog;
-	private JMenuItem mnListadoHistoriasItem,mnBurnDownchartItem,mnFiltradoItem,menu5,menu6;
+	private JMenuItem mnListadoHistoriasItem,mnBurnDownchartItem,mnFiltradoItem,mnNuevoProyectoItem,menu5,menu6;
 
 	public HomeView (HomeController controller)
 	{
@@ -64,6 +66,7 @@ public class HomeView  extends JFrame implements ActionListener
 	   burndownChartViewpanel = new BurndownChartView(new BurndownChartController(null, null));
 	   listadoPaginadoHistorias = new UserStoryPaginadoView(new UserStoryPaginadoController(new Consulta()));
 	   filtradoHistorias = new UserStoryOrderableWindow(new UserStoryListView(new ProyectoController(null, MainUserStoryList.retriveProyectoFromDatabase()).getAllUserStories()));
+	   proyectoNuevo = new ProyectoNuevoView(new ProyectoController(null, new Proyecto()));
 	   
 		setTitle("Scrummer");
 		this.controller=controller;
@@ -147,6 +150,14 @@ public class HomeView  extends JFrame implements ActionListener
 		menuI.add(menu6=new JMenuItem("Tercera"));
 
 		menuBar.add(menuP);
+		
+		mnNuevoProyectoItem = new JMenuItem("Nuevo Proyecto");
+		mnNuevoProyectoItem.addActionListener(new ActionListener() {
+		   public void actionPerformed(ActionEvent e) {
+		      proyectoNuevo.setVisible(true);
+		   }
+		});
+		menuP.add(mnNuevoProyectoItem);
 		
 		mnBacklog = new JMenu("Backlog");
 		menuBar.add(mnBacklog);

@@ -37,5 +37,15 @@ public class ProyectoController extends Controller
 		   UserStory userStory = proyecto.getUserStoryPorId(id);
 		   Miembro   miembro   = proyecto.getResponsable(userStory);
 		   return new UserStoryHelper(userStory,miembro);
-	   }	
+	   }
+	   
+	   public void setProyecto(Proyecto proyecto)
+	   {
+	      this.proyecto = proyecto;
+	   }
+	   
+	   public Proyecto getProyecto()
+      {
+         return proyecto;
+      }
 }

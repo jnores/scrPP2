@@ -54,5 +54,10 @@ public class Miembro {
 	public void setPerfil(String perfil) {
 		this.perfil = perfil;
 	}
+	
+	public String toString()
+	{
+	     return nombre; 
+	}
 
 }

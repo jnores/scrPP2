@@ -15,6 +15,7 @@ import java.util.TreeMap;
  *
  */
 public class Proyecto {
+   private String titulo;
 	private Date fechaInicio,fechaFin;
 	private Map<Integer,UserStory> backlog;
 	private Map<String,Miembro> miembros;
@@ -125,6 +126,16 @@ public class Proyecto {
 		}
 		return miembro;
 	}
+	
+	public void setTitulo(String titulo)
+	{
+	   this.titulo = titulo;
+	}
+	
+	public String getTitulo(String titulo)
+   {
+      return this.titulo;
+   }
 	
 	
 }
