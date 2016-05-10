@@ -1,28 +1,41 @@
 package com.ungs.pp2.scrPP2.Controller;
 
 
-import java.util.ArrayList;
-import java.util.Date;
-import java.util.List;
-
-import org.jfree.data.xy.XYSeriesCollection;
-
-import com.ungs.pp2.scrPP2.Dominio.Entidad.Sprint;
-import com.ungs.pp2.scrPP2.Dominio.Entidad.UserStory;
-import com.ungs.pp2.scrPP2.Dominio.Enums.Estado;
-import com.ungs.pp2.scrPP2.Dominio.Enums.OpcionGrafico;
-import com.ungs.pp2.scrPP2.Dominio.Interfaz.IDataComponent;
+import com.ungs.pp2.scrPP2.Dominio.Entidad.Proyecto;
+import com.ungs.pp2.scrPP2.Dominio.Interfaz.IAppController;
+import com.ungs.pp2.scrPP2.Dominio.Interfaz.IComando;
 import com.ungs.pp2.scrPP2.Dominio.Interfaz.IConsulta;
-import com.ungs.pp2.scrPP2.View.HomeView;
-import com.ungs.pp2.scrPP2.Dominio.Composite.*;
+import com.ungs.pp2.scrPP2.View.ProyectoNuevoView;
+import com.ungs.pp2.scrPP2.Dominio.Resultado;
 
-public class HomeController extends Controller
+public class HomeController extends Controller implements IAppController
 {
+   private ProyectoNuevoView proyectoNuevo;
 
 
-	public HomeController(IConsulta consulta) {
-		super(consulta);
+	public HomeController(IConsulta consulta) 
+	{	super(consulta);
+		proyectoNuevo = new ProyectoNuevoView(new ProyectoController(null, new Proyecto()));
 	}
 	
-	
+	public void MostrarProyectoNuevo()
+	{
+	   proyectoNuevo.setVisible(true);
+	}
+
+   @Override
+   public Resultado Execute(IComando commando)
+   {
+      return commando.Execute(this);
+   }
+
+   public ProyectoNuevoView getProyectoNuevo()
+   {
+      return proyectoNuevo;
+   }
+
+   public void setProyectoNuevo(ProyectoNuevoView proyectoNuevo)
+   {
+      this.proyectoNuevo = proyectoNuevo;
+   }
 }

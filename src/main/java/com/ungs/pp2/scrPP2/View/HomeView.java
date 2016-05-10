@@ -4,8 +4,10 @@ import com.ungs.pp2.scrPP2.Controller.BurndownChartController;
 import com.ungs.pp2.scrPP2.Controller.HomeController;
 import com.ungs.pp2.scrPP2.Controller.ProyectoController;
 import com.ungs.pp2.scrPP2.Controller.UserStoryPaginadoController;
+import com.ungs.pp2.scrPP2.Dominio.Comando.MostrarProyectoNuevo;
 import com.ungs.pp2.scrPP2.Dominio.Entidad.Proyecto;
 import com.ungs.pp2.scrPP2.Dominio.Enums.OpcionGrafico;
+import com.ungs.pp2.scrPP2.Dominio.Interfaz.IAppController;
 import com.ungs.pp2.scrPP2.windows.UserStoryOrderableWindow;
 import com.ungs.pp2.scrPP2.MainUserStoryList;
 import com.ungs.pp2.scrPP2.Consulta.Consulta;
@@ -51,25 +53,23 @@ public class HomeView  extends JFrame implements ActionListener
     */
    private static final long serialVersionUID = 1L;
    private JPanel panel_Top;
-	private HomeController controller;
+	private IAppController AppController;
 	private BurndownChartView burndownChartViewpanel;
 	private UserStoryPaginadoView listadoPaginadoHistorias;
 	private UserStoryOrderableWindow filtradoHistorias;
-	private ProyectoNuevoView proyectoNuevo;
 	private JMenuBar menuBar;
 	private JMenu menuP,menuI,mnHistoria,mnBacklog;
 	private JMenuItem mnListadoHistoriasItem,mnBurnDownchartItem,mnFiltradoItem,mnNuevoProyectoItem,menu5,menu6;
 
-	public HomeView (HomeController controller)
+	public HomeView (IAppController controller)
 	{
+	   this.AppController=controller;
 	   getContentPane().setLayout(new BorderLayout());
 	   burndownChartViewpanel = new BurndownChartView(new BurndownChartController(null, null));
 	   listadoPaginadoHistorias = new UserStoryPaginadoView(new UserStoryPaginadoController(new Consulta()));
-	   filtradoHistorias = new UserStoryOrderableWindow(new UserStoryListView(new ProyectoController(null, MainUserStoryList.retriveProyectoFromDatabase()).getAllUserStories()));
-	   proyectoNuevo = new ProyectoNuevoView(new ProyectoController(null, new Proyecto()));
+	   filtradoHistorias = new UserStoryOrderableWindow(new UserStoryListView(new ProyectoController(null, MainUserStoryList.retriveProyectoFromDatabase()).getAllUserStories()));	   
 	   
-		setTitle("Scrummer");
-		this.controller=controller;
+		setTitle("Scrummer");		
 		this.setJMenuBar(cargarMenu());
 		
 		
@@ -154,7 +154,7 @@ public class HomeView  extends JFrame implements ActionListener
 		mnNuevoProyectoItem = new JMenuItem("Nuevo Proyecto");
 		mnNuevoProyectoItem.addActionListener(new ActionListener() {
 		   public void actionPerformed(ActionEvent e) {
-		      proyectoNuevo.setVisible(true);
+		      AppController.Execute(new MostrarProyectoNuevo());
 		   }
 		});
 		menuP.add(mnNuevoProyectoItem);
