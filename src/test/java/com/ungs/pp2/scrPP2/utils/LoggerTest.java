@@ -1,6 +1,7 @@
 package com.ungs.pp2.scrPP2.utils;
 
 import java.io.ByteArrayOutputStream;
+import java.io.IOException;
 
 import junit.framework.Test;
 import junit.framework.TestCase;
@@ -30,22 +31,55 @@ public class LoggerTest extends TestCase {
 		Logger.setOutStream(outStream);
 		Logger.init();
 		Logger.log("mensaje 1");
-		Logger.close();
 	}
 	
 	/**
-	 * Verifico El orden en que estan cargadas
+	 * Verifico el texto logueado
 	 */
 	public void testLogger() {
+		Logger.close();
 		String textLogged="Logger Iniciado\nmensaje 1\nLogger Finalizado\n";
-		assertEquals(outStream.toString(),textLogged);
-		
+		assertTrue(outStream.toString().equals(textLogged));	
 	}
 		
+	
+	
 	/**
-	 * Verifico El orden en que estan cargadas
+	 * Verifico que se capturen los IOExceptions en el logger cuando cierro el stream.
 	 */
-	public void testLoggerClosed() { 
+	public void testStreamClosed() {
+		
+		try {
+			outStream.close();
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+		Logger.init();
+		Logger.log("mensaje 2");
+		Logger.close();
+		assertTrue(true);
+		
+	}
+	/**
+	 * Verifico que se genere un NullPointerException luego de cerrar el logger.
+	 */
+	public void testLoggerClosed() {
+		Logger.close();
+		try {
+			Logger.init();
+		} catch (NullPointerException e) {
+			assertTrue(true);
+		}
+		try {
+			Logger.log("Esto no se escribe");
+		} catch (NullPointerException e) {
+			assertTrue(true);
+		}
+		try {
+			Logger.close();
+		} catch (NullPointerException e) {
+			assertTrue(true);
+		}
 		
 	}
 
