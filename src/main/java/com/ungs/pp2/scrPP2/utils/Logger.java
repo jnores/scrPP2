@@ -16,9 +16,8 @@ public class Logger {
 	
 	public static void init() {
 		try {
-			outStream.write( "Logger iniciado\n".getBytes() );
+			outStream.write( "Logger Iniciado\n".getBytes() );
 		} catch (IOException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 	}
@@ -28,7 +27,6 @@ public class Logger {
 			outStream.write( "Logger Finalizado\n".getBytes() );
 			outStream=null;
 		} catch (IOException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 	}
@@ -38,7 +36,6 @@ public class Logger {
 			outStream.write( msg.getBytes() );
 			outStream.write( "\n".getBytes() );
 		} catch (IOException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		
