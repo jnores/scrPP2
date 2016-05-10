@@ -1,48 +1,28 @@
 package com.ungs.pp2.scrPP2.View;
 
+import java.awt.BorderLayout;
+import java.awt.Color;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+
+import javax.swing.JFrame;
+import javax.swing.JLabel;
+import javax.swing.JMenu;
+import javax.swing.JMenuBar;
+import javax.swing.JMenuItem;
+import javax.swing.JPanel;
+import javax.swing.SwingUtilities;
+import javax.swing.border.LineBorder;
+
+import com.ungs.pp2.scrPP2.MainUserStoryList;
+import com.ungs.pp2.scrPP2.Consulta.Consulta;
 import com.ungs.pp2.scrPP2.Controller.BurndownChartController;
 import com.ungs.pp2.scrPP2.Controller.HomeController;
 import com.ungs.pp2.scrPP2.Controller.ProyectoController;
 import com.ungs.pp2.scrPP2.Controller.UserStoryPaginadoController;
 import com.ungs.pp2.scrPP2.Dominio.Entidad.Proyecto;
-import com.ungs.pp2.scrPP2.Dominio.Enums.OpcionGrafico;
+import com.ungs.pp2.scrPP2.utils.Logger;
 import com.ungs.pp2.scrPP2.windows.UserStoryOrderableWindow;
-import com.ungs.pp2.scrPP2.MainUserStoryList;
-import com.ungs.pp2.scrPP2.Consulta.Consulta;
-
-import javax.swing.JOptionPane;
-
-import javax.swing.JFrame;
-import javax.swing.JMenu;
-import javax.swing.JMenuBar;
-import javax.swing.JMenuItem;
-import javax.swing.border.EmptyBorder;
-
-import java.awt.FlowLayout;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
-
-
-import java.awt.Color;
-import java.awt.BasicStroke; 
-
-import org.jfree.chart.ChartPanel; 
-import org.jfree.chart.JFreeChart; 
-import org.jfree.data.xy.XYDataset;
-import org.jfree.data.xy.XYSeries;
-import org.jfree.data.xy.XYSeriesCollection;
-import org.jfree.chart.plot.XYPlot; 
-import org.jfree.chart.ChartFactory; 
-import org.jfree.chart.plot.PlotOrientation; 
-import org.jfree.chart.renderer.xy.XYLineAndShapeRenderer;
-import javax.swing.JPanel;
-import java.awt.BorderLayout;
-import javax.swing.JSplitPane;
-import javax.swing.SwingUtilities;
-
-import java.awt.Panel;
-import javax.swing.border.LineBorder;
-import javax.swing.JLabel;
 
 public class HomeView  extends JFrame implements ActionListener
 {
@@ -74,6 +54,12 @@ public class HomeView  extends JFrame implements ActionListener
 		
 		
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		addWindowListener(new java.awt.event.WindowAdapter() {
+		    @Override
+		    public void windowClosing(java.awt.event.WindowEvent windowEvent) {
+		        Logger.close();
+		    }
+		});
 		this.setSize(600,400);
 		this.setLocationRelativeTo(null);
 		//getContentPane().setLayout(new BorderLayout(0, 0));
