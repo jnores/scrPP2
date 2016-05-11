@@ -1,5 +1,6 @@
 package com.ungs.pp2.scrPP2.Dominio.Enums;
 
+import com.ungs.pp2.scrPP2.MainScrum;
 import com.ungs.pp2.scrPP2.Dominio.Enums.Estado;
 
 import junit.framework.Test;
@@ -40,6 +41,9 @@ public class EstadoTest extends TestCase {
 	 * Verifico que al pedir el siguiente se siga la logica de estados
 	 */
 	public void testEstadoSiguiente() {
+		MainScrum m = new MainScrum();
+		m.main(null);
+		
 		Estado estado = Estado.ToDo;
 		assertEquals(estado,Estado.ToDo);
 		estado = estado.avanzar();
