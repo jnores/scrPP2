@@ -17,7 +17,7 @@ public class UserStoryPaginadoController extends Controller
 	   //La consulta se pasa a cada controller para hacer consultas a la base y son pasadas a su padre
 	   public UserStoryPaginadoController(IConsulta consulta)
 	   {
-		   super (consulta);
+		  super (consulta);
 	      model = consulta.ObtenerUserStoriesDB();
 	      paginaDefault = new Paginacion(null, null, 1, 5);
 	      paginaActual = paginaDefault;
