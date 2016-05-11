@@ -8,7 +8,8 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
-import java.util.TreeMap;
+
+import com.ungs.pp2.scrPP2.utils.UserStoryMapper;
 
 /**
  * @author yoshknight
@@ -17,13 +18,23 @@ import java.util.TreeMap;
 public class Proyecto {
    private String titulo;
 	private Date fechaInicio,fechaFin;
-	private Map<Integer,UserStory> backlog;
+	private List<UserStory> backlog;
 	private Map<String,Miembro> miembros;
 	private List<Sprint> iteraciones;
 	private Map<UserStory,Miembro> asignaciones;
+	private UserStoryMapper usMapper;
 
 	public Proyecto() {
-		this.backlog      = new TreeMap<Integer,UserStory>();
+		usMapper=null;
+		this.backlog      = new ArrayList<UserStory>();
+		this.miembros     = new HashMap<String,Miembro>();
+		this.iteraciones  = new ArrayList<Sprint>();
+		this.asignaciones = new HashMap<UserStory,Miembro>();
+	}
+	
+	public Proyecto(UserStoryMapper mapper) {
+		usMapper=mapper;
+		this.backlog      = new ArrayList<UserStory>();
 		this.miembros     = new HashMap<String,Miembro>();
 		this.iteraciones  = new ArrayList<Sprint>();
 		this.asignaciones = new HashMap<UserStory,Miembro>();
@@ -48,11 +59,19 @@ public class Proyecto {
 	 */
 	public Set<UserStory> getAllUserStories() {
 		ArrayList<UserStory> allStories;
-		allStories = new ArrayList<UserStory>( this.backlog.values() );
+		allStories = new ArrayList<UserStory>( this.backlog );
 		for (Sprint it: iteraciones) {
 			allStories.addAll(it.getUserStories());
 		}
 		return new HashSet<UserStory>(allStories);
+	}
+	
+	/**
+	 * @return Coleccion de UserStories del backlog
+	 */
+	public List<UserStory> getBacklog() {
+		backlog = usMapper.getBacklog();
+		return backlog;
 	}
 	
 	/**
@@ -86,9 +105,8 @@ public class Proyecto {
 	 * @param userStory  La user story que se debe agregar al bachlog
 	 */
 	public void addUserStory(UserStory userStory) {
-		if ( !this.backlog.containsValue(userStory) ) {
-			this.backlog.put(userStory.getId(), userStory);
-		}
+		usMapper.insert(userStory);
+		this.backlog.add( userStory);
 	}
 	
 	/**
@@ -105,15 +123,19 @@ public class Proyecto {
 	 * @param miembro El miembro que se le asignara la user story
 	 */
 	public void asignarUserStory(UserStory userStory,Miembro miembro) {
-		if ( this.backlog.containsValue(userStory) && this.miembros.containsValue(miembro)) {
+		if ( this.backlog.contains(userStory) && this.miembros.containsValue(miembro)) {
 			this.asignaciones.put(userStory, miembro);
 		}
 	}
 
 	public UserStory getUserStoryPorId(int id) {
 		UserStory userStory = null;
-		if (this.backlog.containsKey(id))
-			userStory = this.backlog.get(id);
+		for (UserStory us:backlog) {
+			if (us.getId() == id) {
+				userStory = us;
+				break;
+			}
+		}
 		return userStory;
 	}
 
@@ -133,9 +155,13 @@ public class Proyecto {
 	}
 	
 	public String getTitulo(String titulo)
-   {
+    {
       return this.titulo;
-   }
+    }
+	
+	public long getSiguienteStoryID(){
+		return usMapper.getNextID();
+	}
 	
 	
 }

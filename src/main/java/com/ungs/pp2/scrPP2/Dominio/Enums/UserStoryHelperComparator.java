@@ -12,7 +12,7 @@ public enum UserStoryHelperComparator implements Comparator<UserStoryHelper> {
 	NUMERO_SORT {
 			@Override
 		    public int compare(UserStoryHelper o1, UserStoryHelper o2) {
-		        return Integer.valueOf(o1.getId()).compareTo(o2.getId());
+		        return Long.valueOf(o1.getId()).compareTo(o2.getId());
 		    }
 	
 		    @Override

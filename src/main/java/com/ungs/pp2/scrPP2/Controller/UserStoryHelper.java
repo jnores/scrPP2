@@ -22,7 +22,7 @@ public class UserStoryHelper
 		this.miembro   = miembro;
 	}
 
-	public int getId() {
+	public long getId() {
 		return userStory.getId();
 	}
 
