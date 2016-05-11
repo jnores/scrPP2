@@ -21,6 +21,9 @@ import com.ungs.pp2.scrPP2.Controller.BurndownChartController;
 import com.ungs.pp2.scrPP2.Controller.ProyectoController;
 import com.ungs.pp2.scrPP2.Controller.UserStoryPaginadoController;
 import com.ungs.pp2.scrPP2.Dominio.Comando.AgregarOkListenerBacklogNuevo;
+import com.ungs.pp2.scrPP2.Dominio.Comando.AgregarSiguienteListenerProyectoNuevo;
+import com.ungs.pp2.scrPP2.Dominio.Comando.LimpiarBacklogNuevoView;
+import com.ungs.pp2.scrPP2.Dominio.Comando.LimpiarProyectoNuevoView;
 import com.ungs.pp2.scrPP2.Dominio.Comando.MostrarProyectoNuevo;
 import com.ungs.pp2.scrPP2.Dominio.Interfaz.IAppController;
 import com.ungs.pp2.scrPP2.utils.Logger;
@@ -163,6 +166,10 @@ public class HomeView  extends JFrame implements ActionListener
 		});
 		
 		AppController.Execute(new AgregarOkListenerBacklogNuevo());
+		AppController.Execute(new AgregarSiguienteListenerProyectoNuevo());
+		AppController.Execute(new LimpiarProyectoNuevoView());
+		AppController.Execute(new LimpiarBacklogNuevoView());		
+		
 		menuP.add(mnNuevoProyectoItem);
 
 		mnBacklog = new JMenu("Backlog");
