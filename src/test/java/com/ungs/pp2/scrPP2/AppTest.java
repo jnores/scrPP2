@@ -1,5 +1,7 @@
 package com.ungs.pp2.scrPP2;
 
+import com.ungs.pp2.scrPP2.View.HomeView;
+
 import junit.framework.Test;
 import junit.framework.TestCase;
 import junit.framework.TestSuite;
@@ -43,5 +45,8 @@ public class AppTest
     	String[] args= {"parametro","parametro"};
     	MainUserStory.main(args);
         assertTrue( true );
+        
+        
+        
     }
 }
