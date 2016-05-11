@@ -7,6 +7,8 @@ import java.util.List;
 import com.ungs.pp2.scrPP2.Controller.UserStoryHelper;
 
 
+
+
 import jxl.Workbook;
 import jxl.write.Label;
 import jxl.write.WritableSheet;
@@ -18,8 +20,11 @@ public class ExportToExcel implements Exporter {
 	private String pathExl;
 
 	@Override
-	public void export(String path, List<UserStoryHelper> userStoriesHlpr) {
+	public void export(String path, List<UserStoryHelper> userStoriesHlpr)throws RuntimeException {
 		this.pathExl=path;
+		
+		if (userStoriesHlpr.size()==0) throw new RuntimeException("No existen historias de usuario para exportar."); 		
+		
 		try {
 
 			File exlFile = new File(pathExl);
