@@ -36,6 +36,10 @@ public class TextUserStoryMapper implements UserStoryMapper {
 		filePath = System.getProperty("user.home")+"/historias.dat";
 		verificarFile();
 	}
+	public TextUserStoryMapper(String nameFile) throws RuntimeException, IOException{
+		filePath = System.getProperty("user.home")+"/"+nameFile;
+		verificarFile();
+	}
 	/* (non-Javadoc)
 	 * @see com.ungs.pp2.scrPP2.utils.UserStoryMapper#getBacklog()
 	 */
