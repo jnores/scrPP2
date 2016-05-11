@@ -11,6 +11,9 @@ import com.ungs.pp2.scrPP2.Dominio.Plugin.Exporter;
 import junit.framework.Test;
 import junit.framework.TestCase;
 import junit.framework.TestSuite;
+import jxl.Cell;
+import jxl.Sheet;
+import jxl.Workbook;
 import jxl.read.biff.BiffException;
 
 
@@ -86,13 +89,47 @@ extends TestCase
 		List<UserStoryHelper> lst = new ArrayList<>();
 		lst.add(userStoryHelper);
 		Exporter.INSTANCE.export(path, lst);
-		//esto rompió el commit- creo que es porque exporta a un path que no existe en el repo de la nube, cuando
-		//ejecuta todas lsa pruebas
 		
-//		
-//		//Esto lo voy a usar despues para testear que los datos del excel que exporté sean correctos y
-//		//cotejarlos con los criterios de aceptación
-//		Workbook workbook = Workbook.getWorkbook(new java.io.File(path));
-//	    Sheet sheet = workbook.getSheet(0);
+		Workbook workbook = Workbook.getWorkbook(new java.io.File(path));
+	    Sheet sheet = workbook.getSheet(0);
+	    
+	  //cinco columnas: ID HISTORIA	TITULO	ESTADO	RESPONSABLE	PTS. HISTORIA
+	    assertTrue(sheet.getColumns() == 5);
+	    assertFalse(sheet.getColumns() == 4);
+	    
+	    //Dos filas, una para la cabecera y otra para la única historia de usuario
+	    assertTrue(sheet.getRows() == 2);
+	    assertFalse(sheet.getRows() == 4);
+	    	    
+	    //valido cabeceras
+	    assertTrue(sheet.getCell(0, 0).getContents().equals("ID HISTORIA"));
+	    assertTrue(sheet.getCell(1, 0).getContents().equals("TITULO"));
+	    assertTrue(sheet.getCell(2, 0).getContents().equals("ESTADO"));
+	    assertTrue(sheet.getCell(3, 0).getContents().equals("RESPONSABLE"));
+	    assertTrue(sheet.getCell(4, 0).getContents().equals("PTS. HISTORIA"));
+	    
+	    //Detalle de user story
+	    assertTrue(sheet.getCell(0, 1).getContents().equals(this.userStory.getId()+""));
+	    assertTrue(sheet.getCell(1, 1).getContents().equals(this.userStory.getTitulo()));
+	    assertTrue(sheet.getCell(2, 1).getContents().equals(this.userStory.getEstado().name()));
+	    assertTrue(sheet.getCell(3, 1).getContents().equals("-"));
+	    assertTrue(sheet.getCell(4, 1).getContents().equals(this.userStory.getStoryPoints()+""));
+	    
+	    //Algunos test de orden
+	    assertFalse(sheet.getCell(4, 0).getContents().equals("TITULO"));
+	    assertFalse(sheet.getCell(2, 0).getContents().equals("RESPONSABLE"));
+	    
+	    //test error sprint sin user stories
+	    lst.remove(0);
+	    try 
+		 {    		
+			Exporter.INSTANCE.export(path, lst);
+	    	
+			}	 
+		catch (RuntimeException e) 
+		{   		
+			assertTrue(true);
+		}
+	    
 	}
 }

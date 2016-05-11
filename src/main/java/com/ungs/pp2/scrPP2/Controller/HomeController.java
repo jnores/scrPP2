@@ -5,17 +5,22 @@ import com.ungs.pp2.scrPP2.Dominio.Entidad.Proyecto;
 import com.ungs.pp2.scrPP2.Dominio.Interfaz.IAppController;
 import com.ungs.pp2.scrPP2.Dominio.Interfaz.IComando;
 import com.ungs.pp2.scrPP2.Dominio.Interfaz.IConsulta;
+import com.ungs.pp2.scrPP2.View.BacklogNuevoView;
 import com.ungs.pp2.scrPP2.View.ProyectoNuevoView;
 import com.ungs.pp2.scrPP2.Dominio.Resultado;
 
 public class HomeController extends Controller implements IAppController
 {
    private ProyectoNuevoView proyectoNuevo;
+   private BacklogNuevoView backlogNuevo;
+   private ProyectoController proyectoController;
 
 
 	public HomeController(IConsulta consulta) 
 	{	super(consulta);
-		proyectoNuevo = new ProyectoNuevoView(new ProyectoController(null, new Proyecto()));
+	   proyectoController = new ProyectoController(null, new Proyecto());
+		proyectoNuevo = new ProyectoNuevoView(proyectoController);
+		backlogNuevo = new BacklogNuevoView(proyectoController);
 	}
 	
 	public void MostrarProyectoNuevo()
@@ -37,5 +42,15 @@ public class HomeController extends Controller implements IAppController
    public void setProyectoNuevo(ProyectoNuevoView proyectoNuevo)
    {
       this.proyectoNuevo = proyectoNuevo;
+   }
+
+   public BacklogNuevoView getBacklogNuevo()
+   {
+      return backlogNuevo;
+   }
+
+   public void setBacklogNuevo(BacklogNuevoView backlogNuevo)
+   {
+      this.backlogNuevo = backlogNuevo;
    }
 }
