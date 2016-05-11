@@ -3,6 +3,8 @@ package com.ungs.pp2.scrPP2.Dominio.Entidad;
 import java.util.Collection;
 import java.util.Set;
 
+import com.ungs.pp2.scrPP2.View.ProyectoNuevoView;
+
 import junit.framework.Test;
 import junit.framework.TestCase;
 import junit.framework.TestSuite;
@@ -74,6 +76,7 @@ public class ProyectoTest extends TestCase {
 		Set<String> nombresMiembros = this.proyecto.getNombresMiembros();
 		assertEquals(nombresMiembros.size(),2);
 		
+		ProyectoNuevoView p = new ProyectoNuevoView(null);
 		
 	}
 	

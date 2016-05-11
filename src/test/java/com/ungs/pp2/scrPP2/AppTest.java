@@ -32,7 +32,8 @@ public class AppTest
     public void testMainUserStory() {
     	@SuppressWarnings("unused")
 		MainUserStory main = new MainUserStory();
-        assertTrue( true );
+        assertTrue( true );      
+        
     }
     
     /**
