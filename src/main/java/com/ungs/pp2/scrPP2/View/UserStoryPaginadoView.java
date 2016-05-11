@@ -3,6 +3,7 @@ package com.ungs.pp2.scrPP2.View;
 import java.awt.BorderLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Observable;
 import java.util.Observer;
@@ -277,4 +278,10 @@ public class UserStoryPaginadoView extends JPanel implements Observer
          setearVista();
       }      
    }
+	
+	public void limpiarLista()
+	{
+	   Controller.setModel(new ArrayList<UserStory>());
+	   setearVista();
+	}
 }

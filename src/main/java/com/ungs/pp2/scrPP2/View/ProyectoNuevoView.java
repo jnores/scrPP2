@@ -34,6 +34,7 @@ public class ProyectoNuevoView extends JDialog
    private JTextField titulo;
    private JDatePickerImpl datePickerInicio,datePickerFin;
    private JComboBox<Miembro> comboLider;
+   private JButton siguientebtn, cancelButton;
 
    /**
     * Launch the application.
@@ -66,7 +67,7 @@ public class ProyectoNuevoView extends JDialog
       
       
       UtilDateModel model=new UtilDateModel();
-      JDatePanelImpl datePanel = new JDatePanelImpl(model);
+      JDatePanelImpl datePanel = new JDatePanelImpl(model);    
       datePickerInicio = new JDatePickerImpl(datePanel);
       datePickerInicio.setBounds(135, 39, 200, 29);
       contentPanel.add(datePickerInicio);
@@ -94,36 +95,29 @@ public class ProyectoNuevoView extends JDialog
       comboLider.addItem(new Miembro("Jose"));
       comboLider.addItem(new Miembro("Ivo"));
       contentPanel.add(comboLider);
-         JPanel buttonPane = new JPanel();
-         buttonPane.setLayout(new FlowLayout(FlowLayout.RIGHT));
-         getContentPane().add(buttonPane, BorderLayout.SOUTH);
-            JButton okButton = new JButton("OK");
-            okButton.addActionListener(new ActionListener() {
-               public void actionPerformed(ActionEvent e) {
-                  
-               }
-            });
-            okButton.setActionCommand("OK");
-            buttonPane.add(okButton);
-            JButton cancelButton = new JButton("Cancel");
-            cancelButton.setActionCommand("Cancel");
-            buttonPane.add(cancelButton);
+      JPanel buttonPane = new JPanel();
+      buttonPane.setLayout(new FlowLayout(FlowLayout.RIGHT));
+      getContentPane().add(buttonPane, BorderLayout.SOUTH);
+      siguientebtn = new JButton("Siguiente");
+      siguientebtn.setActionCommand("OK");
+      buttonPane.add(siguientebtn);
+      cancelButton = new JButton("Cancel");
+      cancelButton.setActionCommand("Cancel");
+      buttonPane.add(cancelButton);
    }
-   private static void addPopup(Component component, final JPopupMenu popup) {
-      component.addMouseListener(new MouseAdapter() {
-      	public void mousePressed(MouseEvent e) {
-      		if (e.isPopupTrigger()) {
-      			showMenu(e);
-      		}
-      	}
-      	public void mouseReleased(MouseEvent e) {
-      		if (e.isPopupTrigger()) {
-      			showMenu(e);
-      		}
-      	}
-      	private void showMenu(MouseEvent e) {
-      		popup.show(e.getComponent(), e.getX(), e.getY());
-      	}
-      });
+   
+   public void addsiguienteBtnListener(ActionListener listener) {
+      siguientebtn.addActionListener(listener);
+   }
+   
+   public void addcancelBtnListener(ActionListener listener) {
+      cancelButton.addActionListener(listener);
+   }
+   
+   public void limpiarPantalla()
+   {
+      titulo.setText("");
+      ((UtilDateModel)datePickerInicio.getModel()).setValue(null);
+      ((UtilDateModel)datePickerFin.getModel()).setValue(null);  
    }
 }
