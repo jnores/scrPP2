@@ -9,7 +9,7 @@ import javax.swing.UIManager;
 import com.ungs.pp2.scrPP2.Controller.HomeController;
 import com.ungs.pp2.scrPP2.View.HomeView;
 
-import org.pushingpixels.substance.api.skin.SubstanceAutumnLookAndFeel;
+import org.pushingpixels.substance.api.skin.SubstanceChallengerDeepLookAndFeel;
 /*SubstanceBusinessBlackSteelLookAndFeel;SubstanceBusinessLookAndFeel;
  * SubstanceChallengerDeepLookAndFeel;SubstanceDustCoffeeLookAndFeel;
  * SubstanceDustLookAndFeel;SubstanceEmeraldDuskLookAndFeel;
@@ -27,7 +27,7 @@ public class MainScrum {
 		SwingUtilities.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					UIManager.setLookAndFeel(new SubstanceAutumnLookAndFeel());
+					UIManager.setLookAndFeel(new SubstanceChallengerDeepLookAndFeel());
 				} catch (Exception e) {
 					JFrame.setDefaultLookAndFeelDecorated(false);
 				}
