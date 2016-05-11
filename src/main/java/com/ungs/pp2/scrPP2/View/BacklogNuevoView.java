@@ -59,9 +59,6 @@ public class BacklogNuevoView extends JDialog
    
    public void limpiarPantalla()
    {
-      //((UserStoryPaginadoView) getContentPane().getComponent(0)).limpiarLista();
-      
-      //backlogPanel.limpiarLista();
       backlogPanel = new UserStoryPaginadoView(new UserStoryPaginadoController(new Consulta()));
       getContentPane().remove(0);
       getContentPane().add(backlogPanel,BorderLayout.CENTER,0);
