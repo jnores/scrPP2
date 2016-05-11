@@ -5,6 +5,7 @@ import java.util.List;
 
 import com.ungs.pp2.scrPP2.MainScrum;
 import com.ungs.pp2.scrPP2.Dominio.Enums.Estado;
+import com.ungs.pp2.scrPP2.View.AltaUserStoryView;
 
 import junit.framework.Test;
 import junit.framework.TestCase;
@@ -86,6 +87,7 @@ public class UserStoryTest extends TestCase {
       story.setStoryPoints(11);
       story.setFecha(null);
       
+      AltaUserStoryView v = new AltaUserStoryView(null);
       	}
 		
 }
