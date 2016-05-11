@@ -23,7 +23,7 @@ import java.awt.event.FocusListener;
 import com.ungs.pp2.scrPP2.Controller.AltaUserStoryController;
 import com.ungs.pp2.scrPP2.Dominio.Entidad.UserStory;
 
-//No incluyo autor, eso esta almacenado en el logueo. Falta el id un Identify field? 
+//No incluyo autor, eso esta almacenado en el logueo. El id igual, viene como dato. 
 public class AltaUserStoryView extends JPanel{
 
 	private final JTextArea areaTitulo;
@@ -42,6 +42,12 @@ public class AltaUserStoryView extends JPanel{
 	private Box boxVertical;
 	private JButton botonAgregar;
 	private AltaUserStoryController controlador;
+	
+	private final String resumen="Como <Rol> necesito <Meta> para <Finalidad>.";
+	private final String  detalle="Utilice este espacio para explicar con más detalle, la meta y el propósito de esta user story";
+	private final String criterio="Especifique criterios de aceptación para la user story.\n"
+			+ "Intente que los criterios tengan una correspondencia con los test.";
+	
 	private static final long serialVersionUID = 1L; 
 
 	public AltaUserStoryView(AltaUserStoryController controlador)
@@ -67,6 +73,7 @@ public class AltaUserStoryView extends JPanel{
 		scrollTitulo.setBorder(BorderFactory.createTitledBorder("Titulo"));
 		scrollTitulo.setViewportView(areaTitulo);
 		scrollTitulo.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED);
+		areaTitulo.setText(resumen);
 		panelTitulo.add(scrollTitulo);
 
 		areaDetalle=new JTextArea(3,40);
@@ -75,7 +82,8 @@ public class AltaUserStoryView extends JPanel{
 		areaDetalle.setWrapStyleWord(true);        
 		scrollDetalle.setBorder(BorderFactory.createTitledBorder("Detalle"));
 		scrollDetalle.setViewportView(areaDetalle);
-		scrollDetalle.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED); 
+		scrollDetalle.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED);
+		areaDetalle.setText(detalle);
 		panelDetalle.add(scrollDetalle);
 		
 		areaCriterios=new JTextArea(3,40);
@@ -86,6 +94,7 @@ public class AltaUserStoryView extends JPanel{
 		scrollCriterio.add(areaCriterios);
 		scrollCriterio.setViewportView(areaCriterios);
 		scrollCriterio.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED);
+		areaCriterios.setText(criterio);
 		panelCriterio.add(scrollCriterio);
 		
 		areaSugerencia=new JTextArea(2,40);
@@ -182,11 +191,29 @@ public class AltaUserStoryView extends JPanel{
 				if(mostrarSugerencias=check.isSelected()){
 
 					check.setText("Sugerencias habilitadas");
+					if(areaTitulo.getText().isEmpty()){
+						areaTitulo.setText(resumen);
+					}
+					if(areaDetalle.getText().isEmpty()){
+						areaDetalle.setText(detalle);
+					}
+					if(areaCriterios.getText().isEmpty()){
+						areaCriterios.setText(criterio);
+					}
 				}else{
 					mostrarSugerencias=false;
 					check.setText("Sugerencias Deshabilitadas");
 					if(areaSugerencia.isVisible()){
 						areaSugerencia.setVisible(false);
+					}
+					if(areaTitulo.getText().equals(resumen)){
+						areaTitulo.setText("");
+					}
+					if(areaDetalle.getText().equals(detalle)){
+						areaDetalle.setText("");
+					}
+					if(areaCriterios.getText().equals(criterio)){
+						areaCriterios.setText("");
 					}
 				}
 				
@@ -260,7 +287,11 @@ public class AltaUserStoryView extends JPanel{
 			public void actionPerformed(ActionEvent e){
 				String titulo=areaTitulo.getText();
 				String detalle=areaDetalle.getText();
-				if((!titulo.isEmpty()) && (!titulo.isEmpty())){
+				if(titulo.equals(resumen)){
+					JOptionPane.showMessageDialog(null, "No se puede guardar el formato de muestra, como una user story.");
+					return;
+				}
+				if((!titulo.isEmpty()) && (!detalle.isEmpty())){
 					String sugerencia=controlador.obtenerSugerencia(titulo);
 					if(!sugerencia.isEmpty()){
 						JOptionPane.showMessageDialog(null, sugerencia+"\nA pesar de la sugerencia ¿Aún desea guardar esta User Story?");

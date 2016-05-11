@@ -28,12 +28,12 @@ public class CorrectorDeSintaxis {
 			while ((linea = bufferedReader.readLine()) != null) {
 				crearListasPalabrasSugeridas(linea);
 			}
-		} catch (Exception e) {System.out.println("error");} 
+		} catch (Exception e) {} 
 		finally {
 			try {
 				if (bufferedReader!=null){bufferedReader.close();}
 				if (fileReader != null) {fileReader.close();}
-			} catch (Exception e2) {System.out.println("no habia archivo");}
+			} catch (Exception e2) {}
 		}
 	}
 	
