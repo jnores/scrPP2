@@ -9,6 +9,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
+import com.ungs.pp2.scrPP2.utils.Logger;
 import com.ungs.pp2.scrPP2.utils.UserStoryMapper;
 
 /**
@@ -70,7 +71,8 @@ public class Proyecto {
 	 * @return Coleccion de UserStories del backlog
 	 */
 	public List<UserStory> getBacklog() {
-		backlog = usMapper.getBacklog();
+		if (usMapper != null)
+			backlog = usMapper.getBacklog();
 		return backlog;
 	}
 	
@@ -105,7 +107,9 @@ public class Proyecto {
 	 * @param userStory  La user story que se debe agregar al bachlog
 	 */
 	public void addUserStory(UserStory userStory) {
-		usMapper.insert(userStory);
+		Logger.log("ADD USER STORY ["+userStory.getId()+"]: "+userStory.getTitulo());
+		if (usMapper != null)
+			usMapper.insert(userStory);
 		this.backlog.add( userStory);
 	}
 	
