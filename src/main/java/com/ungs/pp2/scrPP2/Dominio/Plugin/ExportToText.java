@@ -13,28 +13,28 @@ public class ExportToText implements Exporter {
 	
 	@Override
 	public void export(String path, List<UserStoryHelper> userStoriesHlpr) {
-		this.pathTxt=path;
-		// TODO Auto-generated method stub
-		try {
-
-			String content = "Aca va la frula";
-
-			File file = new File(pathTxt);
-
-			//si no existe el archivo, lo creo
-			if (!file.exists()) {
-				file.createNewFile();
-			}
-
-			FileWriter fw = new FileWriter(file.getAbsoluteFile());
-			BufferedWriter bw = new BufferedWriter(fw);
-			bw.write(content);
-			bw.close();	
-
-		} catch (IOException e) {
-			e.printStackTrace();
-		}
-	}
+//		this.pathTxt=path;
+//		// TODO Auto-generated method stub
+//		try {
+//
+//			String content = "Aca va la frula";
+//
+//			File file = new File(pathTxt);
+//
+//			//si no existe el archivo, lo creo
+//			if (!file.exists()) {
+//				file.createNewFile();
+//			}
+//
+//			FileWriter fw = new FileWriter(file.getAbsoluteFile());
+//			BufferedWriter bw = new BufferedWriter(fw);
+//			bw.write(content);
+//			bw.close();	
+//
+//		} catch (IOException e) {
+//			e.printStackTrace();
+//		//}
+//	}
 	
-
+	}
 }

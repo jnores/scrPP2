@@ -10,8 +10,7 @@ class PluginFactory
 		try
 		{
 			//Carga el archivo para saber de que forma linkear las clases despues
-			//props.load(PluginFactory.class.getResourceAsStream("/com/ungs/pp2/scrPP2/Dominio/Plugin/properties"));
-			props.load(Thread.currentThread().getContextClassLoader().getResourceAsStream("config/properties"));
+			props.load(Thread.currentThread().getContextClassLoader().getResourceAsStream("config/propertiesExcel"));
 			
 		}
 		catch(Exception e)
