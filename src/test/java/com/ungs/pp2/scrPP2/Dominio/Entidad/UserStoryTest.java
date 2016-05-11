@@ -3,6 +3,7 @@ package com.ungs.pp2.scrPP2.Dominio.Entidad;
 import java.util.ArrayList;
 import java.util.List;
 
+import com.ungs.pp2.scrPP2.MainScrum;
 import com.ungs.pp2.scrPP2.Dominio.Enums.Estado;
 
 import junit.framework.Test;
@@ -84,6 +85,7 @@ public class UserStoryTest extends TestCase {
       story.setTitulo("t1");
       story.setStoryPoints(11);
       story.setFecha(null);
-	}
+      
+      	}
 		
 }
