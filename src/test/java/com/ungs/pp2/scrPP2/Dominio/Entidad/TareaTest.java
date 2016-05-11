@@ -1,5 +1,7 @@
 package com.ungs.pp2.scrPP2.Dominio.Entidad;
 
+import com.ungs.pp2.scrPP2.MainBurndownChart;
+import com.ungs.pp2.scrPP2.MainScrum;
 import com.ungs.pp2.scrPP2.Dominio.Enums.Estado;
 
 import junit.framework.TestCase;
@@ -24,6 +26,12 @@ public void testTareaEstadoDefault()
 		tarea.avanzarEstado();
 		assertEquals(tarea.getEstado(),Estado.Done);
 		
+
+//		
+		MainBurndownChart otr = new MainBurndownChart();
+		otr.main(null);
+		
+				
 		//estado invalido
 		//esto se puede hacer de una forma mas elegante, ver de cambiar la version de junit (4.xx)
 		try 

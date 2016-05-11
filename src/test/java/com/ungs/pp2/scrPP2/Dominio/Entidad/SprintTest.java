@@ -1,5 +1,7 @@
 package com.ungs.pp2.scrPP2.Dominio.Entidad;
 
+import com.ungs.pp2.scrPP2.MainScrum;
+
 import junit.framework.Test;
 import junit.framework.TestCase;
 import junit.framework.TestSuite;
@@ -49,7 +51,8 @@ public class SprintTest extends TestCase {
 	public void testSprint() {
 		@SuppressWarnings("unused")
 		Sprint s = new Sprint(1,null,30,null);
-		assertTrue(true);		
+		assertTrue(true);
+
 	}
 	
 }
