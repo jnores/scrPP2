@@ -1,53 +1,34 @@
 package com.ungs.pp2.scrPP2.View;
 
-import com.ungs.pp2.scrPP2.Controller.AltaUserStoryController;
-import com.ungs.pp2.scrPP2.Controller.BurndownChartController;
-import com.ungs.pp2.scrPP2.Controller.HomeController;
-import com.ungs.pp2.scrPP2.Controller.ProyectoController;
-import com.ungs.pp2.scrPP2.Controller.UserStoryPaginadoController;
-import com.ungs.pp2.scrPP2.Dominio.Entidad.CorrectorDeSintaxis;
-import com.ungs.pp2.scrPP2.Dominio.Entidad.UserStory;
-import com.ungs.pp2.scrPP2.Dominio.Entidad.Proyecto;
-import com.ungs.pp2.scrPP2.Dominio.Enums.OpcionGrafico;
-import com.ungs.pp2.scrPP2.windows.UserStoryOrderableWindow;
-import com.ungs.pp2.scrPP2.MainUserStoryList;
-import com.ungs.pp2.scrPP2.Consulta.Consulta;
-
-import javax.swing.JOptionPane;
-
-import javax.swing.JFrame;
-import javax.swing.JMenu;
-import javax.swing.JMenuBar;
-import javax.swing.JMenuItem;
-import javax.swing.border.EmptyBorder;
-
-import java.awt.FlowLayout;
+import java.awt.BorderLayout;
+import java.awt.Color;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-
-import java.awt.Color;
-import java.awt.BasicStroke; 
-
-import org.jfree.chart.ChartPanel; 
-import org.jfree.chart.JFreeChart; 
-import org.jfree.data.xy.XYDataset;
-import org.jfree.data.xy.XYSeries;
-import org.jfree.data.xy.XYSeriesCollection;
-import org.jfree.chart.plot.XYPlot; 
-import org.jfree.chart.ChartFactory; 
-import org.jfree.chart.plot.PlotOrientation; 
-import org.jfree.chart.renderer.xy.XYLineAndShapeRenderer;
-import javax.swing.JPanel;
 import javax.swing.JScrollPane;
-
-import java.awt.BorderLayout;
-import javax.swing.JSplitPane;
-import javax.swing.SwingUtilities;
-
-import java.awt.Panel;
-import javax.swing.border.LineBorder;
+import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JMenu;
+import javax.swing.JMenuBar;
+import javax.swing.JMenuItem;
+import javax.swing.JPanel;
+import javax.swing.SwingUtilities;
+import javax.swing.border.LineBorder;
+
+import com.ungs.pp2.scrPP2.MainUserStoryList;
+import com.ungs.pp2.scrPP2.Consulta.Consulta;
+import com.ungs.pp2.scrPP2.Controller.BurndownChartController;
+import com.ungs.pp2.scrPP2.Controller.ProyectoController;
+import com.ungs.pp2.scrPP2.Controller.UserStoryPaginadoController;
+import com.ungs.pp2.scrPP2.Dominio.Comando.MostrarProyectoNuevo;
+import com.ungs.pp2.scrPP2.Dominio.Interfaz.IAppController;
+import com.ungs.pp2.scrPP2.utils.Logger;
+import com.ungs.pp2.scrPP2.windows.UserStoryOrderableWindow;
+import com.ungs.pp2.scrPP2.Controller.AltaUserStoryController;
+import com.ungs.pp2.scrPP2.Dominio.Entidad.CorrectorDeSintaxis;
+import com.ungs.pp2.scrPP2.Dominio.Entidad.UserStory;
+
+
 
 public class HomeView  extends JFrame implements ActionListener
 {
@@ -56,33 +37,37 @@ public class HomeView  extends JFrame implements ActionListener
 	 */
 	private static final long serialVersionUID = 1L;
 	private JPanel panel_Top;
-	private HomeController controller;
+	private IAppController AppController;
 	private BurndownChartView burndownChartViewpanel;
 	private UserStoryPaginadoView listadoPaginadoHistorias;
 	private UserStoryOrderableWindow filtradoHistorias;
 	private AltaUserStoryView userStoryUpload; //Alta de User Stories
-	private ProyectoNuevoView proyectoNuevo;
 	private JMenuBar menuBar;
 	private JMenu menuP,menuI,mnHistoria,mnBacklog;
 	private JMenuItem mnListadoHistoriasItem,mnBurnDownchartItem,mnFiltradoItem,mnNuevoProyectoItem,mnNuevaUserStory,menu5,menu6;
-	private int ancho=600,alto=400;
 
-	public HomeView (HomeController controller)
+	public HomeView (IAppController controller)
 	{
-		getContentPane().setLayout(new BorderLayout());
-		burndownChartViewpanel = new BurndownChartView(new BurndownChartController(null, null));
-		listadoPaginadoHistorias = new UserStoryPaginadoView(new UserStoryPaginadoController(new Consulta()));
-		filtradoHistorias = new UserStoryOrderableWindow(new UserStoryListView(new ProyectoController(null, MainUserStoryList.retriveProyectoFromDatabase()).getAllUserStories()));
-		proyectoNuevo = new ProyectoNuevoView(new ProyectoController(null, new Proyecto()));
-		userStoryUpload = new AltaUserStoryView(new AltaUserStoryController(new Consulta())); //Alta User Stories
 
-		setTitle("Scrummer");
-		this.controller=controller;
+	   this.AppController=controller;
+	   getContentPane().setLayout(new BorderLayout());
+	   burndownChartViewpanel = new BurndownChartView(new BurndownChartController(null, null));
+	   listadoPaginadoHistorias = new UserStoryPaginadoView(new UserStoryPaginadoController(new Consulta()));
+	   filtradoHistorias = new UserStoryOrderableWindow(new UserStoryListView(new ProyectoController(null, MainUserStoryList.retriveProyectoFromDatabase()).getAllUserStories()));
+	   userStoryUpload = new AltaUserStoryView(new AltaUserStoryController(new Consulta())); //Alta User Stories
+	   
+		setTitle("Scrummer");		
 		this.setJMenuBar(cargarMenu());
 
 
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		this.setSize(ancho,alto);
+		addWindowListener(new java.awt.event.WindowAdapter() {
+		    @Override
+		    public void windowClosing(java.awt.event.WindowEvent windowEvent) {
+		        Logger.close();
+		    }
+		});
+		this.setSize(600,400);
 		this.setLocationRelativeTo(null);
 		//getContentPane().setLayout(new BorderLayout(0, 0));
 
@@ -171,9 +156,9 @@ public class HomeView  extends JFrame implements ActionListener
 
 		mnNuevoProyectoItem = new JMenuItem("Nuevo Proyecto");
 		mnNuevoProyectoItem.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				proyectoNuevo.setVisible(true);
-			}
+		   public void actionPerformed(ActionEvent e) {
+		      AppController.Execute(new MostrarProyectoNuevo());
+		   }
 		});
 		menuP.add(mnNuevoProyectoItem);
 

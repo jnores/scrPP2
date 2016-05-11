@@ -22,6 +22,11 @@ public class Backlog {
 
 // agregar al sprint un board que asocie estados con US
 
+
+
+
 // que diferencia hay entre el sprint backlog y el product backlog??
+
+
 
 // hola

@@ -6,7 +6,6 @@ import javax.swing.JDialog;
 import javax.swing.JFrame;
 import javax.swing.SwingUtilities;
 import javax.swing.UIManager;
-
 import com.ungs.pp2.scrPP2.Controller.HomeController;
 import com.ungs.pp2.scrPP2.View.HomeView;
 
@@ -17,6 +16,8 @@ import org.pushingpixels.substance.api.skin.SubstanceAutumnLookAndFeel;
  * SubstanceGeminiLookAndFeel;SubstanceGraphiteAquaLookAndFeel;
  * SubstanceGraphiteGlassLookAndFeel;SubstanceMagellanLookAndFeel;
  * SubstanceMistSilverLookAndFeel;SubstanceSaharaLookAndFeel;*/
+
+import com.ungs.pp2.scrPP2.utils.Logger;
 
 public class MainScrum {
 	public static void main( String[ ] args ) {
@@ -37,12 +38,19 @@ public class MainScrum {
 			@Override
 			public void run() {
 
+				//			try {
+				//				OutputStream f = new FileOutputStream("/tmp/scrumMGR.log",true);
+				//				Logger.setOutStream(f);
+				//			} catch (FileNotFoundException e) {
+				//				e.printStackTrace();
+				//			}
+				Logger.init();
 				HomeController controller = new HomeController(null);
 
 				HomeView view = new HomeView(controller);	
 				view.setVisible( true );
 
-			}});		  
-	}	
-}
+
+			}});
+	}}
 
