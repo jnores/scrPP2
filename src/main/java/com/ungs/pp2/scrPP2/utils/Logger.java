@@ -16,6 +16,8 @@ public class Logger {
 	
 	public static void init() {
 		try {
+			if (outStream == null)
+				outStream=System.out;
 			outStream.write( "Logger Iniciado\n".getBytes() );
 		} catch (IOException e) {
 			e.printStackTrace();

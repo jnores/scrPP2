@@ -80,7 +80,7 @@ public class LoggerTest extends TestCase {
 		} catch (NullPointerException e) {
 			assertTrue(true);
 		}
-		
+		Logger.init();
 	}
 
 	

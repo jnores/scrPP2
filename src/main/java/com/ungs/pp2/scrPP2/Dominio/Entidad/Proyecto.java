@@ -107,7 +107,8 @@ public class Proyecto {
 	 * @param userStory  La user story que se debe agregar al bachlog
 	 */
 	public void addUserStory(UserStory userStory) {
-		Logger.log("ADD USER STORY ["+userStory.getId()+"]: "+userStory.getTitulo());
+		//Logger.log("ADD USER STORY ["+userStory.getId()+"]: "+userStory.getTitulo());
+		Logger.log("ADD USER STORY: "+userStory.getTitulo());
 		if (usMapper != null)
 			usMapper.insert(userStory);
 		this.backlog.add( userStory);
