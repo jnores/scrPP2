@@ -19,6 +19,7 @@ public class LimpiarProyectoNuevoView implements IComando<HomeController>
             public void actionPerformed(ActionEvent e) {
                homeController.getProyectoNuevo().setVisible(false);
                homeController.getProyectoNuevo().limpiarPantalla();
+               homeController.getBacklogNuevo().limpiarPantalla();
             }
          });
       }

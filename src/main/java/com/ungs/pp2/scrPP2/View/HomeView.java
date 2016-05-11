@@ -29,8 +29,6 @@ import com.ungs.pp2.scrPP2.Dominio.Interfaz.IAppController;
 import com.ungs.pp2.scrPP2.utils.Logger;
 import com.ungs.pp2.scrPP2.windows.UserStoryOrderableWindow;
 import com.ungs.pp2.scrPP2.Controller.AltaUserStoryController;
-import com.ungs.pp2.scrPP2.Dominio.Entidad.CorrectorDeSintaxis;
-import com.ungs.pp2.scrPP2.Dominio.Entidad.UserStory;
 
 
 
