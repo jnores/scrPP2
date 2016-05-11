@@ -1,4 +1,0 @@
-#Ver este tema. Aca linkeo la interfaz exporter para que sepa que implementacion usar para la nueva instancia,
-#pero aca estoy agregando uno u otro, yo necesito los dos a la vez(creo)
-#
-com.ungs.pp2.scrPP2.Dominio.Plugin.Exporter = com.ungs.pp2.scrPP2.Dominio.Plugin.ExportToExcel

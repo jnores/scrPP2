@@ -79,7 +79,7 @@ public class UserStoryListView extends JPanel implements Observer
 		//solo navego por directorios
 		archivo.setFileSelectionMode( JFileChooser.DIRECTORIES_ONLY );
 		if( archivo.showOpenDialog(this) == JFileChooser.APPROVE_OPTION )
-		{	//Exporter.INSTANCE.export("c:/archivo_excel.xls",userStoriesHelper);
+		{	
 			Exporter.INSTANCE.export(archivo.getSelectedFile().getAbsolutePath(),userStoriesHelper);
 		}
 	}
