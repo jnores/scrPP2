@@ -15,6 +15,7 @@ public class Logger {
 	}
 	
 	public static void init() {
+		
 		try {
 			if (outStream == null)
 				outStream=System.out;
