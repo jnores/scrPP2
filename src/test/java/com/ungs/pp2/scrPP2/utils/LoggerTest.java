@@ -66,11 +66,6 @@ public class LoggerTest extends TestCase {
 	public void testLoggerClosed() {
 		Logger.close();
 		try {
-			Logger.init();
-		} catch (NullPointerException e) {
-			assertTrue(true);
-		}
-		try {
 			Logger.log("Esto no se escribe");
 		} catch (NullPointerException e) {
 			assertTrue(true);

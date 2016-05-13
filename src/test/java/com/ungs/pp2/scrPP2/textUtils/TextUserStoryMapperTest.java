@@ -3,6 +3,7 @@ package com.ungs.pp2.scrPP2.textUtils;
 import java.io.File;
 import java.io.IOException;
 
+import com.ungs.pp2.scrPP2.Dominio.Entidad.UserStory;
 import com.ungs.pp2.scrPP2.utils.UserStoryMapper;
 
 import junit.framework.Test;
@@ -32,7 +33,7 @@ public class TextUserStoryMapperTest extends TestCase {
 	
 	public void  setUp() {
 		try {
-			File f = new File(System.getProperty("user.home")+"/historiaTest.dat");
+			File f = new File(System.getProperty("user.home")+"/historiasTest.dat");
 			if ( f.exists() ) f.delete();
 			usMapperDefault = new TextUserStoryMapper();
 			usMapper = new TextUserStoryMapper("historiasTest.dat");
@@ -49,6 +50,11 @@ public class TextUserStoryMapperTest extends TestCase {
 	public void testMapper() {
 			assertEquals(usMapper.getNextID(),1);
 			assertTrue(usMapper.getBacklog().isEmpty());
+			UserStory us = new UserStory(1,"como ROL necesito ...","Detalle de la necesidad","Jose");
+			usMapper.insert(us);
+			assertEquals(usMapper.getNextID(),2);
+			assertEquals(usMapper.getBacklog().size(),1);
+			
 	}
 	
 }
