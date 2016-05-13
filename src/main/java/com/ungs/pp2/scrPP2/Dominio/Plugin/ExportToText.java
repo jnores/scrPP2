@@ -13,7 +13,7 @@ public class ExportToText implements Exporter {
 	
 	@Override
 	public void export(String path, List<UserStoryHelper> userStoriesHlpr) {
-//		this.pathTxt=path;
+		this.pathTxt=path;
 //		// TODO Auto-generated method stub
 //		try {
 //

@@ -1,13 +1,14 @@
 package com.ungs.pp2.scrPP2.Controller;
 
 
+import com.ungs.pp2.scrPP2.Dominio.Resultado;
 import com.ungs.pp2.scrPP2.Dominio.Entidad.Proyecto;
 import com.ungs.pp2.scrPP2.Dominio.Interfaz.IAppController;
 import com.ungs.pp2.scrPP2.Dominio.Interfaz.IComando;
 import com.ungs.pp2.scrPP2.Dominio.Interfaz.IConsulta;
 import com.ungs.pp2.scrPP2.View.BacklogNuevoView;
 import com.ungs.pp2.scrPP2.View.ProyectoNuevoView;
-import com.ungs.pp2.scrPP2.Dominio.Resultado;
+import com.ungs.pp2.scrPP2.utils.UserStoryMapper;
 
 public class HomeController extends Controller implements IAppController
 {
@@ -16,9 +17,10 @@ public class HomeController extends Controller implements IAppController
    private ProyectoController proyectoController;
 
 
-	public HomeController(IConsulta consulta) 
-	{	super(consulta);
-	   proyectoController = new ProyectoController(null, new Proyecto());
+	public HomeController(IConsulta consulta,UserStoryMapper usMapper) 
+	{	
+		super(consulta);
+	    proyectoController = new ProyectoController(null, new Proyecto(usMapper));
 		proyectoNuevo = new ProyectoNuevoView(proyectoController);
 		backlogNuevo = new BacklogNuevoView(proyectoController);
 	}
@@ -52,5 +54,10 @@ public class HomeController extends Controller implements IAppController
    public void setBacklogNuevo(BacklogNuevoView backlogNuevo)
    {
       this.backlogNuevo = backlogNuevo;
+   }
+   public ProyectoController getProyectoController()
+   {
+
+	   return proyectoController;
    }
 }

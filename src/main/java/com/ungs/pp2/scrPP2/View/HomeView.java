@@ -5,20 +5,20 @@ import java.awt.Color;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-import javax.swing.JScrollPane;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JMenu;
 import javax.swing.JMenuBar;
 import javax.swing.JMenuItem;
 import javax.swing.JPanel;
+import javax.swing.JScrollPane;
 import javax.swing.SwingUtilities;
 import javax.swing.border.LineBorder;
 
-import com.ungs.pp2.scrPP2.MainUserStoryList;
 import com.ungs.pp2.scrPP2.Consulta.Consulta;
+import com.ungs.pp2.scrPP2.Controller.AltaUserStoryController;
 import com.ungs.pp2.scrPP2.Controller.BurndownChartController;
-import com.ungs.pp2.scrPP2.Controller.ProyectoController;
+import com.ungs.pp2.scrPP2.Controller.HomeController;
 import com.ungs.pp2.scrPP2.Controller.UserStoryPaginadoController;
 import com.ungs.pp2.scrPP2.Dominio.Comando.AgregarOkListenerBacklogNuevo;
 import com.ungs.pp2.scrPP2.Dominio.Comando.AgregarSiguienteListenerProyectoNuevo;
@@ -28,7 +28,6 @@ import com.ungs.pp2.scrPP2.Dominio.Comando.MostrarProyectoNuevo;
 import com.ungs.pp2.scrPP2.Dominio.Interfaz.IAppController;
 import com.ungs.pp2.scrPP2.utils.Logger;
 import com.ungs.pp2.scrPP2.windows.UserStoryOrderableWindow;
-import com.ungs.pp2.scrPP2.Controller.AltaUserStoryController;
 
 
 
@@ -55,8 +54,8 @@ public class HomeView  extends JFrame implements ActionListener
 	   getContentPane().setLayout(new BorderLayout());
 	   burndownChartViewpanel = new BurndownChartView(new BurndownChartController(null, null));
 	   listadoPaginadoHistorias = new UserStoryPaginadoView(new UserStoryPaginadoController(new Consulta()));
-	   filtradoHistorias = new UserStoryOrderableWindow(new UserStoryListView(new ProyectoController(null, MainUserStoryList.retriveProyectoFromDatabase()).getAllUserStories()));
-	   userStoryUpload = new AltaUserStoryView(new AltaUserStoryController(new Consulta())); //Alta User Stories
+	   filtradoHistorias = new UserStoryOrderableWindow(new UserStoryListView( ((HomeController)controller).getProyectoController().getBacklog() ));
+	   userStoryUpload = new AltaUserStoryView(new AltaUserStoryController(new Consulta(),((HomeController)controller).getProyectoController())); //Alta User Stories
 	   
 		setTitle("Scrummer");		
 		this.setJMenuBar(cargarMenu());

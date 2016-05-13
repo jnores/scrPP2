@@ -35,18 +35,18 @@ public void testTareaEstadoDefault()
 		assertEquals(tarea.getEstado(),Estado.Done);
 		
 
+////		
+//		MainBurndownChart otr = new MainBurndownChart();
+//		otr.main(null);
 //		
-		MainBurndownChart otr = new MainBurndownChart();
-		otr.main(null);
-		
-		MainUserPaginadoStory otro2 = new MainUserPaginadoStory();
-		otro2.main(null);
-		
-		BacklogNuevoView v = new BacklogNuevoView(null);	
-		
-		UserStoryListView vs = new UserStoryListView(new ArrayList<UserStoryHelper>());
-		
-		FilterStoriesView vss = new FilterStoriesView(null);
+//		MainUserPaginadoStory otro2 = new MainUserPaginadoStory();
+//		otro2.main(null);
+//		
+//		BacklogNuevoView v = new BacklogNuevoView(null);	
+//		
+//		UserStoryListView vs = new UserStoryListView(new ArrayList<UserStoryHelper>());
+//		
+//		FilterStoriesView vss = new FilterStoriesView(null);
 		//estado invalido
 		//esto se puede hacer de una forma mas elegante, ver de cambiar la version de junit (4.xx)
 		try 

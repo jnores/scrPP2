@@ -1,13 +1,12 @@
 package com.ungs.pp2.scrPP2;
 
 import java.awt.EventQueue;
+import java.io.IOException;
 
 import javax.swing.JDialog;
 import javax.swing.JFrame;
 import javax.swing.SwingUtilities;
 import javax.swing.UIManager;
-import com.ungs.pp2.scrPP2.Controller.HomeController;
-import com.ungs.pp2.scrPP2.View.HomeView;
 
 import org.pushingpixels.substance.api.skin.SubstanceChallengerDeepLookAndFeel;
 /*SubstanceBusinessBlackSteelLookAndFeel;SubstanceBusinessLookAndFeel;
@@ -17,7 +16,11 @@ import org.pushingpixels.substance.api.skin.SubstanceChallengerDeepLookAndFeel;
  * SubstanceGraphiteGlassLookAndFeel;SubstanceMagellanLookAndFeel;
  * SubstanceMistSilverLookAndFeel;SubstanceSaharaLookAndFeel;*/
 
+import com.ungs.pp2.scrPP2.Controller.HomeController;
+import com.ungs.pp2.scrPP2.View.HomeView;
+import com.ungs.pp2.scrPP2.textUtils.TextUserStoryMapper;
 import com.ungs.pp2.scrPP2.utils.Logger;
+import com.ungs.pp2.scrPP2.utils.UserStoryMapper;
 
 public class MainScrum {
 	public static void main( String[ ] args ) {
@@ -45,7 +48,15 @@ public class MainScrum {
 				//				e.printStackTrace();
 				//			}
 				Logger.init();
-				HomeController controller = new HomeController(null);
+				UserStoryMapper usMapper=null;
+				try {
+					usMapper = new TextUserStoryMapper();
+				} catch (RuntimeException | IOException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+				
+				HomeController controller = new HomeController(null,usMapper);
 
 				HomeView view = new HomeView(controller);	
 				view.setVisible( true );

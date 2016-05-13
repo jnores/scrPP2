@@ -87,7 +87,7 @@ public class UserStoryTest extends TestCase {
       story.setStoryPoints(11);
       story.setFecha(null);
       
-      AltaUserStoryView v = new AltaUserStoryView(null);
+//      AltaUserStoryView v = new AltaUserStoryView(null);
       	}
 		
 }

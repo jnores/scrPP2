@@ -76,7 +76,7 @@ public class ProyectoTest extends TestCase {
 		Set<String> nombresMiembros = this.proyecto.getNombresMiembros();
 		assertEquals(nombresMiembros.size(),2);
 		
-		ProyectoNuevoView p = new ProyectoNuevoView(null);
+//		ProyectoNuevoView p = new ProyectoNuevoView(null);
 		
 	}
 	

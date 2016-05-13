@@ -135,6 +135,7 @@ public class Proyecto {
 
 	public UserStory getUserStoryPorId(int id) {
 		UserStory userStory = null;
+		getBacklog();
 		for (UserStory us:backlog) {
 			if (us.getId() == id) {
 				userStory = us;
