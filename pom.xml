@@ -98,9 +98,9 @@
                 <aggregate>true</aggregate>
                 <instrumentation>
                   <ignores>
-                    <ignore>com.ungs.pp2.scrPP2.View</ignore>
-                    <ignore>com.ungs.pp2.scrPP2.windows</ignore>
-                    <ignore>com.ungs.pp2.scrPP2.Comando</ignore>
+                    <ignore>com.ungs.pp2.scrPP2.View.*</ignore>
+                    <ignore>com.ungs.pp2.scrPP2.windows.*</ignore>
+                    <ignore>com.ungs.pp2.scrPP2.Comando.*</ignore>
                   </ignores>
                 </instrumentation>
 		     </configuration>
