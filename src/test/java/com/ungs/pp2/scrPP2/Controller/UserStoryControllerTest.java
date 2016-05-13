@@ -42,26 +42,26 @@ public static Test suite()
 
 public void  setUp()
 {
-	consultaMock = new MockUp<IConsulta>(){};
-	model = new UserStory("Titulo1", "Detalle1", "Autor1", "Responsable1", 10, 40, 1, Estado.ToDo, null, null);
+//	consultaMock = new MockUp<IConsulta>(){};
+//	model = new UserStory("Titulo1", "Detalle1", "Autor1", "Responsable1", 10, 40, 1, Estado.ToDo, null, null);
 }
 
 
 public void testUserStoryController()
 {
-   UserStoryController controller = new UserStoryController(consultaMock.getMockInstance(),model);
-
-   assertTrue(true);
+//   UserStoryController controller = new UserStoryController(consultaMock.getMockInstance(),model);
+//
+//   assertTrue(true);
 }
 
 
 public void testUserStoryControllerSets()
 {
-	String  studentName="Roger",
-			studentRoll="11";
-	
-   UserStoryController controller = new UserStoryController(consultaMock.getMockInstance(),model);
-
-   assertTrue(true);
+//	String  studentName="Roger",
+//			studentRoll="11";
+//	
+//   UserStoryController controller = new UserStoryController(consultaMock.getMockInstance(),model);
+//
+//   assertTrue(true);
 }
 }

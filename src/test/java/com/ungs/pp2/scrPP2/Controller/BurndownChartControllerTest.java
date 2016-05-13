@@ -44,20 +44,20 @@ public static Test suite()
 
 public void  setUp()
 {
-	consultaMock = new MockUp<IConsulta>(){};
-	dataComponentMock = new MockUp<IDataComponent>(){}; 
+//	consultaMock = new MockUp<IConsulta>(){};
+//	dataComponentMock = new MockUp<IDataComponent>(){}; 
 }
 
 
 public void testBurndownChartController()
 {
-   BurndownChartController controller = new BurndownChartController(consultaMock.getMockInstance(),dataComponentMock.getMockInstance());
-   controller.getData(OpcionGrafico.Avance);
-   controller.getData(OpcionGrafico.Estimado, 1);
-   controller.getData(OpcionGrafico.Avance, 1);
-   controller.getData(OpcionGrafico.Comparativo, 1);
-   
-
-   assertTrue(true);
+//   BurndownChartController controller = new BurndownChartController(consultaMock.getMockInstance(),dataComponentMock.getMockInstance());
+//   controller.getData(OpcionGrafico.Avance);
+//   controller.getData(OpcionGrafico.Estimado, 1);
+//   controller.getData(OpcionGrafico.Avance, 1);
+//   controller.getData(OpcionGrafico.Comparativo, 1);
+//   
+//
+//   assertTrue(true);
 }
 }
