@@ -36,75 +36,74 @@ public class UserStoryPaginadoControllerTest extends TestCase
 
    protected void setUp()
    {
-	   
-//      consultaMock = new MockUp<IConsulta>(){
-//         @Mock
-//         public List<UserStory> ObtenerUserStoriesDB()
-//         {
-//            return new ArrayList<UserStory>(Arrays.asList              
-//               (
-//                     new UserStory("Titulo1", "Detalle1", "Autor1", "Responsable1", 10, 40, 1, Estado.ToDo, null, null),
-//                     new UserStory("Titulo2", "Detalle2", "Autor2", "Responsable2", 10, 40, 1, Estado.ToDo, null, null),
-//                     new UserStory("Titulo3", "Detalle3", "Autor3", "Responsable3", 10, 40, 1, Estado.ToDo, null, null),
-//                     new UserStory("Titulo4", "Detalle4", "Autor4", "Responsable4", 10, 40, 1, Estado.ToDo, null, null),
-//                     new UserStory("Titulo5", "Detalle5", "Autor5", "Responsable5", 10, 40, 1, Estado.ToDo, null, null),
-//                     new UserStory("Titulo6", "Detalle6", "Autor6", "Responsable6", 10, 40, 1, Estado.ToDo, null, null),
-//                     new UserStory("Titulo7", "Detalle7", "Autor7", "Responsable7", 10, 40, 1, Estado.ToDo, null, null),
-//                     new UserStory("Titulo8", "Detalle8", "Autor8", "Responsable8", 10, 40, 1, Estado.ToDo, null, null),
-//                     new UserStory("Titulo9", "Detalle9", "Autor9", "Responsable9", 10, 40, 1, Estado.ToDo, null, null),
-//                     new UserStory("Titulo10", "Detalle10", "Autor10", "Responsable10", 10, 40, 1, Estado.ToDo, null, null),
-//                     new UserStory("Titulo11", "Detalle11", "Autor11", "Responsable11", 10, 40, 1, Estado.ToDo, null, null)
-//               ));
-//         }
-//      };
-//      controller = new UserStoryPaginadoController(consultaMock.getMockInstance());
+      consultaMock = new MockUp<IConsulta>(){
+         @Mock
+         public List<UserStory> ObtenerUserStoriesDB()
+         {
+            return new ArrayList<UserStory>(Arrays.asList              
+               (
+                     new UserStory("Titulo1", "Detalle1", "Autor1", "Responsable1", 10, 40, 1, Estado.ToDo, null, null),
+                     new UserStory("Titulo2", "Detalle2", "Autor2", "Responsable2", 10, 40, 1, Estado.ToDo, null, null),
+                     new UserStory("Titulo3", "Detalle3", "Autor3", "Responsable3", 10, 40, 1, Estado.ToDo, null, null),
+                     new UserStory("Titulo4", "Detalle4", "Autor4", "Responsable4", 10, 40, 1, Estado.ToDo, null, null),
+                     new UserStory("Titulo5", "Detalle5", "Autor5", "Responsable5", 10, 40, 1, Estado.ToDo, null, null),
+                     new UserStory("Titulo6", "Detalle6", "Autor6", "Responsable6", 10, 40, 1, Estado.ToDo, null, null),
+                     new UserStory("Titulo7", "Detalle7", "Autor7", "Responsable7", 10, 40, 1, Estado.ToDo, null, null),
+                     new UserStory("Titulo8", "Detalle8", "Autor8", "Responsable8", 10, 40, 1, Estado.ToDo, null, null),
+                     new UserStory("Titulo9", "Detalle9", "Autor9", "Responsable9", 10, 40, 1, Estado.ToDo, null, null),
+                     new UserStory("Titulo10", "Detalle10", "Autor10", "Responsable10", 10, 40, 1, Estado.ToDo, null, null),
+                     new UserStory("Titulo11", "Detalle11", "Autor11", "Responsable11", 10, 40, 1, Estado.ToDo, null, null)
+               ));
+         }
+      };
+      controller = new UserStoryPaginadoController(consultaMock.getMockInstance());
    }
    
    public void testUserPaginadoStoryController()
    {        
-//      controller.getModel();
-//      
-//      assertEquals(controller.getPaginaActual().getPagina(), 1);
-//      assertEquals(controller.getItemsTotales(), 11);
-//      assertEquals(controller.getPaginasTotales(), 3);
-//      assertTrue(controller.getModel() != null);
-//      List<UserStory> lista = controller.ListarUserStories(null);
-//      assertEquals(lista.size(), 5);
-//      controller.setModel(null);
+      controller.getModel();
+      
+      assertEquals(controller.getPaginaActual().getPagina(), 1);
+      assertEquals(controller.getItemsTotales(), 11);
+      assertEquals(controller.getPaginasTotales(), 3);
+      assertTrue(controller.getModel() != null);
+      List<UserStory> lista = controller.ListarUserStories(null);
+      assertEquals(lista.size(), 5);
+      controller.setModel(null);
    }
    
    public void testUserPaginadoStoryPaginacion()
    {        
-//      List<UserStory> listaDefault,lista;
-//      listaDefault = controller.ListarUserStories(null);
-//      lista = controller.ObtenerPaginaAnterior();
-//      assertEquals(listaDefault.get(0).getTitulo(), lista.get(0).getTitulo());
-//      
-//      lista = controller.ObtenerPaginaPrimera();
-//      assertEquals(listaDefault.get(0).getTitulo(), lista.get(0).getTitulo());
-//      
-//      lista = controller.ObtenerPaginaSiguiente();
-//      assertEquals(controller.getPaginaActual().getPagina(), 2);
-//      
-//      lista = controller.ObtenerPaginaUltima();
-//      assertEquals(controller.getPaginaActual().getPagina(), 3);
-//      
-//      Paginacion paginacion = new Paginacion("Id", DirOrden.Desc, 1, 5);
-//      listaDefault = controller.ListarUserStories(paginacion);
-//      assertEquals(controller.getPaginaActual().getDireccionOrden(), DirOrden.Desc);
-//      paginacion.setDireccionOrden(DirOrden.Asc);
-//      paginacion.setItemsPorPagina(4);
-//      paginacion.setOrdenarPor("Id");
-//      paginacion.setPagina(2);
-//      
-//      assertEquals(controller.getPaginaActual().getDireccionOrden(), DirOrden.Asc);
-//      assertEquals(controller.getPaginaActual().getPagina(), 2);
+      List<UserStory> listaDefault,lista;
+      listaDefault = controller.ListarUserStories(null);
+      lista = controller.ObtenerPaginaAnterior();
+      assertEquals(listaDefault.get(0).getTitulo(), lista.get(0).getTitulo());
+      
+      lista = controller.ObtenerPaginaPrimera();
+      assertEquals(listaDefault.get(0).getTitulo(), lista.get(0).getTitulo());
+      
+      lista = controller.ObtenerPaginaSiguiente();
+      assertEquals(controller.getPaginaActual().getPagina(), 2);
+      
+      lista = controller.ObtenerPaginaUltima();
+      assertEquals(controller.getPaginaActual().getPagina(), 3);
+      
+      Paginacion paginacion = new Paginacion("Id", DirOrden.Desc, 1, 5);
+      listaDefault = controller.ListarUserStories(paginacion);
+      assertEquals(controller.getPaginaActual().getDireccionOrden(), DirOrden.Desc);
+      paginacion.setDireccionOrden(DirOrden.Asc);
+      paginacion.setItemsPorPagina(4);
+      paginacion.setOrdenarPor("Id");
+      paginacion.setPagina(2);
+      
+      assertEquals(controller.getPaginaActual().getDireccionOrden(), DirOrden.Asc);
+      assertEquals(controller.getPaginaActual().getPagina(), 2);
       
    }
    
    public void testConsulta()
    { 
-//      Consulta consulta = new Consulta();
-//      consulta.ObtenerUserStoriesDB();
+      Consulta consulta = new Consulta();
+      consulta.ObtenerUserStoriesDB();
    }
 }
