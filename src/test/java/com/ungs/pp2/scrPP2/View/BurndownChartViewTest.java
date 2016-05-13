@@ -36,34 +36,34 @@ public class BurndownChartViewTest extends TestCase
       return new TestSuite( BurndownChartViewTest.class );
   }
 
-//   protected void setUp()
-//   {
-//      consultaMock = new MockUp<IConsulta>(){};
-//      dataComponentMock = new MockUp<IDataComponent>(){};   
-//      
-//   }
-//   
-//   public void testVista() 
-//   {
-//      controller = new BurndownChartController(consultaMock.getMockInstance()); 
-//      BurndownChartView vista = new BurndownChartView(controller);
-//      assertTrue( true );
-//   }
-//   
-//   public void testVistaComposite() 
-//   {
-//      controller = new BurndownChartController(consultaMock.getMockInstance(),dataComponentMock.getMockInstance()); 
-//      BurndownChartView vista = new BurndownChartView(controller);
-//      assertTrue( true );
-//   }
-//   
-//   public void testActionPerformed()
-//   {
-//      controller = new BurndownChartController(consultaMock.getMockInstance(),dataComponentMock.getMockInstance()); 
-//      BurndownChartView vista = new BurndownChartView(controller);
-//      //vista.actionPerformed(new ActionEvent(vista, 1, "menu4"));
-//      assertTrue(true);
-//      
-//   }
+   protected void setUp()
+   {
+      consultaMock = new MockUp<IConsulta>(){};
+      dataComponentMock = new MockUp<IDataComponent>(){};   
+      
+   }
+   
+   public void testVista() 
+   {
+      controller = new BurndownChartController(consultaMock.getMockInstance()); 
+      BurndownChartView vista = new BurndownChartView(controller);
+      assertTrue( true );
+   }
+   
+   public void testVistaComposite() 
+   {
+      controller = new BurndownChartController(consultaMock.getMockInstance(),dataComponentMock.getMockInstance()); 
+      BurndownChartView vista = new BurndownChartView(controller);
+      assertTrue( true );
+   }
+   
+   public void testActionPerformed()
+   {
+      controller = new BurndownChartController(consultaMock.getMockInstance(),dataComponentMock.getMockInstance()); 
+      BurndownChartView vista = new BurndownChartView(controller);
+      //vista.actionPerformed(new ActionEvent(vista, 1, "menu4"));
+      assertTrue(true);
+      
+   }
 
 }
