@@ -109,8 +109,9 @@ public class Proyecto {
 	public void addUserStory(UserStory userStory) {
 		//Logger.log("ADD USER STORY ["+userStory.getId()+"]: "+userStory.getTitulo());
 		Logger.log("ADD USER STORY: "+userStory.getTitulo());
-		if (usMapper != null)
-			usMapper.insert(userStory);
+		if (usMapper == null)
+			throw new NullPointerException("El mecanismo de persistencia no esta disponible.");
+		usMapper.insert(userStory);
 		this.backlog.add( userStory);
 	}
 	
@@ -166,6 +167,8 @@ public class Proyecto {
     }
 	
 	public long getSiguienteStoryID(){
+		if (usMapper == null)
+			throw new NullPointerException("El mecanismo de persistencia no esta disponible.");
 		return usMapper.getNextID();
 	}
 	

@@ -30,6 +30,8 @@ public class HomeController extends Controller implements IAppController
 	   proyectoNuevo.setVisible(true);
 	}
 
+	// TODO Con este execute aqui oblicamos a la vista a saber armar los command. esto no deberia ser asi! la vista debe saber hacer peticiones al controller
+	// y el controller debera convertir estas peticiones en comandos, y ejecutarlos!
    @Override
    public Resultado Execute(IComando commando)
    {

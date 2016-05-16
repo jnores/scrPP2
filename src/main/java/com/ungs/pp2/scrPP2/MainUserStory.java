@@ -1,10 +1,13 @@
 package com.ungs.pp2.scrPP2;
 
+import java.io.IOException;
+
 import com.ungs.pp2.scrPP2.Controller.ProyectoController;
 import com.ungs.pp2.scrPP2.Dominio.Entidad.Miembro;
 import com.ungs.pp2.scrPP2.Dominio.Entidad.Proyecto;
 import com.ungs.pp2.scrPP2.Dominio.Entidad.UserStory;
 import com.ungs.pp2.scrPP2.View.UserStoryView;
+import com.ungs.pp2.scrPP2.textUtils.TextUserStoryMapper;
 import com.ungs.pp2.scrPP2.windows.UserStoryWindow;
 
 public class MainUserStory {
@@ -12,35 +15,42 @@ public class MainUserStory {
 	public static void main(String[] args) {
 
 		//fetch student record based on his roll no from the database
-		Proyecto proyecto  = retriveProyectoFromDatabase();
-
-		//Create a view : to write student details on console
-		UserStoryWindow userStoryWindow;
-
-		//Creo el controlador y le envío el modelo 
-		ProyectoController controller = new ProyectoController(null, proyecto);
+		Proyecto proyecto;
+		try {
+			proyecto = retriveProyectoFromDatabase();
 		
-		//La vista recibe el controlador
-		UserStoryView view = new UserStoryView(controller.getUserStoryHelper(2));
-		//Agrego la vista que es un observador del modelo 
-		
-		//Seteo un cliente por defecto al modelo
-		//customerModel.setCustomer(ctm);
-		//Muestro la ventana
-		userStoryWindow = new UserStoryWindow(view);
-		userStoryWindow.showWindow(true);
-		
-		// Simulo una modificacion externa, pasados 2 segundos de iniciado el sistema
-		// espero 2 segundos
-		//try {
-		//    Thread.sleep(2000);                 //en milisegundos
-		//} catch(InterruptedException ex) {
-		//    Thread.currentThread().interrupt();
-		//}
-		//story.setAutor("Veronica");
+	
+			//Create a view : to write student details on console
+			UserStoryWindow userStoryWindow;
+	
+			//Creo el controlador y le envío el modelo 
+			ProyectoController controller = new ProyectoController(null, proyecto);
+			
+			//La vista recibe el controlador
+			UserStoryView view = new UserStoryView(controller.getUserStoryHelper(2));
+			//Agrego la vista que es un observador del modelo 
+			
+			//Seteo un cliente por defecto al modelo
+			//customerModel.setCustomer(ctm);
+			//Muestro la ventana
+			userStoryWindow = new UserStoryWindow(view);
+			userStoryWindow.showWindow(true);
+			
+			// Simulo una modificacion externa, pasados 2 segundos de iniciado el sistema
+			// espero 2 segundos
+			//try {
+			//    Thread.sleep(2000);                 //en milisegundos
+			//} catch(InterruptedException ex) {
+			//    Thread.currentThread().interrupt();
+			//}
+			//story.setAutor("Veronica");
+		} catch (RuntimeException | IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 		
 	}
-	private static Proyecto retriveProyectoFromDatabase(){
+	private static Proyecto retriveProyectoFromDatabase() throws RuntimeException, IOException{
 		Proyecto proyecto;
 		Miembro miembro1
 			   ,miembro2
@@ -62,7 +72,7 @@ public class MainUserStory {
 		userStory3.setId(3);
 		userStory4.setId(4);
 		
-		proyecto= new Proyecto();
+		proyecto= new Proyecto(new TextUserStoryMapper() );
 		proyecto.addMiembro(miembro1);
 		proyecto.addMiembro(miembro2);
 		

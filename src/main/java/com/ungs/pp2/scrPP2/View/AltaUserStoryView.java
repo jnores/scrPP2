@@ -304,8 +304,16 @@ public class AltaUserStoryView extends JPanel{
 
 							puntos=Integer.getInteger(campoPuntos.getText());
 							
-						}catch(Exception excepcion){}
-						controlador.altaUserStory(titulo,detalle,criterios,asignadoA,horasEstimadas,puntos);
+							try {
+								controlador.altaUserStory(titulo,detalle,criterios,asignadoA,horasEstimadas,puntos);
+							} catch( Exception nullException) {
+								JOptionPane.showMessageDialog(null, "ERROR: "+nullException.getMessage() );
+							}
+							
+						}catch(Exception excepcion) {
+							JOptionPane.showMessageDialog(null, "ERROR: Al intentar agregar la user story" );
+						}
+						
 					}
 					
 				}else{

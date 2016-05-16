@@ -68,7 +68,7 @@ public class ProyectoController extends Controller
 		return proyecto.getSiguienteStoryID();
 	}
 
-	public void agregarUserStory(UserStory us) throws InvalidParameterException {
+	public void agregarUserStory(UserStory us) {
 		if (us==null)
 			throw new InvalidParameterException("Se esperaba una user story para agregar y se recibio un elemento nulo.");
 		proyecto.addUserStory(us);

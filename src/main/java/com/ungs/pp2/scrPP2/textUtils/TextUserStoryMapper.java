@@ -1,8 +1,6 @@
 package com.ungs.pp2.scrPP2.textUtils;
 
-import java.io.BufferedReader;
 import java.io.File;
-import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
@@ -12,13 +10,15 @@ import java.util.List;
 import com.ungs.pp2.scrPP2.Dominio.Entidad.UserStory;
 import com.ungs.pp2.scrPP2.utils.UserStoryMapper;
 
+import au.com.bytecode.opencsv.CSVReader;
+import au.com.bytecode.opencsv.CSVWriter;
+
 /**
  * @author yoshknight
  *
  */
 public class TextUserStoryMapper implements UserStoryMapper {
-	private static final String COMMA_DELIMITER = ";";
-	private static final String NEW_LINE_SEPARATOR = "\n";
+	private static final char COMMA_DELIMITER = ';';
 	
 	private static final String FILE_HEADER = "id,story,descripcion,sprint";
 	
@@ -47,15 +47,16 @@ public class TextUserStoryMapper implements UserStoryMapper {
 	public List<UserStory> getBacklog() {
 		List<UserStory> stories = new ArrayList<UserStory>();
 		
-		BufferedReader fileReader = null;
+		CSVReader reader = null;
 		try {
-			String line = "";
-			fileReader = new BufferedReader(new FileReader(filePath));
-			fileReader.readLine();
-			while ((line = fileReader.readLine()) != null) {
-				String[] tokens = line.split(COMMA_DELIMITER);
-				if (tokens.length > 0 && Long.parseLong(tokens[STORY_SPRINT_IDX]) == 0) {
-					UserStory story = new UserStory(Long.parseLong(tokens[STORY_ID_IDX]), tokens[STORY_STORY_IDX], tokens[STORY_DESCRIPCION_IDX],"");
+			 reader = new CSVReader(new FileReader(filePath),COMMA_DELIMITER);
+		     String [] nextLine;
+		     nextLine = reader.readNext();
+//		     System.out.println("ID="+nextLine[STORY_ID_IDX]+"|Titulo="+nextLine[STORY_STORY_IDX]+"|Detalle="+nextLine[STORY_DESCRIPCION_IDX]+"|SPRINT="+nextLine[STORY_SPRINT_IDX]);
+		     while ((nextLine = reader.readNext()) != null) {
+//		    	 System.out.println("ID="+nextLine[STORY_ID_IDX]+"|Titulo="+nextLine[STORY_STORY_IDX]+"|Detalle="+nextLine[STORY_DESCRIPCION_IDX]+"|SPRINT="+nextLine[STORY_SPRINT_IDX]);
+				if (nextLine.length > 0 && Long.parseLong(nextLine[STORY_SPRINT_IDX]) == 0) {
+					UserStory story = new UserStory(Long.parseLong(nextLine[STORY_ID_IDX]), nextLine[STORY_STORY_IDX], nextLine[STORY_DESCRIPCION_IDX],"");
 					stories.add(story);
 				}
 			}
@@ -65,7 +66,7 @@ public class TextUserStoryMapper implements UserStoryMapper {
 			e.printStackTrace();
 		} finally {
 			try {
-				fileReader.close();
+				reader.close();
 			} catch (IOException e) {
 				System.out.println("Error while closing fileReader !!!");
 				e.printStackTrace();
@@ -80,16 +81,14 @@ public class TextUserStoryMapper implements UserStoryMapper {
 	@Override
 	public long getNextID() {
 		long maxID=0;
-		BufferedReader fileReader = null;
+		CSVReader reader = null;
 		try {
-			String line = "";
-			fileReader = new BufferedReader(new FileReader(filePath));
-			//Salto la fila de cabecera
-			fileReader.readLine();
-			while ((line = fileReader.readLine()) != null) {
-				String[] tokens = line.split(COMMA_DELIMITER);
-				if (tokens.length > 0) {
-					long id = Long.parseLong(tokens[STORY_ID_IDX]);
+			 reader = new CSVReader(new FileReader(filePath),COMMA_DELIMITER);
+		     String [] nextLine;
+		     nextLine = reader.readNext();
+		     while ((nextLine = reader.readNext()) != null) {
+				if (nextLine.length > 0) {
+					long id = Long.parseLong(nextLine[STORY_ID_IDX]);
 					if (id > maxID)
 						maxID = id;
 				}
@@ -100,7 +99,7 @@ public class TextUserStoryMapper implements UserStoryMapper {
 			e.printStackTrace();
 		} finally {
 			try {
-				fileReader.close();
+				reader.close();
 			} catch (IOException e) {
 				System.out.println("Error while closing fileReader !!!");
 				e.printStackTrace();
@@ -114,27 +113,19 @@ public class TextUserStoryMapper implements UserStoryMapper {
 	 */
 	@Override
 	public void insert(UserStory us) {
-		FileWriter fileWriter = null;
-		try {
-			fileWriter = new FileWriter(filePath,true);
-//			fileWriter.append(FILE_HEADER.toString());
-//			fileWriter.append(NEW_LINE_SEPARATOR);
-			fileWriter.append(String.valueOf(us.getId()));
-			fileWriter.append(COMMA_DELIMITER);
-			fileWriter.append(String.valueOf(us.getTitulo()));
-			fileWriter.append(COMMA_DELIMITER);
-			fileWriter.append(String.valueOf(us.getDetalle()));
-			fileWriter.append(COMMA_DELIMITER);
-			fileWriter.append(String.valueOf(0));
-			fileWriter.append(NEW_LINE_SEPARATOR);
-			
+		CSVWriter writer = null;
+	    try {
+			writer = new CSVWriter(new FileWriter(filePath,true),COMMA_DELIMITER);
+			// feed in your array (or convert your data to an array)
+		    String[] entries = new String[] {String.valueOf(us.getId()),us.getTitulo(),us.getDetalle(),String.valueOf(0)} ;
+		    writer.writeNext(entries);
 		} catch (Exception e) {
 			System.out.println("Error in CsvFileWriter !!!");
 			e.printStackTrace();
 		} finally {
 			try {
-				fileWriter.flush();
-				fileWriter.close();
+				writer.flush();
+				writer.close();
 			} catch (IOException e) {
 				System.out.println("Error while flushing/closing fileWriter !!!");
 				e.printStackTrace();
@@ -166,18 +157,20 @@ public class TextUserStoryMapper implements UserStoryMapper {
 		File f = new File(filePath);
 		if ( !f.exists() ) {
 			if (f.createNewFile() ) {
-				FileWriter fileWriter = null;
-				try {
-					fileWriter = new FileWriter(filePath,true);
-					fileWriter.append(FILE_HEADER.toString());
-					fileWriter.append(NEW_LINE_SEPARATOR);	
+				CSVWriter writer = null;
+			    try {
+					writer = new CSVWriter(new FileWriter(filePath),COMMA_DELIMITER);
+					// feed in your array (or convert your data to an array)
+				    String[] entries = FILE_HEADER.split(",");
+				    writer.writeNext(entries);
+						
 				} catch (Exception e) {
 					System.out.println("Error in CsvFileWriter !!!");
 					e.printStackTrace();
 				} finally {
 					try {
-						fileWriter.flush();
-						fileWriter.close();
+						writer.flush();
+						writer.close();
 					} catch (IOException e) {
 						System.out.println("Error while flushing/closing fileWriter !!!");
 						e.printStackTrace();

@@ -1,38 +1,45 @@
 package com.ungs.pp2.scrPP2;
 
+import java.io.IOException;
+
 import com.ungs.pp2.scrPP2.Controller.ProyectoController;
 import com.ungs.pp2.scrPP2.Dominio.Entidad.Miembro;
 import com.ungs.pp2.scrPP2.Dominio.Entidad.Proyecto;
 import com.ungs.pp2.scrPP2.Dominio.Entidad.UserStory;
 import com.ungs.pp2.scrPP2.Dominio.Enums.Estado;
 import com.ungs.pp2.scrPP2.View.UserStoryListView;
+import com.ungs.pp2.scrPP2.textUtils.TextUserStoryMapper;
 import com.ungs.pp2.scrPP2.windows.UserStoryOrderableWindow;
 
 public class MainUserStoryList {
 
 	public static void main(String[] args) {
 
-		//fetch student record based on his roll no from the database
-		Proyecto proyecto  = retriveProyectoFromDatabase();
-
-		//Create a view : to write student details on console
-		UserStoryOrderableWindow userStoryWindow;
-
-		//Creo el controlador y le envío el modelo 
-		ProyectoController controller = new ProyectoController(null, proyecto);
-		
-		//La vista recibe el controlador
-		UserStoryListView view = new UserStoryListView(controller.getAllUserStories());
-		//Agrego la vista que es un observador del modelo 
-		
-		//Seteo un cliente por defecto al modelo
-		//customerModel.setCustomer(ctm);
-		//Muestro la ventana
-		userStoryWindow = new UserStoryOrderableWindow(view);
-		userStoryWindow.showWindow(true);
+		try {
+			//fetch student record based on his roll no from the database
+			Proyecto proyecto  = retriveProyectoFromDatabase();
+	
+			//Create a view : to write student details on console
+			UserStoryOrderableWindow userStoryWindow;
+	
+			//Creo el controlador y le envío el modelo 
+			ProyectoController controller = new ProyectoController(null, proyecto);
+			
+			//La vista recibe el controlador
+			UserStoryListView view = new UserStoryListView(controller.getAllUserStories());
+			//Agrego la vista que es un observador del modelo 
+			
+			//Seteo un cliente por defecto al modelo
+			//customerModel.setCustomer(ctm);
+			//Muestro la ventana
+			userStoryWindow = new UserStoryOrderableWindow(view);
+			userStoryWindow.showWindow(true);
+		} catch(Exception e) {
+			
+		}
 		
 	}
-	public static Proyecto retriveProyectoFromDatabase(){
+	public static Proyecto retriveProyectoFromDatabase() throws RuntimeException, IOException{
 		Proyecto proyecto;
 
 		Miembro miembro1
@@ -67,7 +74,7 @@ public class MainUserStoryList {
 		userStory4.setEstado(Estado.ToDo);
 		userStory4.setStoryPoints(100);
 		
-		proyecto= new Proyecto();
+		proyecto= new Proyecto( new TextUserStoryMapper() );
 		proyecto.addMiembro(miembro1);
 		proyecto.addMiembro(miembro2);
 		proyecto.addMiembro(miembro3);

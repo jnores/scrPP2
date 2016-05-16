@@ -1,9 +1,11 @@
 package com.ungs.pp2.scrPP2.Dominio.Entidad;
 
+import java.io.IOException;
 import java.util.Collection;
 import java.util.Set;
 
-import com.ungs.pp2.scrPP2.View.ProyectoNuevoView;
+import com.ungs.pp2.scrPP2.textUtils.TextUserStoryMapper;
+import com.ungs.pp2.scrPP2.utils.UserStoryMapper;
 
 import junit.framework.Test;
 import junit.framework.TestCase;
@@ -51,7 +53,16 @@ public class ProyectoTest extends TestCase {
 		userStory3.setId(3);
 		userStory4.setId(4);
 		
-		proyecto= new Proyecto();
+		UserStoryMapper m = null;
+		
+		try {
+			m=new TextUserStoryMapper("testProyecto.dat");
+		} catch (RuntimeException | IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		proyecto= new Proyecto(m);
 		proyecto.addMiembro(miembro1);
 		proyecto.addMiembro(miembro2);
 		

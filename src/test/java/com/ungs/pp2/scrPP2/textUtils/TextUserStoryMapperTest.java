@@ -2,6 +2,7 @@ package com.ungs.pp2.scrPP2.textUtils;
 
 import java.io.File;
 import java.io.IOException;
+import java.util.List;
 
 import com.ungs.pp2.scrPP2.Dominio.Entidad.UserStory;
 import com.ungs.pp2.scrPP2.utils.UserStoryMapper;
@@ -48,12 +49,29 @@ public class TextUserStoryMapperTest extends TestCase {
 	 * Verifico el texto logueado
 	 */
 	public void testMapper() {
-			assertEquals(usMapper.getNextID(),1);
+			long id=usMapper.getNextID();
+			assertEquals(id,1);
 			assertTrue(usMapper.getBacklog().isEmpty());
-			UserStory us = new UserStory(1,"como ROL necesito ...","Detalle de la necesidad","Jose");
+			String titulo = "como ROL necesito ...",
+				   detalle = "Detalle de la;  jajaj \nnecesidad",
+				   autor = "Jose";
+			UserStory us = new UserStory(id,titulo, detalle, autor);
 			usMapper.insert(us);
+			List<UserStory> stories = usMapper.getBacklog(); 
 			assertEquals(usMapper.getNextID(),2);
-			assertEquals(usMapper.getBacklog().size(),1);
+			assertEquals(stories.size(),1);
+			
+			UserStory readStory = stories.get(0);
+			assertEquals(readStory.getId(), id);
+			assertEquals(readStory.getTitulo(), titulo );
+			assertEquals(readStory.getDetalle(), detalle );
+			//assertEquals(readStory.getAutor(), autor );
+			//System.out.println("ID="+readStory.getId()+"|Titulo="+readStory.getTitulo()+"|Detalle="+readStory.getDetalle());
+
+			
+			
+			
+			
 			
 	}
 	
