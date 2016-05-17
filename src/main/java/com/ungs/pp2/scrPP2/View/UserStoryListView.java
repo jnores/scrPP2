@@ -10,12 +10,13 @@ import java.util.Observer;
 
 import javax.swing.BoxLayout;
 import javax.swing.JFileChooser;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.filechooser.FileNameExtensionFilter;
 
 import com.ungs.pp2.scrPP2.Controller.UserStoryHelper;
 import com.ungs.pp2.scrPP2.Dominio.Enums.UserStoryHelperComparator;
-import com.ungs.pp2.scrPP2.Dominio.Plugin.Exporter;
+import com.ungs.pp2.scrPP2.Dominio.Interfaz.IExporter;
 
 public class UserStoryListView extends JPanel implements Observer
 {
@@ -25,12 +26,15 @@ public class UserStoryListView extends JPanel implements Observer
 	private JFileChooser archivo;
 	private static final long serialVersionUID = 1L;
 	private List<UserStoryHelper> userStoriesHelper;
+	//private List<IExporter> proof;
 	
 	public UserStoryListView(List<UserStoryHelper> userStoriesHelper) 
 	{
 		this.userStoriesHelper = userStoriesHelper;
 		setLayout(new BoxLayout(this, BoxLayout.Y_AXIS));
 		this.cargarUserStories();
+		//this.proof = new ArrayList<IExporter>();
+		
 	}
 	
 	
@@ -70,7 +74,7 @@ public class UserStoryListView extends JPanel implements Observer
 	}
 
 
-	public void exportar() {
+	public void exportar(Object pluginExport) {
 		// TODO Auto-generated method stub
 		archivo = new JFileChooser();
 		//Ver.. aca solo estoy permitiendo xls
@@ -80,7 +84,15 @@ public class UserStoryListView extends JPanel implements Observer
 		archivo.setFileSelectionMode( JFileChooser.DIRECTORIES_ONLY );
 		if( archivo.showOpenDialog(this) == JFileChooser.APPROVE_OPTION )
 		{	
-			Exporter.INSTANCE.export(archivo.getSelectedFile().getAbsolutePath(),userStoriesHelper);
+			try
+			{
+				((IExporter) pluginExport).export(archivo.getSelectedFile().getAbsolutePath(),userStoriesHelper);			
+			}
+			catch (RuntimeException e)
+			{
+				JOptionPane.showMessageDialog(this, e.getMessage());
+			}
+			
 		}
 	}
 	

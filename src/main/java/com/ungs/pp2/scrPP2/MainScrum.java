@@ -51,6 +51,7 @@ public class MainScrum {
 				UserStoryMapper usMapper=null;
 				try {
 					usMapper = new TextUserStoryMapper();
+					//llamar al plugin factory con el path de los plugins, para que los cargue
 				} catch (RuntimeException | IOException e) {
 					// TODO Auto-generated catch block
 					e.printStackTrace();

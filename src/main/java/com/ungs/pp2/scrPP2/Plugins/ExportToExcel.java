@@ -1,4 +1,4 @@
-package com.ungs.pp2.scrPP2.Dominio.Plugin;
+package com.ungs.pp2.scrPP2.Plugins;
 
 import java.io.File;
 import java.io.IOException;
@@ -9,6 +9,8 @@ import com.ungs.pp2.scrPP2.Controller.UserStoryHelper;
 
 
 
+import com.ungs.pp2.scrPP2.Dominio.Interfaz.IExporter;
+
 import jxl.Workbook;
 import jxl.write.Label;
 import jxl.write.WritableSheet;
@@ -16,12 +18,13 @@ import jxl.write.WritableWorkbook;
 import jxl.write.WriteException;
 import jxl.write.biff.RowsExceededException;
 
-public class ExportToExcel implements Exporter {
+public class ExportToExcel implements IExporter {
 	private String pathExl;
-
+	private String extension = ".xls";
+		
 	@Override
 	public void export(String path, List<UserStoryHelper> userStoriesHlpr)throws RuntimeException {
-		this.pathExl=path;
+		this.pathExl=path + extension;
 		
 		if (userStoriesHlpr.size()==0) throw new RuntimeException("No existen historias de usuario para exportar."); 		
 		
@@ -73,6 +76,12 @@ public class ExportToExcel implements Exporter {
 			e.printStackTrace();
 		}
 
+	}
+
+	@Override
+	public String toString() {
+		// TODO Auto-generated method stub
+		return "Exportar a Excel";
 	}
 
 }

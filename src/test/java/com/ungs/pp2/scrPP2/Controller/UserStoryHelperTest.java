@@ -5,17 +5,19 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
-import com.ungs.pp2.scrPP2.Dominio.Entidad.UserStory;
-import com.ungs.pp2.scrPP2.Dominio.Plugin.Exporter;
-import com.ungs.pp2.scrPP2.View.HomeView;
-
 import junit.framework.Test;
 import junit.framework.TestCase;
 import junit.framework.TestSuite;
-import jxl.Cell;
 import jxl.Sheet;
 import jxl.Workbook;
 import jxl.read.biff.BiffException;
+
+import com.ungs.pp2.scrPP2.Dominio.Entidad.Miembro;
+import com.ungs.pp2.scrPP2.Dominio.Entidad.UserStory;
+import com.ungs.pp2.scrPP2.Dominio.Interfaz.IExporter;
+import com.ungs.pp2.scrPP2.Plugins.ExportToExcel;
+import com.ungs.pp2.scrPP2.View.UserStoryListView;
+import com.ungs.pp2.scrPP2.utils.PluginFactory;
 
 
 public class UserStoryHelperTest 
@@ -63,7 +65,8 @@ extends TestCase
 	 */
 	public void testUserStoryHelperUpdateStory() throws BiffException, IOException
 	{
-		UserStoryHelper userStoryHelper = new UserStoryHelper(this.userStory);
+		Miembro m = new Miembro("José");
+		UserStoryHelper userStoryHelper = new UserStoryHelper(this.userStory,m);
 		
 		String   titulo = "testUserStoryHelper update model"
 				,detalle= "Se probara el acceso al modelo posterior a la modificacion de datos"
@@ -79,19 +82,26 @@ extends TestCase
 		assertFalse(userStoryHelper.getAutor().equals(autor));
 		this.userStory.setAutor(autor);
 		assertTrue(userStoryHelper.getAutor().equals(autor));
-		
-		
+	
+		this.userStory.setStoryPoints(15);
 		
 			    
-		//test basico de exportacion. Esto despues va en otro lado.
+		//test basico de exportacion.
 		//esto rompió el commit
 		
-		String path="./prueba.xls";
+		String path="./prueba";
 		List<UserStoryHelper> lst = new ArrayList<>();
+		List<IExporter> plugins = PluginFactory.getPlugins();
 		lst.add(userStoryHelper);
-		Exporter.INSTANCE.export(path, lst);
 		
-		Workbook workbook = Workbook.getWorkbook(new java.io.File(path));
+		for (IExporter pluginExp : plugins)
+		{
+			pluginExp.export(path, lst);		
+		}
+		
+		//IExporter.INSTANCE.export(path, lst);
+		
+		Workbook workbook = Workbook.getWorkbook(new java.io.File(path+".xls"));
 	    Sheet sheet = workbook.getSheet(0);
 	    
 	  //cinco columnas: ID HISTORIA	TITULO	ESTADO	RESPONSABLE	PTS. HISTORIA
@@ -113,19 +123,20 @@ extends TestCase
 	    assertTrue(sheet.getCell(0, 1).getContents().equals(this.userStory.getId()+""));
 	    assertTrue(sheet.getCell(1, 1).getContents().equals(this.userStory.getTitulo()));
 	    assertTrue(sheet.getCell(2, 1).getContents().equals(this.userStory.getEstado().name()));
-	    assertTrue(sheet.getCell(3, 1).getContents().equals("-"));
+	    assertTrue(sheet.getCell(3, 1).getContents().equals(m.getNombre()));
 	    assertTrue(sheet.getCell(4, 1).getContents().equals(this.userStory.getStoryPoints()+""));
 	    
 	    //Algunos test de orden
 	    assertFalse(sheet.getCell(4, 0).getContents().equals("TITULO"));
 	    assertFalse(sheet.getCell(2, 0).getContents().equals("RESPONSABLE"));
 	    
+	    	   	    
 	    //test error sprint sin user stories
 	    lst.remove(0);
 	    try 
 		 {    		
-			Exporter.INSTANCE.export(path, lst);
-	    	
+	    	for (IExporter pluginExp : plugins)
+	    		pluginExp.export(path, lst);
 			}	 
 		catch (RuntimeException e) 
 		{   		

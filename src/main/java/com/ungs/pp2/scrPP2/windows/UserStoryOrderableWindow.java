@@ -1,6 +1,7 @@
 package com.ungs.pp2.scrPP2.windows;
 
 import java.awt.BorderLayout;
+import java.awt.Component;
 
 import javax.swing.JButton;
 import javax.swing.JFrame;
@@ -8,12 +9,20 @@ import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 
 import com.ungs.pp2.scrPP2.View.UserStoryListView;
+import com.ungs.pp2.scrPP2.utils.PluginFactory;
+
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 import java.awt.FlowLayout;
+import java.util.ArrayList;
+import java.util.List;
+
 import javax.swing.JComboBox;
 import javax.swing.DefaultComboBoxModel;
+
 import com.ungs.pp2.scrPP2.Dominio.Enums.UserStoryHelperComparator;
+import com.ungs.pp2.scrPP2.Dominio.Interfaz.IExporter;
+
 import javax.swing.JToggleButton;
 import javax.swing.event.ChangeListener;
 import javax.swing.event.ChangeEvent;
@@ -28,7 +37,7 @@ public class UserStoryOrderableWindow extends JPanel {
 	private JComboBox<UserStoryHelperComparator> cmbOpciones;
 	private JToggleButton tglbtnAscdesc;
 	private JButton btnOrdenar;
-	private JButton btnExportar;
+	private JComboBox<IExporter> cmbTipoExport;
 
 	/**
 	 * Create the frame.
@@ -36,6 +45,17 @@ public class UserStoryOrderableWindow extends JPanel {
 	public UserStoryOrderableWindow( UserStoryListView userStoriesList) {
 		this.userStoriesPane = userStoriesList;
 
+		this.cmbTipoExport = new JComboBox<IExporter>();
+		
+		for (IExporter i : PluginFactory.getPlugins())
+			this.cmbTipoExport.addItem(i);
+		
+		this.cmbTipoExport.addActionListener (new ActionListener () {
+		    public void actionPerformed(ActionEvent e) {
+		        userStoriesPane.exportar(cmbTipoExport.getSelectedItem());
+		    }
+		});
+		
 		//setTitle("Historia de Usuario");
 		//setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		//setBounds(400, 400, 520, 300);
@@ -79,13 +99,7 @@ public class UserStoryOrderableWindow extends JPanel {
 		tglbtnAscdesc.setEnabled(controlsEnabled);
 		btnOrdenar.setEnabled(controlsEnabled);
 		
-		btnExportar = new JButton("Exportar");
-		btnExportar.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent arg0) {
-				userStoriesPane.exportar();
-			}
-		});
-		panel.add(btnExportar);
+		panel.add(cmbTipoExport);
 			
 		JScrollPane scrollPane = new JScrollPane(userStoriesList);
 		//scrollPane.setBounds(5, 5, 380, 160);

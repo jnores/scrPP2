@@ -1,5 +1,6 @@
 package com.ungs.pp2.scrPP2;
 
+import com.ungs.pp2.scrPP2.View.AltaUserStoryView;
 import com.ungs.pp2.scrPP2.View.HomeView;
 
 import junit.framework.Test;
@@ -35,7 +36,7 @@ public class AppTest
     	@SuppressWarnings("unused")
 		MainUserStory main = new MainUserStory();
         assertTrue( true );      
-        
+      
     }
     
     /**

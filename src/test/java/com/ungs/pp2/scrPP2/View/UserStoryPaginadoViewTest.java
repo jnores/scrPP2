@@ -34,6 +34,7 @@ public class UserStoryPaginadoViewTest extends TestCase
 
    protected void setUp()
    {
+   
       consultaMock = new MockUp<IConsulta>(){
          @Mock
          public List<UserStory> ObtenerUserStoriesDB()
