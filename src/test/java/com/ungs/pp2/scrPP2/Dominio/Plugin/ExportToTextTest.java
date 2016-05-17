@@ -59,13 +59,13 @@ public class ExportToTextTest extends TestCase {
 		lst.add(userStoryHelper);
 		exporter.export(path, lst);
 		
-		AltaUserStoryView altv = new AltaUserStoryView(null);
-		FilterStoriesView v = new FilterStoriesView(null); 
-		ProyectoNuevoView nuev = new ProyectoNuevoView(null);
-		BacklogNuevoView bcklg = new BacklogNuevoView(null);
-		Avance a = new Avance(null);
-		DataComposite dt = new DataComposite(null);
-		Estimado e = new Estimado(null);
+//		AltaUserStoryView altv = new AltaUserStoryView(null);
+//		FilterStoriesView v = new FilterStoriesView(null); 
+//		ProyectoNuevoView nuev = new ProyectoNuevoView(null);
+//		BacklogNuevoView bcklg = new BacklogNuevoView(null);
+//		Avance a = new Avance(null);
+//		DataComposite dt = new DataComposite(null);
+//		Estimado e = new Estimado(null);
 	
 	}
 	
