@@ -2,8 +2,10 @@ package com.ungs.pp2.scrPP2.Dominio.Comando;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.security.InvalidParameterException;
 
 import com.ungs.pp2.scrPP2.Controller.HomeController;
+import com.ungs.pp2.scrPP2.Dominio.Request;
 import com.ungs.pp2.scrPP2.Dominio.Resultado;
 import com.ungs.pp2.scrPP2.Dominio.Interfaz.IComando;
 
@@ -29,5 +31,18 @@ public class LimpiarBacklogNuevoView implements IComando<HomeController>
       };
       return resultado;
    }
+
+@Override
+public void configurar(Request request) throws InvalidParameterException {
+	// TODO Auto-generated method stub
+	
+}
+
+@Override
+public Resultado execute(HomeController TipoController) {
+	// TODO Auto-generated method stub
+	return null;
+}
+
 
 }

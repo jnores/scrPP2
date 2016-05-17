@@ -1,6 +1,9 @@
 package com.ungs.pp2.scrPP2.Controller;
 
 
+import java.security.InvalidParameterException;
+
+import com.ungs.pp2.scrPP2.Dominio.Request;
 import com.ungs.pp2.scrPP2.Dominio.Resultado;
 import com.ungs.pp2.scrPP2.Dominio.Entidad.Proyecto;
 import com.ungs.pp2.scrPP2.Dominio.Interfaz.IAppController;
@@ -35,12 +38,31 @@ public class HomeController extends Controller implements IAppController
    @Override
    public Resultado Execute(IComando commando)
    {
-      return commando.Execute(this);
+      return commando.execute(this);
    }
 
    public ProyectoNuevoView getProyectoNuevo()
    {
       return proyectoNuevo;
+   }
+   
+   public Resultado processRequest(Request request) {
+	   if ( !request.contieneParametro("accion") )
+		   throw new RuntimeException("No especifico una accion en el Request. ");
+
+	   String accion = request.obtenerParametro("accion");
+
+	   IComando cmd;
+	   try {
+		   cmd = (IComando) Class.forName(accion+"Command").newInstance();
+		   cmd.configurar(request);
+	   } catch (InstantiationException | IllegalAccessException | ClassNotFoundException e) {
+		   throw new RuntimeException("La acción solicitada no pudo ser procesada.");
+	   } catch (InvalidParameterException e) {
+		   throw new RuntimeException("Los parametros especificados no so suficientes para realizar esta operación.");
+	   }
+	   
+	   return cmd.execute(this);
    }
 
    public void setProyectoNuevo(ProyectoNuevoView proyectoNuevo)
