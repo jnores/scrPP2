@@ -1,16 +1,6 @@
 package com.ungs.pp2.scrPP2.Dominio.Entidad;
 
-import java.util.ArrayList;
-import java.util.List;
-
-import com.ungs.pp2.scrPP2.MainBurndownChart;
-import com.ungs.pp2.scrPP2.MainScrum;
-import com.ungs.pp2.scrPP2.MainUserPaginadoStory;
-import com.ungs.pp2.scrPP2.Controller.UserStoryHelper;
 import com.ungs.pp2.scrPP2.Dominio.Enums.Estado;
-import com.ungs.pp2.scrPP2.View.BacklogNuevoView;
-import com.ungs.pp2.scrPP2.View.FilterStoriesView;
-import com.ungs.pp2.scrPP2.View.UserStoryListView;
 
 import junit.framework.TestCase;
 
