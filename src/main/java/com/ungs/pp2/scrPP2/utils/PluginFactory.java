@@ -24,8 +24,7 @@ public class PluginFactory
 				propiedades.load(Thread.currentThread().getContextClassLoader().getResourceAsStream("config/propertiesPluginPackage"));
 				nombrePaquete = propiedades.getProperty("paquetePlugins").trim();
 			} catch (IOException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
+				// e.printStackTrace();
 			}		
 	}
 	

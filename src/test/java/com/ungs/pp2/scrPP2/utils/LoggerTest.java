@@ -52,7 +52,6 @@ public class LoggerTest extends TestCase {
 		try {
 			outStream.close();
 		} catch (IOException e) {
-			e.printStackTrace();
 		}
 		Logger.init();
 		Logger.log("mensaje 2");

@@ -15,10 +15,11 @@ public class MainUserStoryList {
 
 	public static void main(String[] args) {
 
+		//fetch student record based on his roll no from the database
+		Proyecto proyecto;
 		try {
-			//fetch student record based on his roll no from the database
-			Proyecto proyecto  = retriveProyectoFromDatabase();
-	
+			proyecto = retriveProyectoFromDatabase();
+		
 			//Create a view : to write student details on console
 			UserStoryOrderableWindow userStoryWindow;
 	
@@ -34,12 +35,13 @@ public class MainUserStoryList {
 			//Muestro la ventana
 			userStoryWindow = new UserStoryOrderableWindow(view);
 			userStoryWindow.showWindow(true);
-		} catch(Exception e) {
-			
+		} catch (RuntimeException | IOException e) {
+			// e.printStackTrace();
 		}
+
 		
 	}
-	public static Proyecto retriveProyectoFromDatabase() throws RuntimeException, IOException{
+	private static Proyecto retriveProyectoFromDatabase() throws RuntimeException, IOException{
 		Proyecto proyecto;
 
 		Miembro miembro1
@@ -60,21 +62,17 @@ public class MainUserStoryList {
 		userStory1 =  new UserStory("Como Recepcionista ...", "Detalle1", "Autor1");
 		userStory1.setId(1);
 		userStory1.setEstado(Estado.Done);
-		userStory1.setStoryPoints(10);
 		userStory2 =  new UserStory("Como Administrador ...", "Detalle2", "Autor2");
 		userStory2.setId(2);
 		userStory2.setEstado(Estado.Doing);
-		userStory2.setStoryPoints(40);
 		userStory3 =  new UserStory("Como Gerente ...", "Detalle3", "Autor3");
 		userStory3.setId(3);
 		userStory3.setEstado(Estado.ToDo);
-		userStory3.setStoryPoints(100);
-		userStory4 =  new UserStory("Como Vendedora ...", "Detalle4", "Autor4");
+		userStory4 =  new UserStory("Como Vendedor ...", "Detalle4", "Autor4");
 		userStory4.setId(4);
 		userStory4.setEstado(Estado.ToDo);
-		userStory4.setStoryPoints(100);
 		
-		proyecto= new Proyecto( new TextUserStoryMapper() );
+		proyecto= new Proyecto(new TextUserStoryMapper() );
 		proyecto.addMiembro(miembro1);
 		proyecto.addMiembro(miembro2);
 		proyecto.addMiembro(miembro3);

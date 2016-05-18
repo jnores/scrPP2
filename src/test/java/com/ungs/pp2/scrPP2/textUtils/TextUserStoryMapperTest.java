@@ -40,8 +40,6 @@ public class TextUserStoryMapperTest extends TestCase {
 			usMapper = new TextUserStoryMapper("historiasTest.dat");
 			
 		} catch (RuntimeException | IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
 		}
 	}
 	

@@ -63,13 +63,11 @@ public class TextUserStoryMapper implements UserStoryMapper {
 		}
 		catch (Exception e) {
 			System.out.println("Error in CsvFileReader !!!");
-			e.printStackTrace();
 		} finally {
 			try {
 				reader.close();
 			} catch (IOException e) {
 				System.out.println("Error while closing fileReader !!!");
-				e.printStackTrace();
 			}
 		}
 		return stories;
@@ -96,13 +94,11 @@ public class TextUserStoryMapper implements UserStoryMapper {
 		}
 		catch (Exception e) {
 			System.out.println("Error in CsvFileReader !!!");
-			e.printStackTrace();
 		} finally {
 			try {
 				reader.close();
 			} catch (IOException e) {
 				System.out.println("Error while closing fileReader !!!");
-				e.printStackTrace();
 			}
 		}
 		return maxID+1;
@@ -121,14 +117,12 @@ public class TextUserStoryMapper implements UserStoryMapper {
 		    writer.writeNext(entries);
 		} catch (Exception e) {
 			System.out.println("Error in CsvFileWriter !!!");
-			e.printStackTrace();
 		} finally {
 			try {
 				writer.flush();
 				writer.close();
 			} catch (IOException e) {
 				System.out.println("Error while flushing/closing fileWriter !!!");
-				e.printStackTrace();
 			}
 		}
 
@@ -166,14 +160,12 @@ public class TextUserStoryMapper implements UserStoryMapper {
 						
 				} catch (Exception e) {
 					System.out.println("Error in CsvFileWriter !!!");
-					e.printStackTrace();
 				} finally {
 					try {
 						writer.flush();
 						writer.close();
 					} catch (IOException e) {
 						System.out.println("Error while flushing/closing fileWriter !!!");
-						e.printStackTrace();
 					}
 				}
 			}

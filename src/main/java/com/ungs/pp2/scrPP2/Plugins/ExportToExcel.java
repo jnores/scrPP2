@@ -69,11 +69,11 @@ public class ExportToExcel implements IExporter {
 			writableWorkbook.close();
 
 		} catch (IOException e) {
-			e.printStackTrace();
+//			e.printStackTrace();
 		} catch (RowsExceededException e) {
-			e.printStackTrace();
+//			e.printStackTrace();
 		} catch (WriteException e) {
-			e.printStackTrace();
+//			e.printStackTrace();
 		}
 
 	}
