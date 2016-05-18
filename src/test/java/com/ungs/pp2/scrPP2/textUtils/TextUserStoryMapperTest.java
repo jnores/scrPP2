@@ -16,6 +16,8 @@ public class TextUserStoryMapperTest extends TestCase {
 	UserStoryMapper usMapper;
 	UserStoryMapper usMapperDefault;
 	
+	File f ;
+	
 	/**
 	 * Create the test case
 	 *
@@ -34,7 +36,7 @@ public class TextUserStoryMapperTest extends TestCase {
 	
 	public void  setUp() {
 		try {
-			File f = new File(System.getProperty("user.home")+"/historiasTest.dat");
+			f = new File(System.getProperty("user.home")+"/historiasTest.dat");
 			if ( f.exists() ) f.delete();
 			usMapperDefault = new TextUserStoryMapper();
 			usMapper = new TextUserStoryMapper("historiasTest.dat");
@@ -64,13 +66,22 @@ public class TextUserStoryMapperTest extends TestCase {
 			assertEquals(readStory.getTitulo(), titulo );
 			assertEquals(readStory.getDetalle(), detalle );
 			//assertEquals(readStory.getAutor(), autor );
-			//System.out.println("ID="+readStory.getId()+"|Titulo="+readStory.getTitulo()+"|Detalle="+readStory.getDetalle());
-
-			
-			
-			
-			
-			
+			//System.out.println("ID="+readStory.getId()+"|Titulo="+readStory.getTitulo()+"|Detalle="+readStory.getDetalle());			
 	}
 	
+	/**
+	 * Verifico que se genere un  cuando el filePath es un directorio
+	 */
+	public void testMapperDir() {
+		f.delete();
+		f.mkdir();
+		
+		try {
+			UserStoryMapper usMapper = new TextUserStoryMapper("historiasTest.dat");
+		} catch (RuntimeException e) {
+			
+		} catch (IOException e) {
+			fail("no se genero la excepcion cuando el path corresponde a un directorio");
+		}
+	}
 }
