@@ -41,7 +41,7 @@ public class MainUserStoryList {
 
 		
 	}
-	private static Proyecto retriveProyectoFromDatabase() throws RuntimeException, IOException{
+	public static Proyecto retriveProyectoFromDatabase() throws RuntimeException, IOException{
 		Proyecto proyecto;
 
 		Miembro miembro1
@@ -68,7 +68,7 @@ public class MainUserStoryList {
 		userStory3 =  new UserStory("Como Gerente ...", "Detalle3", "Autor3");
 		userStory3.setId(3);
 		userStory3.setEstado(Estado.ToDo);
-		userStory4 =  new UserStory("Como Vendedor ...", "Detalle4", "Autor4");
+		userStory4 =  new UserStory("Como Vendedora ...", "Detalle4", "Autor4");
 		userStory4.setId(4);
 		userStory4.setEstado(Estado.ToDo);
 		
