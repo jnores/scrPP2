@@ -30,10 +30,4 @@ public void configurar(Request request) throws InvalidParameterException {
 	
 }
 
-@Override
-public Resultado execute(HomeController TipoController) {
-	// TODO Auto-generated method stub
-	return null;
-}
-
 }

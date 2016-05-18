@@ -1,31 +1,24 @@
 package com.ungs.pp2.scrPP2.windows;
 
 import java.awt.BorderLayout;
-import java.awt.Component;
+import java.awt.FlowLayout;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
+import javax.swing.DefaultComboBoxModel;
 import javax.swing.JButton;
+import javax.swing.JComboBox;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
-
-import com.ungs.pp2.scrPP2.View.UserStoryListView;
-import com.ungs.pp2.scrPP2.utils.PluginFactory;
-
-import java.awt.event.ActionListener;
-import java.awt.event.ActionEvent;
-import java.awt.FlowLayout;
-import java.util.ArrayList;
-import java.util.List;
-
-import javax.swing.JComboBox;
-import javax.swing.DefaultComboBoxModel;
+import javax.swing.JToggleButton;
+import javax.swing.event.ChangeEvent;
+import javax.swing.event.ChangeListener;
 
 import com.ungs.pp2.scrPP2.Dominio.Enums.UserStoryHelperComparator;
 import com.ungs.pp2.scrPP2.Dominio.Interfaz.IExporter;
-
-import javax.swing.JToggleButton;
-import javax.swing.event.ChangeListener;
-import javax.swing.event.ChangeEvent;
+import com.ungs.pp2.scrPP2.View.UserStoryListView;
+import com.ungs.pp2.scrPP2.utils.PluginFactory;
 
 public class UserStoryOrderableWindow extends JPanel {
 
@@ -44,24 +37,23 @@ public class UserStoryOrderableWindow extends JPanel {
 	 */
 	public UserStoryOrderableWindow( UserStoryListView userStoriesList) {
 		this.userStoriesPane = userStoriesList;
-
-		this.cmbTipoExport = new JComboBox<IExporter>();
 		
+		this.cmbTipoExport = new JComboBox<IExporter>();
+
 		for (IExporter i : PluginFactory.getPlugins())
 			this.cmbTipoExport.addItem(i);
-		
+
 		this.cmbTipoExport.addActionListener (new ActionListener () {
-		    public void actionPerformed(ActionEvent e) {
-		        userStoriesPane.exportar(cmbTipoExport.getSelectedItem());
-		    }
+			public void actionPerformed(ActionEvent e) {
+				userStoriesPane.exportar(cmbTipoExport.getSelectedItem());
+			}
 		});
-		
-		//setTitle("Historia de Usuario");
-		//setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		//setBounds(400, 400, 520, 300);
-		//setResizable(false);
-		//getContentPane().setLayout(new BorderLayout(0, 0));
-		this.setLayout(new BorderLayout());
+
+//		setTitle("Historia de Usuario");
+//		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+//		setBounds(400, 400, 520, 300);
+//		setResizable(false);
+//		getContentPane().setLayout(new BorderLayout(0, 0));
 		
 		JPanel panel = new JPanel();
 		this.add(panel, BorderLayout.NORTH);
@@ -100,7 +92,7 @@ public class UserStoryOrderableWindow extends JPanel {
 		btnOrdenar.setEnabled(controlsEnabled);
 		
 		panel.add(cmbTipoExport);
-			
+		
 		JScrollPane scrollPane = new JScrollPane(userStoriesList);
 		//scrollPane.setBounds(5, 5, 380, 160);
 		scrollPane.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_ALWAYS);

@@ -1,24 +1,11 @@
 package com.ungs.pp2.scrPP2.Dominio.Plugin;
 
-import java.io.File;
-import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
 import com.ungs.pp2.scrPP2.Controller.UserStoryHelper;
-import com.ungs.pp2.scrPP2.Dominio.Composite.Avance;
-import com.ungs.pp2.scrPP2.Dominio.Composite.DataComposite;
-import com.ungs.pp2.scrPP2.Dominio.Composite.Estimado;
 import com.ungs.pp2.scrPP2.Dominio.Entidad.UserStory;
-import com.ungs.pp2.scrPP2.Dominio.Enums.EstadoTest;
 import com.ungs.pp2.scrPP2.Plugins.ExportToText;
-import com.ungs.pp2.scrPP2.View.AltaUserStoryView;
-import com.ungs.pp2.scrPP2.View.BacklogNuevoView;
-import com.ungs.pp2.scrPP2.View.BurndownChartView;
-import com.ungs.pp2.scrPP2.View.FilterStoriesView;
-import com.ungs.pp2.scrPP2.View.HomeView;
-import com.ungs.pp2.scrPP2.View.ProyectoNuevoView;
-import com.ungs.pp2.scrPP2.utils.UserStoryMapper;
 
 import junit.framework.Test;
 import junit.framework.TestCase;

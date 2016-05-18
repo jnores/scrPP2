@@ -30,7 +30,10 @@ public class MainScrum {
 		SwingUtilities.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					UIManager.setLookAndFeel(new SubstanceChallengerDeepLookAndFeel());
+//					TODO comente esta linea porque esta generando un exceso de informacion 
+//					y rompio  la integracion continnua al generar un archivo de log mayr a 4M
+//					Averiguar como deshabilitarlo para las pruebas o como deshabilitarle el log de errores. 
+//					UIManager.setLookAndFeel(new SubstanceChallengerDeepLookAndFeel());
 				} catch (Exception e) {
 					JFrame.setDefaultLookAndFeelDecorated(false);
 				}
@@ -53,8 +56,8 @@ public class MainScrum {
 					usMapper = new TextUserStoryMapper();
 					//llamar al plugin factory con el path de los plugins, para que los cargue
 				} catch (RuntimeException | IOException e) {
-					// TODO Auto-generated catch block
-					e.printStackTrace();
+					
+//					e.printStackTrace();
 				}
 				
 				HomeController controller = new HomeController(null,usMapper);

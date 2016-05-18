@@ -1,6 +1,7 @@
 package com.ungs.pp2.scrPP2.Dominio.Entidad;
 
-import com.ungs.pp2.scrPP2.MainScrum;
+import java.util.ArrayList;
+import java.util.List;
 
 import junit.framework.Test;
 import junit.framework.TestCase;
@@ -8,6 +9,12 @@ import junit.framework.TestSuite;
 
 
 public class SprintTest extends TestCase {
+	
+	UserStory userStory1
+			 ,userStory2
+			 ,userStory3
+			 ,userStory4
+			 ;
 		
 	/**
 	 * Create the test case
@@ -27,11 +34,6 @@ public class SprintTest extends TestCase {
 	
 	public void  setUp() {
 
-		UserStory userStory1
-				 ,userStory2
-				 ,userStory3
-				 ,userStory4
-				 ;
 
 		userStory1 =  new UserStory("Titulo1", "Detalle1", "Autor1");
 		userStory2 =  new UserStory("Titulo2", "Detalle2", "Autor2");
@@ -49,9 +51,19 @@ public class SprintTest extends TestCase {
 	 * Verifico que se asignen bien los atributos en el setUp
 	 */
 	public void testSprint() {
-		@SuppressWarnings("unused")
 		Sprint s = new Sprint(1,null,30,null);
 		assertTrue(true);
+		s.setDuracion(21);
+		assertEquals(s.getDuracion(), 21);
+		
+		List<UserStory> historias = new ArrayList<UserStory>();
+		historias.add(userStory2);
+		historias.add(userStory3);
+		historias.add(userStory4);
+		s.setUserStories(historias);
+		
+		s.setUserStory(userStory1);
+		
 
 	}
 	

@@ -27,18 +27,13 @@ public class HomeController extends Controller implements IAppController
 		proyectoNuevo = new ProyectoNuevoView(proyectoController);
 		backlogNuevo = new BacklogNuevoView(proyectoController);
 	}
-	
-	public void MostrarProyectoNuevo()
-	{
-	   proyectoNuevo.setVisible(true);
-	}
 
 	// TODO Con este execute aqui oblicamos a la vista a saber armar los command. esto no deberia ser asi! la vista debe saber hacer peticiones al controller
 	// y el controller debera convertir estas peticiones en comandos, y ejecutarlos!
    @Override
    public Resultado Execute(IComando commando)
    {
-      return commando.execute(this);
+      return commando.Execute(this);
    }
 
    public ProyectoNuevoView getProyectoNuevo()
@@ -62,7 +57,7 @@ public class HomeController extends Controller implements IAppController
 		   throw new RuntimeException("Los parametros especificados no so suficientes para realizar esta operación.");
 	   }
 	   
-	   return cmd.execute(this);
+	   return cmd.Execute(this);
    }
 
    public void setProyectoNuevo(ProyectoNuevoView proyectoNuevo)

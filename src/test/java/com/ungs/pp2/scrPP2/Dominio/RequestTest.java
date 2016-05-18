@@ -39,7 +39,7 @@ public class RequestTest extends TestCase {
 		request.agregarParametro("accion", "exportar");
 		try{ 
 			request.contieneParametro("accion");
-			assertTrue(request.obtenerParametro("accion").equals("exportar"));
+			assertTrue( request.obtenerParametro("accion").equals("exportar") );
 		} catch (NullPointerException e){
 			fail("No se encontro el aprametro solicitado.");
 		}

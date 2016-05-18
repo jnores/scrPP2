@@ -32,16 +32,10 @@ public class LimpiarProyectoNuevoView implements IComando<HomeController>
       return resultado;
    }
 
-@Override
-public void configurar(Request request) throws InvalidParameterException {
-	// TODO Auto-generated method stub
-	
-}
-
-@Override
-public Resultado execute(HomeController TipoController) {
-	// TODO Auto-generated method stub
-	return null;
-}
+   @Override
+   public void configurar(Request request) throws InvalidParameterException {
+   	// TODO Auto-generated method stub
+   	
+   }
 
 }

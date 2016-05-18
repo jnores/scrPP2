@@ -71,23 +71,6 @@
       <artifactId>opencsv</artifactId>
       <version>2.3</version>
     </dependency>
-    <!--  Google api for spreadsheet manipulation -->
-	<dependency>
-	 <groupId>com.google.api-client</groupId>
-      <artifactId>google-api-client</artifactId>
-      <version>1.20.0</version>
-    </dependency>
-    <dependency>
-      <groupId>com.google.http-client</groupId>
-      <artifactId>google-http-client-jackson</artifactId>
-      <version>1.19.0</version>
-      <type>jar</type>
-    </dependency>
-    <dependency>
-      <groupId>com.google.gdata</groupId>
-      <artifactId>core</artifactId>
-      <version>1.47.1</version>
-    </dependency>
   </dependencies>
   
   <build>
@@ -111,13 +94,6 @@
                 <maxmem>256m</maxmem>
                 <!-- aggregated reports for multi-module projects -->
                 <aggregate>true</aggregate>
-                <instrumentation>
-                  <ignores>
-                    <ignore>com.ungs.pp2.scrPP2.View.*</ignore>
-                    <ignore>com.ungs.pp2.scrPP2.windows.*</ignore>
-                    <ignore>com.ungs.pp2.scrPP2.Comando.*</ignore>
-                  </ignores>
-                </instrumentation>
 		     </configuration>
         </plugin>
 

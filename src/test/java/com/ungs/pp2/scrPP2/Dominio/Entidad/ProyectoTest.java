@@ -57,9 +57,7 @@ public class ProyectoTest extends TestCase {
 		
 		try {
 			m=new TextUserStoryMapper("testProyecto.dat");
-		} catch (RuntimeException | IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+		} catch (RuntimeException | IOException e) {			
 		}
 		
 		proyecto= new Proyecto(m);

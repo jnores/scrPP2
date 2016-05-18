@@ -16,8 +16,8 @@ public class ExportToText implements IExporter {
 	@Override
 	public void export(String ruta, List<UserStoryHelper> userStoriesHlpr) {
 		this.rutaTxt = ruta + extension;
-		if (userStoriesHlpr.size()==0) throw new RuntimeException("No existen historias de usuario para exportar.");
-//		// TODO Auto-generated method stub
+		if (userStoriesHlpr.size()==0)
+			throw new RuntimeException("No existen historias de usuario para exportar.");
 		try {
 
 			String content = userStoriesHlpr.toString();
@@ -35,9 +35,9 @@ public class ExportToText implements IExporter {
 			bw.close();	
 
 		} catch (IOException e) {
-			e.printStackTrace();
-		//}
-	}
+//			e.printStackTrace();
+		}
+
 	
 	}
 
