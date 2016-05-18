@@ -13,11 +13,12 @@ public class AltaUserStoryController extends Controller {
 
 	public AltaUserStoryController(IConsulta consulta,ProyectoController proyecto){
 		super(consulta);
-		modeloCorrector=CorrectorDeSintaxis.getCorrector();
+		modeloCorrector=new CorrectorDeSintaxis(); 
 		proyectoController = proyecto;
 	}
 	
-	public void altaUserStory(String titulo, String detalle, String criterios,String responsable, Integer hs, Integer puntos) {
+	public void altaUserStory(String titulo, String detalle, String criterios,Integer puntos) {
+	//public void altaUserStory(String titulo, String detalle, String criterios,String responsable, Integer hs, Integer puntos) {
 		//Falta lo importante
 //		if (hs==null)
 //			throw new InvalidParameterException("Se esperaba una cantidad de horas mayor a cero y se recibio un elemento nulo.");
@@ -27,7 +28,11 @@ public class AltaUserStoryController extends Controller {
 		proyectoController.agregarUserStory(us);
 	}
 	
-	public String obtenerSugerencia(String frase){
-		return modeloCorrector.analizarFrase(frase);
+	public String obtenerSugerenciaTitulo(String frase){
+		return modeloCorrector.analizarTituloUserStory(frase);
+	}
+	
+	public String obtenerSugerenciaCriterio(String frase){
+		return modeloCorrector.analizarCriterios(frase);
 	}
 }

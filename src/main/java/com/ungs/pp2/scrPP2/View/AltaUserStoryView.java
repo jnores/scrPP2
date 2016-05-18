@@ -6,22 +6,25 @@ import javax.swing.JButton;
 import javax.swing.JCheckBox;
 import javax.swing.JTextArea;
 import javax.swing.JTextField;
+import javax.swing.KeyStroke;
+import javax.swing.LayoutFocusTraversalPolicy;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
-import javax.swing.JDialog;
 import javax.swing.JOptionPane;
 
+import java.awt.AWTKeyStroke;
 import java.awt.Color;
+import java.awt.KeyboardFocusManager;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
-
+import java.util.HashSet;
+import java.util.Set;
 import java.awt.event.FocusEvent;
 import java.awt.event.FocusListener;
 
 import com.ungs.pp2.scrPP2.Controller.AltaUserStoryController;
-import com.ungs.pp2.scrPP2.Dominio.Entidad.UserStory;
 
 //No incluyo autor, eso esta almacenado en el logueo. El id igual, viene como dato. 
 public class AltaUserStoryView extends JPanel{
@@ -29,12 +32,13 @@ public class AltaUserStoryView extends JPanel{
 	private final JTextArea areaTitulo;
 	private final JTextArea areaDetalle;
 	private	final JTextArea areaCriterios;
-	private final JTextArea areaSugerencia;
-	private final JTextField campoAsignadoA;
+	private final JTextArea areaSugerenciaTitulo;
+	private final JTextArea areaSugerenciaCriterio;
+//	private final JTextField campoAsignadoA;
 	private final JTextField campoPuntos;
-	private final JTextField campoHoras;
+//	private final JTextField campoHoras;
 	
-	private JPanel panelTitulo,panelDetalle,panelCriterio,panelSugerencia;
+	private JPanel panelTitulo,panelDetalle,panelCriterio,panelSugerenciaTitulo,panelSugerenciaCriterio;
 	private JScrollPane scrollTitulo,scrollDetalle,scrollCriterio;
 	
 	private boolean mostrarSugerencias;
@@ -54,8 +58,9 @@ public class AltaUserStoryView extends JPanel{
 	{
 		this.controlador=controlador;
 		mostrarSugerencias=true;
+	
 		boxVertical=Box.createVerticalBox();
-		panelTitulo=new JPanel();panelDetalle=new JPanel();panelCriterio=new JPanel();panelSugerencia=new JPanel();
+		panelTitulo=new JPanel();panelDetalle=new JPanel();panelCriterio=new JPanel();panelSugerenciaTitulo=new JPanel();panelSugerenciaCriterio=new JPanel();
 		scrollTitulo=new JScrollPane();scrollDetalle=new JScrollPane();scrollCriterio=new JScrollPane();
 		
 		botonAgregar=new JButton("Agregar");
@@ -97,27 +102,37 @@ public class AltaUserStoryView extends JPanel{
 		areaCriterios.setText(criterio);
 		panelCriterio.add(scrollCriterio);
 		
-		areaSugerencia=new JTextArea(2,40);
-		areaSugerencia.setForeground(Color.red);
-		areaSugerencia.setBorder(BorderFactory.createTitledBorder("Sugerencia"));
-		areaSugerencia.setVisible(false);
-		areaSugerencia.setEditable(false);
-		areaSugerencia.setLineWrap(true);
-		areaSugerencia.setWrapStyleWord(true);
-		panelSugerencia.add(areaSugerencia);
+		areaSugerenciaTitulo=new JTextArea(2,40);
+		areaSugerenciaTitulo.setForeground(Color.red);
+		areaSugerenciaTitulo.setBorder(BorderFactory.createTitledBorder("Sugerencia"));
+		areaSugerenciaTitulo.setVisible(false);
+		areaSugerenciaTitulo.setEditable(false);
+		areaSugerenciaTitulo.setLineWrap(true);
+		areaSugerenciaTitulo.setWrapStyleWord(true);
+		panelSugerenciaTitulo.add(areaSugerenciaTitulo);
 		
-		campoAsignadoA=new JTextField();
-		campoAsignadoA.setBorder(BorderFactory.createTitledBorder("Asignado A:"));
-		campoAsignadoA.setAlignmentX(Box.LEFT_ALIGNMENT); 
-        
+
+		areaSugerenciaCriterio=new JTextArea(2,40);
+		areaSugerenciaCriterio.setForeground(Color.red);
+		areaSugerenciaCriterio.setBorder(BorderFactory.createTitledBorder("Sugerencia"));
+		areaSugerenciaCriterio.setVisible(false);
+		areaSugerenciaCriterio.setEditable(false);
+		areaSugerenciaCriterio.setLineWrap(true);
+		areaSugerenciaCriterio.setWrapStyleWord(true);
+		panelSugerenciaCriterio.add(areaSugerenciaCriterio);
+		
 		campoPuntos=new JTextField();
 		campoPuntos.setBorder(BorderFactory.createTitledBorder("Puntos:"));
 		campoPuntos.setAlignmentX(Box.LEFT_ALIGNMENT);
+		/*
+		campoAsignadoA=new JTextField();
+		campoAsignadoA.setBorder(BorderFactory.createTitledBorder("Asignado A:"));
+		campoAsignadoA.setAlignmentX(Box.LEFT_ALIGNMENT);
 
 		campoHoras=new JTextField();
 		campoHoras.setBorder(BorderFactory.createTitledBorder("Horas:"));
 		campoHoras.setAlignmentX(Box.LEFT_ALIGNMENT);
-        
+        */
         configurarAcciones();
         insertarEnBox();
         this.add(boxVertical);
@@ -142,20 +157,21 @@ public class AltaUserStoryView extends JPanel{
 
 		Box boxHSugerencia=Box.createHorizontalBox();
 		boxHSugerencia.add(Box.createHorizontalStrut(10));
-		boxHSugerencia.add(panelSugerencia);
+		boxHSugerencia.add(panelSugerenciaTitulo);
 		boxHSugerencia.setAlignmentY(BOTTOM_ALIGNMENT);
+		
 		
 		Box boxHExtras=Box.createHorizontalBox();
 		boxHExtras.add(Box.createHorizontalStrut(10));
 		boxHExtras.add(campoPuntos);
-		boxHExtras.add(Box.createHorizontalGlue());
-		boxHExtras.add(campoHoras);
+	//	boxHExtras.add(Box.createHorizontalGlue());
+	//	boxHExtras.add(campoHoras);
 		boxHExtras.setAlignmentY(BOTTOM_ALIGNMENT);
 
 		Box boxHBotones=Box.createHorizontalBox();
-		boxHBotones.add(Box.createHorizontalStrut(10));
-		boxHBotones.add(campoAsignadoA);
-		boxHBotones.add(Box.createHorizontalGlue());
+//		boxHBotones.add(Box.createHorizontalStrut(10));
+	//	boxHBotones.add(campoAsignadoA);
+	//	boxHBotones.add(Box.createHorizontalGlue());
 		boxHBotones.add(botonAgregar);
 		boxHBotones.setAlignmentY(BOTTOM_ALIGNMENT);
 		
@@ -164,12 +180,14 @@ public class AltaUserStoryView extends JPanel{
 		boxVertical.add(Box.createVerticalStrut(5));
 		boxVertical.add(check);
 		boxVertical.add(Box.createVerticalStrut(5));
-		boxVertical.add(panelSugerencia);
+		boxVertical.add(panelSugerenciaTitulo);
 		boxVertical.add(Box.createVerticalStrut(5));
 		boxVertical.add(boxHDetalle);
 		boxVertical.add(Box.createVerticalGlue());
 		boxVertical.add(boxHCriterio);
-		boxVertical.add(Box.createVerticalGlue());
+		boxVertical.add(Box.createVerticalStrut(5));
+		boxVertical.add(panelSugerenciaCriterio);
+		boxVertical.add(Box.createVerticalStrut(5));
 		boxVertical.add(boxHExtras);
 		boxVertical.add(Box.createVerticalGlue());
 		boxVertical.add(boxHBotones);
@@ -203,8 +221,8 @@ public class AltaUserStoryView extends JPanel{
 				}else{
 					mostrarSugerencias=false;
 					check.setText("Sugerencias Deshabilitadas");
-					if(areaSugerencia.isVisible()){
-						areaSugerencia.setVisible(false);
+					if(areaSugerenciaTitulo.isVisible()){
+						areaSugerenciaTitulo.setVisible(false);
 					}
 					if(areaTitulo.getText().equals(resumen)){
 						areaTitulo.setText("");
@@ -234,20 +252,43 @@ public class AltaUserStoryView extends JPanel{
 			@Override
 			public void keyReleased(KeyEvent keyEvent) {
 				if(!mostrarSugerencias){return;}
-				if(keyEvent.getKeyCode()==KeyEvent.VK_SPACE){
-        			String sugerencia=controlador.obtenerSugerencia(areaTitulo.getText());
+				if(keyEvent.getKeyCode()==KeyEvent.VK_SPACE|| keyEvent.getKeyCode()==KeyEvent.VK_TAB|| keyEvent.getKeyCode()==KeyEvent.VK_ENTER){
+        			String sugerencia=controlador.obtenerSugerenciaTitulo(areaTitulo.getText());
         			if(!sugerencia.isEmpty()){
-        				areaSugerencia.setText(sugerencia);
-            			areaSugerencia.setVisible(true);
+        				areaSugerenciaTitulo.setText(sugerencia);
+            			areaSugerenciaTitulo.setVisible(true);
         			}else{
-        				areaSugerencia.setVisible(false);
+        				areaSugerenciaTitulo.setVisible(false);
         			}
         			
         		}
 			};
         });
 
-		
+		areaCriterios.addKeyListener(new KeyListener(){
+        	public void keyPressed(KeyEvent keyEvent){}
+
+			@Override
+			public void keyTyped(KeyEvent keyEvent) {
+				
+			}
+			
+			@Override
+			public void keyReleased(KeyEvent keyEvent) {
+				if(!mostrarSugerencias){return;}
+				if(keyEvent.getKeyCode()==KeyEvent.VK_SPACE || keyEvent.getKeyCode()==KeyEvent.VK_TAB || keyEvent.getKeyCode()==KeyEvent.VK_ENTER){
+        			String sugerencia=controlador.obtenerSugerenciaCriterio(areaCriterios.getText());
+        			if(!sugerencia.isEmpty()){
+        				areaSugerenciaCriterio.setText(sugerencia);
+        				areaSugerenciaCriterio.setVisible(true);
+        			}else{
+        				areaSugerenciaCriterio.setVisible(false);
+        			}
+        			
+        		}
+			};
+        });
+
 		campoPuntos.addKeyListener(new KeyListener(){
 			public void keyPressed(KeyEvent keyEvent){}
 
@@ -264,7 +305,7 @@ public class AltaUserStoryView extends JPanel{
 			};
         });
 		
-		campoHoras.addKeyListener(new KeyListener(){
+/*		campoHoras.addKeyListener(new KeyListener(){
 			public void keyPressed(KeyEvent keyEvent){}
 
 			@Override
@@ -279,8 +320,8 @@ public class AltaUserStoryView extends JPanel{
         		}
 			};
         });
+	*/
 	}
-	
 	
 	private void agregarListenerAlBoton(){
 		botonAgregar.addActionListener(new ActionListener() {
@@ -292,20 +333,21 @@ public class AltaUserStoryView extends JPanel{
 					return;
 				}
 				if((!titulo.isEmpty()) && (!detalle.isEmpty())){
-					String sugerencia=controlador.obtenerSugerencia(titulo);
+					String sugerencia=controlador.obtenerSugerenciaTitulo(titulo);
 					if(!sugerencia.isEmpty()){
 						JOptionPane.showMessageDialog(null, sugerencia+"\nA pesar de la sugerencia ¿Aún desea guardar esta User Story?");
 					}else{
 						String criterios=areaCriterios.getText();
-						String asignadoA=campoAsignadoA.getText();
+						//String asignadoA=campoAsignadoA.getText();
 						Integer horasEstimadas=0,puntos=0;
 						try{
-							horasEstimadas=Integer.getInteger(campoHoras.getText());
+							//horasEstimadas=Integer.getInteger(campoHoras.getText());
 
 							puntos=Integer.getInteger(campoPuntos.getText());
 							
 							try {
-								controlador.altaUserStory(titulo,detalle,criterios,asignadoA,horasEstimadas,puntos);
+								//controlador.altaUserStory(titulo,detalle,criterios,asignadoA,horasEstimadas,puntos);
+								controlador.altaUserStory(titulo,detalle,criterios,horasEstimadas);
 							} catch( Exception nullException) {
 								JOptionPane.showMessageDialog(null, "ERROR: "+nullException.getMessage() );
 							}

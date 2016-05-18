@@ -1,3 +1,0 @@
-Rol:*Como*Como un*En el rol de
-Meta:*necesito*quiero*requiero*solicito*deseo efectuar*deseo lograr*deseo obtener*necesito conseguir*necesito lograr*quiero poder
-Finalidad:*para*para lograr*con el fin de*con el proposito de*con la finalidad de

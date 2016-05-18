@@ -1,0 +1,30 @@
+{
+"Diccionarios": [
+		{"Aceptadas": [
+				{ "Indicador":"Rol","Palabras Aceptadas": [	"Como","Como un","En el rol de"]},
+				{ "Indicador":"Meta" , "Palabras Aceptadas":["Necesito","quiero","requiero","solicito","deseo efectuar","deseo lograr","deseo obtener","necesito conseguir","necesito lograr","quiero poder"]}, 
+				{ "Indicador":"Finalidad" , "Palabras Aceptadas":["para","para lograr","con el fin de","con el proposito de","con la finalidad de"]}],
+		"Orden":[{"Indicador":"Rol"},{"Indicador":"Meta"},{"Indicador":"Finalidad"}]
+		},
+		{"Aceptadas": [
+				{"Indicador":"Condicion" , "Palabras Aceptadas":["Dado que","Debido a","A causa de"] }, 
+				{"Indicador":"Causa" , "Palabras Aceptadas":["Cuando","En el momento que","Cuando ocurre","Si sucede"] }, 
+				{"Indicador":"Efecto" , "Palabras Aceptadas":["Entonces","Por lo tanto","Como consecuencia"] }],
+		"Orden":[{"Indicador":"Condicion"},{"Indicador":"Causa"},{"Indicador":"Efecto"}]
+		}		],
+"Catalogo":[
+		{"Indicador":"IdentificadorRol","Sugerencia":"Es  una buena práctica, en general,  iniciar una user story con la palabra Como, u otra palabra o frase, que señale desde que rol se piensa la user story."},
+		{"Indicador":"Rol","Sugerencia":"Recuerde indicar desde que rol esta pensada la user story."},
+		{"Indicador":"IdentificadorMeta","Sugerencia":"Luego de indicar el rol, es una buena idea indicar que meta busca. Puede usar, necesito, requiero, quiero, etc. para indicar dicha meta"},
+		{"Indicador":"Meta","Sugerencia":"¿Ya agregó una meta?."},
+		{"Indicador":"IdentificadorFinalidad","Sugerencia":"Emplee alguna palabra o frase, que marque claramente el propósito de la user story. Por ejemplo: Para, con el fin de, etc."},
+		{"Indicador":"Finalidad","Sugerencia":"No olvide redactar el propósito de realizar esta user story."},
+		{"Indicador":"IdentificadorCondicion","Sugerencia":"Indique que se va a referir a la condición que suscita un suceso, use indicadores como: Dado que, A causa de, etc."},
+		{"Indicador":"Condicion","Sugerencia":"¿Qué condición debe darse para que se produzca algo?."},
+		{"Indicador":"IdentificadorCausa","Sugerencia":"Recuerde que escribir: 'Cuando ocurre' es una buena manera de indicar la causa de evento."},
+		{"Indicador":"Causa","Sugerencia":"¿Qué causa el evento que se describe en el criterio de aceptación?."},
+		{"Indicador":"IdentificadorEfecto","Sugerencia":"Indique el efecto esperado, use frases como: Entonces,  por lo tanto, etc."},
+		{"Indicador":"Efecto","Sugerencia":"¿Cuál es el resultado esperado? Recuerde que lo ideal es usar resultados medibles, para emplearlos como tests."}
+				]
+}
+
