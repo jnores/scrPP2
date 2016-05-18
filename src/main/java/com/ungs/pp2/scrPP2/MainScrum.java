@@ -2,13 +2,13 @@ package com.ungs.pp2.scrPP2;
 
 import java.awt.EventQueue;
 import java.io.IOException;
-
+/*
 import javax.swing.JDialog;
 import javax.swing.JFrame;
 import javax.swing.SwingUtilities;
 import javax.swing.UIManager;
 
-import org.pushingpixels.substance.api.skin.SubstanceChallengerDeepLookAndFeel;
+import org.pushingpixels.substance.api.skin.SubstanceChallengerDeepLookAndFeel;*/
 /*SubstanceBusinessBlackSteelLookAndFeel;SubstanceBusinessLookAndFeel;
  * SubstanceChallengerDeepLookAndFeel;SubstanceDustCoffeeLookAndFeel;
  * SubstanceDustLookAndFeel;SubstanceEmeraldDuskLookAndFeel;
@@ -25,7 +25,7 @@ import com.ungs.pp2.scrPP2.utils.UserStoryMapper;
 public class MainScrum {
 	public static void main( String[ ] args ) {
 
-		JFrame.setDefaultLookAndFeelDecorated(true);
+/*		JFrame.setDefaultLookAndFeelDecorated(true);
 		JDialog.setDefaultLookAndFeelDecorated(true);
 		SwingUtilities.invokeLater(new Runnable() {
 			public void run() {
@@ -38,7 +38,7 @@ public class MainScrum {
 					JFrame.setDefaultLookAndFeelDecorated(false);
 				}
 			}
-		});
+		});*/
 
 		EventQueue.invokeLater( new Runnable() {
 			@Override
