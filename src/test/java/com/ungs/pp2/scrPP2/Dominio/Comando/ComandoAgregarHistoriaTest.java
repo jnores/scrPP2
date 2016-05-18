@@ -9,12 +9,12 @@ import junit.framework.TestCase;
  * @author yoshknight
  *
  */
-public class AgregarHistoriaCommandTest extends TestCase {
+public class ComandoAgregarHistoriaTest extends TestCase {
 
 	/**
 	 * @param name
 	 */
-	public AgregarHistoriaCommandTest(String name) {
+	public ComandoAgregarHistoriaTest(String name) {
 		super(name);
 	}
 
@@ -26,14 +26,14 @@ public class AgregarHistoriaCommandTest extends TestCase {
 	}
 
 	/**
-	 * Test method for {@link com.ungs.pp2.scrPP2.Dominio.Comando.agregarHistoriaCommand#configurar(com.ungs.pp2.scrPP2.Dominio.Request)}.
+	 * Test method for {@link com.ungs.pp2.scrPP2.Dominio.Comando.ComandoAgregarHistoria#configurar(com.ungs.pp2.scrPP2.Dominio.Request)}.
 	 */
 	public final void testConfigurar() {
 		//fail("Not yet implemented");
 	}
 
 	/**
-	 * Test method for {@link com.ungs.pp2.scrPP2.Dominio.Comando.agregarHistoriaCommand#execute(com.ungs.pp2.scrPP2.Controller.HomeController)}.
+	 * Test method for {@link com.ungs.pp2.scrPP2.Dominio.Comando.ComandoAgregarHistoria#execute(com.ungs.pp2.scrPP2.Controller.HomeController)}.
 	 */
 	public final void testExecute() {
 		//fail("Not yet implemented");

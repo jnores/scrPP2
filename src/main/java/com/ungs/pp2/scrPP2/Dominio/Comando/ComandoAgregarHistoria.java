@@ -14,7 +14,7 @@ import com.ungs.pp2.scrPP2.Dominio.Interfaz.IComando;
  * @author yoshknight
  *
  */
-public class agregarHistoriaCommand implements IComando<HomeController>{
+public class ComandoAgregarHistoria implements IComando<HomeController>{
 
 	@Override
 	public void configurar(Request request) throws InvalidParameterException {
