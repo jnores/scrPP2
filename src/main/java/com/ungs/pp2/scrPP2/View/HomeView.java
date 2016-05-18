@@ -44,8 +44,8 @@ public class HomeView  extends JFrame implements ActionListener
 	private UserStoryOrderableWindow filtradoHistorias;
 	private AltaUserStoryView userStoryUpload; //Alta de User Stories
 	private JMenuBar menuBar;
-	private JMenu menuP,menuI,mnHistoria,mnBacklog;
-	private JMenuItem mnListadoHistoriasItem,mnBurnDownchartItem,mnFiltradoItem,mnNuevoProyectoItem,mnNuevaUserStory,menu5,menu6;
+	private JMenu menuP,mnIteraciones,mnSprint,mnBacklog,mnBurnDownChart;
+	private JMenuItem mnListadoHistoriasItem,mnBurndownItem,mnFiltradoItem,mnNuevoProyectoItem,mnNuevaUserStory,mnit1item,mnit2item,mnit3item,mntmAbrirProyecto,mntmCerrarProyecto;
 
 	public HomeView (IAppController controller)
 	{
@@ -109,7 +109,7 @@ public class HomeView  extends JFrame implements ActionListener
 			} 
 		});
 
-		mnBurnDownchartItem.addActionListener(new ActionListener() 
+		mnBurndownItem.addActionListener(new ActionListener() 
 		{ 
 			public void actionPerformed(ActionEvent e) 
 			{ 
@@ -142,16 +142,16 @@ public class HomeView  extends JFrame implements ActionListener
 	private JMenuBar cargarMenu(){
 
 		menuBar= new JMenuBar();
-		menuP= new JMenu("Proyecto");
-		menuI= new JMenu("Iteracion");
+		menuP= new JMenu("Proyectos");
+		mnIteraciones= new JMenu("Iteraciones");
 
 		//menuP.add(menu1=new JMenuItem("Avance"));
 		//menuP.add(menu2=new JMenuItem("Estimado"));
 		//menuP.add(menu3=new JMenuItem("Comparativo"));
 
-		menuI.add(mnBurnDownchartItem=new JMenuItem("Primera"));
-		menuI.add(menu5=new JMenuItem("Segunda"));
-		menuI.add(menu6=new JMenuItem("Tercera"));
+		mnIteraciones.add(mnit1item=new JMenuItem("Primera"));
+		mnIteraciones.add(mnit2item=new JMenuItem("Segunda"));
+		mnIteraciones.add(mnit3item=new JMenuItem("Tercera"));
 
 		menuBar.add(menuP);
 
@@ -168,19 +168,33 @@ public class HomeView  extends JFrame implements ActionListener
 		AppController.Execute(new LimpiarBacklogNuevoView());		
 		
 		menuP.add(mnNuevoProyectoItem);
+		
+		mntmAbrirProyecto = new JMenuItem("Abrir Proyecto");
+		mntmAbrirProyecto.setEnabled(false);
+		menuP.add(mntmAbrirProyecto);
+		
+		mntmCerrarProyecto = new JMenuItem("Cerrar Proyecto");
+		mntmCerrarProyecto.setEnabled(false);
+		menuP.add(mntmCerrarProyecto);
 
-		mnBacklog = new JMenu("Backlog");
+		mnBacklog = new JMenu("Product Backlog");
 		menuBar.add(mnBacklog);
-		menuBar.add(menuI);
-
-		mnHistoria = new JMenu("Historia");
-		menuBar.add(mnHistoria);
-
-		mnListadoHistoriasItem = new JMenuItem("Listado");
-		mnHistoria.add(mnListadoHistoriasItem);
-
-		mnFiltradoItem = new JMenuItem("Filtrado");
-		mnHistoria.add(mnFiltradoItem);
+		
+				mnSprint = new JMenu("Sprint Backlog");
+				menuBar.add(mnSprint);
+				
+						mnListadoHistoriasItem = new JMenuItem("Listado");
+						mnSprint.add(mnListadoHistoriasItem);
+						
+								mnFiltradoItem = new JMenuItem("Filtrado");
+								mnSprint.add(mnFiltradoItem);
+		
+		mnBurnDownChart = new JMenu("Burndown Chart");
+		menuBar.add(mnBurnDownChart);
+		
+		mnBurndownItem = new JMenuItem("Gráfico");
+		mnBurnDownChart.add(mnBurndownItem);
+		menuBar.add(mnIteraciones);
 		
 		mnNuevaUserStory = new JMenuItem("Nueva historia");
 		mnBacklog.add(mnNuevaUserStory );

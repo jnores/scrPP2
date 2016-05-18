@@ -22,7 +22,7 @@ public class ComandoAgregarHistoria implements IComando<HomeController>{
 	}
 
 	@Override
-	public Resultado execute(HomeController TipoController) {
+	public Resultado Execute(HomeController TipoController) {
 		// TODO Crear el nuebo objeto, persistirlo, loguear y  agregarlo al modelo. esto debe disparar el observer! :p
 		// Pedir al controller el mapper y el ¿logger?
 		return null;

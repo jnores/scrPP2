@@ -8,6 +8,6 @@ import com.ungs.pp2.scrPP2.Dominio.Resultado;
 public interface IComando<T>
 {
 	void configurar(Request request) throws InvalidParameterException;
-   Resultado execute(T TipoController);
+   Resultado Execute(T TipoController);
    
 }
