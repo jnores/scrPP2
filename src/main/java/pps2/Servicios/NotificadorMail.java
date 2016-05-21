@@ -20,23 +20,28 @@ public class NotificadorMail
       System.out.println("Iniciando Servicio...");
       try
       {
-        server = new ServerSocket(9000);
-        System.out.println("Escuchando en puerto 9000");
+        server = new ServerSocket(4444);
+        System.out.println("Escuchando en puerto 4444");
       } catch (IOException e) {
-        System.out.println("No se pudo iniciar el servicio en el puerto 9000");
+        System.out.println("No se pudo iniciar el servicio en el puerto 4444");
         System.exit(-1);
       }
       while(true){
-        try{
+        try
+        {
            //Retornar la conexion con el cliente crea un nuevo socket para cada aceptar varios clientes en simultaneo
            Worker worker = new Worker(server.accept());
            Thread nuevaConexion = new Thread(worker);
            nuevaConexion.start();
         } catch (IOException e) {
-          System.out.println("Accept failed: 9000");
+          System.out.println("No se pudo aceptar el cliente en el puerto: 4444");
           System.exit(-1);
         }
       }
     }
+   public void killServicio() throws IOException
+   {
+      server.close();
+   }
 
 }

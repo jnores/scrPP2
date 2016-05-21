@@ -20,7 +20,8 @@ public void run()
 {
 
    DataInputStream dataCliente = null;
-   try{
+   try
+   {
       dataCliente = new DataInputStream(client.getInputStream()); //Obteno el input stream del socket cliente
      //in = new BufferedReader(new InputStreamReader(client.getInputStream()));
      //out = new PrintWriter(client.getOutputStream(), true);
@@ -28,28 +29,30 @@ public void run()
      System.out.println("in or out failed");
      System.exit(-1);
    }
-     try
-     {
-        String from = dataCliente.readUTF();
-        String pass = dataCliente.readUTF();
-        String to = dataCliente.readUTF();
-        String subject = dataCliente.readUTF();
-        String body = dataCliente.readUTF();
+   try
+   {
+      String from = dataCliente.readUTF();
+      String pass = dataCliente.readUTF();
+      String to = dataCliente.readUTF();
+      String subject = dataCliente.readUTF();
+      String body = dataCliente.readUTF();
         
-        new Mail(from, pass, to, subject, body); //envio mail con los datos del socket cliente
+      new Mail(from, pass, to, subject, body); //envio mail con los datos del socket cliente
         
         
-//Send data back to client
-       //out.println(line);
-//Append data to text area
+      //Send data back to client
+      //out.println(line);
+      //Append data to text area
       // textArea.append(line);
-        dataCliente.close(); // cierro el input strem socket
-      }catch (IOException e) {
+      dataCliente.close(); // cierro el input strem socket
+      }catch (IOException e) 
+      {
          e.printStackTrace();
-      }catch (Exception e){
+      }catch (Exception e)
+      {
          //devolver error al socket cliente
       }
 
- }
+}
 
 }
