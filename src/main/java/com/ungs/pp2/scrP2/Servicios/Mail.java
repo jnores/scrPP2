@@ -1,4 +1,4 @@
-package pps2.Servicios;
+package com.ungs.pp2.scrP2.Servicios;
 
 import java.util.Properties;
 

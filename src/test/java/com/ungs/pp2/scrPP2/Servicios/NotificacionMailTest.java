@@ -1,4 +1,4 @@
-package pps2.Servicios;
+package com.ungs.pp2.scrPP2.Servicios;
 
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
@@ -8,6 +8,9 @@ import java.io.InputStreamReader;
 import java.io.OutputStream;
 import java.io.OutputStreamWriter;
 import java.net.Socket;
+
+import com.ungs.pp2.scrP2.Servicios.NotificadorMail;
+import com.ungs.pp2.scrP2.Servicios.Worker;
 
 import junit.framework.Test;
 import junit.framework.TestCase;
