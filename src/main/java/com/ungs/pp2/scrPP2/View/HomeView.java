@@ -27,7 +27,6 @@ import com.ungs.pp2.scrPP2.Dominio.Comando.LimpiarProyectoNuevoView;
 import com.ungs.pp2.scrPP2.Dominio.Comando.MostrarProyectoNuevo;
 import com.ungs.pp2.scrPP2.Dominio.Interfaz.IAppController;
 import com.ungs.pp2.scrPP2.utils.Logger;
-import com.ungs.pp2.scrPP2.windows.UserStoryOrderableWindow;
 
 
 
@@ -41,7 +40,7 @@ public class HomeView  extends JFrame implements ActionListener
 	private IAppController AppController;
 	private BurndownChartView burndownChartViewpanel;
 	private UserStoryPaginadoView listadoPaginadoHistorias;
-	private UserStoryOrderableWindow filtradoHistorias;
+	private UserStoryOrderableView filtradoHistorias;
 	private AltaUserStoryView userStoryUpload; //Alta de User Stories
 	private JMenuBar menuBar;
 	private JMenu menuP,mnIteraciones,mnSprint,mnBacklog,mnBurnDownChart;
@@ -54,7 +53,7 @@ public class HomeView  extends JFrame implements ActionListener
 	   getContentPane().setLayout(new BorderLayout());
 	   burndownChartViewpanel = new BurndownChartView(new BurndownChartController(null, null));
 	   listadoPaginadoHistorias = new UserStoryPaginadoView(new UserStoryPaginadoController(new Consulta()));
-	   filtradoHistorias = new UserStoryOrderableWindow(new UserStoryListView( ((HomeController)controller).getProyectoController().getBacklog() ));
+	   filtradoHistorias = new UserStoryOrderableView(new UserStoryListView( ((HomeController)controller).getProyectoController().getBacklog() ));
 	   userStoryUpload = new AltaUserStoryView(new AltaUserStoryController(new Consulta(),((HomeController)controller).getProyectoController())); //Alta User Stories
 	   
 		setTitle("Scrummer");		

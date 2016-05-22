@@ -1,4 +1,4 @@
-package com.ungs.pp2.scrPP2.windows;
+package com.ungs.pp2.scrPP2.View;
 
 import java.awt.BorderLayout;
 import java.awt.FlowLayout;
@@ -17,10 +17,9 @@ import javax.swing.event.ChangeListener;
 
 import com.ungs.pp2.scrPP2.Dominio.Enums.UserStoryHelperComparator;
 import com.ungs.pp2.scrPP2.Dominio.Interfaz.IExporter;
-import com.ungs.pp2.scrPP2.View.UserStoryListView;
 import com.ungs.pp2.scrPP2.utils.PluginFactory;
 
-public class UserStoryOrderableWindow extends JPanel {
+public class UserStoryOrderableView extends JPanel {
 
 	/**
 	 * 
@@ -35,7 +34,7 @@ public class UserStoryOrderableWindow extends JPanel {
 	/**
 	 * Create the frame.
 	 */
-	public UserStoryOrderableWindow( UserStoryListView userStoriesList) {
+	public UserStoryOrderableView( UserStoryListView userStoriesList) {
 		this.userStoriesPane = userStoriesList;
 		
 		this.cmbTipoExport = new JComboBox<IExporter>();
