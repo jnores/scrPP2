@@ -1,0 +1,51 @@
+package pp2.scrum.dominio.entidad;
+
+
+
+import pp2.scrum.dominio.enums.Estado;
+
+public class Tarea extends java.util.Observable
+{
+	private int id;
+	private Estado estado;
+	/**
+	 * @param id
+	 * @param tareas
+	 */
+//	public Tarea(int id) {
+//		this.id=id;
+//		estado = Estado.getDefault();
+//	}
+	
+	public Tarea() {
+	
+		estado = Estado.getDefault();
+	}
+	/**
+	 * @return the id
+	 */
+	public int getId() {
+		return id;
+	}
+	/**
+	 * @param id the id to set
+	 */
+	
+	//esto no va
+	public void setId(int id) {
+		this.id = id;
+	}
+	/**
+	 * @return the tareas
+	 */
+	public Estado getEstado() {
+		return estado;
+	}
+	/**
+	 * @param tareas the tareas to set
+	 */
+	public void avanzarEstado() throws RuntimeException
+	{
+		estado = estado.avanzar();
+	}
+}
