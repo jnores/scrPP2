@@ -1,9 +1,6 @@
 package pp2.scrum.dominio.comando;
 
-import java.security.InvalidParameterException;
-
 import pp2.scrum.controller.HomeController;
-import pp2.scrum.dominio.Request;
 import pp2.scrum.dominio.Resultado;
 import pp2.scrum.dominio.interfaz.IComando;
 
@@ -23,11 +20,5 @@ public class MostrarProyectoNuevo implements IComando<HomeController>
       };
       return resultado;
    }
-
-@Override
-public void configurar(Request request) throws InvalidParameterException {
-	// TODO Auto-generated method stub
-	
-}
 
 }
