@@ -1,6 +1,5 @@
 package pp2.scrum.dominio.Entidad;
 
-import java.io.IOException;
 import java.util.Collection;
 import java.util.Set;
 
@@ -10,8 +9,6 @@ import junit.framework.TestSuite;
 import pp2.scrum.dominio.entidad.Miembro;
 import pp2.scrum.dominio.entidad.Proyecto;
 import pp2.scrum.dominio.entidad.UserStory;
-import pp2.scrum.textUtils.TextUserStoryMapper;
-import pp2.scrum.utils.UserStoryMapper;
 
 
 public class ProyectoTest extends TestCase {
@@ -55,14 +52,7 @@ public class ProyectoTest extends TestCase {
 		userStory3.setId(3);
 		userStory4.setId(4);
 		
-		UserStoryMapper m = null;
-		
-		try {
-			m=new TextUserStoryMapper("testProyecto.dat");
-		} catch (RuntimeException | IOException e) {			
-		}
-		
-		proyecto= new Proyecto(m);
+		proyecto= new Proyecto();
 		proyecto.addMiembro(miembro1);
 		proyecto.addMiembro(miembro2);
 		

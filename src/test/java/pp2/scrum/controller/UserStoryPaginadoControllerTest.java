@@ -7,11 +7,9 @@ import java.util.List;
 import junit.framework.Test;
 import junit.framework.TestCase;
 import junit.framework.TestSuite;
-import mockit.Expectations;
 import mockit.Mock;
 import mockit.MockUp;
 import pp2.scrum.consulta.Consulta;
-import pp2.scrum.controller.UserStoryPaginadoController;
 import pp2.scrum.dominio.Paginacion;
 import pp2.scrum.dominio.entidad.UserStory;
 import pp2.scrum.dominio.enums.DirOrden;
@@ -21,7 +19,6 @@ import pp2.scrum.dominio.interfaz.IConsulta;
 public class UserStoryPaginadoControllerTest extends TestCase
 {
    private MockUp<IConsulta> consultaMock;
-   private List<UserStory> model;
    private UserStoryPaginadoController controller;
    
    public UserStoryPaginadoControllerTest( String testName )

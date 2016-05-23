@@ -1,25 +1,9 @@
 package pp2.scrum;
 
 import java.awt.EventQueue;
-import java.io.IOException;
-/*
-import javax.swing.JDialog;
-import javax.swing.JFrame;
-import javax.swing.SwingUtilities;
-import javax.swing.UIManager;
-
-import org.pushingpixels.substance.api.skin.SubstanceChallengerDeepLookAndFeel;*/
-/*SubstanceBusinessBlackSteelLookAndFeel;SubstanceBusinessLookAndFeel;
- * SubstanceChallengerDeepLookAndFeel;SubstanceDustCoffeeLookAndFeel;
- * SubstanceDustLookAndFeel;SubstanceEmeraldDuskLookAndFeel;
- * SubstanceGeminiLookAndFeel;SubstanceGraphiteAquaLookAndFeel;
- * SubstanceGraphiteGlassLookAndFeel;SubstanceMagellanLookAndFeel;
- * SubstanceMistSilverLookAndFeel;SubstanceSaharaLookAndFeel;*/
 
 import pp2.scrum.controller.HomeController;
-import pp2.scrum.textUtils.TextUserStoryMapper;
 import pp2.scrum.utils.Logger;
-import pp2.scrum.utils.UserStoryMapper;
 import pp2.scrum.view.HomeView;
 
 public class MainScrum {
@@ -51,16 +35,8 @@ public class MainScrum {
 				//				e.printStackTrace();
 				//			}
 				Logger.init();
-				UserStoryMapper usMapper=null;
-				try {
-					usMapper = new TextUserStoryMapper();
-					//llamar al plugin factory con el path de los plugins, para que los cargue
-				} catch (RuntimeException | IOException e) {
-					
-//					e.printStackTrace();
-				}
 				
-				HomeController controller = new HomeController(null,usMapper);
+				HomeController controller = new HomeController(null);
 
 				HomeView view = new HomeView(controller);	
 				view.setVisible( true );

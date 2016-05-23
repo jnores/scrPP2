@@ -6,7 +6,6 @@ import pp2.scrum.dominio.entidad.Proyecto;
 import pp2.scrum.dominio.interfaz.IAppController;
 import pp2.scrum.dominio.interfaz.IComando;
 import pp2.scrum.dominio.interfaz.IConsulta;
-import pp2.scrum.utils.UserStoryMapper;
 import pp2.scrum.view.BacklogNuevoView;
 import pp2.scrum.view.ProyectoNuevoView;
 
@@ -17,10 +16,10 @@ public class HomeController extends Controller implements IAppController
    private ProyectoController proyectoController;
 
 
-	public HomeController(IConsulta consulta,UserStoryMapper usMapper) 
+	public HomeController(IConsulta consulta) 
 	{	
 		super(consulta);
-	    proyectoController = new ProyectoController(null, new Proyecto(usMapper));
+	    proyectoController = new ProyectoController(null, new Proyecto());
 		proyectoNuevo = new ProyectoNuevoView(proyectoController);
 		backlogNuevo = new BacklogNuevoView(proyectoController);
 	}

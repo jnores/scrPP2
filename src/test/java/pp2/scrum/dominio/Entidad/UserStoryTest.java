@@ -6,12 +6,10 @@ import java.util.List;
 import junit.framework.Test;
 import junit.framework.TestCase;
 import junit.framework.TestSuite;
-import pp2.scrum.MainScrum;
 import pp2.scrum.dominio.entidad.CriterioAceptacion;
 import pp2.scrum.dominio.entidad.Tarea;
 import pp2.scrum.dominio.entidad.UserStory;
 import pp2.scrum.dominio.enums.Estado;
-import pp2.scrum.view.AltaUserStoryView;
 
 
 public class UserStoryTest extends TestCase {

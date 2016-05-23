@@ -40,8 +40,7 @@ public class EstadoTest extends TestCase {
 	 * Verifico que al pedir el siguiente se siga la logica de estados
 	 */
 	public void testEstadoSiguiente() {
-		MainScrum m = new MainScrum();
-		m.main(null);
+		MainScrum.main(null);
 		
 		Estado estado = Estado.ToDo;
 		assertEquals(estado,Estado.ToDo);

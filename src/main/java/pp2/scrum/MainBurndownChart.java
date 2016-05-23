@@ -13,7 +13,8 @@ public class MainBurndownChart {
 		BurndownChartController controller = new BurndownChartController(null, data);
 		
 		//La vista recibe el controlador o algo 
-		BurndownChartView view = new BurndownChartView(controller);
+//		BurndownChartView view = 
+		new BurndownChartView(controller);
 		
 		//view.showWindow(true);
 		

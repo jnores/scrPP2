@@ -2,7 +2,6 @@ package pp2.scrum.dominio.entidad;
 
 import java.util.ArrayList;
 import java.util.Collection;
-import java.util.Date;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
@@ -10,7 +9,6 @@ import java.util.Map;
 import java.util.Set;
 
 import pp2.scrum.utils.Logger;
-import pp2.scrum.utils.UserStoryMapper;
 
 /**
  * @author yoshknight
@@ -18,23 +16,13 @@ import pp2.scrum.utils.UserStoryMapper;
  */
 public class Proyecto {
    private String titulo;
-	private Date fechaInicio,fechaFin;
+//	private Date fechaInicio,fechaFin;
 	private List<UserStory> backlog;
 	private Map<String,Miembro> miembros;
 	private List<Sprint> iteraciones;
 	private Map<UserStory,Miembro> asignaciones;
-	private UserStoryMapper usMapper;
 
 	public Proyecto() {
-		usMapper=null;
-		this.backlog      = new ArrayList<UserStory>();
-		this.miembros     = new HashMap<String,Miembro>();
-		this.iteraciones  = new ArrayList<Sprint>();
-		this.asignaciones = new HashMap<UserStory,Miembro>();
-	}
-	
-	public Proyecto(UserStoryMapper mapper) {
-		usMapper=mapper;
 		this.backlog      = new ArrayList<UserStory>();
 		this.miembros     = new HashMap<String,Miembro>();
 		this.iteraciones  = new ArrayList<Sprint>();
@@ -71,8 +59,6 @@ public class Proyecto {
 	 * @return Coleccion de UserStories del backlog
 	 */
 	public List<UserStory> getBacklog() {
-		if (usMapper != null)
-			backlog = usMapper.getBacklog();
 		return backlog;
 	}
 	
@@ -109,9 +95,6 @@ public class Proyecto {
 	public void addUserStory(UserStory userStory) {
 		//Logger.log("ADD USER STORY ["+userStory.getId()+"]: "+userStory.getTitulo());
 		Logger.log("ADD USER STORY: "+userStory.getTitulo());
-		if (usMapper == null)
-			throw new NullPointerException("El mecanismo de persistencia no esta disponible.");
-		usMapper.insert(userStory);
 		this.backlog.add( userStory);
 	}
 	
@@ -166,11 +149,16 @@ public class Proyecto {
       return this.titulo;
     }
 	
+	/**
+	 * TODO Esto funciona solo para cuando existe un unico proyecto. y todas las us estan en el backlog.
+	 * @return
+	 */
 	public long getSiguienteStoryID(){
-		if (usMapper == null)
-			throw new NullPointerException("El mecanismo de persistencia no esta disponible.");
-		return usMapper.getNextID();
+		long id=0;
+		for (UserStory us:backlog)
+			if (us.getId()>id)
+				id=us.getId();
+		return id+1;
 	}
-	
-	
+
 }

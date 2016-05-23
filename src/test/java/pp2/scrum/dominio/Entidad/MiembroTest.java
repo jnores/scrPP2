@@ -3,7 +3,6 @@ package pp2.scrum.dominio.Entidad;
 import junit.framework.Test;
 import junit.framework.TestCase;
 import junit.framework.TestSuite;
-import pp2.scrum.controller.UserStoryHelper;
 import pp2.scrum.dominio.entidad.Miembro;
 
 
