@@ -9,7 +9,7 @@ import javax.swing.JTextField;
 import javax.swing.KeyStroke;
 import javax.swing.LayoutFocusTraversalPolicy;
 
-import pp2.scrum.controller.AltaUserStoryController;
+import pp2.scrum.controller.UserStoryController;
 
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
@@ -46,7 +46,7 @@ public class AltaUserStoryView extends JPanel{
 	private JCheckBox check;
 	private Box boxVertical;
 	private JButton botonAgregar;
-	private AltaUserStoryController controlador;
+	private UserStoryController controlador;
 	
 	private final String resumen="Como <Rol> necesito <Meta> para <Finalidad>.";
 	private final String  detalle="Utilice este espacio para explicar con más detalle, la meta y el propósito de esta user story";
@@ -55,7 +55,7 @@ public class AltaUserStoryView extends JPanel{
 	
 	private static final long serialVersionUID = 1L; 
 
-	public AltaUserStoryView(AltaUserStoryController controlador)
+	public AltaUserStoryView(UserStoryController controlador)
 	{
 		this.controlador=controlador;
 		mostrarSugerencias=true;

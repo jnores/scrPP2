@@ -30,4 +30,10 @@ public class LimpiarProyectoNuevoView implements IComando<HomeController>
       return resultado;
    }
 
+@Override
+public Resultado Execute(HomeController homeController, ActionListener al) {
+    // TODO Auto-generated method stub
+    return null;
+}
+
 }
