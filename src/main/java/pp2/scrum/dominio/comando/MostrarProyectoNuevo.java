@@ -1,5 +1,7 @@
 package pp2.scrum.dominio.comando;
 
+import java.awt.event.ActionListener;
+
 import pp2.scrum.controller.HomeController;
 import pp2.scrum.dominio.Resultado;
 import pp2.scrum.dominio.interfaz.IComando;
@@ -20,5 +22,11 @@ public class MostrarProyectoNuevo implements IComando<HomeController>
       };
       return resultado;
    }
+
+@Override
+public Resultado Execute(HomeController homeController, ActionListener al) {
+    // TODO Auto-generated method stub
+    return null;
+}
 
 }

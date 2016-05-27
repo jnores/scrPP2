@@ -1,0 +1,20 @@
+#Código de referencia y  sugerencia
+#El código de referencia se arma en dos partes, separadas por un punto. 
+#El primer valor indica el diccionario de origen 1=User Story; 2=Criterios de aceptación.
+#El segundo indica sugerencia
+10=
+11=En general una user story comienza indicando el rol desde el que se plantea la user story, por ejemplo:\nComo visitante del portar... En el rol de pasajero...
+12=No se olvide de establecer la meta buscada con esta user story:\n...Necesito registrar un pedido..., ...requiero coordinar un evento... 
+13=Marque claramente la finalidad de realizar esta user story:\n ...Para agilizar los pedidos, ... Con el fin de convocar distintos miembros a una reunión.
+14=No parece haber indicado un rol, ni una meta. Ej: \nComo un usuario  registrado, necesito realizar un pedido...
+15=No parece haber indicado un rol, ni una finalidad. Ej: \nComo un gerente, ..., para evaluar los logros de los empleados.
+16=No parece haber indicado una meta, ni una finalidad. Ej: \n... necesito agregar comentarios, con el fin de dar mi opinion sobre el producto.
+17=Recuerde el formato normal de una user story:\nComo un <rol=moderador>, necesito <meta=bloquear a un usuario que rompio una regla>, para <finalidad=mantener un ámbiente ameno en el chat.>
+20=
+21=Indique la condicion, que puede o no ocurrir: \nDado que se necesita un valor alfanumerico, A causa de que se espera que el usuario presione enter, etc.
+22='Cuando' es una buena manera de indicar la causa que dispara el evento. \nEjemplo: Cuando no se presione enter,  Debido a que se cerro el sistema...
+23=Indique el efecto esperado, puede usar frases como: \nEntonces se abre una nueva pantalla, En consecuencia el sistema da un mensaje de error, etc.\nRecuerde que lo ideal es usar resultados medibles, para emplearlos como tests.
+24=No parece haber indicado una condicion, ni una causa. \nEjemplo: Dado que el sistema espera un ingreso de datos, cuando se deje un campo en blanco...
+25=No parece haber indicado una condicion, ni un efecto. \nEjemplo: Dado que el sistema espera un ingreso de datos... entonces  se mostrara una pantalla de error.
+26=No parece haber indicado ni causa, ni efecto. \nEjemplo: ...cuando se deje un campo en blanco, entonces  se mostrara una pantalla de error.
+27=Recordatorio: Un buen formato para el criterio de aceptacion es: \n"Dado que el campo user y password son indispensables, cuando no se ingresen, entonces no se podra seguir con el registro". 

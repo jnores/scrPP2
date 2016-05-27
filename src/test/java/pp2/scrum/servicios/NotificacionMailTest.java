@@ -1,6 +1,17 @@
 package pp2.scrum.servicios;
 
+import java.io.BufferedReader;
+import java.io.BufferedWriter;
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.InputStreamReader;
+import java.io.OutputStream;
+import java.io.OutputStreamWriter;
+import java.net.Socket;
+
+import junit.framework.Test;
 import junit.framework.TestCase;
+import junit.framework.TestSuite;
 
 public class NotificacionMailTest extends TestCase
 {
@@ -57,17 +68,17 @@ public void testNotificadorMailServicio()
 }
 public void testWorker()
 {
-//   try
-//   {
-//      //OutputStream stdin = process.getOutputStream(); // <- Eh?
-//      //InputStream stdout = process.getInputStream();
-//
-//      //BufferedReader reader = new BufferedReader(new InputStreamReader(stdout));
-//      //BufferedWriter writer = new BufferedWriter(new OutputStreamWriter(stdin));
-//      InputStream io = socket.getInputStream();
-//      //socket.
-//   } catch (IOException e)
-//   {
-//   }
+   //try
+   //{
+            //OutputStream stdin = process.getOutputStream(); // <- Eh?
+            //InputStream stdout = process.getInputStream();
+      
+            //BufferedReader reader = new BufferedReader(new InputStreamReader(stdout));
+            //BufferedWriter writer = new BufferedWriter(new OutputStreamWriter(stdin));
+            //InputStream io = socket.getInputStream();
+            //socket.
+   //} catch (IOException e)
+   //{
+   //}
 }
 }

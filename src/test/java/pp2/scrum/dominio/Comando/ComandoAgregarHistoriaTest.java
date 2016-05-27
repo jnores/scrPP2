@@ -26,14 +26,14 @@ public class ComandoAgregarHistoriaTest extends TestCase {
 	}
 
 	/**
-	 * Test method for {@link pp2.scrum.dominio.comando.ComandoAgregarHistoria#configurar(com.ungs.pp2.scrPP2.Dominio.Request)}.
+	 * Test method for {@link pp2.scrum.dominio.comando.MostrarAgregarHistoria#configurar(com.ungs.pp2.scrPP2.Dominio.Request)}.
 	 */
 	public final void testConfigurar() {
 		//fail("Not yet implemented");
 	}
 
 	/**
-	 * Test method for {@link pp2.scrum.dominio.comando.ComandoAgregarHistoria#Execute(com.ungs.pp2.scrPP2.Controller.HomeController)}.
+	 * Test method for {@link pp2.scrum.dominio.comando.MostrarAgregarHistoria#Execute(com.ungs.pp2.scrPP2.Controller.HomeController)}.
 	 */
 	public final void testExecute() {
 		//fail("Not yet implemented");
