@@ -42,6 +42,7 @@ public class UserStoryPaginadoView extends JPanel implements Observer
 	
 	public UserStoryPaginadoView(UserStoryPaginadoController controller ) 
 	{
+		
 		Controller = controller;
 		//setTitle("Historias de Usuario");
 		//setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -57,7 +58,6 @@ public class UserStoryPaginadoView extends JPanel implements Observer
 		// Seteo la lista paginada con la 1º pagina por defecto
 		Stories = Controller.ListarUserStories(null);
 		cargarVista();
-			
 		
 		btnadd.addActionListener(new ActionListener() 
       { 

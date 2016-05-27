@@ -9,20 +9,20 @@ import pp2.scrum.view.HomeView;
 public class MainScrum {
 	public static void main( String[ ] args ) {
 
-/*		JFrame.setDefaultLookAndFeelDecorated(true);
-		JDialog.setDefaultLookAndFeelDecorated(true);
-		SwingUtilities.invokeLater(new Runnable() {
-			public void run() {
-				try {
-//					TODO comente esta linea porque esta generando un exceso de informacion 
-//					y rompio  la integracion continnua al generar un archivo de log mayr a 4M
-//					Averiguar como deshabilitarlo para las pruebas o como deshabilitarle el log de errores. 
+//		JFrame.setDefaultLookAndFeelDecorated(true);
+//		JDialog.setDefaultLookAndFeelDecorated(true);
+//		SwingUtilities.invokeLater(new Runnable() {
+//			public void run() {
+//				try {
+////					TODO comente esta linea porque esta generando un exceso de informacion 
+////					y rompio  la integracion continnua al generar un archivo de log mayr a 4M
+////					Averiguar como deshabilitarlo para las pruebas o como deshabilitarle el log de errores. 
 //					UIManager.setLookAndFeel(new SubstanceChallengerDeepLookAndFeel());
-				} catch (Exception e) {
-					JFrame.setDefaultLookAndFeelDecorated(false);
-				}
-			}
-		});*/
+//				} catch (Exception e) {
+//					JFrame.setDefaultLookAndFeelDecorated(false);
+//				}
+//			}
+//		});
 
 		EventQueue.invokeLater( new Runnable() {
 			@Override

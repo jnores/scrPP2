@@ -7,7 +7,7 @@ import pp2.scrum.dominio.entidad.UserStory;
 public class UserStoryController {
 	private CorrectorDeSintaxis modeloCorrector;
 	private Proyecto modelo;
-	private ProyectoController proyectoController;
+	private ProyectoController proyectoController; 
 
 	public UserStoryController(Proyecto proyecto){
 		modeloCorrector=new CorrectorDeSintaxis(); 
@@ -22,7 +22,9 @@ public class UserStoryController {
 //		if (puntos==null)
 //			throw new InvalidParameterException("Se esperaba una cantidad de puntos mayor a cero y se recibio un elemento nulo.");
 		UserStory us = new UserStory(proyectoController.getSiguienteStoryID(),titulo,detalle,"");
+		
 		proyectoController.agregarUserStory(us);
+		
 	}
 	
 	public String obtenerSugerenciaTitulo(String frase){
