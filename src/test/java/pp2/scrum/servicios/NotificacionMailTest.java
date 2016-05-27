@@ -16,10 +16,10 @@ import junit.framework.TestSuite;
 public class NotificacionMailTest extends TestCase
 {
 
-private NotificadorMail notificador;
-private Thread hilo;
-private Worker worker;
-private Socket socket;
+//private NotificadorMail notificador;
+//private Thread hilo;
+//private Worker worker;
+//private Socket socket;
 
 
 public NotificacionMailTest( String testName )
@@ -30,55 +30,55 @@ public NotificacionMailTest( String testName )
 ///**
 // * @return the suite of tests being tested
 // */
-public static Test suite()
-{
-    return new TestSuite( NotificacionMailTest.class );
-}
+//public static Test suite()
+//{
+//    return new TestSuite( NotificacionMailTest.class );
+//}
 
 public void  setUp()
 {
-   notificador = new NotificadorMail();
-   socket = new Socket();
+//   notificador = new NotificadorMail();
+//   socket = new Socket();
 }
 
 
 public void testNotificadorMailServicio()
 {
-   hilo = new Thread() {
-      public void run() {
-         notificador.IniciarServicio();
-      }  
-  };
-
-  hilo.start();
-  try
-  {
-     Thread.sleep(1000);
-  } catch (InterruptedException e1)
-  {
-      e1.printStackTrace();
-  }
-   try
-   {      
-      notificador.killServicio();
-   } catch (IOException e)
-   {
-      e.printStackTrace();
-   }
+//   hilo = new Thread() {
+//      public void run() {
+//         notificador.IniciarServicio();
+//      }  
+//  };
+//
+//  hilo.start();
+//  try
+//  {
+//     Thread.sleep(1000);
+//  } catch (InterruptedException e1)
+//  {
+//      e1.printStackTrace();
+//  }
+//   try
+//   {      
+//      notificador.killServicio();
+//   } catch (IOException e)
+//   {
+//      e.printStackTrace();
+//   }
 }
 public void testWorker()
 {
-   try
-   {
+   //try
+   //{
             //OutputStream stdin = process.getOutputStream(); // <- Eh?
             //InputStream stdout = process.getInputStream();
       
             //BufferedReader reader = new BufferedReader(new InputStreamReader(stdout));
             //BufferedWriter writer = new BufferedWriter(new OutputStreamWriter(stdin));
-            InputStream io = socket.getInputStream();
+            //InputStream io = socket.getInputStream();
             //socket.
-   } catch (IOException e)
-   {
-   }
+   //} catch (IOException e)
+   //{
+   //}
 }
 }
