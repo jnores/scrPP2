@@ -45,11 +45,13 @@ public void run()
       //Append data to text area
       // textArea.append(line);
       dataCliente.close(); // cierro el input strem socket
+      client.close();
       }catch (IOException e) 
       {
          e.printStackTrace();
       }catch (Exception e)
       {
+         e.printStackTrace();
          //devolver error al socket cliente
       }
 
