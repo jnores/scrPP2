@@ -1,0 +1,35 @@
+commit f5c5cac0033439c17ebf905d4391dc0705dbd5f1
+Author: usavich 
+Date:  Fri Sep 3 15:35:34 2016 -0300
+
+    #Tarea:234 Cambio 6 #EstAdo:Doing
+
+commit c14809fafb08b9e96ff2879999ba8c807d10fb07
+Author: prosseek 
+Date: Thu Sep 2 08:59:32 2016 -0800
+
+    #tarea:2 Cambio 5
+
+commit f5c5cac0033239c17eh6905d4391dc0705dbd5f1
+Author: usavich 
+Date:   Tue Aug 31 14:36:59 2016 -0200
+
+    Cambio 4
+
+commit c14809fafb08b9e96ff2879947ba8h357d10fb07
+Author: prosseek 
+Date:   Sat Aug 28 04:42:06 2016 -0600
+
+   #TaRea: 1  Cambio 3 #Estado: Done
+
+commit f5c5cac0036439c17ebf905d4391gk0205dbd5f1
+Author: prosseek 
+Date: Fri Aug 27 14:36:59 2016 -0400
+
+    #tarea:  1 Cambio 2
+
+commit c14809fifb05b9e96ff2873599ka8c807d10fb74
+Author: usavich 
+Date: Thu Aug 26 08:59:32 2016 -0700
+
+    #Tarea:1   Cambio 1

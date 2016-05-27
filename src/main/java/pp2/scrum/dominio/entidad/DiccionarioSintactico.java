@@ -1,33 +1,29 @@
 package pp2.scrum.dominio.entidad;
 
 import java.util.ArrayList;
-import java.util.HashMap;
 
 public class DiccionarioSintactico{
 
-	private HashMap<String,ArrayList<String>> palabrasAceptadas;
-	private ArrayList<String> orden;
+	private ArrayList<ArrayList<String>> palabrasAceptadas;
 	
 	public DiccionarioSintactico(){
 
-		palabrasAceptadas=new HashMap<String,ArrayList<String>>();
-		orden=new ArrayList<String>();
+		palabrasAceptadas=new ArrayList<ArrayList<String>>();
 	}
 	
-	public void addElemento(String identificador){
-		this.orden.add(identificador);
+	public void addPalabras(ArrayList<String> aceptadas){
+		this.palabrasAceptadas.add(aceptadas);
 	}
 	
-	public ArrayList<String> getOrden(){
-		return this.orden;
+	public ArrayList<String> getPalabrasIniciales(){
+		return this.palabrasAceptadas.get(0);
 	}
 	
-	public void setPalabrasAceptadas(String clave,ArrayList<String> aceptadas){
-		this.palabrasAceptadas.put(clave,aceptadas);
+	public ArrayList<String> getPalabrasIntermedias(){
+		return this.palabrasAceptadas.get(1);
 	}
-
 	
-	public ArrayList<String> getAceptadas(String clave){
-		return this.palabrasAceptadas.get(clave);
+	public ArrayList<String> getPalabrasFinales(){
+		return this.palabrasAceptadas.get(2);
 	}
 }

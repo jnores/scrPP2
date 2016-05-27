@@ -22,5 +22,10 @@ public class Calendario {
 		long diferencia= fin.getTime()-inicio.getTime();
 		return (int) ((diferencia)/86400000);
 	}
+	
+	public static Date agregarDias(Date inicio, long dias) {
+            long diasEnMili= dias * 86400000 ;
+            return new Date(inicio.getTime()+diasEnMili); 
+	}
 
 }
