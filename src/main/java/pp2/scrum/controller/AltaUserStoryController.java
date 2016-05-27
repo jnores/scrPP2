@@ -1,19 +1,19 @@
 package pp2.scrum.controller;
 
-import java.security.InvalidParameterException;
+//import java.security.InvalidParameterException;
 
-import pp2.scrum.dominio.entidad.CorrectorDeSintaxis;
+import pp2.scrum.dominio.entidad.CorrectorSintaxis;
 import pp2.scrum.dominio.entidad.UserStory;
 import pp2.scrum.dominio.interfaz.IConsulta;
 
 public class AltaUserStoryController extends Controller {
-	private CorrectorDeSintaxis modeloCorrector;
-	private UserStory modelo;
+	private CorrectorSintaxis modeloCorrector;
+	//private UserStory modelo;
 	private ProyectoController proyectoController;
 
 	public AltaUserStoryController(IConsulta consulta,ProyectoController proyecto){
 		super(consulta);
-		modeloCorrector=new CorrectorDeSintaxis(); 
+		modeloCorrector=new CorrectorSintaxis(); 
 		proyectoController = proyecto;
 	}
 	
@@ -29,10 +29,10 @@ public class AltaUserStoryController extends Controller {
 	}
 	
 	public String obtenerSugerenciaTitulo(String frase){
-		return modeloCorrector.analizarTituloUserStory(frase);
+		return modeloCorrector.analizarTituloUserStory(frase,false);
 	}
 	
 	public String obtenerSugerenciaCriterio(String frase){
-		return modeloCorrector.analizarCriterios(frase);
+		return modeloCorrector.analizarCriterios(frase,false);
 	}
 }
