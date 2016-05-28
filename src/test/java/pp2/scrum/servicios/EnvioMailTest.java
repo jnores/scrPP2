@@ -36,7 +36,7 @@ public void  setUp()
 //   notificador = new NotificadorMail();
    host = "127.0.0.1";
    port = 4444;
-   //EnvioMail();
+   EnvioMail();
 }
 
 
@@ -50,16 +50,16 @@ public void EnvioMail()
       mensaje.writeUTF("pp2mailsender");
       mensaje.flush();
       
-      mensaje.writeUTF("mal");
+      mensaje.writeUTF("mailmail");
       mensaje.flush();
       
-      mensaje.writeUTF("julian.dirisio@gmail.com");
+      mensaje.writeUTF("missgeek@mailinator.com");
       mensaje.flush();
       
       mensaje.writeUTF("Subject Test");
       mensaje.flush();
       
-      mensaje.writeUTF("Body Test Envio de mail de prueba para PP2");
+      mensaje.writeUTF("Body Test Envio de mail 2 de prueba para PP2");
       mensaje.flush();
       
       mensaje.close();
