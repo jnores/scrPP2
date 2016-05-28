@@ -83,12 +83,11 @@ public class EnviadorMail implements IMailGateway
 
          socket.close();
          
-      } catch (UnknownHostException e)
+      } 
+      catch (Exception e)
       {
     	  System.err.println(e.getMessage());
-      } catch (IOException e)
-      {
-    	  System.err.println(e.getMessage());
+    	  resultado.AgregarError("4", "Error al conectar al servicio de Mail");
       }    
       return resultado;
    }  
