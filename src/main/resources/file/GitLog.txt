@@ -10,19 +10,19 @@ Date: Thu Sep 2 08:59:32 2016 -0800
 
     #tarea:2 Cambio 5
 
-commit f5c5cac0033239c17eh6905d4391dc0705dbd5f1
+commit f5c5cac0033239c17eh6905d4391dc0705dbd5f2
 Author: usavich 
 Date:   Tue Aug 31 14:36:59 2016 -0200
 
     Cambio 4
 
-commit c14809fafb08b9e96ff2879947ba8h357d10fb07
+commit c14809fafb08b9e96ff2879947ba8h357d10fb08
 Author: prosseek 
 Date:   Sat Aug 28 04:42:06 2016 -0600
 
    #TaRea: 1  Cambio 3 #Estado: Done
 
-commit f5c5cac0036439c17ebf905d4391gk0205dbd5f1
+commit f5c5cac0036439c17ebf905d4391gk0205dbd5f3
 Author: prosseek 
 Date: Fri Aug 27 14:36:59 2016 -0400
 

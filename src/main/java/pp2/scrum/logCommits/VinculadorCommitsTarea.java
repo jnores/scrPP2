@@ -37,7 +37,7 @@ public class VinculadorCommitsTarea {
 			evaluarEstadoTarea(tarea, estadoNuevo);
 		}catch(Exception exc){ exc.getMessage();}
 	}
-	
+	// el evaluar no evalua. setea => ver siu se usa un ciclo para avanzar hasta el nuevo estado
 	private void evaluarEstadoTarea(Tarea tarea,Estado estadoActualTarea){
 		if(tarea.getEstado()==Estado.ToDo){
 			tarea.avanzarEstado();
@@ -57,6 +57,9 @@ public class VinculadorCommitsTarea {
 		return null;
 	}
 	
+	// no poner los main en las clases. para esto estan los tests
+	// Ver si se puede volver al estado previo. porque puede pasar. prioridad_Baja
+	// no pasar el path del archivo. habrirlo con el interpreteCommits y pasarle la lista de commits. 
 	public static void main(String[] args) {
 		ArrayList<Tarea> tareas=new ArrayList<Tarea> ();
 		for(int i=1; i<10;i++){
@@ -65,6 +68,7 @@ public class VinculadorCommitsTarea {
 			tareas.add(tarea);
 		}
 		VinculadorCommitsTarea vinculos=new VinculadorCommitsTarea(tareas,"src/main/resources/file/GitLog.txt");
-		System.out.println(vinculos.getTarea(1).getEstado()+" "+ vinculos.getTarea(1).getCommits().get(0)+" "+vinculos.getTarea(2).getEstado());
+		for(Tarea t:tareas)
+		    System.out.println(t.getEstado()+" => "+ (t.getCommits().isEmpty()?"-":t.getCommits().get(0)));
 	}
 }
