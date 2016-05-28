@@ -6,8 +6,6 @@ import java.net.Socket;
 import java.net.UnknownHostException;
 
 import pp2.scrum.dominio.Resultado;
-import pp2.scrum.dominio.comando.Comando;
-import pp2.scrum.dominio.comando.MailComando;
 import pp2.scrum.dominio.entidad.Mail;
 import pp2.scrum.dominio.interfaz.IMailGateway;
 
@@ -17,33 +15,39 @@ import pp2.scrum.dominio.interfaz.IMailGateway;
  */
 public class EnviadorMail implements IMailGateway
 {
-   private int port;    //Quien setea Esto??
-   private String host;  //Quien setea Esto??
-   private Socket socket;
-   private DataOutputStream mensaje;
-   private MailComando mailComando;
+   private int port;
+   private String host;
+   private String senderMail;
+   private String SenderPassMail;
 
+   public EnviadorMail(int port,String host,String senderMail,String SenderPassMail)
+   {
+	   this.port = port;
+	   this.host = host;
+	   this.senderMail = senderMail;
+	   this.SenderPassMail = SenderPassMail;
+   }
    @Override
    public Resultado enviar(Mail mail)
    {
       try
       {
         
-         socket = new Socket(host,port);
-         mensaje = new DataOutputStream(socket.getOutputStream());
-         mensaje.writeUTF(mailComando.getUserMail());
+    	 Socket socket = new Socket(host,port);
+    	 DataOutputStream mensaje = new DataOutputStream(socket.getOutputStream());
+         mensaje.writeUTF(senderMail);
          mensaje.flush();
          
-         mensaje.writeUTF(mailComando.getUserPassMail());
+         mensaje.writeUTF(SenderPassMail);
          mensaje.flush();
          
-         mensaje.writeUTF(mailComando.getDestinoMail());
+         mensaje.writeUTF(mail.getDestinoMail());
          mensaje.flush();
          
-         mensaje.writeUTF(mailComando.getTema());
+         mensaje.writeUTF(mail.getTema());
          mensaje.flush();
          
-         mensaje.writeUTF(mailComando.getCuerpo());
+         mensaje.writeUTF(mail.getCuerpo());
          mensaje.flush();
          
          mensaje.close();
