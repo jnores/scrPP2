@@ -1,5 +1,6 @@
 package pp2.scrum.dominio.Plugin;
 
+import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -40,10 +41,17 @@ public class ExportToTextTest extends TestCase {
 		UserStoryHelper userStoryHelper = new UserStoryHelper(this.userStory);
 		
 		ExportToText exporter = new ExportToText();
-		String path="./prueba.xls";
+		
+		assertTrue(exporter.toString().equals("Exportar a texto"));
+		
+		String path="./prueba";
+		File f = new File(path+".txt");
+		if (f.exists())
+		    f.delete();
 		List<UserStoryHelper> lst = new ArrayList<>();
 		lst.add(userStoryHelper);
 		exporter.export(path, lst);
+		
 		
 //		AltaUserStoryView altv = new AltaUserStoryView(null);
 //		FilterStoriesView v = new FilterStoriesView(null); 
