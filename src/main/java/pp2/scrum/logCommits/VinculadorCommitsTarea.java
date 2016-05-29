@@ -60,15 +60,15 @@ public class VinculadorCommitsTarea {
     // no poner los main en las clases. para esto estan los tests
     // Ver si se puede volver al estado previo. porque puede pasar. prioridad_Baja
     // no pasar el path del archivo. habrirlo con el interpreteCommits y pasarle la lista de commits. 
-    public static void main(String[] args) {
-        ArrayList<Tarea> tareas=new ArrayList<Tarea> ();
-        for(int i=1; i<10;i++){
-            Tarea tarea=new Tarea();
-            tarea.setId(i);
-            tareas.add(tarea);
-        }
-        VinculadorCommitsTarea vinculos=new VinculadorCommitsTarea(tareas,"src/main/resources/file/GitLog.txt");
-        for(Tarea t:tareas)
-            System.out.println(t.getEstado()+" => "+ (t.getCommits().isEmpty()?"-":t.getCommits().get(0)));
-    }
+//    public static void main(String[] args) {
+//        ArrayList<Tarea> tareas=new ArrayList<Tarea> ();
+//        for(int i=1; i<10;i++){
+//            Tarea tarea=new Tarea();
+//            tarea.setId(i);
+//            tareas.add(tarea);
+//        }
+//        VinculadorCommitsTarea vinculos=new VinculadorCommitsTarea(tareas,"src/main/resources/file/GitLog.txt");
+//        for(Tarea t:tareas)
+//            System.out.println(t.getEstado()+" => "+ (t.getCommits().isEmpty()?"-":t.getCommits().get(0)));
+//    }
 }

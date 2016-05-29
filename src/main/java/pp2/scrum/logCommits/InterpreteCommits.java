@@ -54,15 +54,15 @@ public class InterpreteCommits {
 		return commitsLog;
 	}
 
-	public static void main(String[] args) {
-		InterpreteCommits interprete=new InterpreteCommits("src/main/resources/file/GitLog.txt");
-		for(Commit commit:interprete.getCommits()){
-			System.out.println(commit.getSha());
-			System.out.println(commit.getDate());
-			System.out.println(commit.getAutor());
-			System.out.println(commit.getMensaje());
-			
-		}
-	}
+//	public static void main(String[] args) {
+//		InterpreteCommits interprete=new InterpreteCommits("src/main/resources/file/GitLog.txt");
+//		for(Commit commit:interprete.getCommits()){
+//			System.out.println(commit.getSha());
+//			System.out.println(commit.getDate());
+//			System.out.println(commit.getAutor());
+//			System.out.println(commit.getMensaje());
+//			
+//		}
+//	}
 
 }
