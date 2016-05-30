@@ -4,16 +4,16 @@
 package pp2.scrum.verificarSprint;
 
 import java.util.ArrayList;
-import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
 
 import junit.framework.TestCase;
+
 import pp2.scrum.busEvent.BusEventSync;
 import pp2.scrum.dominio.entidad.Sprint;
 import pp2.scrum.dominio.entidad.UserStory;
 import pp2.scrum.dominio.enums.Estado;
-import pp2.scrum.verificarSprint.VerificarRetraso;
+import pp2.scrum.utils.Calendario;
 
 /**
  * @author yoshknight
@@ -48,11 +48,10 @@ public class VerificarRetrasoTest extends TestCase {
         stories2.add(new UserStory("Titulo3", "Detalle3", "Autor3", "Responsable3", 10, 40, 1, Estado.Done, null, null));
         stories2.add(new UserStory("Titulo4", "Detalle4", "Autor4", "Responsable4", 10, 40, 1, Estado.Done, null, null));
         
-        Calendar c1 = Calendar.getInstance();
-        c1.set(2016, 4 , 20); // 2016 enero 1
+        Date inicio = new Date(System.currentTimeMillis() - 6*Calendario.DAY);
         
-        sprintRetrasado = new Sprint(1, c1.getTime(),10,stories1);
-        sprintOK = new Sprint(1, c1.getTime(),10,stories2);
+        sprintRetrasado = new Sprint(1, inicio,10,stories1);
+        sprintOK = new Sprint(1, inicio,10,stories2);
         sprintNuevo = new Sprint(1, new Date() ,10,stories1);
     }
 
