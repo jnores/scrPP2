@@ -12,13 +12,13 @@ import junit.framework.TestCase;
  * @author yoshknight
  *
  */
-public class BusEventTest extends TestCase implements ActionListener{
-    BusEvent bus;
+public class BusEventSyncTest extends TestCase implements ActionListener{
+    BusEventSync bus;
     boolean test1;
     /**
      * @param name
      */
-    public BusEventTest(String name) {
+    public BusEventSyncTest(String name) {
         super(name);
     }
 
@@ -27,26 +27,26 @@ public class BusEventTest extends TestCase implements ActionListener{
      */
     protected void setUp() throws Exception {
         super.setUp();
-        bus= new BusEvent();
+        bus= new BusEventSync();
         test1=false;
     }
 
     /**
-     * Test method for {@link pp2.scrum.busEvent.BusEvent#BusEvent()}.
+     * Test method for {@link pp2.scrum.busEvent.BusEventSync#BusEvent()}.
      */
     public final void testBusEvent() {
-        BusEvent bus2 = new BusEvent();
+        new BusEventSync();
     }
 
     /**
-     * Test method for {@link pp2.scrum.busEvent.BusEvent#register(java.awt.event.ActionListener)}.
+     * Test method for {@link pp2.scrum.busEvent.BusEventSync#register(java.awt.event.ActionListener)}.
      */
     public final void testRegister() {
         bus.register(this);
     }
 
     /**
-     * Test method for {@link pp2.scrum.busEvent.BusEvent#unregister(java.awt.event.ActionListener)}.
+     * Test method for {@link pp2.scrum.busEvent.BusEventSync#unregister(java.awt.event.ActionListener)}.
      */
     public final void testUnregister() {
         bus.register(this);
@@ -54,33 +54,24 @@ public class BusEventTest extends TestCase implements ActionListener{
     }
 
     /**
-     * Test method for {@link pp2.scrum.busEvent.BusEvent#postEvent(java.awt.event.ActionEvent)}.
+     * Test method for {@link pp2.scrum.busEvent.BusEventSync#postEvent(java.awt.event.ActionEvent)}.
      */
     public final void testPostEvent() {
         bus.register(this);
         try {
             assertFalse(test1);
             bus.postEvent(new ActionEvent(this, 1, "test1"));
-            try {
-                Thread.sleep(1000);                 //1000 milliseconds is one second.
-            } catch(InterruptedException ex) {
-                Thread.currentThread().interrupt();
-            }
             assertTrue(test1);
         } catch (InterruptedException e) {
             // TODO Auto-generated catch block
-            fail("Fallo el posteo del evento por interrupcion del treath");
+            fail("Fallo el posteo del evento por interrupcion del tread");
         }
-        
-        
     }
-
+    
     @Override
     public void actionPerformed(ActionEvent e) {
         if (e.getActionCommand().equals("test1") )
             test1=true;
-            
-        
     }
 
 }

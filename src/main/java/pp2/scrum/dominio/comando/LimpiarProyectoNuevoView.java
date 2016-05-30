@@ -10,30 +10,24 @@ import pp2.scrum.dominio.interfaz.IComando;
 public class LimpiarProyectoNuevoView implements IComando<HomeController>
 {
 
-   public Resultado Execute(final HomeController homeController)
-   {
-      Resultado resultado = new Resultado();
-      try 
-      {
-         homeController.getProyectoNuevo().addcancelBtnListener(new ActionListener() {
-            public void actionPerformed(ActionEvent e) {
-               homeController.getProyectoNuevo().setVisible(false);
-               homeController.getProyectoNuevo().limpiarPantalla();
-               homeController.getBacklogNuevo().limpiarPantalla();
-            }
-         });
-      }
-      catch(Exception e)
-      {
-         resultado.AgregarError("Error", e.getMessage());
-      };
-      return resultado;
-   }
-
-@Override
-public Resultado Execute(HomeController homeController, ActionListener al) {
-    // TODO Auto-generated method stub
-    return null;
-}
+    @Override
+    public Resultado Execute(final HomeController homeController, ActionListener al) {
+        Resultado resultado = new Resultado();
+        try 
+        {
+            homeController.getProyectoNuevo().addcancelBtnListener(new ActionListener() {
+                public void actionPerformed(ActionEvent e) {
+                    homeController.getProyectoNuevo().setVisible(false);
+                    homeController.getProyectoNuevo().limpiarPantalla();
+                    homeController.getBacklogNuevo().limpiarPantalla();
+                }
+            });
+        }
+        catch(Exception e)
+        {
+            resultado.AgregarError("Error", e.getMessage());
+        };
+        return resultado;
+    }
 
 }

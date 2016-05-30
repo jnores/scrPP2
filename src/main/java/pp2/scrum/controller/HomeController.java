@@ -26,12 +26,6 @@ public class HomeController extends Controller implements IAppController
         backlogNuevo = new BacklogNuevoView(proyectoController);
     }
 
-    @Override
-    public Resultado Execute(IComando commando)
-    {
-        return commando.Execute(this);
-    }
-    
     @Override    
     public Resultado Execute(IComando commando,ActionListener al)
     {

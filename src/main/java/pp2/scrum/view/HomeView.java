@@ -159,14 +159,14 @@ public class HomeView  extends JFrame implements ActionListener
         mnNuevoProyectoItem = new JMenuItem("Nuevo Proyecto");
         mnNuevoProyectoItem.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
-                AppController.Execute(new MostrarProyectoNuevo());
+                AppController.Execute(new MostrarProyectoNuevo(),this);
             }
         });
 
-        AppController.Execute(new AgregarOkListenerBacklogNuevo());
-        AppController.Execute(new AgregarSiguienteListenerProyectoNuevo());
-        AppController.Execute(new LimpiarProyectoNuevoView());
-        AppController.Execute(new LimpiarBacklogNuevoView());		
+        AppController.Execute(new AgregarOkListenerBacklogNuevo(),this);
+        AppController.Execute(new AgregarSiguienteListenerProyectoNuevo(),this);
+        AppController.Execute(new LimpiarProyectoNuevoView(),this);
+        AppController.Execute(new LimpiarBacklogNuevoView(),this);		
 
         menuP.add(mnNuevoProyectoItem);
 

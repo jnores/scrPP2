@@ -6,8 +6,7 @@ import pp2.scrum.dominio.Resultado;
 
 public interface IComando<T>
 {
-    Resultado Execute(T TipoController);
 
-    Resultado Execute(T homeController, ActionListener al);
+    Resultado Execute(final T homeController, ActionListener al);
 
 }

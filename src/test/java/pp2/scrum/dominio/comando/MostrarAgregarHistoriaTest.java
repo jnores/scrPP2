@@ -16,10 +16,6 @@ public class MostrarAgregarHistoriaTest extends TestCase implements ActionListen
     protected void setUp() throws Exception {
         super.setUp();
     }
-
-    public final void testExecuteHomeController() {
-        command.Execute(null);
-    }
     
     public final void testExecuteHomeControllerActionListener() {
         command.Execute(null, this);

@@ -19,12 +19,7 @@ import pp2.scrum.view.events.ViewUpdateEvent;
 public class MostrarAgregarHistoria implements IComando<HomeController>{
 
     @Override
-    public Resultado Execute(HomeController homeController) {
-        return null;
-    }
-    
-    @Override
-    public Resultado Execute(HomeController homeController,ActionListener al) {
+    public Resultado Execute(final HomeController homeController,ActionListener al) {
         Resultado resultado = new Resultado();
         try 
         {

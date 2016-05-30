@@ -11,20 +11,22 @@ import java.util.Date;
  */
 public class Calendario {
 
-	public static Date getFechaIntermedia(Date inicio, Date fin) {
+	public static final long DAY = 86400000;
+
+    public static Date getFechaIntermedia(Date inicio, Date fin) {
 		long diferencia= fin.getTime()-inicio.getTime();
-		long diferenciaDias = ((long)((diferencia/2)/86400000) )*86400000;
+		long diferenciaDias = ((long)((diferencia/2)/DAY) )*DAY;
 		
 		return new Date(inicio.getTime()+diferenciaDias);
 	}
 
 	public static int getDuracion(Date inicio, Date fin) {
 		long diferencia= fin.getTime()-inicio.getTime();
-		return (int) ((diferencia)/86400000);
+		return (int) (diferencia/DAY);
 	}
 	
 	public static Date agregarDias(Date inicio, long dias) {
-            long diasEnMili= dias * 86400000 ;
+            long diasEnMili= dias * DAY ;
             return new Date(inicio.getTime()+diasEnMili); 
 	}
 

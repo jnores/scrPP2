@@ -15,7 +15,7 @@ public class Sprint {
 	
 	public Sprint(int idIteracion,Date fechaInicio, int duracion, List<UserStory> historias) {
 		this.idIteracion = idIteracion;
-		this.setfechaInicio(fechaInicio);
+		this.fechaInicio = fechaInicio;
 		this.duracion = duracion;
 		this.sprintBacklog = historias;
 		this.setStoryPointsPactados();
@@ -41,10 +41,6 @@ public class Sprint {
 	
 	public List<UserStory> getUserStories() {
 		return this.sprintBacklog;
-	}
-
-	public void setfechaInicio(Date fechaInicio) {
-		this.fechaInicio=fechaInicio;
 	}
 
 	public void setDuracion(int dias) {
