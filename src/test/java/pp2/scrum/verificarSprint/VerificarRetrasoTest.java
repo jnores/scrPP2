@@ -8,7 +8,7 @@ import java.util.Date;
 import java.util.List;
 
 import junit.framework.TestCase;
-
+import pp2.scrum.busEvent.BusEvent;
 import pp2.scrum.busEvent.BusEventSync;
 import pp2.scrum.dominio.entidad.Sprint;
 import pp2.scrum.dominio.entidad.UserStory;
@@ -22,6 +22,8 @@ import pp2.scrum.utils.Calendario;
 public class VerificarRetrasoTest extends TestCase {
     UserStory us1,us2,us3;
     Sprint sprintRetrasado,sprintOK,sprintNuevo;
+    boolean notificado;
+    BusEvent bus;
     
     /**
      * @param name
@@ -53,13 +55,19 @@ public class VerificarRetrasoTest extends TestCase {
         sprintRetrasado = new Sprint(1, inicio,10,stories1);
         sprintOK = new Sprint(1, inicio,10,stories2);
         sprintNuevo = new Sprint(1, new Date() ,10,stories1);
+        
+        notificado = false;
+        bus = new BusEventSync();
     }
 
     /**
      * Test method for {@link pp2.scrum.verificarSprint.VerificarRetraso#VerificarRetraso(pp2.scrum.dominio.entidad.Sprint)}.
      */
     public final void testVerificarRetraso() {
-        new VerificarRetraso(sprintRetrasado, new BusEventSync() ).run();
+        assertFalse(notificado);
+        bus.register(new NotificarRetraso(new NotificadorMock()));
+        new VerificarRetraso(sprintRetrasado, bus ).run();
+        assertTrue(notificado);
     }
 
     /**
@@ -69,6 +77,20 @@ public class VerificarRetrasoTest extends TestCase {
 //        fail("Not yet implemented");
         new VerificarRetraso(sprintOK, new BusEventSync() ).run();
         new VerificarRetraso(sprintNuevo, new BusEventSync() ).run();
+    }
+    
+    private class NotificadorMock implements Notificador {
+
+        @Override
+        public void sendMail(String destino, String asunto, String mensaje) {
+            System.out.println("<NotificadorMock>");
+            System.out.println("\t<Destino>"+destino+"</Destino>");
+            System.out.println("\t<Asunto>" +asunto+"</Asunto>");
+            System.out.println("\t<Mensaje>"+mensaje+"</Mensaje>");
+            System.out.println("</NotificadorMock>");
+            notificado=true;
+        }
+        
     }
 
 }

@@ -40,9 +40,9 @@ public class VerificarRetraso implements Runnable {
                 if ( porcentajeAvance < porcentajeTranscurrido ) {
                     try {
                         String titulo="Sprint "+sprint.getIdIteracion()+" retrasado";
-                        String detalle = "El desarrollo del srprint "+sprint.getIdIteracion()+" se encuentra retrasado.\n"+
+                        String detalle = "El desarrollo del sprint "+sprint.getIdIteracion()+" se encuentra retrasado.\n"+
                               "Solo el "+porcentajeAvance+"% esta completo.\n"+
-                              "El porcentaje de desarrollo terminado es menor que el "+porcentajeAvance+"% de tiempo transcurrido!";
+                              "El porcentaje de desarrollo terminado es menor que el "+porcentajeTranscurrido+"% de tiempo transcurrido!";
                         
                         busEvent.postEvent( new SprintRetrasadoEvent(this,titulo,detalle) );
                     } catch (InterruptedException e) {
