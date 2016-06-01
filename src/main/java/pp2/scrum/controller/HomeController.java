@@ -19,7 +19,7 @@ public class HomeController extends Controller implements IAppController
     private ProyectoController proyectoController;
 
 
-    public HomeController(IConsulta consulta,IMailGateway mailGateway) 
+    public HomeController(IConsulta consulta,IMailGateway mailGateway)
     {	
         super(consulta, mailGateway);
         proyectoController = new ProyectoController(null, new Proyecto(),mailGateway);

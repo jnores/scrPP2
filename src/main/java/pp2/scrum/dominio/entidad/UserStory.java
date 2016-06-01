@@ -2,10 +2,12 @@ package pp2.scrum.dominio.entidad;
 
 import java.util.Date;
 import java.util.List;
+import java.util.Observable;
+import java.util.Observer;
 
 import pp2.scrum.dominio.enums.Estado;
 
-public class UserStory extends java.util.Observable
+public class UserStory extends java.util.Observable 
 {
 	
 	private long id;
@@ -199,5 +201,21 @@ public class UserStory extends java.util.Observable
 		}
 		return true;
 	}
+	
+	public boolean estaTerminada()
+	{
+	   boolean termino = false;
+	   for (Tarea tarea : tareas)
+      {
+         termino = tarea.getEstado() == Estado.Done;
+         if(!termino)
+         {
+            return false;
+         }
+      }
+	   return termino;
+	}
+	
+
 	
 }

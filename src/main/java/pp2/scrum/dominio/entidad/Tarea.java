@@ -1,6 +1,8 @@
 package pp2.scrum.dominio.entidad;
 
 import java.util.ArrayList;
+import java.util.Observable;
+import java.util.Observer;
 
 import pp2.scrum.dominio.enums.Estado;
 
@@ -50,13 +52,20 @@ public class Tarea extends java.util.Observable
 	public void avanzarEstado() throws RuntimeException
 	{
 		estado = estado.avanzar();
+		fueModificado();
 	}
 	
 	public void addCommit(String id){
 		this.commitsVinculados.add(id);
+		fueModificado();
 	}
 	
 	public ArrayList<String> getCommits(){
 		return this.commitsVinculados;
 	}
+	
+	private void fueModificado() {
+      setChanged();
+      notifyObservers();
+   }
 }
