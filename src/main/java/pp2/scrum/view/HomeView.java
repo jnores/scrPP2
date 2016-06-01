@@ -53,8 +53,8 @@ public class HomeView  extends JFrame implements ActionListener
         thisFrame = this;
         this.AppController=controller;
         getContentPane().setLayout(new BorderLayout());
-        burndownChartViewpanel = new BurndownChartView(new BurndownChartController(null, null));
-        listadoPaginadoHistorias = new UserStoryPaginadoView(new UserStoryPaginadoController(new Consulta()));
+        burndownChartViewpanel = new BurndownChartView(new BurndownChartController(null, AppController.getMailGateway()));
+        listadoPaginadoHistorias = new UserStoryPaginadoView(new UserStoryPaginadoController(new Consulta(),AppController.getMailGateway()));
         filtradoHistorias = new UserStoryOrderableView(new UserStoryListView( ((HomeController)controller).getProyectoController().getBacklog() ));
 
         setTitle("Scrummer");		

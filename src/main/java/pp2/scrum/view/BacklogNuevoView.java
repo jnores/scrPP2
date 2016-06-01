@@ -26,7 +26,7 @@ public class BacklogNuevoView extends JDialog
    public BacklogNuevoView(ProyectoController controller)
    {
       this.controller = controller;
-      this.backlogPanel = new UserStoryPaginadoView(new UserStoryPaginadoController(new Consulta()));
+      this.backlogPanel = new UserStoryPaginadoView(new UserStoryPaginadoController(new Consulta(),controller.getMailGateway()));
       setTitle("Backlog Nuevo");
       setBounds(100, 100, 450, 300);
       getContentPane().setLayout(new BorderLayout());
@@ -58,7 +58,7 @@ public class BacklogNuevoView extends JDialog
    
    public void limpiarPantalla()
    {
-      backlogPanel = new UserStoryPaginadoView(new UserStoryPaginadoController(new Consulta()));
+      backlogPanel = new UserStoryPaginadoView(new UserStoryPaginadoController(new Consulta(),controller.getMailGateway()));
       getContentPane().remove(0);
       getContentPane().add(backlogPanel,BorderLayout.CENTER,0);
       setearVista();

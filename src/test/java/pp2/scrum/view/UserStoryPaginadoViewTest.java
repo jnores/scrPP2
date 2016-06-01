@@ -13,12 +13,14 @@ import pp2.scrum.controller.UserStoryPaginadoController;
 import pp2.scrum.dominio.entidad.UserStory;
 import pp2.scrum.dominio.enums.Estado;
 import pp2.scrum.dominio.interfaz.IConsulta;
+import pp2.scrum.dominio.interfaz.IMailGateway;
 import pp2.scrum.view.UserStoryPaginadoView;
 
 public class UserStoryPaginadoViewTest extends TestCase
 {
    private UserStoryPaginadoController controller;
    private MockUp<IConsulta> consultaMock;
+   private MockUp<IMailGateway> mailGatewayMock;
    
    public UserStoryPaginadoViewTest( String testName ) {
       super( testName );
@@ -54,7 +56,8 @@ public class UserStoryPaginadoViewTest extends TestCase
                ));
          }
       };
-      controller = new UserStoryPaginadoController(consultaMock.getMockInstance());  
+      mailGatewayMock = new MockUp<IMailGateway>(){};
+      controller = new UserStoryPaginadoController(consultaMock.getMockInstance(),mailGatewayMock.getMockInstance());  
    }
    
    public void testMainUserStoryMain() 

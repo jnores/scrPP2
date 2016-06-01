@@ -7,5 +7,6 @@ import pp2.scrum.dominio.Resultado;
 public interface IAppController
 {
 
-    Resultado Execute(IComando commando, ActionListener al);
+    public Resultado Execute(IComando commando, ActionListener al);
+    public IMailGateway getMailGateway();
 }

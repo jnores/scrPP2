@@ -2,7 +2,9 @@ package pp2.scrum;
 
 import java.awt.EventQueue;
 
+import pp2.scrum.consulta.EnviadorMail;
 import pp2.scrum.controller.HomeController;
+import pp2.scrum.dominio.interfaz.IMailGateway;
 import pp2.scrum.utils.Logger;
 import pp2.scrum.view.HomeView;
 
@@ -36,7 +38,10 @@ public class MainScrum {
 				//			}
 				Logger.init();
 				
-				HomeController controller = new HomeController(null);
+				//Creo la dependencia al iniciar la aplicacion una sola vez
+				IMailGateway mailGateway = new EnviadorMail(4444,"127.0.0.1", "pp2mailsender", "mailmail", 15);
+				
+				HomeController controller = new HomeController(null,mailGateway);
 
 				HomeView view = new HomeView(controller);	
 				view.setVisible( true );

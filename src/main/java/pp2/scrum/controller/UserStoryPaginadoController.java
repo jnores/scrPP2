@@ -6,6 +6,7 @@ import java.util.List;
 import pp2.scrum.dominio.Paginacion;
 import pp2.scrum.dominio.entidad.UserStory;
 import pp2.scrum.dominio.interfaz.IConsulta;
+import pp2.scrum.dominio.interfaz.IMailGateway;
 
 public class UserStoryPaginadoController extends Controller 
 {
@@ -15,9 +16,9 @@ public class UserStoryPaginadoController extends Controller
 	   private int itemsTotales;
 
 	   //La consulta se pasa a cada controller para hacer consultas a la base y son pasadas a su padre
-	   public UserStoryPaginadoController(IConsulta consulta)
+	   public UserStoryPaginadoController(IConsulta consulta, IMailGateway mailGateway)
 	   {
-		  super (consulta);
+		  super (consulta,mailGateway);
 	      model = consulta.ObtenerUserStoriesDB();
 	      paginaDefault = new Paginacion(null, null, 1, 5);
 	      paginaActual = paginaDefault;

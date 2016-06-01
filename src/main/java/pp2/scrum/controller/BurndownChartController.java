@@ -16,6 +16,7 @@ import pp2.scrum.dominio.enums.Estado;
 import pp2.scrum.dominio.enums.OpcionGrafico;
 import pp2.scrum.dominio.interfaz.IConsulta;
 import pp2.scrum.dominio.interfaz.IDataComponent;
+import pp2.scrum.dominio.interfaz.IMailGateway;
 import pp2.scrum.view.BurndownChartView;
 
 public class BurndownChartController extends Controller
@@ -24,13 +25,13 @@ public class BurndownChartController extends Controller
 	private BurndownChartView vista;
 	private OpcionGrafico Opcion;
 
-	public BurndownChartController(IConsulta consulta) {
-		super(consulta);
+	public BurndownChartController(IConsulta consulta,IMailGateway mailGateway) {
+		super(consulta, mailGateway);
 	}
 	
-	public BurndownChartController(IConsulta consulta,IDataComponent modelo) 
+	public BurndownChartController(IConsulta consulta,IDataComponent modelo,IMailGateway mailGateway) 
 	{
-		super (consulta);
+		super (consulta,mailGateway);
 		this.modelo= modelo;
 	}
 	

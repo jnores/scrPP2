@@ -10,7 +10,7 @@ public class MainUserPaginadoStory
       public static void main(String[] args) {
 
 		//Creo el controlador y le envío el modelo
-		UserStoryPaginadoController controller = new UserStoryPaginadoController(new Consulta());
+		UserStoryPaginadoController controller = new UserStoryPaginadoController(new Consulta(),null);
 		
 		//La vista recibe el controlador
 		UserStoryPaginadoView view = new UserStoryPaginadoView(controller);

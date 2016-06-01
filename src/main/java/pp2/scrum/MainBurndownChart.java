@@ -10,7 +10,7 @@ public class MainBurndownChart {
 		IDataComponent data=null;
 		
 		//Supongo que siguiendo el patrón de lo que han hecho... debería mandar un modelo XD
-		BurndownChartController controller = new BurndownChartController(null, data);
+		BurndownChartController controller = new BurndownChartController(null, data,null);
 		
 		//La vista recibe el controlador o algo 
 //		BurndownChartView view = 

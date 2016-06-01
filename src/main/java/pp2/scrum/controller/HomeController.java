@@ -8,6 +8,7 @@ import pp2.scrum.dominio.entidad.Proyecto;
 import pp2.scrum.dominio.interfaz.IAppController;
 import pp2.scrum.dominio.interfaz.IComando;
 import pp2.scrum.dominio.interfaz.IConsulta;
+import pp2.scrum.dominio.interfaz.IMailGateway;
 import pp2.scrum.view.BacklogNuevoView;
 import pp2.scrum.view.ProyectoNuevoView;
 
@@ -18,10 +19,10 @@ public class HomeController extends Controller implements IAppController
     private ProyectoController proyectoController;
 
 
-    public HomeController(IConsulta consulta) 
+    public HomeController(IConsulta consulta,IMailGateway mailGateway) 
     {	
-        super(consulta);
-        proyectoController = new ProyectoController(null, new Proyecto());
+        super(consulta, mailGateway);
+        proyectoController = new ProyectoController(null, new Proyecto(),mailGateway);
         proyectoNuevo = new ProyectoNuevoView(proyectoController);
         backlogNuevo = new BacklogNuevoView(proyectoController);
     }
@@ -54,5 +55,10 @@ public class HomeController extends Controller implements IAppController
     public ProyectoController getProyectoController()
     {
         return proyectoController;
+    }
+    @Override
+    public IMailGateway getMailGateway()
+    {
+        return mailGateway;
     }
 }
