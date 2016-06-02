@@ -8,7 +8,7 @@ import java.util.Observer;
 
 import pp2.scrum.dominio.enums.Estado;
 
-public class UserStory extends java.util.Observable 
+public class UserStory extends Observable implements Observer
 {
 	
 	private long id;
@@ -36,6 +36,7 @@ public class UserStory extends java.util.Observable
 		this.criterios = criterios == null ? new ArrayList<CriterioAceptacion>() : criterios;
 		this.tareas = tareas == null ? new ArrayList<Tarea>() : tareas;
 		this.fechaDone=null;
+		observarTareas(this.tareas);
 	}
 	
 	public UserStory(String titulo, String detalle, String autor) {
@@ -47,6 +48,7 @@ public class UserStory extends java.util.Observable
 		this.fechaDone=null;
 		this.criterios = new ArrayList<CriterioAceptacion>();
       this.tareas = new ArrayList<Tarea>();
+      observarTareas(this.tareas);
 	}
 	public UserStory(long id,String titulo, String detalle, String autor) {
 		this.id = id;
@@ -58,6 +60,7 @@ public class UserStory extends java.util.Observable
 		this.fechaDone=null;
 		this.criterios = new ArrayList<CriterioAceptacion>();
       this.tareas = new ArrayList<Tarea>();
+      observarTareas(this.tareas);
 	}
 	
 	public void setId(long id) {
@@ -114,37 +117,37 @@ public class UserStory extends java.util.Observable
 
 	public void setTitulo(String titulo) {
 		this.titulo = titulo;
-		fueModificado();
+		fueModificado(null);
 	}
 
 	public void setDetalle(String detalle) {
 		this.detalle = detalle;
-		fueModificado();
+		fueModificado(null);
 	}
 
 	public void setAutor(String autor) {
 		this.autor = autor;
-		fueModificado();
+		fueModificado(null);
 	}
 
 	public void setResponsable(String responsable) {
 		this.responsable = responsable;
-		fueModificado();
+		fueModificado(null);
 	}
 
 	public void setHorasEstimadas(int horasEstimadas) {
 		this.horasEstimadas = horasEstimadas;
-		fueModificado();
+		fueModificado(null);
 	}
 
 	public void setStoryPoints(int storyPoints) {
 		this.storyPoints = storyPoints;
-		fueModificado();
+		fueModificado(null);
 	}
 
 	public void setIteracion(int iteracion) {
 		this.iteracion = iteracion;
-		fueModificado();
+		fueModificado(null);
 	}
 
 	//NO SIRVE es de PRUEBA...
@@ -157,26 +160,27 @@ public class UserStory extends java.util.Observable
 		if(estado.compareTo(Estado.Done)==0)
 		{this.fechaDone=new Date();}
 		this.estado = estado;
-		fueModificado();
+		fueModificado(null);
 	}
 
 	public void setCriterios(List<CriterioAceptacion> criterios) {
 		this.criterios = criterios == null ? new ArrayList<CriterioAceptacion>() : criterios;
-		fueModificado();
+		fueModificado(null);
 	}
 
 	public void setTareas(List<Tarea> tareas) {
 		this.tareas = tareas== null ? new ArrayList<Tarea>() : tareas;
-		fueModificado();
+		observarTareas(this.tareas);
+		fueModificado(null);
 	}
 	
 	public Date getFechaDone(){
 		return this.fechaDone;
 	}
 	
-	private void fueModificado() {
+	private void fueModificado(Object arg) {
 		setChanged();
-		notifyObservers();
+		notifyObservers(arg);
 	}
 
 	/* (non-Javadoc)
@@ -224,6 +228,26 @@ public class UserStory extends java.util.Observable
       }
 	   return termino;
 	}
+	
+	private void observarTareas(List<Tarea> tareas)
+	{
+	   for (Tarea tarea : tareas)
+      {
+	      tarea.addObserver(this);
+      }
+	}
+
+   @Override
+   public void update(Observable o, Object arg)
+   {
+      fueModificado(o);
+      if (estaTerminada())
+      {
+         boolean b = false;
+        //NotificarEvento
+      }
+      
+   }
 	
 
 	
