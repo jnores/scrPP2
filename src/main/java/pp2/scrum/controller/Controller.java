@@ -1,17 +1,14 @@
 package pp2.scrum.controller;
 
-import pp2.scrum.dominio.interfaz.IConsulta;
-import pp2.scrum.dominio.interfaz.IMailGateway;
+import pp2.scrum.dominio.interfaz.MailGateway;
 
 //Controller general para todos los controllers
 public abstract class Controller 
 {	
-	   protected IConsulta consulta;
-	   protected IMailGateway mailGateway;
+	   protected MailGateway mailGateway;
 
-	   protected Controller(IConsulta consulta,IMailGateway mailGateway)
+	   protected Controller(MailGateway mailGateway)
 	   {
-	      this.consulta = consulta;
 	      this.mailGateway = mailGateway;
 	   }
 }

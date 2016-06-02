@@ -5,8 +5,7 @@ import java.util.List;
 
 import pp2.scrum.dominio.Paginacion;
 import pp2.scrum.dominio.entidad.UserStory;
-import pp2.scrum.dominio.interfaz.IConsulta;
-import pp2.scrum.dominio.interfaz.IMailGateway;
+import pp2.scrum.dominio.interfaz.MailGateway;
 
 public class UserStoryPaginadoController extends Controller 
 {
@@ -16,10 +15,10 @@ public class UserStoryPaginadoController extends Controller
 	   private int itemsTotales;
 
 	   //La consulta se pasa a cada controller para hacer consultas a la base y son pasadas a su padre
-	   public UserStoryPaginadoController(IConsulta consulta, IMailGateway mailGateway)
+	   public UserStoryPaginadoController(MailGateway mailGateway)
 	   {
-		  super (consulta,mailGateway);
-	      model = consulta.ObtenerUserStoriesDB();
+		  super (mailGateway);
+	      model = new ArrayList<UserStory>();
 	      paginaDefault = new Paginacion(null, null, 1, 5);
 	      paginaActual = paginaDefault;
 	      itemsTotales = model.size();
@@ -61,7 +60,7 @@ public class UserStoryPaginadoController extends Controller
          int indice = (paginacion.getPagina() - 1) * paginacion.getItemsPorPagina();
          List<UserStory> historias = new ArrayList<UserStory>();
          int i = 0;
-         while(i < paginacion.getItemsPorPagina() && (indice + i) < itemsTotales)
+         while(i < paginacion.getItemsPorPagina() && (indice + i) < itemsTotales && indice >= 0)
          {
             UserStory story = model.get(indice + i);
             historias.add(new UserStory(story.getTitulo(), story.getDetalle(), story.getAutor(), story.getResponsable(), story.getHorasEstimadas(), story.getStoryPoints(), story.getIteracion(), story.getEstado(), null, null));       

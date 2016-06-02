@@ -11,9 +11,9 @@ import jxl.write.WritableWorkbook;
 import jxl.write.WriteException;
 import jxl.write.biff.RowsExceededException;
 import pp2.scrum.controller.UserStoryHelper;
-import pp2.scrum.dominio.interfaz.IExporter;
+import pp2.scrum.dominio.interfaz.Exporter;
 
-public class ExportToExcel implements IExporter {
+public class ExportToExcel implements Exporter {
 	private String pathExl;
 	private String extension = ".xls";
 		

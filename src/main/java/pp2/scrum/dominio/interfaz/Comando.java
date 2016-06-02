@@ -4,7 +4,7 @@ import java.awt.event.ActionListener;
 
 import pp2.scrum.dominio.Resultado;
 
-public interface IComando<T>
+public interface Comando<T>
 {
 
     Resultado Execute(final T homeController, ActionListener al);

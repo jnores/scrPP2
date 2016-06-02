@@ -16,7 +16,7 @@ import javax.swing.filechooser.FileNameExtensionFilter;
 
 import pp2.scrum.controller.UserStoryHelper;
 import pp2.scrum.dominio.enums.UserStoryHelperComparator;
-import pp2.scrum.dominio.interfaz.IExporter;
+import pp2.scrum.dominio.interfaz.Exporter;
 
 public class UserStoryListView extends JPanel implements Observer
 {
@@ -86,7 +86,7 @@ public class UserStoryListView extends JPanel implements Observer
 		{	
 			try
 			{
-				((IExporter) pluginExport).export(archivo.getSelectedFile().getAbsolutePath(),userStoriesHelper);			
+				((Exporter) pluginExport).export(archivo.getSelectedFile().getAbsolutePath(),userStoriesHelper);			
 			}
 			catch (RuntimeException e)
 			{

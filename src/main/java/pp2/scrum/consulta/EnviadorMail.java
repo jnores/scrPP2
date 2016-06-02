@@ -8,13 +8,13 @@ import java.net.UnknownHostException;
 
 import pp2.scrum.dominio.Resultado;
 import pp2.scrum.dominio.entidad.Mail;
-import pp2.scrum.dominio.interfaz.IMailGateway;
+import pp2.scrum.dominio.interfaz.MailGateway;
 
 /**
  * @author rub
  *
  */
-public class EnviadorMail implements IMailGateway
+public class EnviadorMail implements MailGateway
 {
    private int port;
    private String host;

@@ -11,7 +11,6 @@ import javax.swing.SwingUtilities;
 import javax.swing.border.EmptyBorder;
 
 import net.sourceforge.jdatepicker.impl.UtilDateModel;
-import pp2.scrum.consulta.Consulta;
 import pp2.scrum.controller.ProyectoController;
 import pp2.scrum.controller.UserStoryPaginadoController;
 
@@ -26,7 +25,7 @@ public class BacklogNuevoView extends JDialog
    public BacklogNuevoView(ProyectoController controller)
    {
       this.controller = controller;
-      this.backlogPanel = new UserStoryPaginadoView(new UserStoryPaginadoController(new Consulta(),controller.getMailGateway()));
+      this.backlogPanel = new UserStoryPaginadoView(new UserStoryPaginadoController(controller.getMailGateway()));
       setTitle("Backlog Nuevo");
       setBounds(100, 100, 450, 300);
       getContentPane().setLayout(new BorderLayout());
@@ -58,7 +57,7 @@ public class BacklogNuevoView extends JDialog
    
    public void limpiarPantalla()
    {
-      backlogPanel = new UserStoryPaginadoView(new UserStoryPaginadoController(new Consulta(),controller.getMailGateway()));
+      backlogPanel = new UserStoryPaginadoView(new UserStoryPaginadoController(controller.getMailGateway()));
       getContentPane().remove(0);
       getContentPane().add(backlogPanel,BorderLayout.CENTER,0);
       setearVista();

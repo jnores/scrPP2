@@ -10,7 +10,7 @@ import pp2.scrum.dominio.entidad.Sprint;
  * con los puntos de historia en función del día. 
  **/ 
 
-public interface IDataComponent
+public interface DataComponent
 {
    
    public XYSeriesCollection getData(Sprint iteracion);

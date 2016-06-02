@@ -7,9 +7,9 @@ import java.io.IOException;
 import java.util.List;
 
 import pp2.scrum.controller.UserStoryHelper;
-import pp2.scrum.dominio.interfaz.IExporter;
+import pp2.scrum.dominio.interfaz.Exporter;
 
-public class ExportToText implements IExporter {
+public class ExportToText implements Exporter {
 	private String rutaTxt;
 	private String extension = ".txt"; 
 	

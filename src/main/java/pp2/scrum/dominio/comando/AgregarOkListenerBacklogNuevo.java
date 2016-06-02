@@ -5,9 +5,9 @@ import java.awt.event.ActionListener;
 
 import pp2.scrum.controller.HomeController;
 import pp2.scrum.dominio.Resultado;
-import pp2.scrum.dominio.interfaz.IComando;
+import pp2.scrum.dominio.interfaz.Comando;
 
-public class AgregarOkListenerBacklogNuevo implements IComando<HomeController>
+public class AgregarOkListenerBacklogNuevo implements Comando<HomeController>
 {
 
     @Override

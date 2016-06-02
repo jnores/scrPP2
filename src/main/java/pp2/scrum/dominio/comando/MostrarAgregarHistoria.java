@@ -8,7 +8,7 @@ import java.awt.event.ActionListener;
 import pp2.scrum.controller.ControllerFactory;
 import pp2.scrum.controller.HomeController;
 import pp2.scrum.dominio.Resultado;
-import pp2.scrum.dominio.interfaz.IComando;
+import pp2.scrum.dominio.interfaz.Comando;
 import pp2.scrum.view.AltaUserStoryView;
 import pp2.scrum.view.events.ViewUpdateEvent;
 
@@ -16,7 +16,7 @@ import pp2.scrum.view.events.ViewUpdateEvent;
  * @author yoshknight
  *
  */
-public class MostrarAgregarHistoria implements IComando<HomeController>{
+public class MostrarAgregarHistoria implements Comando<HomeController>{
 
     @Override
     public Resultado Execute(final HomeController homeController,ActionListener al) {

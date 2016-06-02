@@ -7,14 +7,14 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Properties;
 
-import pp2.scrum.dominio.interfaz.IExporter;
+import pp2.scrum.dominio.interfaz.Exporter;
 
 
 public class PluginFactory
 {
 	private static Properties propiedades = new Properties();
 	private static String nombrePaquete = "";
-	private static List<IExporter> plugins;
+	private static List<Exporter> plugins;
 	 
 	
 	static {
@@ -28,7 +28,7 @@ public class PluginFactory
 			}		
 	}
 	
-	public static List<IExporter> getPlugins()
+	public static List<Exporter> getPlugins()
 	{
 		plugins = new ArrayList<>();
 		try
@@ -55,8 +55,8 @@ public class PluginFactory
 		                try {
 		                	Object objTemp = Class.forName(className).newInstance();
 
-		                	if (objTemp instanceof IExporter)
-		                		plugins.add((IExporter) objTemp);
+		                	if (objTemp instanceof Exporter)
+		                		plugins.add((Exporter) objTemp);
 		                    
 		                } catch (ClassNotFoundException e) {
 		                    throw new RuntimeException("Error al cargar la clase: " + className);

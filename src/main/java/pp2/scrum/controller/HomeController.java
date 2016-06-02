@@ -5,30 +5,29 @@ import java.awt.event.ActionListener;
 
 import pp2.scrum.dominio.Resultado;
 import pp2.scrum.dominio.entidad.Proyecto;
-import pp2.scrum.dominio.interfaz.IAppController;
-import pp2.scrum.dominio.interfaz.IComando;
-import pp2.scrum.dominio.interfaz.IConsulta;
-import pp2.scrum.dominio.interfaz.IMailGateway;
+import pp2.scrum.dominio.interfaz.AppController;
+import pp2.scrum.dominio.interfaz.Comando;
+import pp2.scrum.dominio.interfaz.MailGateway;
 import pp2.scrum.view.BacklogNuevoView;
 import pp2.scrum.view.ProyectoNuevoView;
 
-public class HomeController extends Controller implements IAppController
+public class HomeController extends Controller implements AppController
 {
     private ProyectoNuevoView proyectoNuevo;
     private BacklogNuevoView backlogNuevo;
     private ProyectoController proyectoController;
 
 
-    public HomeController(IConsulta consulta,IMailGateway mailGateway)
+    public HomeController(MailGateway mailGateway)
     {	
-        super(consulta, mailGateway);
-        proyectoController = new ProyectoController(null, new Proyecto(),mailGateway);
+        super( mailGateway);
+        proyectoController = new ProyectoController( new Proyecto(),mailGateway);
         proyectoNuevo = new ProyectoNuevoView(proyectoController);
         backlogNuevo = new BacklogNuevoView(proyectoController);
     }
 
     @Override    
-    public Resultado Execute(IComando commando,ActionListener al)
+    public Resultado Execute(Comando commando,ActionListener al)
     {
         return commando.Execute(this,al);
     }
@@ -57,7 +56,7 @@ public class HomeController extends Controller implements IAppController
         return proyectoController;
     }
     @Override
-    public IMailGateway getMailGateway()
+    public MailGateway getMailGateway()
     {
         return mailGateway;
     }

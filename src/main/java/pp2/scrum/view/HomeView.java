@@ -15,7 +15,6 @@ import javax.swing.JScrollPane;
 import javax.swing.SwingUtilities;
 import javax.swing.border.LineBorder;
 
-import pp2.scrum.consulta.Consulta;
 import pp2.scrum.controller.BurndownChartController;
 import pp2.scrum.controller.HomeController;
 import pp2.scrum.controller.UserStoryPaginadoController;
@@ -25,7 +24,7 @@ import pp2.scrum.dominio.comando.LimpiarBacklogNuevoView;
 import pp2.scrum.dominio.comando.LimpiarProyectoNuevoView;
 import pp2.scrum.dominio.comando.MostrarAgregarHistoria;
 import pp2.scrum.dominio.comando.MostrarProyectoNuevo;
-import pp2.scrum.dominio.interfaz.IAppController;
+import pp2.scrum.dominio.interfaz.AppController;
 import pp2.scrum.utils.Logger;
 import pp2.scrum.view.events.ViewUpdateEvent;
 
@@ -39,7 +38,7 @@ public class HomeView  extends JFrame implements ActionListener
     private static final long serialVersionUID = 1L;
     private HomeView thisFrame;
     private JPanel panel_Top;
-    private IAppController AppController;
+    private AppController AppController;
     private BurndownChartView burndownChartViewpanel;
     private UserStoryPaginadoView listadoPaginadoHistorias;
     private UserStoryOrderableView filtradoHistorias;
@@ -48,13 +47,13 @@ public class HomeView  extends JFrame implements ActionListener
     private JMenu menuP,mnIteraciones,mnSprint,mnBacklog,mnBurnDownChart;
     private JMenuItem mnListadoHistoriasItem,mnBurndownItem,mnFiltradoItem,mnNuevoProyectoItem,mnNuevaUserStory,mnit1item,mnit2item,mnit3item,mntmAbrirProyecto,mntmCerrarProyecto;
 
-    public HomeView (IAppController controller)
+    public HomeView (AppController controller)
     {
         thisFrame = this;
         this.AppController=controller;
         getContentPane().setLayout(new BorderLayout());
         burndownChartViewpanel = new BurndownChartView(new BurndownChartController(null, AppController.getMailGateway()));
-        listadoPaginadoHistorias = new UserStoryPaginadoView(new UserStoryPaginadoController(new Consulta(),AppController.getMailGateway()));
+        listadoPaginadoHistorias = new UserStoryPaginadoView(new UserStoryPaginadoController(AppController.getMailGateway()));
         filtradoHistorias = new UserStoryOrderableView(new UserStoryListView( ((HomeController)controller).getProyectoController().getBacklog() ));
 
         setTitle("Scrummer");		

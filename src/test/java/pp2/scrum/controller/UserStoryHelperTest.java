@@ -13,7 +13,7 @@ import jxl.Workbook;
 import jxl.read.biff.BiffException;
 import pp2.scrum.dominio.entidad.Miembro;
 import pp2.scrum.dominio.entidad.UserStory;
-import pp2.scrum.dominio.interfaz.IExporter;
+import pp2.scrum.dominio.interfaz.Exporter;
 import pp2.scrum.utils.PluginFactory;
 
 
@@ -88,10 +88,10 @@ extends TestCase
 		
 		String path="./prueba";
 		List<UserStoryHelper> lst = new ArrayList<>();
-		List<IExporter> plugins = PluginFactory.getPlugins();
+		List<Exporter> plugins = PluginFactory.getPlugins();
 		lst.add(userStoryHelper);
 		
-		for (IExporter pluginExp : plugins)
+		for (Exporter pluginExp : plugins)
 		{
 			pluginExp.export(path, lst);		
 		}
@@ -132,7 +132,7 @@ extends TestCase
 	    lst.remove(0);
 	    try 
 		 {    		
-	    	for (IExporter pluginExp : plugins)
+	    	for (Exporter pluginExp : plugins)
 	    		pluginExp.export(path, lst);
 			}	 
 		catch (RuntimeException e) 

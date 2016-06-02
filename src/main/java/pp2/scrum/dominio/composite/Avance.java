@@ -9,9 +9,9 @@ import org.jfree.data.xy.*;
 
 import pp2.scrum.dominio.entidad.Sprint;
 import pp2.scrum.dominio.entidad.UserStory;
-import pp2.scrum.dominio.interfaz.IDataComponent;
+import pp2.scrum.dominio.interfaz.DataComponent;
 
-public class Avance implements IDataComponent{
+public class Avance implements DataComponent{
 	private XYSeries avance; 
 	private XYSeriesCollection dataset;
 	

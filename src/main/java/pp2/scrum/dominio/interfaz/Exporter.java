@@ -5,7 +5,7 @@ import java.util.List;
 import pp2.scrum.controller.UserStoryHelper;
 import pp2.scrum.utils.PluginFactory;
 
-public interface IExporter {
+public interface Exporter {
 			
 	//public static final IExporter INSTANCE = (IExporter) PluginFactory.getPlugin(IExporter.class);
 	

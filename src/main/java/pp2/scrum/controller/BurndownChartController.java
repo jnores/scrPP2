@@ -14,24 +14,23 @@ import pp2.scrum.dominio.entidad.Sprint;
 import pp2.scrum.dominio.entidad.UserStory;
 import pp2.scrum.dominio.enums.Estado;
 import pp2.scrum.dominio.enums.OpcionGrafico;
-import pp2.scrum.dominio.interfaz.IConsulta;
-import pp2.scrum.dominio.interfaz.IDataComponent;
-import pp2.scrum.dominio.interfaz.IMailGateway;
+import pp2.scrum.dominio.interfaz.DataComponent;
+import pp2.scrum.dominio.interfaz.MailGateway;
 import pp2.scrum.view.BurndownChartView;
 
 public class BurndownChartController extends Controller
 {
-	private IDataComponent modelo;
+	private DataComponent modelo;
 	private BurndownChartView vista;
 	private OpcionGrafico Opcion;
 
-	public BurndownChartController(IConsulta consulta,IMailGateway mailGateway) {
-		super(consulta, mailGateway);
+	public BurndownChartController(MailGateway mailGateway) {
+		super( mailGateway);
 	}
 	
-	public BurndownChartController(IConsulta consulta,IDataComponent modelo,IMailGateway mailGateway) 
+	public BurndownChartController(DataComponent modelo,MailGateway mailGateway) 
 	{
-		super (consulta,mailGateway);
+		super (mailGateway);
 		this.modelo= modelo;
 	}
 	

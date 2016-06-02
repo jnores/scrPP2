@@ -16,7 +16,7 @@ import javax.swing.event.ChangeEvent;
 import javax.swing.event.ChangeListener;
 
 import pp2.scrum.dominio.enums.UserStoryHelperComparator;
-import pp2.scrum.dominio.interfaz.IExporter;
+import pp2.scrum.dominio.interfaz.Exporter;
 import pp2.scrum.utils.PluginFactory;
 
 public class UserStoryOrderableView extends JPanel {
@@ -29,7 +29,7 @@ public class UserStoryOrderableView extends JPanel {
 	private JComboBox<UserStoryHelperComparator> cmbOpciones;
 	private JToggleButton tglbtnAscdesc;
 	private JButton btnOrdenar;
-	private JComboBox<IExporter> cmbTipoExport;
+	private JComboBox<Exporter> cmbTipoExport;
 
 	/**
 	 * Create the frame.
@@ -37,9 +37,9 @@ public class UserStoryOrderableView extends JPanel {
 	public UserStoryOrderableView( UserStoryListView userStoriesList) {
 		this.userStoriesPane = userStoriesList;
 		
-		this.cmbTipoExport = new JComboBox<IExporter>();
+		this.cmbTipoExport = new JComboBox<Exporter>();
 
-		for (IExporter i : PluginFactory.getPlugins())
+		for (Exporter i : PluginFactory.getPlugins())
 			this.cmbTipoExport.addItem(i);
 
 		this.cmbTipoExport.addActionListener (new ActionListener () {

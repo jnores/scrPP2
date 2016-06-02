@@ -8,16 +8,15 @@ import java.util.Set;
 import pp2.scrum.dominio.entidad.Miembro;
 import pp2.scrum.dominio.entidad.Proyecto;
 import pp2.scrum.dominio.entidad.UserStory;
-import pp2.scrum.dominio.interfaz.IConsulta;
-import pp2.scrum.dominio.interfaz.IMailGateway;
+import pp2.scrum.dominio.interfaz.MailGateway;
 
 public class ProyectoController extends Controller 
 {
 	   private Proyecto proyecto;
 
 	   //La consulta se pasa a cada controller para hacer consultas a la base y son pasadas a su padre
-	   public ProyectoController(IConsulta consulta,Proyecto model,IMailGateway mailGateway) {
-		   super (consulta,mailGateway);
+	   public ProyectoController(Proyecto model,MailGateway mailGateway) {
+		   super (mailGateway);
 	      this.proyecto = model;
 	   }
 
@@ -65,7 +64,7 @@ public class ProyectoController extends Controller
          return proyecto;
       }
 	   
-	   public IMailGateway getMailGateway()
+	   public MailGateway getMailGateway()
       {
          return mailGateway;
       }
