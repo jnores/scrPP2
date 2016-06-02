@@ -1,4 +1,4 @@
-package pp2.scrum.utils;
+package pp2.scrum.dominio.interfaz;
 
 import java.util.List;
 

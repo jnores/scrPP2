@@ -16,7 +16,7 @@ public class UserStoryTest extends TestCase {
 	
    UserStory story;
    CriterioAceptacion criterio;
-   Tarea tarea;
+   Tarea tarea1,tarea2;
 	
 	/**
 	 * Create the test case
@@ -39,7 +39,8 @@ public class UserStoryTest extends TestCase {
 	{
 		story = new UserStory("Titulo1", "Detalle1", "Autor1", "Responsable1", 10, 40, 1, Estado.ToDo, null, null);
 		criterio = new CriterioAceptacion("criterio1");
-		tarea = new Tarea();
+		tarea1 = new Tarea();
+		tarea2 = new Tarea();
 	}
 	
 	/**
@@ -50,16 +51,16 @@ public class UserStoryTest extends TestCase {
 	   
 	   List<CriterioAceptacion> criterios = new ArrayList<CriterioAceptacion>();
 	   List<Tarea> tareas = new ArrayList<Tarea>();
-	   tareas.add(tarea);
+	   tareas.add(tarea1);
 	   criterios.add(criterio);
 	   
-	   assertTrue(tarea.getEstado() == Estado.ToDo);
-	   assertTrue(tarea.getId() == 0);
+	   assertTrue(tarea1.getEstado() == Estado.ToDo);
+	   assertTrue(tarea1.getId() == 0);
 	   
 	 //tarea.setEstado(Estado.Done);
-	   tarea.avanzarEstado();
+	   tarea1.avanzarEstado();
 	   
-	   tarea.setId(1);
+	   tarea1.setId(1);
 	   
 	   assertTrue(criterio.getDescripcion() == "criterio1");
       assertTrue(criterio.getId() == 0);
@@ -96,14 +97,59 @@ public class UserStoryTest extends TestCase {
 	{
 	   List<CriterioAceptacion> criterios = new ArrayList<CriterioAceptacion>();
       List<Tarea> tareas = new ArrayList<Tarea>();
-      tareas.add(tarea);
+      tareas.add(tarea1);
       criterios.add(criterio);
       story.setTareas(tareas);
       story.setCriterios(criterios);
       assertTrue(story.getEstado().equals(Estado.ToDo));
       assertTrue(!story.estaTerminada());
-      
-      
+           
 	}
+	
+	public void testStoryTerminadaPorFinalizacionDeTareas()
+   {
+      List<CriterioAceptacion> criterios = new ArrayList<CriterioAceptacion>();
+      List<Tarea> tareas = new ArrayList<Tarea>();
+      tareas.add(tarea1);
+      tareas.add(tarea2);
+      criterios.add(criterio);
+      story.setTareas(tareas);
+      story.setCriterios(criterios);
+      assertTrue(story.getEstado().equals(Estado.ToDo));
+      assertTrue(!story.estaTerminada());
+      assertTrue(story.getEstado().equals(Estado.ToDo));
+      tarea1.avanzarEstado();
+      tarea1.avanzarEstado();
+      assertTrue(!story.estaTerminada());
+      assertEquals(story.getEstado(), Estado.ToDo);
+      tarea2.avanzarEstado();
+      tarea2.avanzarEstado();
+      assertTrue(story.estaTerminada());
+      assertEquals(story.getEstado(), Estado.Done);
+           
+   }
+	
+	public void testStoryTerminadaPorFinalizacionDeTareasCaso2()
+   {
+      List<CriterioAceptacion> criterios = new ArrayList<CriterioAceptacion>();
+      List<Tarea> tareas = new ArrayList<Tarea>();
+      tareas.add(tarea1);
+      tareas.add(tarea2);
+      criterios.add(criterio);
+      story.setTareas(tareas);
+      story.setCriterios(criterios);
+      assertTrue(story.getEstado().equals(Estado.ToDo));
+      assertTrue(!story.estaTerminada());
+      assertTrue(story.getEstado().equals(Estado.ToDo));
+      tarea2.avanzarEstado();
+      tarea2.avanzarEstado();
+      assertTrue(!story.estaTerminada());
+      assertEquals(story.getEstado(), Estado.ToDo);
+      tarea1.avanzarEstado();
+      tarea1.avanzarEstado();
+      assertTrue(story.estaTerminada());
+      assertEquals(story.getEstado(), Estado.Done);
+           
+   }
 		
 }

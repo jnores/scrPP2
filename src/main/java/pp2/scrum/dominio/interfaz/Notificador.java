@@ -1,7 +1,7 @@
 /**
  * 
  */
-package pp2.scrum.verificarSprint;
+package pp2.scrum.dominio.interfaz;
 
 /**
  * @author yoshknight

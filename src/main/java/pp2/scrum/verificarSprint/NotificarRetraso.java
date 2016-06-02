@@ -6,6 +6,8 @@ package pp2.scrum.verificarSprint;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
+import pp2.scrum.dominio.interfaz.Notificador;
+
 /**
  * @author yoshknight
  *

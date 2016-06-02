@@ -8,11 +8,12 @@ import java.util.Date;
 import java.util.List;
 
 import junit.framework.TestCase;
-import pp2.scrum.busEvent.BusEvent;
 import pp2.scrum.busEvent.BusEventSync;
 import pp2.scrum.dominio.entidad.Sprint;
 import pp2.scrum.dominio.entidad.UserStory;
 import pp2.scrum.dominio.enums.Estado;
+import pp2.scrum.dominio.interfaz.BusEvent;
+import pp2.scrum.dominio.interfaz.Notificador;
 import pp2.scrum.utils.Calendario;
 
 /**

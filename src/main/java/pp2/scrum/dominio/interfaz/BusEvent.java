@@ -1,7 +1,7 @@
 /**
  * 
  */
-package pp2.scrum.busEvent;
+package pp2.scrum.dominio.interfaz;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
