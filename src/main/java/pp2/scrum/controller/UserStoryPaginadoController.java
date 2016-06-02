@@ -4,6 +4,9 @@ import java.util.ArrayList;
 import java.util.List;
 
 import pp2.scrum.dominio.Paginacion;
+import pp2.scrum.dominio.Resultado;
+import pp2.scrum.dominio.entidad.Mail;
+import pp2.scrum.dominio.entidad.Tarea;
 import pp2.scrum.dominio.entidad.UserStory;
 import pp2.scrum.dominio.interfaz.MailGateway;
 
@@ -94,6 +97,30 @@ public class UserStoryPaginadoController extends Controller
       public List<UserStory> ObtenerPaginaActual()
       {
          return ListarUserStories( new Paginacion(paginaActual.getOrdenarPor(), paginaActual.getDireccionOrden(), paginaActual.getPagina(), paginaActual.getItemsPorPagina()));
+      }
+      
+      public void finalizarStory(UserStory story)
+      {
+         List<Tarea> tareas = story.getTareas();
+         
+         for (Tarea tarea : tareas)
+         {
+            try
+            {
+               tarea.avanzarEstado();
+               tarea.avanzarEstado();
+            }
+            catch(Exception ex){
+               
+            }            
+         }
+         
+      }
+      
+      public Resultado enviarHistoriaMail(UserStory story)
+      {
+         Mail mail = new Mail("julian.dirisio@gmail.com", "Tema", story.getTitulo());
+         return mailGateway.enviar(mail);
       }
 
 	

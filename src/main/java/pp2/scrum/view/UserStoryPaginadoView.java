@@ -18,6 +18,7 @@ import javax.swing.table.TableModel;
 
 import pp2.scrum.controller.UserStoryPaginadoController;
 import pp2.scrum.dominio.Paginacion;
+import pp2.scrum.dominio.entidad.Tarea;
 import pp2.scrum.dominio.entidad.UserStory;
 import pp2.scrum.dominio.enums.Estado;
 
@@ -104,6 +105,9 @@ public class UserStoryPaginadoView extends JPanel implements Observer
 	@Override
 	public void update(Observable o, Object arg) {
 	   setearVista();
+	   if (arg.getClass().equals(Tarea.class)){
+	      //controller.enviarHistoriaMail(historia)
+	   }
 	}
 	
 	public void showWindow(boolean b) {
