@@ -1,5 +1,6 @@
 package pp2.scrum.dominio.entidad;
 
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 import java.util.Observable;
@@ -32,8 +33,8 @@ public class UserStory extends java.util.Observable
 		this.storyPoints = storyPoints;
 		this.iteracion = iteracion;
 		this.estado = estado;
-		this.criterios = criterios;
-		this.tareas = tareas;
+		this.criterios = criterios == null ? new ArrayList<CriterioAceptacion>() : criterios;
+		this.tareas = tareas == null ? new ArrayList<Tarea>() : tareas;
 		this.fechaDone=null;
 	}
 	
@@ -44,6 +45,8 @@ public class UserStory extends java.util.Observable
 		//Estado por defecto al crear la user story
 		this.estado = Estado.getDefault();
 		this.fechaDone=null;
+		this.criterios = new ArrayList<CriterioAceptacion>();
+      this.tareas = new ArrayList<Tarea>();
 	}
 	public UserStory(long id,String titulo, String detalle, String autor) {
 		this.id = id;
@@ -53,6 +56,8 @@ public class UserStory extends java.util.Observable
 		//Estado por defecto al crear la user story
 		this.estado = Estado.getDefault();
 		this.fechaDone=null;
+		this.criterios = new ArrayList<CriterioAceptacion>();
+      this.tareas = new ArrayList<Tarea>();
 	}
 	
 	public void setId(long id) {
@@ -92,6 +97,10 @@ public class UserStory extends java.util.Observable
 	}
 
 	public Estado getEstado() {
+	   if (estaTerminada())
+	   {
+	      return Estado.Done;
+	   }
 		return this.estado;
 	}
 
@@ -152,12 +161,12 @@ public class UserStory extends java.util.Observable
 	}
 
 	public void setCriterios(List<CriterioAceptacion> criterios) {
-		this.criterios = criterios;
+		this.criterios = criterios == null ? new ArrayList<CriterioAceptacion>() : criterios;
 		fueModificado();
 	}
 
 	public void setTareas(List<Tarea> tareas) {
-		this.tareas = tareas;
+		this.tareas = tareas== null ? new ArrayList<Tarea>() : tareas;
 		fueModificado();
 	}
 	

@@ -30,11 +30,13 @@ public class UserStoryTest extends TestCase {
 	/**
 	 * @return the suite of tests being tested
 	 */
-	public static Test suite() {
+	public static Test suite() 
+	{
 	    return new TestSuite( UserStoryTest.class );
 	}
 	
-	public void  setUp() {
+	public void  setUp() 
+	{
 		story = new UserStory("Titulo1", "Detalle1", "Autor1", "Responsable1", 10, 40, 1, Estado.ToDo, null, null);
 		criterio = new CriterioAceptacion("criterio1");
 		tarea = new Tarea();
@@ -43,7 +45,8 @@ public class UserStoryTest extends TestCase {
 	/**
 	 * Verifico que se asignen bien los atributos con el constructor completo
 	 */
-	public void testStory() {
+	public void testStory() 
+	{
 	   
 	   List<CriterioAceptacion> criterios = new ArrayList<CriterioAceptacion>();
 	   List<Tarea> tareas = new ArrayList<Tarea>();
@@ -71,8 +74,8 @@ public class UserStoryTest extends TestCase {
       assertTrue(story.getHorasEstimadas() == 10);
       assertTrue(story.getIteracion() == 1);
       assertTrue(story.getEstado().equals(Estado.ToDo));
-      assertTrue(story.getCriterios() == (null));
-      assertTrue(story.getTareas() == (null));
+      assertTrue(story.getCriterios().size() == 0);
+      assertTrue(story.getTareas().size() == 0);
       story.getFechaDone();
       
       story.setAutor("au1");
@@ -86,8 +89,21 @@ public class UserStoryTest extends TestCase {
       story.setTitulo("t1");
       story.setStoryPoints(11);
       story.setFecha(null);
+
+   }
+	
+	public void testStoryNoTerminada()
+	{
+	   List<CriterioAceptacion> criterios = new ArrayList<CriterioAceptacion>();
+      List<Tarea> tareas = new ArrayList<Tarea>();
+      tareas.add(tarea);
+      criterios.add(criterio);
+      story.setTareas(tareas);
+      story.setCriterios(criterios);
+      assertTrue(story.getEstado().equals(Estado.ToDo));
+      assertTrue(!story.estaTerminada());
       
-//      AltaUserStoryView v = new AltaUserStoryView(null);
-      	}
+      
+	}
 		
 }
