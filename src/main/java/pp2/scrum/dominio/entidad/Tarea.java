@@ -5,10 +5,11 @@ import java.util.Observable;
 import java.util.Observer;
 
 import pp2.scrum.dominio.enums.Estado;
+import pp2.scrum.utils.GeneradorIDs;
 
 public class Tarea extends java.util.Observable
 {
-	private int id;
+	private String id;
 	private Estado estado;
 	//almacena el identificador de los commits que resuelven la tarea
 	private ArrayList<String> commitsVinculados;
@@ -22,23 +23,21 @@ public class Tarea extends java.util.Observable
 //	}
 	
 	public Tarea() {
-	
+		this.id = GeneradorIDs.generarID();
 		estado = Estado.getDefault();
 		this.commitsVinculados=new ArrayList<String>();
 	}
 	/**
 	 * @return the id
 	 */
-	public int getId() {
-		return id;
+	public void setId(String id) {
+		this.id=id;
 	}
 	/**
-	 * @param id the id to set
+	 * @return the id
 	 */
-	
-	//esto no va
-	public void setId(int id) {
-		this.id = id;
+	public String getId() {
+		return id;
 	}
 	/**
 	 * @return the tareas

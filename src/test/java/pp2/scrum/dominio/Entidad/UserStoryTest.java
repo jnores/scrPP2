@@ -55,12 +55,12 @@ public class UserStoryTest extends TestCase {
 	   criterios.add(criterio);
 	   
 	   assertTrue(tarea1.getEstado() == Estado.ToDo);
-	   assertTrue(tarea1.getId() == 0);
+	   //assertTrue(tarea1.getId() == 0);
 	   
 	 //tarea.setEstado(Estado.Done);
 	   tarea1.avanzarEstado();
 	   
-	   tarea1.setId(1);
+	   //tarea1.setId(1);
 	   
 	   assertTrue(criterio.getDescripcion() == "criterio1");
       assertTrue(criterio.getId() == 0);

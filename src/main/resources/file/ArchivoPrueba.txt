@@ -2,10 +2,10 @@ commit id1
 Author: autor1
 Date:  Fri Sep 3 15:35:34 2016 -0300
 
-    #Tarea:24 Cambio 6 #ESTADO: done
+    #Tarea:1abcdef1 Cambio 6 #ESTADO: done
 
 commit id2
 Author: autor2 
 Date: Thu Sep 2 08:59:32 2016 -0800
 
-    #tarea:2 Cambio 5
+    #tarea:2abcdef2 Cambio 5 #estado: doing

@@ -4,6 +4,7 @@ import javax.swing.BorderFactory;
 import javax.swing.Box;
 import javax.swing.JButton;
 import javax.swing.JCheckBox;
+import javax.swing.JDialog;
 import javax.swing.JTextArea;
 import javax.swing.JTextField;
 import javax.swing.KeyStroke;
@@ -22,6 +23,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
+import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.Set;
 import java.awt.event.FocusEvent;
@@ -35,9 +37,7 @@ public class AltaUserStoryView extends JPanel{
 	private	final JTextArea areaCriterios;
 	private final JTextArea areaSugerenciaTitulo;
 	private final JTextArea areaSugerenciaCriterio;
-//	private final JTextField campoAsignadoA;
 	private final JTextField campoPuntos;
-//	private final JTextField campoHoras;
 	
 	private JPanel panelTitulo,panelDetalle,panelCriterio,panelSugerenciaTitulo,panelSugerenciaCriterio;
 	private JScrollPane scrollTitulo,scrollDetalle,scrollCriterio;
@@ -45,7 +45,7 @@ public class AltaUserStoryView extends JPanel{
 	private boolean mostrarSugerencias;
 	private JCheckBox check;
 	private Box boxVertical;
-	private JButton botonAgregar;
+	private JButton botonAgregar,botonAgregarTareas;
 	private UserStoryController controlador;
 	
 	private final String resumen="Como <Rol> necesito <Meta> para <Finalidad>.";
@@ -53,16 +53,21 @@ public class AltaUserStoryView extends JPanel{
 	private final String criterio="Especifique criterios de aceptación para la user story.\n"
 			+ "Intente que los criterios tengan una correspondencia con los test.";
 	
+	private AltaTareaView altaTarea;
+	
 	private static final long serialVersionUID = 1L; 
 
 	public AltaUserStoryView(UserStoryController controlador)
 	{
 		this.controlador=controlador;
 		mostrarSugerencias=true;
-	
 		boxVertical=Box.createVerticalBox();
 		panelTitulo=new JPanel();panelDetalle=new JPanel();panelCriterio=new JPanel();panelSugerenciaTitulo=new JPanel();panelSugerenciaCriterio=new JPanel();
 		scrollTitulo=new JScrollPane();scrollDetalle=new JScrollPane();scrollCriterio=new JScrollPane();
+		
+
+		botonAgregarTareas=new JButton("Tareas");
+		botonAgregarTareas.setAlignmentX(Box.LEFT_ALIGNMENT);
 		
 		botonAgregar=new JButton("Agregar");
 		botonAgregar.setAlignmentX(Box.RIGHT_ALIGNMENT);
@@ -125,15 +130,7 @@ public class AltaUserStoryView extends JPanel{
 		campoPuntos=new JTextField();
 		campoPuntos.setBorder(BorderFactory.createTitledBorder("Puntos:"));
 		campoPuntos.setAlignmentX(Box.LEFT_ALIGNMENT);
-		/*
-		campoAsignadoA=new JTextField();
-		campoAsignadoA.setBorder(BorderFactory.createTitledBorder("Asignado A:"));
-		campoAsignadoA.setAlignmentX(Box.LEFT_ALIGNMENT);
-
-		campoHoras=new JTextField();
-		campoHoras.setBorder(BorderFactory.createTitledBorder("Horas:"));
-		campoHoras.setAlignmentX(Box.LEFT_ALIGNMENT);
-        */
+		
         configurarAcciones();
         insertarEnBox();
         this.add(boxVertical);
@@ -165,14 +162,10 @@ public class AltaUserStoryView extends JPanel{
 		Box boxHExtras=Box.createHorizontalBox();
 		boxHExtras.add(Box.createHorizontalStrut(10));
 		boxHExtras.add(campoPuntos);
-	//	boxHExtras.add(Box.createHorizontalGlue());
-	//	boxHExtras.add(campoHoras);
 		boxHExtras.setAlignmentY(BOTTOM_ALIGNMENT);
 
 		Box boxHBotones=Box.createHorizontalBox();
-//		boxHBotones.add(Box.createHorizontalStrut(10));
-	//	boxHBotones.add(campoAsignadoA);
-	//	boxHBotones.add(Box.createHorizontalGlue());
+		boxHBotones.add(botonAgregarTareas); //BOTON que agrega tareas
 		boxHBotones.add(botonAgregar);
 		boxHBotones.setAlignmentY(BOTTOM_ALIGNMENT);
 		
@@ -306,22 +299,6 @@ public class AltaUserStoryView extends JPanel{
 			};
         });
 		
-/*		campoHoras.addKeyListener(new KeyListener(){
-			public void keyPressed(KeyEvent keyEvent){}
-
-			@Override
-			public void keyTyped(KeyEvent keyEvent) {}
-			
-			@Override
-			public void keyReleased(KeyEvent keyEvent) {
-				String caracter=String.valueOf(keyEvent.getKeyChar());
-				String numeros="1234567890";
-				if(!numeros.contains(caracter)){
-					campoHoras.setText(campoHoras.getText().replace(caracter, ""));
-        		}
-			};
-        });
-	*/
 	}
 	
 	private void agregarListenerAlBoton(){
@@ -336,35 +313,52 @@ public class AltaUserStoryView extends JPanel{
 				if((!titulo.isEmpty()) && (!detalle.isEmpty())){
 					String sugerencia=controlador.obtenerSugerenciaTitulo(titulo);
 					if(!sugerencia.isEmpty()){
-						JOptionPane.showMessageDialog(null, sugerencia+"\nA pesar de la sugerencia ¿Aún desea guardar esta User Story?");
-					}else{
-						String criterios=areaCriterios.getText();
-						//String asignadoA=campoAsignadoA.getText();
-						Integer horasEstimadas=0,puntos=0;
-						try{
-							//horasEstimadas=Integer.getInteger(campoHoras.getText());
-
-							puntos=Integer.getInteger(campoPuntos.getText());
-							
-							try {
-								//controlador.altaUserStory(titulo,detalle,criterios,asignadoA,horasEstimadas,puntos);
-								controlador.altaUserStory(titulo,detalle,criterios,horasEstimadas);
-							} catch( Exception nullException) {
-								JOptionPane.showMessageDialog(null, "ERROR: "+nullException.getMessage() );
-							}
-							
-						}catch(Exception excepcion) {
-							JOptionPane.showMessageDialog(null, "ERROR: Al intentar agregar la user story" );
+						int resultado=JOptionPane.showOptionDialog(null, sugerencia+"\nA pesar de la sugerencia ¿Aún desea guardar esta User Story?", 
+								"Advertencia", JOptionPane.YES_NO_OPTION, JOptionPane.WARNING_MESSAGE, null,null,null);
+						if(resultado==JOptionPane.YES_OPTION){
+							guardarUserStory(titulo,detalle);
 						}
-						
+					}else{
+							guardarUserStory(titulo,detalle);
 					}
 					
 				}else{
 					JOptionPane.showMessageDialog(null, "Una User Story necesita al menos un Titulo y el detalle. "
 							+ "No se puede guardar esta User Story");
 				}
-			}
+			}						
 		});
+		botonAgregarTareas.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e){
+				if(altaTarea==null){
+					altaTarea=new AltaTareaView();
+				}else{
+					if(altaTarea.isDisplayable()){
+						altaTarea.setVisible(true);
+					}else{
+						altaTarea=new AltaTareaView();;
+					}
+				}
+			}	
+		});
+	}
+	
+	private void guardarUserStory(String titulo,String detalle){
+		String criterios=areaCriterios.getText();
+		Integer puntos=0;
+		try{
+			puntos=Integer.parseInt(campoPuntos.getText());
+			if(altaTarea.isDisplayable()){
+				ArrayList<String> tareas=altaTarea.getTareas();
+			}
+			controlador.altaUserStory(titulo,detalle,criterios,puntos);
+		}catch(Exception excepcion) {
+			JOptionPane.showMessageDialog(null, "ERROR: Al intentar agregar la user story\n" +
+					excepcion.getMessage());
+		}
+		if(this.altaTarea.isActive()){
+			altaTarea.dispose();
+		}
 	}
 	
 	private void agregarFoco(){
@@ -393,15 +387,4 @@ public class AltaUserStoryView extends JPanel{
 		      }
 		});
 	}
-		
-	/*
-	@Override
-	public void actionPerformed(ActionEvent evento) {
-		if (true) {
-		} else {
-			JOptionPane.showMessageDialog(null, "Se desactivo la opción de sugerencias, "
-					+ "recuerde que puede reactivar las sugerencias en cualquier momento");
-		}
-	}*/
-
 }
