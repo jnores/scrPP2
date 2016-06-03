@@ -17,7 +17,7 @@ public class LectorTest extends TestCase{
 	String autor1="autor1";String autor2="autor2";
 	String fecha1 ="Fri Sep 3 15:35:34 2016 -0300";
 	String mensaje1="#Tarea:1abcdef1 Cambio 6 #ESTADO: done";
-	String fecha2 ="Thu Sep 2 08:59:32 2016 -0800";
+	String fecha2 =" Thu Sep 5 08:59:32 2016 -0800";
 	String mensaje2="#tarea:2abcdef2 Cambio 5 #estado: doing";
 	
 

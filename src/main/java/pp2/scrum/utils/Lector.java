@@ -23,11 +23,12 @@ public class Lector {
 			}
 			buffered.close();
 			lector.close();
-		} catch (FileNotFoundException excepcion){
-			excepcion.getLocalizedMessage();
+		}  catch (FileNotFoundException excepcion){
+			excepcion.getLocalizedMessage ();
 		}catch (IOException excepcion) {
 			excepcion.getLocalizedMessage();
 		}
 		return texto;
 	}
+	
 }
