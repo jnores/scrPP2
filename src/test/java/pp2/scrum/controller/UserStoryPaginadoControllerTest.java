@@ -1,5 +1,6 @@
 package pp2.scrum.controller;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import junit.framework.Test;
@@ -7,8 +8,10 @@ import junit.framework.TestCase;
 import junit.framework.TestSuite;
 import mockit.MockUp;
 import pp2.scrum.dominio.Paginacion;
+import pp2.scrum.dominio.entidad.Tarea;
 import pp2.scrum.dominio.entidad.UserStory;
 import pp2.scrum.dominio.enums.DirOrden;
+import pp2.scrum.dominio.enums.Estado;
 import pp2.scrum.dominio.interfaz.MailGateway;
 
 public class UserStoryPaginadoControllerTest extends TestCase
@@ -73,5 +76,20 @@ public class UserStoryPaginadoControllerTest extends TestCase
       assertEquals(controller.getPaginaActual().getPagina(), 2);
       
    }
+   
+   public void testFinalizarStory()
+   {  
+      List<UserStory> historias = new ArrayList<UserStory>();
+      List<Tarea> tareas = new ArrayList<Tarea>();
+      UserStory story = new UserStory("titulo1", "detalle1", "autor1", "responsable1", 10, 50, 1, Estado.getDefault(), null,tareas);
+      tareas.add(new Tarea());
+      historias.add(story);
+      controller.setModel(historias);
+      assertTrue(!controller.getModel().get(0).estaTerminada());
+      controller.finalizarStory(controller.getModel().get(0));
+      assertTrue(controller.getModel().get(0).estaTerminada());
+      assertTrue(story.estaTerminada());
+   }
+   
   
 }

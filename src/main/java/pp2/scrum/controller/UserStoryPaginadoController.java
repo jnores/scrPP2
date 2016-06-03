@@ -106,21 +106,27 @@ public class UserStoryPaginadoController extends Controller
 
         for (Tarea tarea : tareas)
         {
-            try
+            while (tarea.getEstado() != Estado.Done)
             {
-                while (tarea.getEstado().compareTo(Estado.ToDo) < 0)
-                    tarea.avanzarEstado();
-            }
-            catch(Exception ex){
-
-            }            
+               tarea.avanzarEstado();
+            }          
         }
 
     }
 
-    public Resultado enviarHistoriaMail(UserStory story)
+    public Resultado enviarHistoriaMail(String destino , UserStory story)
     {
-        Mail mail = new Mail("julian.dirisio@gmail.com", "Tema", story.getTitulo());
+        String nuevaLinea = System.lineSeparator();
+        String cuerpo = "Detalle:" + nuevaLinea;
+        cuerpo += story.getDetalle() + nuevaLinea;
+        cuerpo += "Criterios:" + nuevaLinea;
+        cuerpo += story.getCriterios() + nuevaLinea;
+        cuerpo += "Autor:" + nuevaLinea;
+        cuerpo += story.getAutor() + nuevaLinea;
+        cuerpo += "Puntos:" + nuevaLinea;
+        cuerpo += story.getStoryPoints() + nuevaLinea;
+        
+        Mail mail = new Mail(destino, "Historia finalizada: " +  story.getTitulo(),cuerpo);
         return mailGateway.enviar(mail);
     }
 
