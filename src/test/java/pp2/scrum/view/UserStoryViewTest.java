@@ -1,17 +1,26 @@
 package pp2.scrum.view;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import junit.framework.Test;
 import junit.framework.TestCase;
 import junit.framework.TestSuite;
 import mockit.MockUp;
+import pp2.scrum.consulta.EnviadorMail;
 import pp2.scrum.controller.UserStoryPaginadoController;
+import pp2.scrum.dominio.entidad.Tarea;
+import pp2.scrum.dominio.entidad.UserStory;
+import pp2.scrum.dominio.enums.Estado;
 import pp2.scrum.dominio.interfaz.MailGateway;
 import pp2.scrum.view.UserStoryPaginadoView;
 
 public class UserStoryViewTest extends TestCase
 {
    private UserStoryPaginadoController controller;
-   private MockUp<MailGateway> mailGatewayMock;
+   private MailStub mailGatewayStub;
+   private ObservadorDeHistoria observadorhistoria;
+   private List<UserStory> historias;
    
    public UserStoryViewTest( String testName ) {
       super( testName );
@@ -26,15 +35,73 @@ public class UserStoryViewTest extends TestCase
 
    protected void setUp()
    {
-   
-      mailGatewayMock = new MockUp<MailGateway>(){};
-      controller = new UserStoryPaginadoController(mailGatewayMock.getMockInstance());  
+      historias = new ArrayList<UserStory>();
+      List<Tarea> tareas = new ArrayList<Tarea>();
+      tareas.add(new Tarea());
+      UserStory story = new UserStory("titulo1", "detalle1", "autor1", "responsable1", 10, 50, 1, Estado.getDefault(), null,tareas);      
+      historias.add(story);
+      
    }
    
-   public void testMainUserStoryMain() 
-   {
-      UserStoryPaginadoView vista = new UserStoryPaginadoView(controller);
-      assertTrue( true );
+   public void testEnviarMailStub() 
+   {   
+      //configurar stub
+      mailGatewayStub = new MailStub();
+      controller = new UserStoryPaginadoController(mailGatewayStub);
+      //setear controller
+      controller.setModel(historias);
+      observadorhistoria = new ObservadorDeHistoria(controller,"mail");
+      //simular finalizar una historia
+      controller.finalizarStory(controller.getModel().get(0));
+   }
+     
+   public void testEnviarMailRealFallaPassIncorrecto() 
+   {      
+      //configurar Mail
+      EnviadorMail enviador = new EnviadorMail(4444,"127.0.0.1", "pp2mailsender", "mail", 15);    
+      controller = new UserStoryPaginadoController(enviador);
+      //setear controller
+      controller.setModel(historias);
+      observadorhistoria = new ObservadorDeHistoria(controller,"no-mail@gmail.com");          
+      //Enviar Mail
+      controller.finalizarStory(controller.getModel().get(0));
+   }
+   
+   public void testEnviarMailRealFallaConectarPuerto() 
+   {      
+      //configurar Mail
+      EnviadorMail enviador = new EnviadorMail(9898,"127.0.0.1", "pp2mailsender", "mailmail", 15);    
+      controller = new UserStoryPaginadoController(enviador);
+      //setear controller
+      controller.setModel(historias);
+      observadorhistoria = new ObservadorDeHistoria(controller,"no-mail@gmail.com");          
+      //Enviar Mail
+      controller.finalizarStory(controller.getModel().get(0));
+   }
+   
+   public void testEnviarMailRealFallaTimeOut() 
+   {      
+      //configurar Mail
+      EnviadorMail enviador = new EnviadorMail(9898,"127.0.0.1", "pp2mailsender", "mailmail", 0);    
+      controller = new UserStoryPaginadoController(enviador);
+      //setear controller
+      controller.setModel(historias);
+      observadorhistoria = new ObservadorDeHistoria(controller,"no-mail@gmail.com");          
+      //Enviar Mail
+      controller.finalizarStory(controller.getModel().get(0));
+   }
+   
+   public void testEnviarMailReal() 
+   
+   {      
+      //configurar Mail
+      EnviadorMail enviador = new EnviadorMail(4444,"127.0.0.1", "pp2mailsender", "mailmail", 15);    
+      controller = new UserStoryPaginadoController(enviador);
+      //setear controller
+      controller.setModel(historias);
+      observadorhistoria = new ObservadorDeHistoria(controller,"julian.dirisio@gmail.com");          
+      //Enviar Mail
+      controller.finalizarStory(controller.getModel().get(0));
    }
 
 }

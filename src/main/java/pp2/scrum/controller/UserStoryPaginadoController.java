@@ -5,11 +5,13 @@ import java.util.List;
 
 import pp2.scrum.dominio.Paginacion;
 import pp2.scrum.dominio.Resultado;
+import pp2.scrum.dominio.entidad.CriterioAceptacion;
 import pp2.scrum.dominio.entidad.Mail;
 import pp2.scrum.dominio.entidad.Tarea;
 import pp2.scrum.dominio.entidad.UserStory;
 import pp2.scrum.dominio.enums.Estado;
 import pp2.scrum.dominio.interfaz.MailGateway;
+import pp2.scrum.utils.Logger;
 
 public class UserStoryPaginadoController extends Controller 
 {
@@ -115,19 +117,32 @@ public class UserStoryPaginadoController extends Controller
     }
 
     public Resultado enviarHistoriaMail(String destino , UserStory story)
-    {
+    {        
         String nuevaLinea = System.lineSeparator();
+        String criterios="";
+        for (CriterioAceptacion criterio : story.getCriterios())
+        {
+           criterios+="* "+ criterio.getDescripcion() + nuevaLinea;        
+        }
+                
         String cuerpo = "Detalle:" + nuevaLinea;
         cuerpo += story.getDetalle() + nuevaLinea;
         cuerpo += "Criterios:" + nuevaLinea;
-        cuerpo += story.getCriterios() + nuevaLinea;
+        cuerpo += criterios;
         cuerpo += "Autor:" + nuevaLinea;
         cuerpo += story.getAutor() + nuevaLinea;
         cuerpo += "Puntos:" + nuevaLinea;
         cuerpo += story.getStoryPoints() + nuevaLinea;
         
         Mail mail = new Mail(destino, "Historia finalizada: " +  story.getTitulo(),cuerpo);
-        return mailGateway.enviar(mail);
+        Logger.init();
+        Resultado respuesta = mailGateway.enviar(mail);
+        for (String comment : respuesta.Errores().values())
+        {
+           Logger.log(comment);
+        }
+        Logger.close();
+        return respuesta;
     }
 
 

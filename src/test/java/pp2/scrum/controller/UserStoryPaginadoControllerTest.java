@@ -89,7 +89,10 @@ public class UserStoryPaginadoControllerTest extends TestCase
       controller.finalizarStory(controller.getModel().get(0));
       assertTrue(controller.getModel().get(0).estaTerminada());
       assertTrue(story.estaTerminada());
+      assertTrue(story.getCriterios() != null);
    }
+   
+   
    
   
 }

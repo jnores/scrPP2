@@ -176,12 +176,7 @@ public class UserStory extends Observable implements Observer
 	
 	public Date getFechaDone(){
 		return this.fechaDone;
-	}
-	
-	private void fueModificado(Object arg) {
-		setChanged();
-		notifyObservers(arg);
-	}
+	}	
 
 	/* (non-Javadoc)
 	 * @see java.lang.Object#hashCode()
@@ -236,16 +231,17 @@ public class UserStory extends Observable implements Observer
 	      tarea.addObserver(this);
       }
 	}
+	
+	private void fueModificado(Object arg) {
+      setChanged();
+      notifyObservers(arg);
+   }
 
    @Override
    public void update(Observable o, Object arg)
    {
       fueModificado(o);
-      if (estaTerminada())
-      {
-         boolean b = false;
-        //NotificarEvento
-      }
+      //if (estaTerminada())
       
    }
 	
