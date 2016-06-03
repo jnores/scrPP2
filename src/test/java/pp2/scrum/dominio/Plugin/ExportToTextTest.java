@@ -7,9 +7,12 @@ import java.util.List;
 import junit.framework.Test;
 import junit.framework.TestCase;
 import junit.framework.TestSuite;
+import pp2.scrum.controller.UserStoryController;
 import pp2.scrum.controller.UserStoryHelper;
+import pp2.scrum.dominio.entidad.Proyecto;
 import pp2.scrum.dominio.entidad.UserStory;
 import pp2.scrum.plugins.ExportToText;
+import pp2.scrum.view.AltaUserStoryView;
 
 
 public class ExportToTextTest extends TestCase {
@@ -52,6 +55,7 @@ public class ExportToTextTest extends TestCase {
 		lst.add(userStoryHelper);
 		exporter.export(path, lst);
 		
+					
 		
 //		AltaUserStoryView altv = new AltaUserStoryView(null);
 //		FilterStoriesView v = new FilterStoriesView(null); 
