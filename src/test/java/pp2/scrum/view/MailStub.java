@@ -11,7 +11,7 @@ public class MailStub implements MailGateway
    public Resultado enviar(Mail mail)
    {
       Resultado resultado = new Resultado();
-      resultado.AgregarError("1", "Envio Correcto de Mail");
+      resultado.AgregarError("1", "Envio Correcto de Mail (Stub)");
       return resultado;
    }
 

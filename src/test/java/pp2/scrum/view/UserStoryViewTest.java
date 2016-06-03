@@ -6,14 +6,11 @@ import java.util.List;
 import junit.framework.Test;
 import junit.framework.TestCase;
 import junit.framework.TestSuite;
-import mockit.MockUp;
 import pp2.scrum.consulta.EnviadorMail;
 import pp2.scrum.controller.UserStoryPaginadoController;
 import pp2.scrum.dominio.entidad.Tarea;
 import pp2.scrum.dominio.entidad.UserStory;
 import pp2.scrum.dominio.enums.Estado;
-import pp2.scrum.dominio.interfaz.MailGateway;
-import pp2.scrum.view.UserStoryPaginadoView;
 
 public class UserStoryViewTest extends TestCase
 {
@@ -70,7 +67,7 @@ public class UserStoryViewTest extends TestCase
    public void testEnviarMailRealFallaConectarPuerto() 
    {      
       //configurar Mail
-      EnviadorMail enviador = new EnviadorMail(9898,"127.0.0.1", "pp2mailsender", "mailmail", 15);    
+      EnviadorMail enviador = new EnviadorMail(9898,"127.0.0.1", "pp2mailsender", "mail", 15);    
       controller = new UserStoryPaginadoController(enviador);
       //setear controller
       controller.setModel(historias);
@@ -82,7 +79,7 @@ public class UserStoryViewTest extends TestCase
    public void testEnviarMailRealFallaTimeOut() 
    {      
       //configurar Mail
-      EnviadorMail enviador = new EnviadorMail(9898,"127.0.0.1", "pp2mailsender", "mailmail", 0);    
+      EnviadorMail enviador = new EnviadorMail(4444,"127.0.0.1", "pp2mailsender", "mail", 0);    
       controller = new UserStoryPaginadoController(enviador);
       //setear controller
       controller.setModel(historias);
