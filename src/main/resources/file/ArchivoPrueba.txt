@@ -6,6 +6,31 @@ Date:  Fri Sep 3 15:35:34 2016 -0300
 
 commit id2
 Author: autor2 
-Date: Thu Sep 2 08:59:32 2016 -0800
+Date: Thu Sep 5 08:59:32 2016 -0800
 
     #tarea:2abcdef2 Cambio 5 #estado: doing
+
+commit id3
+Author: autor3 
+Date: Thu Sep 6 08:59:32 2016 -0800
+
+    #tarea:3abcdef3 Cambio 5 
+
+commit id4
+Author: autor4
+Date: Thu Sep 8 08:59:32 2016 -0800
+
+    #tarea:abc44def Cambio 5 #estado: doing
+
+commit id4
+Author: autor4
+Date: Thu Sep 8 08:59:32 2016 -0800
+
+    Cambio 5 #estado: doing
+
+
+commit: id6
+Author: autor6
+Date: Thu Sep 5 08:59:32 2016 -0800
+
+    #tarea:2abcdef2 Cambio 5 
