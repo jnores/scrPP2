@@ -6,9 +6,9 @@ import java.util.List;
 
 import org.jfree.data.xy.*;
 
+import pp2.scrum.dominio.entidad.DataComponent;
 import pp2.scrum.dominio.entidad.Sprint;
 import pp2.scrum.dominio.entidad.UserStory;
-import pp2.scrum.dominio.interfaz.DataComponent;
 
 /**
  * Componente hoja, muestra la situación idealizada, 

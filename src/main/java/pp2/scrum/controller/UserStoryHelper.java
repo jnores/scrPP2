@@ -1,8 +1,8 @@
 package pp2.scrum.controller;
 
+import pp2.scrum.dominio.Estado;
 import pp2.scrum.dominio.entidad.Miembro;
 import pp2.scrum.dominio.entidad.UserStory;
-import pp2.scrum.dominio.enums.Estado;
 
 public class UserStoryHelper
 {

@@ -5,7 +5,7 @@ import java.awt.event.ActionListener;
 
 import pp2.scrum.controller.HomeController;
 import pp2.scrum.dominio.Resultado;
-import pp2.scrum.dominio.interfaz.Comando;
+import pp2.scrum.dominio.entidad.Comando;
 
 public class LimpiarProyectoNuevoView implements Comando<HomeController>
 {

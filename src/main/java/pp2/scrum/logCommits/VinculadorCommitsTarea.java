@@ -1,8 +1,9 @@
 package pp2.scrum.logCommits;
 
 import java.util.ArrayList;
+
+import pp2.scrum.dominio.Estado;
 import pp2.scrum.dominio.entidad.Tarea;
-import pp2.scrum.dominio.enums.Estado;
 import pp2.scrum.utils.RegexFacilities;
 
 public class VinculadorCommitsTarea {

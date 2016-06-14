@@ -5,8 +5,8 @@ import java.util.ArrayList;
 import org.jfree.data.xy.XYSeries;
 import org.jfree.data.xy.XYSeriesCollection;
 
+import pp2.scrum.dominio.entidad.DataComponent;
 import pp2.scrum.dominio.entidad.Sprint;
-import pp2.scrum.dominio.interfaz.DataComponent;
 
 public class DataComposite  implements DataComponent{
 	private ArrayList<DataComponent> dataGraficos;

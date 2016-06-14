@@ -17,10 +17,10 @@ import javax.swing.table.JTableHeader;
 import javax.swing.table.TableModel;
 
 import pp2.scrum.controller.UserStoryPaginadoController;
-import pp2.scrum.dominio.Paginacion;
+import pp2.scrum.dominio.Estado;
 import pp2.scrum.dominio.entidad.Tarea;
 import pp2.scrum.dominio.entidad.UserStory;
-import pp2.scrum.dominio.enums.Estado;
+import pp2.scrum.utils.Paginacion;
 
 import javax.swing.JButton;
 import javax.swing.ImageIcon;

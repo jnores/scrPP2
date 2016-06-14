@@ -2,7 +2,7 @@ package pp2.scrum.view;
 
 import pp2.scrum.dominio.Resultado;
 import pp2.scrum.dominio.entidad.Mail;
-import pp2.scrum.dominio.interfaz.MailGateway;
+import pp2.scrum.dominio.entidad.MailGateway;
 
 public class MailStub implements MailGateway
 {

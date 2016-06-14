@@ -1,7 +1,6 @@
-package pp2.scrum.dominio.interfaz;
+package pp2.scrum.dominio.entidad;
 
 import pp2.scrum.dominio.Resultado;
-import pp2.scrum.dominio.entidad.Mail;
 
 public interface MailGateway
 {

@@ -1,8 +1,6 @@
-package pp2.scrum.dominio.interfaz;
+package pp2.scrum.dominio.entidad;
 
 import org.jfree.data.xy.*;
-
-import pp2.scrum.dominio.entidad.Sprint;
 /**
  * Define el comportamiento base de los componentes
  * que permiten crear un chart. 

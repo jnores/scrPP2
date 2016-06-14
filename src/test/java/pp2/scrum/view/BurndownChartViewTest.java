@@ -5,8 +5,8 @@ import junit.framework.TestCase;
 import junit.framework.TestSuite;
 import mockit.MockUp;
 import pp2.scrum.controller.BurndownChartController;
-import pp2.scrum.dominio.interfaz.DataComponent;
-import pp2.scrum.dominio.interfaz.MailGateway;
+import pp2.scrum.dominio.entidad.DataComponent;
+import pp2.scrum.dominio.entidad.MailGateway;
 import pp2.scrum.view.BurndownChartView;
 
 public class BurndownChartViewTest extends TestCase

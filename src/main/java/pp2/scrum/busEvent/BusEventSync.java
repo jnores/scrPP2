@@ -8,7 +8,7 @@ import java.awt.event.ActionListener;
 import java.util.LinkedHashSet;
 import java.util.Set;
 
-import pp2.scrum.dominio.interfaz.BusEvent;
+import pp2.scrum.dominio.entidad.BusEvent;
 
 /**
  * @author yoshknight

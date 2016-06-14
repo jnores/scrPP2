@@ -1,4 +1,4 @@
-package pp2.scrum.dominio.enums;
+package pp2.scrum.dominio;
 
 public enum Estado 
 {

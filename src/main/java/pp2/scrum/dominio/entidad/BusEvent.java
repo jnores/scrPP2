@@ -1,7 +1,7 @@
 /**
  * 
  */
-package pp2.scrum.dominio.interfaz;
+package pp2.scrum.dominio.entidad;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;

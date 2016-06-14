@@ -8,7 +8,7 @@ import java.net.UnknownHostException;
 
 import pp2.scrum.dominio.Resultado;
 import pp2.scrum.dominio.entidad.Mail;
-import pp2.scrum.dominio.interfaz.MailGateway;
+import pp2.scrum.dominio.entidad.MailGateway;
 
 /**
  * @author rub

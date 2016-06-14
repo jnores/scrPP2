@@ -4,10 +4,10 @@ package pp2.scrum.controller;
 import java.awt.event.ActionListener;
 
 import pp2.scrum.dominio.Resultado;
+import pp2.scrum.dominio.entidad.AppController;
+import pp2.scrum.dominio.entidad.Comando;
+import pp2.scrum.dominio.entidad.MailGateway;
 import pp2.scrum.dominio.entidad.Proyecto;
-import pp2.scrum.dominio.interfaz.AppController;
-import pp2.scrum.dominio.interfaz.Comando;
-import pp2.scrum.dominio.interfaz.MailGateway;
 import pp2.scrum.view.BacklogNuevoView;
 import pp2.scrum.view.ProyectoNuevoView;
 

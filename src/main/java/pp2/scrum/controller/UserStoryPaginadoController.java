@@ -3,15 +3,15 @@ package pp2.scrum.controller;
 import java.util.ArrayList;
 import java.util.List;
 
-import pp2.scrum.dominio.Paginacion;
+import pp2.scrum.dominio.Estado;
 import pp2.scrum.dominio.Resultado;
 import pp2.scrum.dominio.entidad.CriterioAceptacion;
 import pp2.scrum.dominio.entidad.Mail;
+import pp2.scrum.dominio.entidad.MailGateway;
 import pp2.scrum.dominio.entidad.Tarea;
 import pp2.scrum.dominio.entidad.UserStory;
-import pp2.scrum.dominio.enums.Estado;
-import pp2.scrum.dominio.interfaz.MailGateway;
 import pp2.scrum.utils.Logger;
+import pp2.scrum.utils.Paginacion;
 
 public class UserStoryPaginadoController extends Controller 
 {

@@ -6,7 +6,7 @@ import java.util.List;
 import java.util.Observable;
 import java.util.Observer;
 
-import pp2.scrum.dominio.enums.Estado;
+import pp2.scrum.dominio.Estado;
 
 public class UserStory extends Observable implements Observer
 {

@@ -1,7 +1,7 @@
 package pp2.scrum.view;
 
 import pp2.scrum.controller.BurndownChartController;
-import pp2.scrum.dominio.enums.OpcionGrafico;
+import pp2.scrum.utils.OpcionGrafico;
 
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;

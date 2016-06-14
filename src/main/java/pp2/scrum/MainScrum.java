@@ -4,7 +4,7 @@ import java.awt.EventQueue;
 
 import pp2.scrum.consulta.EnviadorMail;
 import pp2.scrum.controller.HomeController;
-import pp2.scrum.dominio.interfaz.MailGateway;
+import pp2.scrum.dominio.entidad.MailGateway;
 import pp2.scrum.utils.Logger;
 import pp2.scrum.view.HomeView;
 
