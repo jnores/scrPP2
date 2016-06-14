@@ -67,7 +67,7 @@ public class UserStoryPaginadoController extends Controller
         while(i < paginacion.getItemsPorPagina() && (indice + i) < itemsTotales && indice >= 0)
         {
             UserStory story = model.get(indice + i);
-            historias.add(new UserStory(story.getTitulo(), story.getDetalle(), story.getAutor(), story.getResponsable(), story.getHorasEstimadas(), story.getStoryPoints(), story.getIteracion(), story.getEstado(), null, null));       
+            historias.add(story);      
             i++;
         }
         paginacionActual = paginacion;
