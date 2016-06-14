@@ -14,13 +14,13 @@ public class UserStory extends Observable implements Observer
 	private long id;
 	private String titulo;
 	private String detalle;
-	private String autor;
-	private String responsable;
-	private Date fechaDone;
-	private int horasEstimadas;
+	private String autor; //FIXME quitar
+	private String responsable; //FIXME quitar
+	private Date fechaDone; //FIXME quitar
+	private int horasEstimadas; //FIXME quitar
 	private int storyPoints;
-	private int iteracion;
-	private Estado estado;
+	private int iteracion; //FIXME quitar
+	private Estado estado; //FIXME quitar
 	private List<CriterioAceptacion> criterios;
 	private List<Tarea> tareas;
 	
@@ -63,7 +63,7 @@ public class UserStory extends Observable implements Observer
       observarTareas(this.tareas);
 	}
 	
-	public void setId(long id) {
+	public void setId(long id) { //FIXME quitar
 		this.id = id;
 	}
 
