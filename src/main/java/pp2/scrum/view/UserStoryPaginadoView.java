@@ -41,13 +41,10 @@ public class UserStoryPaginadoView extends JPanel implements Observer
 	private TableModel modelTabla;
 	private JButton btnadd, btnPrimero,btnAnterior,btnSiguiente,btnUltimo ;
 	
-	public UserStoryPaginadoView(UserStoryPaginadoController controller ) 
+	public UserStoryPaginadoView(UserStoryPaginadoController controller,List<UserStory> historias ) 
 	{
 		
 		Controller = controller;
-		//setTitle("Historias de Usuario");
-		//setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		//setBounds(400, 400, 500, 200);
 		
 		btnadd = new JButton("add");
 		btnPrimero = new JButton("");
@@ -55,9 +52,7 @@ public class UserStoryPaginadoView extends JPanel implements Observer
 		btnSiguiente = new JButton("");
 		btnUltimo = new JButton("");
 		
-
-		// Seteo la lista paginada con la 1º pagina por defecto
-		Stories = Controller.ListarUserStories(null);
+		Stories = historias;
 		cargarVista();
 		
 		btnadd.addActionListener(new ActionListener() 
@@ -67,7 +62,7 @@ public class UserStoryPaginadoView extends JPanel implements Observer
             List<UserStory> lista = Controller.getModel();
             lista.add(new UserStory("Added1", "Detalle11", "Autor11", "Responsable11", 10, 40, 1, Estado.ToDo, null, null));
             Controller.setModel(lista);
-            Stories = Controller.ObtenerPaginaActual();
+            Stories = Controller.obtenerPaginacionActual();
             setearVista();
          } 
       });
@@ -133,13 +128,13 @@ public class UserStoryPaginadoView extends JPanel implements Observer
             i++;
             story.addObserver(this);
          }    
-         PageNumberLabel = new JLabel(Controller.getPaginaActual().getPagina()+ " / " + Controller.getPaginasTotales());
+         PageNumberLabel = new JLabel(Controller.getPaginacionActual().getPagina()+ " / " + Controller.getPaginasTotales());
          if (Controller.getPaginasTotales() > 1){
             habilitarBotones(true);
-            if (Controller.getPaginaActual().getPagina() == 1){
+            if (Controller.getPaginacionActual().getPagina() == 1){
                habilitarAtras(false);
             }
-            if (Controller.getPaginaActual().getPagina() == Controller.getPaginasTotales()){
+            if (Controller.getPaginacionActual().getPagina() == Controller.getPaginasTotales()){
                habilitarAdelante(false);
             }
          }
@@ -208,19 +203,7 @@ public class UserStoryPaginadoView extends JPanel implements Observer
       
       btnUltimo.setIcon(new ImageIcon(classloader.getResource("images/Ultimo.png")));
       panel.add(btnUltimo);
-      
-      //SwingUtilities.updateComponentTreeUI(this);     
-      /*
-      if (this.getRootPane() != null) this.getRootPane().validate();
-      if (this.getRootPane() != null) this.getRootPane().repaint();
-      
-      JFrame topFrame = (JFrame) SwingUtilities.getWindowAncestor(this);
-      if (topFrame != null)                  
-      {
-         SwingUtilities.updateComponentTreeUI(topFrame);
-         topFrame.validate();
-         topFrame.repaint();
-      }*/
+
 	}
 	
 	private void habilitarBotones(boolean bool)
@@ -245,40 +228,40 @@ public class UserStoryPaginadoView extends JPanel implements Observer
 	
 	private void obtenerPaginaAnterior()
 	{
-	   Paginacion actual = Controller.getPaginaActual();
+	   Paginacion actual = Controller.getPaginacionActual();
 	   if (actual.getPagina() != 1)
 	   {
-	      Stories = Controller.ObtenerPaginaAnterior();
+	      Stories = Controller.obtenerPaginacionAnterior();
 	      setearVista();
 	   }
 	}
 	
 	private void obtenerPaginaSiguiente()
    {
-	   Paginacion actual = Controller.getPaginaActual();
+	   Paginacion actual = Controller.getPaginacionActual();
       if (actual.getPagina() != Controller.getPaginasTotales())
       {
-         Stories = Controller.ObtenerPaginaSiguiente();
+         Stories = Controller.obtenerPaginacionSiguiente();
          setearVista();
       }
    }
 	
 	private void obtenerPaginaPrimera()
    {
-	   Paginacion actual = Controller.getPaginaActual();
+	   Paginacion actual = Controller.getPaginacionActual();
       if (actual.getPagina() != 1)
       {
-         Stories = Controller.ObtenerPaginaPrimera();
+         Stories = Controller.obtenerPaginacionPrimera();
          setearVista();
       }
    }
 	
 	private void obtenerPaginaUltima()
    {
-	   Paginacion actual = Controller.getPaginaActual();
+	   Paginacion actual = Controller.getPaginacionActual();
       if (actual.getPagina() != Controller.getPaginasTotales())
       {
-         Stories = Controller.ObtenerPaginaUltima();
+         Stories = Controller.obtenerPaginacionUltima();
          setearVista();
       }      
    }

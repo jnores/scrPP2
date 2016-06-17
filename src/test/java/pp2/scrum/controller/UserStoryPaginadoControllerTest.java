@@ -39,11 +39,11 @@ public class UserStoryPaginadoControllerTest extends TestCase
    {        
       controller.getModel();
       
-      assertEquals(controller.getPaginaActual().getPagina(), 1);
+      assertEquals(controller.getPaginacionActual().getPagina(), 1);
       assertEquals(controller.getItemsTotales(), 0);
       assertEquals(controller.getPaginasTotales(), 0);
       assertTrue(controller.getModel() != null);
-      List<UserStory> lista = controller.ListarUserStories(null);
+      List<UserStory> lista = controller.listarUserStories(new Paginacion());
       assertEquals(lista.size(), 0);
       controller.setModel(null);
    }
@@ -51,29 +51,24 @@ public class UserStoryPaginadoControllerTest extends TestCase
    public void testUserPaginadoStoryPaginacion()
    {        
       List<UserStory> listaDefault,lista;
-      listaDefault = controller.ListarUserStories(null);
-      lista = controller.ObtenerPaginaAnterior();
+      listaDefault = controller.listarUserStories(new Paginacion());
+      lista = controller.obtenerPaginacionAnterior();
       assertEquals(listaDefault.size(), lista.size());
       
-      lista = controller.ObtenerPaginaPrimera();
+      lista = controller.obtenerPaginacionPrimera();
       assertEquals(listaDefault.size(), lista.size());
       
-      lista = controller.ObtenerPaginaSiguiente();
-      assertEquals(controller.getPaginaActual().getPagina(), 2);
+      lista = controller.obtenerPaginacionSiguiente();
+      assertEquals(controller.getPaginacionActual().getPagina(), 2);
       
-      lista = controller.ObtenerPaginaUltima();
-      assertEquals(controller.getPaginaActual().getPagina(), 0);
+      lista = controller.obtenerPaginacionUltima();
+      assertEquals(controller.getPaginacionActual().getPagina(), 0);
       
-      Paginacion paginacion = new Paginacion("Id", DirOrden.Desc, 1, 5);
-      listaDefault = controller.ListarUserStories(paginacion);
-      assertEquals(controller.getPaginaActual().getDireccionOrden(), DirOrden.Desc);
-      paginacion.setDireccionOrden(DirOrden.Asc);
+      Paginacion paginacion = new Paginacion(1, 5,new ArrayList<UserStory>());
+      listaDefault = controller.listarUserStories(paginacion);
       paginacion.setItemsPorPagina(4);
-      paginacion.setOrdenarPor("Id");
       paginacion.setPagina(2);
-      
-      assertEquals(controller.getPaginaActual().getDireccionOrden(), DirOrden.Asc);
-      assertEquals(controller.getPaginaActual().getPagina(), 2);
+      assertEquals(controller.getPaginacionActual().getPagina(), 2);
       
    }
    

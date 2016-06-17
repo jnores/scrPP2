@@ -3,6 +3,7 @@ package pp2.scrum.view;
 import java.awt.BorderLayout;
 import java.awt.FlowLayout;
 import java.awt.event.ActionListener;
+import java.util.ArrayList;
 
 import javax.swing.JButton;
 import javax.swing.JDialog;
@@ -13,6 +14,7 @@ import javax.swing.border.EmptyBorder;
 import net.sourceforge.jdatepicker.impl.UtilDateModel;
 import pp2.scrum.controller.ProyectoController;
 import pp2.scrum.controller.UserStoryPaginadoController;
+import pp2.scrum.dominio.entidad.UserStory;
 
 public class BacklogNuevoView extends JDialog
 {
@@ -22,10 +24,10 @@ public class BacklogNuevoView extends JDialog
    /**
     * Create the dialog.
     */
-   public BacklogNuevoView(ProyectoController controller)
+   public BacklogNuevoView(ProyectoController controller,UserStoryPaginadoView model)
    {
       this.controller = controller;
-      this.backlogPanel = new UserStoryPaginadoView(new UserStoryPaginadoController(controller.getMailGateway()));
+      this.backlogPanel = model;
       setTitle("Backlog Nuevo");
       setBounds(100, 100, 450, 300);
       getContentPane().setLayout(new BorderLayout());
@@ -57,7 +59,7 @@ public class BacklogNuevoView extends JDialog
    
    public void limpiarPantalla()
    {
-      backlogPanel = new UserStoryPaginadoView(new UserStoryPaginadoController(controller.getMailGateway()));
+      backlogPanel = new UserStoryPaginadoView(new UserStoryPaginadoController(controller.getMailGateway()),new ArrayList<UserStory>() );
       getContentPane().remove(0);
       getContentPane().add(backlogPanel,BorderLayout.CENTER,0);
       setearVista();
