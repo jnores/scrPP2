@@ -206,19 +206,7 @@ public class UserStoryPaginadoView extends JPanel implements Observer
       
       btnUltimo.setIcon(new ImageIcon(classloader.getResource("images/Ultimo.png")));
       panel.add(btnUltimo);
-      
-      //SwingUtilities.updateComponentTreeUI(this);     
-      /*
-      if (this.getRootPane() != null) this.getRootPane().validate();
-      if (this.getRootPane() != null) this.getRootPane().repaint();
-      
-      JFrame topFrame = (JFrame) SwingUtilities.getWindowAncestor(this);
-      if (topFrame != null)                  
-      {
-         SwingUtilities.updateComponentTreeUI(topFrame);
-         topFrame.validate();
-         topFrame.repaint();
-      }*/
+
 	}
 	
 	private void habilitarBotones(boolean bool)

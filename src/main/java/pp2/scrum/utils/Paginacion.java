@@ -15,6 +15,14 @@ public class Paginacion
              Pagina = pagina;
              ItemsPorPagina = itemsPorPagina;
          }
+         
+         public Paginacion()
+         {
+             OrdenarPor = null;
+             DireccionOrden = null;
+             Pagina = 1;
+             ItemsPorPagina = 5;
+         }
 
          public String getOrdenarPor()
          {

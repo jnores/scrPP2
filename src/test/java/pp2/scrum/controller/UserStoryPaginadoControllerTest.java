@@ -43,7 +43,7 @@ public class UserStoryPaginadoControllerTest extends TestCase
       assertEquals(controller.getItemsTotales(), 0);
       assertEquals(controller.getPaginasTotales(), 0);
       assertTrue(controller.getModel() != null);
-      List<UserStory> lista = controller.ListarUserStories(null);
+      List<UserStory> lista = controller.ListarUserStories(new Paginacion());
       assertEquals(lista.size(), 0);
       controller.setModel(null);
    }
@@ -51,7 +51,7 @@ public class UserStoryPaginadoControllerTest extends TestCase
    public void testUserPaginadoStoryPaginacion()
    {        
       List<UserStory> listaDefault,lista;
-      listaDefault = controller.ListarUserStories(null);
+      listaDefault = controller.ListarUserStories(new Paginacion());
       lista = controller.ObtenerPaginaAnterior();
       assertEquals(listaDefault.size(), lista.size());
       

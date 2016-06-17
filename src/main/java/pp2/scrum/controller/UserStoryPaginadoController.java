@@ -55,11 +55,7 @@ public class UserStoryPaginadoController extends Controller
     }
 
     public List<UserStory> ListarUserStories(Paginacion paginacion)
-    {
-        if (paginacion == null)
-        {
-            paginacion = paginacionDefault;
-        }                   
+    {                
         int itemsTotales = model.size();
         int indice = (paginacion.getPagina() - 1) * paginacion.getItemsPorPagina();
         List<UserStory> historias = new ArrayList<UserStory>();
