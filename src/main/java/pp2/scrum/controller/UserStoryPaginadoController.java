@@ -15,85 +15,68 @@ import pp2.scrum.utils.Paginacion;
 
 public class UserStoryPaginadoController extends Controller 
 {
-    private List<UserStory> model;
-    private Paginacion paginacionDefault;
     private Paginacion paginacionActual;
-    private int itemsTotales;
 
     public UserStoryPaginadoController(MailGateway mailGateway)
     {
         super (mailGateway);
-        model = new ArrayList<UserStory>();
-        paginacionDefault = new Paginacion(null, null, 1, 5);
-        paginacionActual = paginacionDefault;
-        itemsTotales = model.size();
+        paginacionActual = new Paginacion( 1, 5,new ArrayList<UserStory>());
     }
 
     public List<UserStory> getModel()
     {
-        return model;
+        return paginacionActual.getModel();
     }
 
     public int getItemsTotales()
     {
-        return itemsTotales;
+        return paginacionActual.getItemsTotales();
     }
 
     public int getPaginasTotales()
     {
-        return itemsTotales / paginacionActual.getItemsPorPagina() + (itemsTotales % paginacionActual.getItemsPorPagina() == 0 ? 0 : 1);
+        return paginacionActual.getPaginasTotales();
     }
 
-    public Paginacion getPaginaActual()
+    public Paginacion getPaginacionActual()
     {
         return paginacionActual;
     }
 
     public void setModel(List<UserStory> model)
     {
-        this.model = model;
+    	paginacionActual.setModel(model);
     }
 
-    public List<UserStory> ListarUserStories(Paginacion paginacion)
-    {                
-        int itemsTotales = model.size();
-        int indice = (paginacion.getPagina() - 1) * paginacion.getItemsPorPagina();
-        List<UserStory> historias = new ArrayList<UserStory>();
-        int i = 0;
-        while(i < paginacion.getItemsPorPagina() && (indice + i) < itemsTotales && indice >= 0)
-        {
-            UserStory story = model.get(indice + i);
-            historias.add(story);      
-            i++;
-        }
+    public List<UserStory> listarUserStories(Paginacion paginacion)
+    {               
         paginacionActual = paginacion;
-        this.itemsTotales = itemsTotales;
-        return historias;
+        return paginacionActual.listarUserStories();
     }
 
-    public List<UserStory> ObtenerPaginaAnterior()
+    public List<UserStory> obtenerPaginacionAnterior()
     { 
-        return paginacionActual.getPagina() == 1 ? getModel() : ListarUserStories(new Paginacion(paginacionActual.getOrdenarPor(), paginacionActual.getDireccionOrden(), paginacionActual.getPagina() - 1, paginacionActual.getItemsPorPagina()));  
+        return paginacionActual.getPagina() == 1 ? paginacionActual.getModel() : paginacionActual.paginacionAnterior();  
     }
 
-    public List<UserStory> ObtenerPaginaSiguiente()
+    public List<UserStory> obtenerPaginacionSiguiente()
     {
-        return paginacionActual.getPagina() == getPaginasTotales() ? getModel() : ListarUserStories( new Paginacion(paginacionActual.getOrdenarPor(), paginacionActual.getDireccionOrden(), paginacionActual.getPagina() + 1, paginacionActual.getItemsPorPagina()));
+        return paginacionActual.getPagina() == paginacionActual.getPaginasTotales() ? paginacionActual.getModel() : paginacionActual.paginacionSiguiente();
     }
 
-    public List<UserStory> ObtenerPaginaPrimera()
+    public List<UserStory> obtenerPaginacionPrimera()
     {
-        return paginacionActual.getPagina() == 1 ? getModel() : ListarUserStories( new Paginacion(paginacionActual.getOrdenarPor(), paginacionActual.getDireccionOrden(), 1, paginacionActual.getItemsPorPagina()));
+        return paginacionActual.getPagina() == 1 ? paginacionActual.getModel() : paginacionActual.paginacionPrimera();
     }
 
-    public List<UserStory> ObtenerPaginaUltima()
+    public List<UserStory> obtenerPaginacionUltima()
     {
-        return paginacionActual.getPagina() == getPaginasTotales() ? getModel() : ListarUserStories( new Paginacion(paginacionActual.getOrdenarPor(), paginacionActual.getDireccionOrden(), getPaginasTotales(), paginacionActual.getItemsPorPagina()));
+        return paginacionActual.getPagina() == paginacionActual.getPaginasTotales() ? paginacionActual.getModel() : paginacionActual.paginacionUltima();
     }
 
-    public List<UserStory> ObtenerPaginaActual()
+    public List<UserStory> obtenerPaginacionActual()
     {
-        return ListarUserStories( new Paginacion(paginacionActual.getOrdenarPor(), paginacionActual.getDireccionOrden(), paginacionActual.getPagina(), paginacionActual.getItemsPorPagina()));
+        return paginacionActual.listarUserStories();
     }
 
    //Tercera Iteracion
