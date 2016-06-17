@@ -10,7 +10,7 @@ import java.util.List;
 import au.com.bytecode.opencsv.CSVReader;
 import au.com.bytecode.opencsv.CSVWriter;
 import pp2.scrum.dominio.entidad.UserStory;
-import pp2.scrum.dominio.interfaz.UserStoryMapper;
+import pp2.scrum.dominio.entidad.UserStoryMapper;
 
 /**
  * @author yoshknight

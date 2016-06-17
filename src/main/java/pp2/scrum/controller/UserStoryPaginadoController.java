@@ -3,30 +3,29 @@ package pp2.scrum.controller;
 import java.util.ArrayList;
 import java.util.List;
 
-import pp2.scrum.dominio.Paginacion;
+import pp2.scrum.dominio.Estado;
 import pp2.scrum.dominio.Resultado;
 import pp2.scrum.dominio.entidad.CriterioAceptacion;
 import pp2.scrum.dominio.entidad.Mail;
+import pp2.scrum.dominio.entidad.MailGateway;
 import pp2.scrum.dominio.entidad.Tarea;
 import pp2.scrum.dominio.entidad.UserStory;
-import pp2.scrum.dominio.enums.Estado;
-import pp2.scrum.dominio.interfaz.MailGateway;
 import pp2.scrum.utils.Logger;
+import pp2.scrum.utils.Paginacion;
 
 public class UserStoryPaginadoController extends Controller 
 {
     private List<UserStory> model;
-    private Paginacion paginaDefault;
-    private Paginacion paginaActual;
+    private Paginacion paginacionDefault;
+    private Paginacion paginacionActual;
     private int itemsTotales;
 
-    //La consulta se pasa a cada controller para hacer consultas a la base y son pasadas a su padre
     public UserStoryPaginadoController(MailGateway mailGateway)
     {
         super (mailGateway);
         model = new ArrayList<UserStory>();
-        paginaDefault = new Paginacion(null, null, 1, 5);
-        paginaActual = paginaDefault;
+        paginacionDefault = new Paginacion(null, null, 1, 5);
+        paginacionActual = paginacionDefault;
         itemsTotales = model.size();
     }
 
@@ -42,13 +41,12 @@ public class UserStoryPaginadoController extends Controller
 
     public int getPaginasTotales()
     {
-        return itemsTotales / paginaActual.getItemsPorPagina() + (itemsTotales % paginaActual.getItemsPorPagina() == 0 ? 0 : 1);
-        //return itemsTotales != 0 ? (itemsTotales / paginaActual.getItemsPorPagina()) + 1 : 0 ;
+        return itemsTotales / paginacionActual.getItemsPorPagina() + (itemsTotales % paginacionActual.getItemsPorPagina() == 0 ? 0 : 1);
     }
 
     public Paginacion getPaginaActual()
     {
-        return paginaActual;
+        return paginacionActual;
     }
 
     public void setModel(List<UserStory> model)
@@ -60,7 +58,7 @@ public class UserStoryPaginadoController extends Controller
     {
         if (paginacion == null)
         {
-            paginacion = paginaDefault;
+            paginacion = paginacionDefault;
         }                   
         int itemsTotales = model.size();
         int indice = (paginacion.getPagina() - 1) * paginacion.getItemsPorPagina();
@@ -69,39 +67,40 @@ public class UserStoryPaginadoController extends Controller
         while(i < paginacion.getItemsPorPagina() && (indice + i) < itemsTotales && indice >= 0)
         {
             UserStory story = model.get(indice + i);
-            historias.add(new UserStory(story.getTitulo(), story.getDetalle(), story.getAutor(), story.getResponsable(), story.getHorasEstimadas(), story.getStoryPoints(), story.getIteracion(), story.getEstado(), null, null));       
+            historias.add(story);      
             i++;
         }
-        paginaActual = paginacion;
+        paginacionActual = paginacion;
         this.itemsTotales = itemsTotales;
         return historias;
     }
 
     public List<UserStory> ObtenerPaginaAnterior()
     { 
-        return paginaActual.getPagina() == 1 ? getModel() : ListarUserStories(new Paginacion(paginaActual.getOrdenarPor(), paginaActual.getDireccionOrden(), paginaActual.getPagina() - 1, paginaActual.getItemsPorPagina()));  
+        return paginacionActual.getPagina() == 1 ? getModel() : ListarUserStories(new Paginacion(paginacionActual.getOrdenarPor(), paginacionActual.getDireccionOrden(), paginacionActual.getPagina() - 1, paginacionActual.getItemsPorPagina()));  
     }
 
     public List<UserStory> ObtenerPaginaSiguiente()
     {
-        return paginaActual.getPagina() == getPaginasTotales() ? getModel() : ListarUserStories( new Paginacion(paginaActual.getOrdenarPor(), paginaActual.getDireccionOrden(), paginaActual.getPagina() + 1, paginaActual.getItemsPorPagina()));
+        return paginacionActual.getPagina() == getPaginasTotales() ? getModel() : ListarUserStories( new Paginacion(paginacionActual.getOrdenarPor(), paginacionActual.getDireccionOrden(), paginacionActual.getPagina() + 1, paginacionActual.getItemsPorPagina()));
     }
 
     public List<UserStory> ObtenerPaginaPrimera()
     {
-        return paginaActual.getPagina() == 1 ? getModel() : ListarUserStories( new Paginacion(paginaActual.getOrdenarPor(), paginaActual.getDireccionOrden(), 1, paginaActual.getItemsPorPagina()));
+        return paginacionActual.getPagina() == 1 ? getModel() : ListarUserStories( new Paginacion(paginacionActual.getOrdenarPor(), paginacionActual.getDireccionOrden(), 1, paginacionActual.getItemsPorPagina()));
     }
 
     public List<UserStory> ObtenerPaginaUltima()
     {
-        return paginaActual.getPagina() == getPaginasTotales() ? getModel() : ListarUserStories( new Paginacion(paginaActual.getOrdenarPor(), paginaActual.getDireccionOrden(), getPaginasTotales(), paginaActual.getItemsPorPagina()));
+        return paginacionActual.getPagina() == getPaginasTotales() ? getModel() : ListarUserStories( new Paginacion(paginacionActual.getOrdenarPor(), paginacionActual.getDireccionOrden(), getPaginasTotales(), paginacionActual.getItemsPorPagina()));
     }
 
     public List<UserStory> ObtenerPaginaActual()
     {
-        return ListarUserStories( new Paginacion(paginaActual.getOrdenarPor(), paginaActual.getDireccionOrden(), paginaActual.getPagina(), paginaActual.getItemsPorPagina()));
+        return ListarUserStories( new Paginacion(paginacionActual.getOrdenarPor(), paginacionActual.getDireccionOrden(), paginacionActual.getPagina(), paginacionActual.getItemsPorPagina()));
     }
 
+   //Tercera Iteracion
     public void finalizarStory(UserStory story)
     {
         List<Tarea> tareas = story.getTareas();
@@ -115,7 +114,8 @@ public class UserStoryPaginadoController extends Controller
         }
 
     }
-
+    
+    //Tercera Iteracion
     public Resultado enviarHistoriaMail(String destino , UserStory story)
     {        
         String nuevaLinea = System.lineSeparator();

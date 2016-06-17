@@ -1,8 +1,6 @@
-package pp2.scrum.dominio.interfaz;
+package pp2.scrum.dominio.entidad;
 
 import java.util.List;
-
-import pp2.scrum.dominio.entidad.UserStory;
 
 /**
  * @author yoshknight

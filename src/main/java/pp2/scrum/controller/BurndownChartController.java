@@ -7,15 +7,15 @@ import java.util.List;
 
 import org.jfree.data.xy.XYSeriesCollection;
 
+import pp2.scrum.dominio.Estado;
 import pp2.scrum.dominio.composite.Avance;
 import pp2.scrum.dominio.composite.DataComposite;
 import pp2.scrum.dominio.composite.Estimado;
+import pp2.scrum.dominio.entidad.DataComponent;
+import pp2.scrum.dominio.entidad.MailGateway;
 import pp2.scrum.dominio.entidad.Sprint;
 import pp2.scrum.dominio.entidad.UserStory;
-import pp2.scrum.dominio.enums.Estado;
-import pp2.scrum.dominio.enums.OpcionGrafico;
-import pp2.scrum.dominio.interfaz.DataComponent;
-import pp2.scrum.dominio.interfaz.MailGateway;
+import pp2.scrum.utils.OpcionGrafico;
 import pp2.scrum.view.BurndownChartView;
 
 public class BurndownChartController extends Controller

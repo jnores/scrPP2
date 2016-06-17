@@ -5,16 +5,15 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Set;
 
+import pp2.scrum.dominio.entidad.MailGateway;
 import pp2.scrum.dominio.entidad.Miembro;
 import pp2.scrum.dominio.entidad.Proyecto;
 import pp2.scrum.dominio.entidad.UserStory;
-import pp2.scrum.dominio.interfaz.MailGateway;
 
 public class ProyectoController extends Controller 
 {
     private Proyecto proyecto;
 
-    //La consulta se pasa a cada controller para hacer consultas a la base y son pasadas a su padre
     public ProyectoController(Proyecto model,MailGateway mailGateway) {
         super (mailGateway);
         this.proyecto = model;
@@ -48,7 +47,7 @@ public class ProyectoController extends Controller
         return userStoriesHelpers;
     }
 
-    public UserStoryHelper getUserStoryHelper(int id) {
+    public UserStoryHelper getUserStoryHelper(int id) {           //FIXME
         UserStory userStory = proyecto.getUserStoryPorId(id);
         Miembro   miembro   = proyecto.getResponsable(userStory);
         return new UserStoryHelper(userStory,miembro);

@@ -1,6 +1,4 @@
-package pp2.scrum.dominio;
-
-import pp2.scrum.dominio.enums.DirOrden;
+package pp2.scrum.utils;
 
 //Clase para paginar la lista paginada
 public class Paginacion

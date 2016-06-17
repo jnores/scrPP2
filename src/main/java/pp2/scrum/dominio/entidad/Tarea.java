@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.Observable;
 import java.util.Observer;
 
-import pp2.scrum.dominio.enums.Estado;
+import pp2.scrum.dominio.Estado;
 import pp2.scrum.utils.GeneradorIDs;
 
 public class Tarea extends java.util.Observable

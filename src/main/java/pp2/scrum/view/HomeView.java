@@ -24,7 +24,7 @@ import pp2.scrum.dominio.comando.LimpiarBacklogNuevoView;
 import pp2.scrum.dominio.comando.LimpiarProyectoNuevoView;
 import pp2.scrum.dominio.comando.MostrarAgregarHistoria;
 import pp2.scrum.dominio.comando.MostrarProyectoNuevo;
-import pp2.scrum.dominio.interfaz.AppController;
+import pp2.scrum.dominio.entidad.AppController;
 import pp2.scrum.utils.Logger;
 import pp2.scrum.view.events.ViewUpdateEvent;
 

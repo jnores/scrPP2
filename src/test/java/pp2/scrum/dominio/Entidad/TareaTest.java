@@ -1,8 +1,8 @@
 package pp2.scrum.dominio.Entidad;
 
 import junit.framework.TestCase;
+import pp2.scrum.dominio.Estado;
 import pp2.scrum.dominio.entidad.Tarea;
-import pp2.scrum.dominio.enums.Estado;
 
 public class TareaTest extends TestCase {
 

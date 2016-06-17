@@ -15,8 +15,8 @@ import javax.swing.JPanel;
 import javax.swing.filechooser.FileNameExtensionFilter;
 
 import pp2.scrum.controller.UserStoryHelper;
-import pp2.scrum.dominio.enums.UserStoryHelperComparator;
-import pp2.scrum.dominio.interfaz.Exporter;
+import pp2.scrum.dominio.entidad.Exporter;
+import pp2.scrum.utils.UserStoryHelperComparator;
 
 public class UserStoryListView extends JPanel implements Observer
 {

@@ -11,9 +11,9 @@ import junit.framework.TestSuite;
 import jxl.Sheet;
 import jxl.Workbook;
 import jxl.read.biff.BiffException;
+import pp2.scrum.dominio.entidad.Exporter;
 import pp2.scrum.dominio.entidad.Miembro;
 import pp2.scrum.dominio.entidad.UserStory;
-import pp2.scrum.dominio.interfaz.Exporter;
 import pp2.scrum.utils.PluginFactory;
 
 

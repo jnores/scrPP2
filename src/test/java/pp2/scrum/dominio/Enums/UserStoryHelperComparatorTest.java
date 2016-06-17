@@ -8,10 +8,10 @@ import junit.framework.Test;
 import junit.framework.TestCase;
 import junit.framework.TestSuite;
 import pp2.scrum.controller.UserStoryHelper;
+import pp2.scrum.dominio.Estado;
 import pp2.scrum.dominio.entidad.Miembro;
 import pp2.scrum.dominio.entidad.UserStory;
-import pp2.scrum.dominio.enums.Estado;
-import pp2.scrum.dominio.enums.UserStoryHelperComparator;
+import pp2.scrum.utils.UserStoryHelperComparator;
 
 
 public class UserStoryHelperComparatorTest extends TestCase {
