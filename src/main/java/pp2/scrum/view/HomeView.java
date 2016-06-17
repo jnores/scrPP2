@@ -4,6 +4,7 @@ import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.ArrayList;
 
 import javax.swing.JFrame;
 import javax.swing.JLabel;
@@ -47,14 +48,14 @@ public class HomeView  extends JFrame implements ActionListener
     private JMenu menuP,mnIteraciones,mnSprint,mnBacklog,mnBurnDownChart;
     private JMenuItem mnListadoHistoriasItem,mnBurndownItem,mnFiltradoItem,mnNuevoProyectoItem,mnNuevaUserStory,mnit1item,mnit2item,mnit3item,mntmAbrirProyecto,mntmCerrarProyecto;
 
-    public HomeView (AppController controller)
+    public HomeView (AppController controller, BurndownChartView chartview, UserStoryPaginadoView listadoPaginado, UserStoryOrderableView filtrado)
     {
         thisFrame = this;
         this.AppController=controller;
         getContentPane().setLayout(new BorderLayout());
-        burndownChartViewpanel = new BurndownChartView(new BurndownChartController(null, AppController.getMailGateway()));
-        listadoPaginadoHistorias = new UserStoryPaginadoView(new UserStoryPaginadoController(AppController.getMailGateway()));
-        filtradoHistorias = new UserStoryOrderableView(new UserStoryListView( ((HomeController)controller).getProyectoController().getBacklog() ));
+        burndownChartViewpanel = chartview;
+        listadoPaginadoHistorias = listadoPaginado;
+        filtradoHistorias = filtrado;
 
         setTitle("Scrummer");		
         this.setJMenuBar(cargarMenu());

@@ -41,7 +41,7 @@ public class UserStoryPaginadoView extends JPanel implements Observer
 	private TableModel modelTabla;
 	private JButton btnadd, btnPrimero,btnAnterior,btnSiguiente,btnUltimo ;
 	
-	public UserStoryPaginadoView(UserStoryPaginadoController controller ) 
+	public UserStoryPaginadoView(UserStoryPaginadoController controller,List<UserStory> historias ) 
 	{
 		
 		Controller = controller;
@@ -55,9 +55,7 @@ public class UserStoryPaginadoView extends JPanel implements Observer
 		btnSiguiente = new JButton("");
 		btnUltimo = new JButton("");
 		
-
-		// Seteo la lista paginada con la 1º pagina por defecto
-		Stories = Controller.ListarUserStories(null);
+		Stories = historias;
 		cargarVista();
 		
 		btnadd.addActionListener(new ActionListener() 

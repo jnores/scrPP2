@@ -2,14 +2,17 @@ package pp2.scrum.controller;
 
 
 import java.awt.event.ActionListener;
+import java.util.ArrayList;
 
 import pp2.scrum.dominio.Resultado;
 import pp2.scrum.dominio.entidad.AppController;
 import pp2.scrum.dominio.entidad.Comando;
 import pp2.scrum.dominio.entidad.MailGateway;
 import pp2.scrum.dominio.entidad.Proyecto;
+import pp2.scrum.dominio.entidad.UserStory;
 import pp2.scrum.view.BacklogNuevoView;
 import pp2.scrum.view.ProyectoNuevoView;
+import pp2.scrum.view.UserStoryPaginadoView;
 
 public class HomeController extends Controller implements AppController
 {
@@ -23,7 +26,7 @@ public class HomeController extends Controller implements AppController
         super( mailGateway);
         proyectoController = new ProyectoController( new Proyecto(),mailGateway);
         proyectoNuevo = new ProyectoNuevoView(proyectoController);
-        backlogNuevo = new BacklogNuevoView(proyectoController);
+        backlogNuevo = new BacklogNuevoView(proyectoController,new UserStoryPaginadoView(new UserStoryPaginadoController(mailGateway),new ArrayList<UserStory>()));
     }
 
     @Override    
