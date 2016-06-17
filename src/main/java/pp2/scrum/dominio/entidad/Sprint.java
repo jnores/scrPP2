@@ -5,15 +5,17 @@ import java.util.GregorianCalendar;
 import java.util.Iterator;
 import java.util.List;
 
+import pp2.scrum.controller.UserStoryHelper;
+
 public class Sprint {
 	private int idIteracion;
 	private Date fechaInicio;
 	private int duracion;
-	private List<UserStory> sprintBacklog;
+	private List<UserStoryHelper> sprintBacklog;
 	private int StoryPointsPactados; 
 	private GregorianCalendar calendario;
 	
-	public Sprint(int idIteracion,Date fechaInicio, int duracion, List<UserStory> historias) {
+	public Sprint(int idIteracion,Date fechaInicio, int duracion, List<UserStoryHelper> historias) {
 		this.idIteracion = idIteracion;
 		this.fechaInicio = fechaInicio;
 		this.duracion = duracion;
@@ -24,7 +26,7 @@ public class Sprint {
 	private void setStoryPointsPactados(){
 		int puntos=0;
 		if(this.sprintBacklog!=null){
-			for (UserStory us: this.sprintBacklog) {
+			for (UserStoryHelper us: this.sprintBacklog) {
 				puntos+=us.getStoryPoints();
 			}
 		}
@@ -39,7 +41,7 @@ public class Sprint {
 		return this.fechaInicio;
 	}
 	
-	public List<UserStory> getUserStories() {
+	public List<UserStoryHelper> getUserStories() {
 		return this.sprintBacklog;
 	}
 
@@ -47,11 +49,11 @@ public class Sprint {
 		this.duracion=dias;
 	}
 
-	public void setUserStories(List<UserStory> historias) {
+	public void setUserStories(List<UserStoryHelper> historias) {
 		this.sprintBacklog=historias;
 	}
 	
-	public void setUserStory(UserStory historia) {
+	public void setUserStory(UserStoryHelper historia) {
 		this.StoryPointsPactados=+historia.getStoryPoints();
 		this.sprintBacklog.add(historia);
 	}

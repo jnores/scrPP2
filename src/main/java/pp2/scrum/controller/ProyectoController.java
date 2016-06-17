@@ -24,10 +24,10 @@ public class ProyectoController extends Controller
      * @return List<UserStory> totalidad de userstories del proyecto.
      */
     public List<UserStoryHelper> getAllUserStories() {
-        Set<UserStory> userStories = proyecto.getAllUserStories();
+        Set<UserStoryHelper> userStories = proyecto.getAllUserStories();
         ArrayList<UserStoryHelper> userStoriesHelpers = new ArrayList<UserStoryHelper>();
-        for(UserStory userStory: userStories) {
-            userStoriesHelpers.add( new UserStoryHelper(userStory,proyecto.getResponsable(userStory) ) );
+        for(UserStoryHelper userStory: userStories) {
+            userStoriesHelpers.add( userStory );
         }
 
         return userStoriesHelpers;
@@ -38,19 +38,17 @@ public class ProyectoController extends Controller
      * @return List<UserStory> totalidad de userstories del proyecto.
      */
     public List<UserStoryHelper> getBacklog() {
-        List<UserStory> userStories = proyecto.getBacklog();
+        List<UserStoryHelper> userStories = proyecto.getBacklog();
         ArrayList<UserStoryHelper> userStoriesHelpers = new ArrayList<UserStoryHelper>();
-        for(UserStory userStory: userStories) {
-            userStoriesHelpers.add( new UserStoryHelper(userStory,proyecto.getResponsable(userStory) ) );
+        for(UserStoryHelper userStory: userStories) {
+            userStoriesHelpers.add( userStory);
         }
 
         return userStoriesHelpers;
     }
 
     public UserStoryHelper getUserStoryHelper(int id) {           //FIXME
-        UserStory userStory = proyecto.getUserStoryPorId(id);
-        Miembro   miembro   = proyecto.getResponsable(userStory);
-        return new UserStoryHelper(userStory,miembro);
+        return proyecto.getUserStoryPorId(id);
     }
 
     public void setProyecto(Proyecto proyecto)
@@ -72,7 +70,7 @@ public class ProyectoController extends Controller
         return proyecto.getSiguienteStoryID();
     }
 
-    public void agregarUserStory(UserStory us) {
+    public void agregarUserStory(UserStoryHelper us) {
         if (us==null)
             throw new InvalidParameterException("Se esperaba una user story para agregar y se recibio un elemento nulo.");
         proyecto.addUserStory(us);

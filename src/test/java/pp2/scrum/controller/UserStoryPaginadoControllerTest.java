@@ -7,7 +7,6 @@ import junit.framework.Test;
 import junit.framework.TestCase;
 import junit.framework.TestSuite;
 import mockit.MockUp;
-import pp2.scrum.dominio.Estado;
 import pp2.scrum.dominio.entidad.MailGateway;
 import pp2.scrum.dominio.entidad.Tarea;
 import pp2.scrum.dominio.entidad.UserStory;
@@ -76,7 +75,7 @@ public class UserStoryPaginadoControllerTest extends TestCase
    {  
       List<UserStory> historias = new ArrayList<UserStory>();
       List<Tarea> tareas = new ArrayList<Tarea>();
-      UserStory story = new UserStory("titulo1", "detalle1", "autor1", "responsable1", 10, 50, 1, Estado.getDefault(), null,tareas);
+      UserStory story = new UserStory("titulo1", "detalle1", 50, null, tareas);
       tareas.add(new Tarea());
       historias.add(story);
       controller.setModel(historias);

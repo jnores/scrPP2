@@ -7,7 +7,6 @@ import java.util.List;
 
 import org.jfree.data.xy.XYSeriesCollection;
 
-import pp2.scrum.dominio.Estado;
 import pp2.scrum.dominio.composite.Avance;
 import pp2.scrum.dominio.composite.DataComposite;
 import pp2.scrum.dominio.composite.Estimado;
@@ -64,18 +63,14 @@ public class BurndownChartController extends Controller
 	
 	//Esto es una porqueria, parcialmente lo copie de alguien
 	private static Sprint retriveFromDatabase(){
-		   UserStory us1,us2,us3; 
-		   List<UserStory> stories = new ArrayList<UserStory>();
-			stories.add(us3=new UserStory("Titulo1", "Detalle1", "Autor1", "Responsable1", 10, 40, 1, Estado.Done, null, null));
-			stories.add(us1=new UserStory("Titulo2", "Detalle2", "Autor2", "Responsable2", 10, 40, 1, Estado.Done, null, null));
-			stories.add(us2=new UserStory("Titulo3", "Detalle3", "Autor3", "Responsable3", 10, 40, 1, Estado.Done, null, null));
-			stories.add(new UserStory("Titulo4", "Detalle4", "Autor4", "Responsable4", 10, 40, 1, Estado.ToDo, null, null));
+		    List<UserStoryHelper> stories = new ArrayList<UserStoryHelper>();
+			stories.add(new UserStoryHelper( new UserStory("Titulo1", "Detalle1", 40, null, null)));
+			stories.add(new UserStoryHelper( new UserStory("Titulo2", "Detalle2", 40, null, null)));
+			stories.add(new UserStoryHelper( new UserStory("Titulo3", "Detalle3", 40, null, null)));
+			stories.add(new UserStoryHelper( new UserStory("Titulo4", "Detalle4", 40, null, null)));
 			Date fecha1 = new Date("03/10/2016"); 
 			Date fecha2 = new Date("03/15/2016"); 
 			Date fecha3 = new Date("03/20/2016");
-			us1.setFecha(fecha2);
-			us2.setFecha(fecha2);
-			us3.setFecha(fecha3);
 			Sprint iteracion=new Sprint(1,fecha1, 21, stories);
 			return iteracion;
 		}

@@ -108,8 +108,8 @@ public class UserStoryPaginadoController extends Controller
         cuerpo += story.getDetalle() + nuevaLinea;
         cuerpo += "Criterios:" + nuevaLinea;
         cuerpo += criterios;
-        cuerpo += "Autor:" + nuevaLinea;
-        cuerpo += story.getAutor() + nuevaLinea;
+        //cuerpo += "Autor:" + nuevaLinea;
+        //cuerpo += story.getAutor() + nuevaLinea;
         cuerpo += "Puntos:" + nuevaLinea;
         cuerpo += story.getStoryPoints() + nuevaLinea;
         

@@ -6,15 +6,17 @@ import java.util.List;
 import junit.framework.Test;
 import junit.framework.TestCase;
 import junit.framework.TestSuite;
+import pp2.scrum.controller.UserStoryHelper;
 import pp2.scrum.dominio.Estado;
 import pp2.scrum.dominio.entidad.CriterioAceptacion;
+import pp2.scrum.dominio.entidad.Miembro;
 import pp2.scrum.dominio.entidad.Tarea;
 import pp2.scrum.dominio.entidad.UserStory;
 
 
 public class UserStoryTest extends TestCase {
 	
-   UserStory story;
+   UserStoryHelper story;
    CriterioAceptacion criterio;
    Tarea tarea1,tarea2;
 	
@@ -37,7 +39,7 @@ public class UserStoryTest extends TestCase {
 	
 	public void  setUp() 
 	{
-		story = new UserStory("Titulo1", "Detalle1", "Autor1", "Responsable1", 10, 40, 1, Estado.ToDo, null, null);
+		story = new UserStoryHelper(new UserStory("Titulo1", "Detalle1", 40, null, null),new Miembro("Autor1"));
 		criterio = new CriterioAceptacion("criterio1");
 		tarea1 = new Tarea();
 		tarea2 = new Tarea();
@@ -62,22 +64,20 @@ public class UserStoryTest extends TestCase {
 	   
 	   //tarea1.setId(1);
 	   
-	   assertTrue(criterio.getDescripcion() == "criterio1");
+	  assertTrue(criterio.getDescripcion() == "criterio1");
       assertTrue(criterio.getId() == 0);
       criterio.setDescripcion("d2");
       criterio.setId(1);
 	   
-		assertTrue(story.getAutor().equals("Autor1"));
-		assertTrue(story.getTitulo().equals("Titulo1"));
-		assertTrue(story.getDetalle().equals("Detalle1"));
-      assertTrue(story.getResponsable().equals("Responsable1"));
+	  assertTrue(story.getAutor().equals("Autor1"));
+	  assertTrue(story.getTitulo().equals("Titulo1"));
+	  assertTrue(story.getDetalle().equals("Detalle1"));
+      assertTrue(story.getResponsable().equals("Autor1"));
       assertTrue(story.getStoryPoints() == 40);
-      assertTrue(story.getHorasEstimadas() == 10);
-      assertTrue(story.getIteracion() == 1);
+      assertTrue(story.getIteracion() == 0);
       assertTrue(story.getEstado().equals(Estado.ToDo));
       assertTrue(story.getCriterios().size() == 0);
       assertTrue(story.getTareas().size() == 0);
-      story.getFechaDone();
       
       story.setAutor("au1");
       story.setCriterios(criterios);
@@ -89,7 +89,6 @@ public class UserStoryTest extends TestCase {
       story.setTareas(tareas);
       story.setTitulo("t1");
       story.setStoryPoints(11);
-      story.setFecha(null);
 
    }
 	

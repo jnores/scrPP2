@@ -33,10 +33,10 @@ public class BacklogTest extends TestCase {
 				 ,userStory3
 				 ,userStory4
 				 ;
-		userStory1 =  new UserStory("Titulo1", "Detalle1", "Autor1");
-		userStory2 =  new UserStory("Titulo2", "Detalle2", "Autor2");
-		userStory3 =  new UserStory("Titulo3", "Detalle3", "Autor3");
-		userStory4 =  new UserStory("Titulo4", "Detalle4", "Autor4");
+		userStory1 =  new UserStory("Titulo1", "Detalle1");
+		userStory2 =  new UserStory("Titulo2", "Detalle2");
+		userStory3 =  new UserStory("Titulo3", "Detalle3");
+		userStory4 =  new UserStory("Titulo4", "Detalle4");
 
 		userStory1.setId(1);
 		userStory2.setId(2);

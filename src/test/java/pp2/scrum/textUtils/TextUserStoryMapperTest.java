@@ -55,7 +55,7 @@ public class TextUserStoryMapperTest extends TestCase {
 			String titulo = "como ROL necesito ...",
 				   detalle = "Detalle de la;  jajaj \nnecesidad",
 				   autor = "Jose";
-			UserStory us = new UserStory(id,titulo, detalle, autor);
+			UserStory us = new UserStory(id,titulo, detalle);
 			usMapper.insert(us);
 			List<UserStory> stories = usMapper.getBacklog(); 
 			assertEquals(usMapper.getNextID(),2);

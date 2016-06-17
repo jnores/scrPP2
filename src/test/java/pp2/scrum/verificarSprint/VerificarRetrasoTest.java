@@ -9,7 +9,7 @@ import java.util.List;
 
 import junit.framework.TestCase;
 import pp2.scrum.busEvent.BusEventSync;
-import pp2.scrum.dominio.Estado;
+import pp2.scrum.controller.UserStoryHelper;
 import pp2.scrum.dominio.entidad.BusEvent;
 import pp2.scrum.dominio.entidad.Notificador;
 import pp2.scrum.dominio.entidad.Sprint;
@@ -39,17 +39,17 @@ public class VerificarRetrasoTest extends TestCase {
     protected void setUp() throws Exception {
         super.setUp();
          
-        List<UserStory> stories1 = new ArrayList<UserStory>();
-        List<UserStory> stories2 = new ArrayList<UserStory>();
-        stories1.add(us3=new UserStory("Titulo1", "Detalle1", "Autor1", "Responsable1", 10, 40, 1, Estado.ToDo, null, null));
-        stories1.add(us1=new UserStory("Titulo2", "Detalle2", "Autor2", "Responsable2", 10, 40, 1, Estado.Done, null, null));
-        stories1.add(us2=new UserStory("Titulo3", "Detalle3", "Autor3", "Responsable3", 10, 40, 1, Estado.ToDo, null, null));
-        stories1.add(new UserStory("Titulo4", "Detalle4", "Autor4", "Responsable4", 10, 40, 1, Estado.ToDo, null, null));
+        List<UserStoryHelper> stories1 = new ArrayList<UserStoryHelper>();
+        List<UserStoryHelper> stories2 = new ArrayList<UserStoryHelper>();
+        stories1.add(new UserStoryHelper(new UserStory("Titulo1", "Detalle1", 40, null, null)));
+        stories1.add(new UserStoryHelper(new UserStory("Titulo2", "Detalle2", 40, null, null)));
+        stories1.add(new UserStoryHelper(new UserStory("Titulo3", "Detalle3", 40, null, null)));
+        stories1.add(new UserStoryHelper(new UserStory("Titulo4", "Detalle4", 40, null, null)));
         
-        stories2.add(new UserStory("Titulo1", "Detalle1", "Autor1", "Responsable1", 10, 40, 1, Estado.Done, null, null));
-        stories2.add(new UserStory("Titulo2", "Detalle2", "Autor2", "Responsable2", 10, 10, 1, Estado.ToDo, null, null));
-        stories2.add(new UserStory("Titulo3", "Detalle3", "Autor3", "Responsable3", 10, 40, 1, Estado.Done, null, null));
-        stories2.add(new UserStory("Titulo4", "Detalle4", "Autor4", "Responsable4", 10, 40, 1, Estado.Done, null, null));
+        stories2.add(new UserStoryHelper(new UserStory("Titulo1", "Detalle1", 40, null, null)));
+        stories2.add(new UserStoryHelper(new UserStory("Titulo2", "Detalle2", 10, null, null)));
+        stories2.add(new UserStoryHelper(new UserStory("Titulo3", "Detalle3", 40, null, null)));
+        stories2.add(new UserStoryHelper(new UserStory("Titulo4", "Detalle4", 40, null, null)));
         
         Date inicio = new Date(System.currentTimeMillis() - 6*Calendario.DAY);
         
