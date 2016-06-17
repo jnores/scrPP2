@@ -41,10 +41,10 @@ public class VerificarRetrasoTest extends TestCase {
          
         List<UserStory> stories1 = new ArrayList<UserStory>();
         List<UserStory> stories2 = new ArrayList<UserStory>();
-        stories1.add(us3=new UserStory("Titulo1", "Detalle1", "Autor1", "Responsable1", 10, 40, 1, Estado.ToDo, null, null));
-        stories1.add(us1=new UserStory("Titulo2", "Detalle2", "Autor2", "Responsable2", 10, 40, 1, Estado.Done, null, null));
-        stories1.add(us2=new UserStory("Titulo3", "Detalle3", "Autor3", "Responsable3", 10, 40, 1, Estado.ToDo, null, null));
-        stories1.add(new UserStory("Titulo4", "Detalle4", "Autor4", "Responsable4", 10, 40, 1, Estado.ToDo, null, null));
+        stories1.add(us3=new UserStory("Titulo1", "Detalle1", "Autor1", "Responsable1", 10, 11, 1, Estado.ToDo, null, null));
+        stories1.add(us1=new UserStory("Titulo2", "Detalle2", "Autor2", "Responsable2", 10, 59, 1, Estado.Done, null, null));
+        stories1.add(us2=new UserStory("Titulo3", "Detalle3", "Autor3", "Responsable3", 10, 15, 1, Estado.ToDo, null, null));
+        stories1.add(new UserStory("Titulo4", "Detalle4", "Autor4", "Responsable4", 10, 15, 1, Estado.ToDo, null, null));
         
         stories2.add(new UserStory("Titulo1", "Detalle1", "Autor1", "Responsable1", 10, 40, 1, Estado.Done, null, null));
         stories2.add(new UserStory("Titulo2", "Detalle2", "Autor2", "Responsable2", 10, 10, 1, Estado.ToDo, null, null));
@@ -74,10 +74,19 @@ public class VerificarRetrasoTest extends TestCase {
     /**
      * Test method for {@link pp2.scrum.verificarSprint.VerificarRetraso#run()}.
      */
-    public final void testRun() {
-//        fail("Not yet implemented");
-        new VerificarRetraso(sprintOK, new BusEventSync() ).run();
-        new VerificarRetraso(sprintNuevo, new BusEventSync() ).run();
+    public final void testVerificarRetrasoOk() {
+        bus.register(new NotificarRetraso(new NotificadorMock()));
+        new VerificarRetraso(sprintOK, bus ).run();
+        assertFalse(notificado);
+    }
+    
+    /**
+     * Test method for {@link pp2.scrum.verificarSprint.VerificarRetraso#run()}.
+     */
+    public final void testVerificarRetrasoNew() {
+        bus.register(new NotificarRetraso(new NotificadorMock()));
+        new VerificarRetraso(sprintNuevo, bus ).run();
+        assertFalse(notificado);
     }
     
     private class NotificadorMock implements Notificador {
