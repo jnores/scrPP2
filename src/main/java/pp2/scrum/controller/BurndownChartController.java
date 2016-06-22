@@ -22,15 +22,16 @@ public class BurndownChartController extends Controller
 	private DataComponent modelo;
 	private BurndownChartView vista;
 	private OpcionGrafico Opcion;
+	private Sprint iteracion;
 
 	public BurndownChartController(MailGateway mailGateway) {
 		super( mailGateway);
 	}
 	
-	public BurndownChartController(DataComponent modelo,MailGateway mailGateway) 
+	public BurndownChartController(Sprint iteracion,MailGateway mailGateway) 
 	{
 		super (mailGateway);
-		this.modelo= modelo;
+		this.iteracion= iteracion;
 	}
 	
 	private void setModelo(OpcionGrafico opcion,Sprint iteracion){
@@ -47,7 +48,6 @@ public class BurndownChartController extends Controller
 	
 	public XYSeriesCollection getData(OpcionGrafico opcion, Integer it)
 	{	
-		Sprint iteracion=retriveFromDatabase();
 		//Tengo que ver quien levanta esa maldita iteracion como tal, por ahora me cargo una berreta 
 		setModelo(opcion,iteracion);
 		if(it==iteracion.getIdIteracion())
@@ -59,20 +59,5 @@ public class BurndownChartController extends Controller
 		//setModelo(opcion);
 		return null;
 	}
-	
-	
-	//Esto es una porqueria, parcialmente lo copie de alguien
-	private static Sprint retriveFromDatabase(){
-		    List<UserStoryHelper> stories = new ArrayList<UserStoryHelper>();
-			stories.add(new UserStoryHelper( new UserStory("Titulo1", "Detalle1", 40, null, null)));
-			stories.add(new UserStoryHelper( new UserStory("Titulo2", "Detalle2", 40, null, null)));
-			stories.add(new UserStoryHelper( new UserStory("Titulo3", "Detalle3", 40, null, null)));
-			stories.add(new UserStoryHelper( new UserStory("Titulo4", "Detalle4", 40, null, null)));
-			Date fecha1 = new Date("03/10/2016"); 
-			Date fecha2 = new Date("03/15/2016"); 
-			Date fecha3 = new Date("03/20/2016");
-			Sprint iteracion=new Sprint(1,fecha1, 21, stories);
-			return iteracion;
-		}
 	
 }

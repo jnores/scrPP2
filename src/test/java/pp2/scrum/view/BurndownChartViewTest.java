@@ -1,19 +1,24 @@
 package pp2.scrum.view;
 
+import java.util.ArrayList;
+import java.util.Date;
+
 import junit.framework.Test;
 import junit.framework.TestCase;
 import junit.framework.TestSuite;
 import mockit.MockUp;
 import pp2.scrum.controller.BurndownChartController;
+import pp2.scrum.controller.UserStoryHelper;
 import pp2.scrum.dominio.entidad.DataComponent;
 import pp2.scrum.dominio.entidad.MailGateway;
+import pp2.scrum.dominio.entidad.Sprint;
 import pp2.scrum.view.BurndownChartView;
 
 public class BurndownChartViewTest extends TestCase
 {
    private BurndownChartController controller;
    private MockUp<MailGateway> mailGatewayMock;
-   private MockUp<DataComponent> dataComponentMock;
+   private MockUp<Sprint> sprintMock;
    
    public BurndownChartViewTest( String testName ) {
       super( testName );
@@ -28,28 +33,28 @@ public class BurndownChartViewTest extends TestCase
 
    protected void setUp()
    {
-      dataComponentMock = new MockUp<DataComponent>(){};
+      sprintMock = new MockUp<Sprint>(){};
       mailGatewayMock = new MockUp<MailGateway>(){};
       
    }
    
    public void testVista() 
    {
-      controller = new BurndownChartController(mailGatewayMock.getMockInstance()); 
+      controller = new BurndownChartController(sprintMock.getMockInstance(),mailGatewayMock.getMockInstance()); 
       BurndownChartView vista = new BurndownChartView(controller);
       assertTrue( true );
    }
    
    public void testVistaComposite() 
    {
-      controller = new BurndownChartController(dataComponentMock.getMockInstance(),mailGatewayMock.getMockInstance()); 
+      controller = new BurndownChartController(sprintMock.getMockInstance(),mailGatewayMock.getMockInstance()); 
       BurndownChartView vista = new BurndownChartView(controller);
       assertTrue( true );
    }
    
    public void testActionPerformed()
    {
-      controller = new BurndownChartController(dataComponentMock.getMockInstance(),mailGatewayMock.getMockInstance()); 
+      controller = new BurndownChartController(sprintMock.getMockInstance(),mailGatewayMock.getMockInstance()); 
       BurndownChartView vista = new BurndownChartView(controller);
       //vista.actionPerformed(new ActionEvent(vista, 1, "menu4"));
       assertTrue(true);
