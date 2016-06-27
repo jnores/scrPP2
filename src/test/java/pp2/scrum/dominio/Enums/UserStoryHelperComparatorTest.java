@@ -21,7 +21,7 @@ public class UserStoryHelperComparatorTest extends TestCase {
 	   ,miembro3
 	   ,miembro4
 	   ;
-	UserStory userStory1
+	UserStoryHelper userStory1
 			 ,userStory2
 			 ,userStory3
 			 ,userStory4
@@ -49,23 +49,23 @@ public class UserStoryHelperComparatorTest extends TestCase {
 		miembro3 = new Miembro("Jualian");
 		miembro4 = new Miembro("Nores");
 		
-		userStory1 =  new UserStory("Como Recepcionista ...", "Detalle1", "Autor1");
+		userStory1 =  new UserStoryHelper( new UserStory("Como Recepcionista ...", "Detalle1"),miembro3);
 		userStory1.setId(1);
 		userStory1.setEstado(Estado.Done);
-		userStory2 =  new UserStory("Como Administrador ...", "Detalle2", "Autor2");
+		userStory2 =  new UserStoryHelper( new UserStory("Como Administrador ...", "Detalle2"),miembro1);
 		userStory2.setId(2);
 		userStory2.setEstado(Estado.Doing);
-		userStory3 =  new UserStory("Como Gerente ...", "Detalle3", "Autor3");
+		userStory3 = new UserStoryHelper(  new UserStory("Como Gerente ...", "Detalle3"),miembro2);
 		userStory3.setId(3);
 		userStory3.setEstado(Estado.ToDo);
-		userStory4 =  new UserStory("Como Vendedor ...", "Detalle4", "Autor4");
+		userStory4 = new UserStoryHelper(  new UserStory("Como Vendedor ...", "Detalle4"),miembro4);
 		userStory4.setId(4);
 		userStory4.setEstado(Estado.ToDo);
 		
-		stories.add(new UserStoryHelper(userStory3, miembro2));
-		stories.add(new UserStoryHelper(userStory2, miembro1));
-		stories.add(new UserStoryHelper(userStory4, miembro4));
-		stories.add(new UserStoryHelper(userStory1, miembro3));
+		stories.add(userStory3);
+		stories.add(userStory2);
+		stories.add(userStory4);
+		stories.add(userStory1);
 	}
 	
 	/**

@@ -6,6 +6,7 @@ import java.util.Set;
 import junit.framework.Test;
 import junit.framework.TestCase;
 import junit.framework.TestSuite;
+import pp2.scrum.controller.UserStoryHelper;
 import pp2.scrum.dominio.entidad.Miembro;
 import pp2.scrum.dominio.entidad.Proyecto;
 import pp2.scrum.dominio.entidad.UserStory;
@@ -17,7 +18,7 @@ public class ProyectoTest extends TestCase {
 	Miembro miembro1
 		   ,miembro2
 		   ;
-	UserStory userStory1
+	UserStoryHelper userStory1
 			 ,userStory2
 			 ,userStory3
 			 ,userStory4
@@ -42,15 +43,11 @@ public class ProyectoTest extends TestCase {
 	public void  setUp() {
 		miembro1 = new Miembro("Victoria","Desarrollador");
 		miembro2 = new Miembro("Ivo","Diseñador");
-		userStory1 =  new UserStory("Titulo1", "Detalle1", "Autor1");
-		userStory2 =  new UserStory("Titulo2", "Detalle2", "Autor2");
-		userStory3 =  new UserStory("Titulo3", "Detalle3", "Autor3");
-		userStory4 =  new UserStory("Titulo4", "Detalle4", "Autor4");
+		userStory1 =  new UserStoryHelper (new UserStory("Titulo1", "Detalle1"),miembro1);
+		userStory2 =  new UserStoryHelper (new UserStory("Titulo2", "Detalle2"),miembro1);
+		userStory3 =  new UserStoryHelper (new UserStory("Titulo3", "Detalle3"),miembro2);
+		userStory4 =  new UserStoryHelper (new UserStory("Titulo4", "Detalle4"),miembro2);
 
-		userStory1.setId(1);
-		userStory2.setId(2);
-		userStory3.setId(3);
-		userStory4.setId(4);
 		
 		proyecto= new Proyecto();
 		proyecto.addMiembro(miembro1);
@@ -85,10 +82,10 @@ public class ProyectoTest extends TestCase {
 	 * Verifico que se puedan obtener las user stories asignadas al proyecto.
 	 */
 	public void testProyectoGetUserStories() {
-		Collection<UserStory> userStories = this.proyecto.getAllUserStories();
+		Collection<UserStoryHelper> userStories = this.proyecto.getAllUserStories();
 		assertEquals(userStories.size(),4);
 		
-		Set<UserStory> userStoriesFromMiembro1= this.proyecto.getAllUserStoriesFromMiembro(miembro1);
+		Set<UserStoryHelper> userStoriesFromMiembro1= this.proyecto.getAllUserStoriesFromMiembro(miembro1);
 		assertEquals(userStoriesFromMiembro1.size(),1);
 		assertTrue(userStoriesFromMiembro1.contains(userStory2));
 	}

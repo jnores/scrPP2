@@ -17,7 +17,6 @@ import javax.swing.table.JTableHeader;
 import javax.swing.table.TableModel;
 
 import pp2.scrum.controller.UserStoryPaginadoController;
-import pp2.scrum.dominio.Estado;
 import pp2.scrum.dominio.entidad.Tarea;
 import pp2.scrum.dominio.entidad.UserStory;
 import pp2.scrum.utils.Paginacion;
@@ -60,7 +59,7 @@ public class UserStoryPaginadoView extends JPanel implements Observer
          public void actionPerformed(ActionEvent e) 
          { 
             List<UserStory> lista = Controller.getModel();
-            lista.add(new UserStory("Added1", "Detalle11", "Autor11", "Responsable11", 10, 40, 1, Estado.ToDo, null, null));
+            lista.add(new UserStory("Added1", "Detalle11", 40, null, null));
             Controller.setModel(lista);
             Stories = Controller.obtenerPaginacionActual();
             setearVista();

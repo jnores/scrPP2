@@ -34,7 +34,7 @@ public class ExportToTextTest extends TestCase {
 	}
 	
 	public void  setUp() {
-		userStory = new UserStory("Titulo1", "Detalle1", "Autor1");
+		userStory = new UserStory("Titulo1", "Detalle1");
 	}
 	
 	/**

@@ -7,6 +7,7 @@ import java.util.Iterator;
 
 import org.jfree.data.xy.*;
 
+import pp2.scrum.controller.UserStoryHelper;
 import pp2.scrum.dominio.entidad.DataComponent;
 import pp2.scrum.dominio.entidad.Sprint;
 import pp2.scrum.dominio.entidad.UserStory;
@@ -28,18 +29,12 @@ public class Avance implements DataComponent{
 	private Integer getStoryPointsDone(Date fecha,Sprint iteracion)
 	{
 		Integer storyPointsDone=0;
-		Iterator<UserStory> it=iteracion.getUserStories().iterator();
+		Iterator<UserStoryHelper> it=iteracion.getUserStories().iterator();
 		
 		while(it.hasNext())
 		{
-			UserStory story= it.next();
-			//ver
-			Date fechaDone=story.getFechaDone();
-			
-			if(fechaDone!=null)
-				if(fecha.compareTo(story.getFechaDone())==0){
-					storyPointsDone=storyPointsDone+story.getStoryPoints();
-			}
+			UserStoryHelper story= it.next();
+			storyPointsDone=storyPointsDone+story.getStoryPoints();
 		}
 		return storyPointsDone;
 	}

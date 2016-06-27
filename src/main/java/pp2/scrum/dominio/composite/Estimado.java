@@ -6,6 +6,7 @@ import java.util.List;
 
 import org.jfree.data.xy.*;
 
+import pp2.scrum.controller.UserStoryHelper;
 import pp2.scrum.dominio.entidad.DataComponent;
 import pp2.scrum.dominio.entidad.Sprint;
 import pp2.scrum.dominio.entidad.UserStory;
@@ -45,13 +46,13 @@ public class Estimado implements DataComponent
 		return null;
 	}
 	
-	private Integer getTotalStoryPoints(List<UserStory> historias){
+	private Integer getTotalStoryPoints(List<UserStoryHelper> historias){
 		this.storyPointsPactados=0;
 		Iterator it=historias.iterator();
 
 		while (it.hasNext())
 		{
-			UserStory story=(UserStory) it.next();
+			UserStoryHelper story=(UserStoryHelper) it.next();
 			this.storyPointsPactados=this.storyPointsPactados+story.getStoryPoints();
 		}
 		return this.storyPointsPactados;

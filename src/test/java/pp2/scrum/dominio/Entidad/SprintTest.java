@@ -6,13 +6,14 @@ import java.util.List;
 import junit.framework.Test;
 import junit.framework.TestCase;
 import junit.framework.TestSuite;
+import pp2.scrum.controller.UserStoryHelper;
 import pp2.scrum.dominio.entidad.Sprint;
 import pp2.scrum.dominio.entidad.UserStory;
 
 
 public class SprintTest extends TestCase {
 	
-	UserStory userStory1
+	UserStoryHelper userStory1
 			 ,userStory2
 			 ,userStory3
 			 ,userStory4
@@ -37,15 +38,11 @@ public class SprintTest extends TestCase {
 	public void  setUp() {
 
 
-		userStory1 =  new UserStory("Titulo1", "Detalle1", "Autor1");
-		userStory2 =  new UserStory("Titulo2", "Detalle2", "Autor2");
-		userStory3 =  new UserStory("Titulo3", "Detalle3", "Autor3");
-		userStory4 =  new UserStory("Titulo4", "Detalle4", "Autor4");
+		userStory1 =  new UserStoryHelper (new UserStory("Titulo1", "Detalle1"));
+		userStory2 =  new UserStoryHelper (new UserStory("Titulo2", "Detalle2"));
+		userStory3 =  new UserStoryHelper (new UserStory("Titulo3", "Detalle3"));
+		userStory4 =  new UserStoryHelper (new UserStory("Titulo4", "Detalle4"));
 
-		userStory1.setId(1);
-		userStory2.setId(2);
-		userStory3.setId(3);
-		userStory4.setId(4);
 		
 	}
 	
@@ -58,7 +55,7 @@ public class SprintTest extends TestCase {
 		s.setDuracion(21);
 		assertEquals(s.getDuracion(), 21);
 		
-		List<UserStory> historias = new ArrayList<UserStory>();
+		List<UserStoryHelper> historias = new ArrayList<UserStoryHelper>();
 		historias.add(userStory2);
 		historias.add(userStory3);
 		historias.add(userStory4);

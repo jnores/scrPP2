@@ -1,13 +1,19 @@
 package pp2.scrum.controller;
 
+import java.util.List;
+
 import pp2.scrum.dominio.Estado;
+import pp2.scrum.dominio.entidad.CriterioAceptacion;
 import pp2.scrum.dominio.entidad.Miembro;
+import pp2.scrum.dominio.entidad.Tarea;
 import pp2.scrum.dominio.entidad.UserStory;
 
 public class UserStoryHelper
 {
 	private UserStory userStory;
 	private Miembro miembro;
+	private int iteracion,horasEstimadas;
+	private Estado estado;
 	
 	@SuppressWarnings("unused")
 	private UserStoryHelper(){ }
@@ -15,11 +21,13 @@ public class UserStoryHelper
 	public UserStoryHelper(UserStory us) {
 		this.userStory = us;
 		this.miembro   = null;
+		estado = Estado.getDefault();
 	}
 	
 	public UserStoryHelper(UserStory us,Miembro miembro) {
 		this.userStory = us;
 		this.miembro   = miembro;
+		estado = Estado.getDefault();
 	}
 
 	public long getId() {
@@ -35,7 +43,7 @@ public class UserStoryHelper
 	}
 	
 	public String getAutor() {
-		return this.userStory.getAutor();
+		return miembro != null ? miembro.getNombre(): "-";
 	}
 	
 	public int getStoryPoints()
@@ -50,8 +58,85 @@ public class UserStoryHelper
 		return responsable;
 	}
 
-	public Estado getEstado() {
-		return userStory.getEstado();
+	public List<CriterioAceptacion> getCriterios() {
+		return userStory.getCriterios();
 	}
+
+	public List<Tarea> getTareas() {
+		return userStory.getTareas();
+	}
+
+	public int getIteracion() {
+		return iteracion;
+	}
+	
+	public void setIteracion(int i) {
+		iteracion = i;
+	}
+
+	public void setCriterios(List<CriterioAceptacion> criterios) {
+		userStory.setCriterios(criterios);		
+	}
+	
+	public void setTareas(List<Tarea> tareas) {
+		userStory.setTareas(tareas);		
+	}
+
+	public void setAutor(String string) {
+		miembro = new Miembro(string);
+		
+	}
+
+	public void setDetalle(String string) {
+		userStory.setDetalle(string);
+		
+	}
+
+	public void setEstado(Estado est) {
+		estado = est;	
+	}
+	
+	public Estado getEstado() {
+		if (estaTerminada())
+		{
+			return Estado.Done;
+		}
+		return this.estado;	
+	}
+
+	public void setHorasEstimadas(int i) {
+		horasEstimadas = i;		
+	}
+
+	public void setResponsable(String string) {
+		miembro = new Miembro(string);		
+	}
+
+	public void setTitulo(String string) {
+		userStory.setTitulo(string);
+		
+	}
+
+	public void setStoryPoints(int i) {
+		userStory.setStoryPoints(i);
+		
+	}
+
+	public boolean estaTerminada() {
+		return userStory.estaTerminada();
+	}
+
+	public Miembro getMiembro() {
+		return miembro;
+	}
+
+	public int getHorasEstimadas() {
+		return horasEstimadas;
+	}
+
+	public void setId(int i) {
+		userStory.setId(i);;	
+	}
+	
 	
 }

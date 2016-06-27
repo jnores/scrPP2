@@ -8,7 +8,6 @@ import junit.framework.TestCase;
 import junit.framework.TestSuite;
 import pp2.scrum.consulta.EnviadorMail;
 import pp2.scrum.controller.UserStoryPaginadoController;
-import pp2.scrum.dominio.Estado;
 import pp2.scrum.dominio.entidad.Tarea;
 import pp2.scrum.dominio.entidad.UserStory;
 
@@ -35,7 +34,7 @@ public class UserStoryViewTest extends TestCase
       historias = new ArrayList<UserStory>();
       List<Tarea> tareas = new ArrayList<Tarea>();
       tareas.add(new Tarea());
-      UserStory story = new UserStory("titulo1", "detalle1", "autor1", "responsable1", 10, 50, 1, Estado.getDefault(), null,tareas);      
+      UserStory story = new UserStory("titulo1", "detalle1", 50, null, tareas);      
       historias.add(story);
       
    }

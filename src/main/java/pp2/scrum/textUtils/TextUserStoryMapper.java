@@ -55,7 +55,7 @@ public class TextUserStoryMapper implements UserStoryMapper {
 		     while ((nextLine = reader.readNext()) != null) {
 //		    	 System.out.println("ID="+nextLine[STORY_ID_IDX]+"|Titulo="+nextLine[STORY_STORY_IDX]+"|Detalle="+nextLine[STORY_DESCRIPCION_IDX]+"|SPRINT="+nextLine[STORY_SPRINT_IDX]);
 				if (nextLine.length > 0 && Long.parseLong(nextLine[STORY_SPRINT_IDX]) == 0) {
-					UserStory story = new UserStory(Long.parseLong(nextLine[STORY_ID_IDX]), nextLine[STORY_STORY_IDX], nextLine[STORY_DESCRIPCION_IDX],"");
+					UserStory story = new UserStory(Long.parseLong(nextLine[STORY_ID_IDX]), nextLine[STORY_STORY_IDX], nextLine[STORY_DESCRIPCION_IDX]);
 					stories.add(story);
 				}
 			}
