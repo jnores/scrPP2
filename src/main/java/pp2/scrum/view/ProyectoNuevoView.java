@@ -13,7 +13,7 @@ import net.sourceforge.jdatepicker.impl.JDatePanelImpl;
 import net.sourceforge.jdatepicker.impl.JDatePickerImpl;
 import net.sourceforge.jdatepicker.impl.UtilDateModel;
 import pp2.scrum.controller.ProyectoController;
-import pp2.scrum.dominio.entidad.Miembro;
+import pp2.scrum.domain.Miembro;
 import net.sourceforge.jdatepicker.DateModel;
 import javax.swing.SpringLayout;
 import java.awt.Dialog.ModalityType;

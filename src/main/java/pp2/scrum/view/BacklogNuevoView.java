@@ -14,7 +14,7 @@ import javax.swing.border.EmptyBorder;
 import net.sourceforge.jdatepicker.impl.UtilDateModel;
 import pp2.scrum.controller.ProyectoController;
 import pp2.scrum.controller.UserStoryPaginadoController;
-import pp2.scrum.dominio.entidad.UserStory;
+import pp2.scrum.domain.UserStory;
 
 public class BacklogNuevoView extends JDialog
 {

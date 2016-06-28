@@ -11,9 +11,8 @@ import junit.framework.TestSuite;
 import jxl.Sheet;
 import jxl.Workbook;
 import jxl.read.biff.BiffException;
-import pp2.scrum.dominio.entidad.Exporter;
-import pp2.scrum.dominio.entidad.Miembro;
-import pp2.scrum.dominio.entidad.UserStory;
+import pp2.scrum.domain.Miembro;
+import pp2.scrum.domain.UserStory;
 import pp2.scrum.utils.PluginFactory;
 
 
@@ -87,7 +86,7 @@ extends TestCase
 		//esto rompió el commit
 		
 		String path="./prueba";
-		List<UserStoryHelper> lst = new ArrayList<>();
+		List<UserStoryHelper> lst = new ArrayList<UserStoryHelper>();
 		List<Exporter> plugins = PluginFactory.getPlugins();
 		lst.add(userStoryHelper);
 		

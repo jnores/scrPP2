@@ -1,8 +1,8 @@
 package pp2.scrum.controller;
 
-import pp2.scrum.dominio.entidad.CorrectorSintaxis;
-import pp2.scrum.dominio.entidad.Proyecto;
-import pp2.scrum.dominio.entidad.UserStory;
+import pp2.scrum.correctorSintaxis.CorrectorSintaxis;
+import pp2.scrum.domain.Proyecto;
+import pp2.scrum.domain.UserStory;
 
 public class UserStoryController {
     private CorrectorSintaxis modeloCorrector;

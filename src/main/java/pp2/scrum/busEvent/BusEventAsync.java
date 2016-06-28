@@ -10,7 +10,7 @@ import java.util.Set;
 import java.util.concurrent.BlockingQueue;
 import java.util.concurrent.LinkedBlockingQueue;
 
-import pp2.scrum.dominio.entidad.BusEvent;
+import pp2.scrum.controller.BusEvent;
 
 /**
  * @author yoshknight

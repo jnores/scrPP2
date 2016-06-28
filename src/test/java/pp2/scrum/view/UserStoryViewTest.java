@@ -8,8 +8,8 @@ import junit.framework.TestCase;
 import junit.framework.TestSuite;
 import pp2.scrum.consulta.EnviadorMail;
 import pp2.scrum.controller.UserStoryPaginadoController;
-import pp2.scrum.dominio.entidad.Tarea;
-import pp2.scrum.dominio.entidad.UserStory;
+import pp2.scrum.domain.Tarea;
+import pp2.scrum.domain.UserStory;
 
 public class UserStoryViewTest extends TestCase
 {

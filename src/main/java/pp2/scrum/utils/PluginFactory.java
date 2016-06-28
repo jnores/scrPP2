@@ -7,7 +7,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Properties;
 
-import pp2.scrum.dominio.entidad.Exporter;
+import pp2.scrum.controller.Exporter;
 
 
 public class PluginFactory

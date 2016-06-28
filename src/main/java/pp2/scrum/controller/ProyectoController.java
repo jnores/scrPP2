@@ -5,10 +5,9 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Set;
 
-import pp2.scrum.dominio.entidad.MailGateway;
-import pp2.scrum.dominio.entidad.Miembro;
-import pp2.scrum.dominio.entidad.Proyecto;
-import pp2.scrum.dominio.entidad.UserStory;
+import pp2.scrum.domain.Miembro;
+import pp2.scrum.domain.Proyecto;
+import pp2.scrum.domain.UserStory;
 
 public class ProyectoController extends Controller 
 {

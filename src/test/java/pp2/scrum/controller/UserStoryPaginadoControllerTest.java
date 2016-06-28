@@ -7,9 +7,8 @@ import junit.framework.Test;
 import junit.framework.TestCase;
 import junit.framework.TestSuite;
 import mockit.MockUp;
-import pp2.scrum.dominio.entidad.MailGateway;
-import pp2.scrum.dominio.entidad.Tarea;
-import pp2.scrum.dominio.entidad.UserStory;
+import pp2.scrum.domain.Tarea;
+import pp2.scrum.domain.UserStory;
 import pp2.scrum.utils.DirOrden;
 import pp2.scrum.utils.Paginacion;
 

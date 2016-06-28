@@ -2,11 +2,11 @@ package pp2.scrum.controller;
 
 import java.util.List;
 
-import pp2.scrum.dominio.Estado;
-import pp2.scrum.dominio.entidad.CriterioAceptacion;
-import pp2.scrum.dominio.entidad.Miembro;
-import pp2.scrum.dominio.entidad.Tarea;
-import pp2.scrum.dominio.entidad.UserStory;
+import pp2.scrum.domain.CriterioAceptacion;
+import pp2.scrum.domain.Estado;
+import pp2.scrum.domain.Miembro;
+import pp2.scrum.domain.Tarea;
+import pp2.scrum.domain.UserStory;
 
 public class UserStoryHelper
 {

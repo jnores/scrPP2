@@ -7,13 +7,12 @@ import java.util.List;
 
 import org.jfree.data.xy.XYSeriesCollection;
 
-import pp2.scrum.dominio.composite.Avance;
-import pp2.scrum.dominio.composite.DataComposite;
-import pp2.scrum.dominio.composite.Estimado;
-import pp2.scrum.dominio.entidad.DataComponent;
-import pp2.scrum.dominio.entidad.MailGateway;
-import pp2.scrum.dominio.entidad.Sprint;
-import pp2.scrum.dominio.entidad.UserStory;
+import pp2.scrum.burndownChart.Avance;
+import pp2.scrum.burndownChart.DataComponent;
+import pp2.scrum.burndownChart.DataComposite;
+import pp2.scrum.burndownChart.Estimado;
+import pp2.scrum.domain.Sprint;
+import pp2.scrum.domain.UserStory;
 import pp2.scrum.utils.OpcionGrafico;
 import pp2.scrum.view.BurndownChartView;
 

@@ -16,16 +16,16 @@ import javax.swing.JScrollPane;
 import javax.swing.SwingUtilities;
 import javax.swing.border.LineBorder;
 
+import pp2.scrum.command.AgregarOkListenerBacklogNuevo;
+import pp2.scrum.command.AgregarSiguienteListenerProyectoNuevo;
+import pp2.scrum.command.LimpiarBacklogNuevoView;
+import pp2.scrum.command.LimpiarProyectoNuevoView;
+import pp2.scrum.command.MostrarAgregarHistoria;
+import pp2.scrum.command.MostrarProyectoNuevo;
+import pp2.scrum.controller.AppController;
 import pp2.scrum.controller.BurndownChartController;
 import pp2.scrum.controller.HomeController;
 import pp2.scrum.controller.UserStoryPaginadoController;
-import pp2.scrum.dominio.comando.AgregarOkListenerBacklogNuevo;
-import pp2.scrum.dominio.comando.AgregarSiguienteListenerProyectoNuevo;
-import pp2.scrum.dominio.comando.LimpiarBacklogNuevoView;
-import pp2.scrum.dominio.comando.LimpiarProyectoNuevoView;
-import pp2.scrum.dominio.comando.MostrarAgregarHistoria;
-import pp2.scrum.dominio.comando.MostrarProyectoNuevo;
-import pp2.scrum.dominio.entidad.AppController;
 import pp2.scrum.utils.Logger;
 import pp2.scrum.view.events.ViewUpdateEvent;
 

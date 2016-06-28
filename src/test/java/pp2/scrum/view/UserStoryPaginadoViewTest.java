@@ -7,9 +7,9 @@ import junit.framework.Test;
 import junit.framework.TestCase;
 import junit.framework.TestSuite;
 import mockit.MockUp;
+import pp2.scrum.controller.MailGateway;
 import pp2.scrum.controller.UserStoryPaginadoController;
-import pp2.scrum.dominio.entidad.MailGateway;
-import pp2.scrum.dominio.entidad.UserStory;
+import pp2.scrum.domain.UserStory;
 import pp2.scrum.view.UserStoryPaginadoView;
 
 public class UserStoryPaginadoViewTest extends TestCase

@@ -4,8 +4,8 @@ import junit.framework.Test;
 import junit.framework.TestCase;
 import junit.framework.TestSuite;
 import pp2.scrum.consulta.EnviadorMail;
-import pp2.scrum.dominio.Resultado;
-import pp2.scrum.dominio.entidad.Mail;
+import pp2.scrum.controller.Mail;
+import pp2.scrum.controller.Resultado;
 
 public class EnviadorMailTest extends TestCase
 {

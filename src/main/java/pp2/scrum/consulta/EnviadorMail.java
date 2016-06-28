@@ -6,9 +6,9 @@ import java.io.IOException;
 import java.net.Socket;
 import java.net.UnknownHostException;
 
-import pp2.scrum.dominio.Resultado;
-import pp2.scrum.dominio.entidad.Mail;
-import pp2.scrum.dominio.entidad.MailGateway;
+import pp2.scrum.controller.Mail;
+import pp2.scrum.controller.MailGateway;
+import pp2.scrum.controller.Resultado;
 
 /**
  * @author rub

@@ -6,12 +6,12 @@ package pp2.scrum.verificarSprint;
 import java.util.Date;
 import java.util.List;
 
+import pp2.scrum.controller.BusEvent;
+import pp2.scrum.controller.TaskManager;
 import pp2.scrum.controller.UserStoryHelper;
-import pp2.scrum.dominio.Estado;
-import pp2.scrum.dominio.TaskManager;
-import pp2.scrum.dominio.entidad.BusEvent;
-import pp2.scrum.dominio.entidad.Sprint;
-import pp2.scrum.dominio.entidad.UserStory;
+import pp2.scrum.domain.Estado;
+import pp2.scrum.domain.Sprint;
+import pp2.scrum.domain.UserStory;
 import pp2.scrum.utils.Calendario;
 import pp2.scrum.utils.Logger;
 
