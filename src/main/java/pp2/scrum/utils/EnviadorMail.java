@@ -1,4 +1,4 @@
-package pp2.scrum.consulta;
+package pp2.scrum.utils;
 
 import java.io.DataInputStream;
 import java.io.DataOutputStream;

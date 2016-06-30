@@ -40,7 +40,7 @@ public class UserStoryPaginadoController extends Controller
         return paginacionActual;
     }
 
-    public void setModel(List<UserStory> model)
+    public void setModel(List<UserStory> model) //FIXME borrar
     {
     	paginacionActual.setModel(model);
     }
@@ -48,32 +48,32 @@ public class UserStoryPaginadoController extends Controller
     public List<UserStory> listarUserStories(Paginacion paginacion)
     {               
         paginacionActual = paginacion;
-        return paginacionActual.listarUserStories();
+        return paginacionActual.listarPaginacion();
     }
 
     public List<UserStory> obtenerPaginacionAnterior()
     { 
-        return paginacionActual.getPagina() == 1 ? paginacionActual.getModel() : paginacionActual.paginacionAnterior();  
+        return paginacionActual.getPagina() == 1 ? paginacionActual.listarPaginacion() : paginacionActual.paginacionAnterior();  
     }
 
     public List<UserStory> obtenerPaginacionSiguiente()
     {
-        return paginacionActual.getPagina() == paginacionActual.getPaginasTotales() ? paginacionActual.getModel() : paginacionActual.paginacionSiguiente();
+        return paginacionActual.getPagina() == paginacionActual.getPaginasTotales() ? paginacionActual.listarPaginacion() : paginacionActual.paginacionSiguiente();
     }
 
     public List<UserStory> obtenerPaginacionPrimera()
     {
-        return paginacionActual.getPagina() == 1 ? paginacionActual.getModel() : paginacionActual.paginacionPrimera();
+        return paginacionActual.paginacionPrimera();
     }
 
     public List<UserStory> obtenerPaginacionUltima()
     {
-        return paginacionActual.getPagina() == paginacionActual.getPaginasTotales() ? paginacionActual.getModel() : paginacionActual.paginacionUltima();
+        return paginacionActual.paginacionUltima();
     }
 
     public List<UserStory> obtenerPaginacionActual()
     {
-        return paginacionActual.listarUserStories();
+        return paginacionActual.listarPaginacion();
     }
 
    //Tercera Iteracion

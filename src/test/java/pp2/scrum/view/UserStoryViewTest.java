@@ -6,10 +6,10 @@ import java.util.List;
 import junit.framework.Test;
 import junit.framework.TestCase;
 import junit.framework.TestSuite;
-import pp2.scrum.consulta.EnviadorMail;
 import pp2.scrum.controller.UserStoryPaginadoController;
 import pp2.scrum.domain.Tarea;
 import pp2.scrum.domain.UserStory;
+import pp2.scrum.utils.EnviadorMail;
 
 public class UserStoryViewTest extends TestCase
 {

@@ -3,9 +3,6 @@ package pp2.scrum;
 import java.awt.EventQueue;
 import java.util.ArrayList;
 import java.util.Date;
-import java.util.List;
-
-import pp2.scrum.consulta.EnviadorMail;
 import pp2.scrum.controller.BurndownChartController;
 import pp2.scrum.controller.HomeController;
 import pp2.scrum.controller.MailGateway;
@@ -13,6 +10,7 @@ import pp2.scrum.controller.UserStoryHelper;
 import pp2.scrum.controller.UserStoryPaginadoController;
 import pp2.scrum.domain.Sprint;
 import pp2.scrum.domain.UserStory;
+import pp2.scrum.utils.EnviadorMail;
 import pp2.scrum.utils.Logger;
 import pp2.scrum.view.BurndownChartView;
 import pp2.scrum.view.HomeView;

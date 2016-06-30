@@ -9,7 +9,6 @@ import junit.framework.TestSuite;
 import mockit.MockUp;
 import pp2.scrum.domain.Tarea;
 import pp2.scrum.domain.UserStory;
-import pp2.scrum.utils.DirOrden;
 import pp2.scrum.utils.Paginacion;
 
 public class UserStoryPaginadoControllerTest extends TestCase
@@ -41,7 +40,7 @@ public class UserStoryPaginadoControllerTest extends TestCase
       assertEquals(controller.getItemsTotales(), 0);
       assertEquals(controller.getPaginasTotales(), 0);
       assertTrue(controller.getModel() != null);
-      List<UserStory> lista = controller.listarUserStories(new Paginacion());
+      List<UserStory> lista = controller.listarUserStories(new Paginacion<>(1,5,new ArrayList<UserStory>()));
       assertEquals(lista.size(), 0);
       controller.setModel(null);
    }
@@ -49,7 +48,7 @@ public class UserStoryPaginadoControllerTest extends TestCase
    public void testUserPaginadoStoryPaginacion()
    {        
       List<UserStory> listaDefault,lista;
-      listaDefault = controller.listarUserStories(new Paginacion());
+      listaDefault = controller.listarUserStories(new Paginacion<>(1,5,new ArrayList<UserStory>()));
       lista = controller.obtenerPaginacionAnterior();
       assertEquals(listaDefault.size(), lista.size());
       
@@ -62,10 +61,9 @@ public class UserStoryPaginadoControllerTest extends TestCase
       lista = controller.obtenerPaginacionUltima();
       assertEquals(controller.getPaginacionActual().getPagina(), 0);
       
-      Paginacion paginacion = new Paginacion(1, 5,new ArrayList<UserStory>());
+      Paginacion<UserStory> paginacion = new Paginacion<>(1, 5,new ArrayList<UserStory>());
       listaDefault = controller.listarUserStories(paginacion);
-      paginacion.setItemsPorPagina(4);
-      paginacion.setPagina(2);
+      paginacion.paginacionSiguiente();
       assertEquals(controller.getPaginacionActual().getPagina(), 2);
       
    }
