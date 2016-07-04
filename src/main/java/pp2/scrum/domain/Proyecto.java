@@ -16,7 +16,7 @@ import pp2.scrum.utils.Logger;
  *
  */
 public class Proyecto {
-   private String titulo;
+   private String nombre;
 //	private Date fechaInicio,fechaFin;
 	private List<UserStoryHelper> backlog;
 	private Map<String,Miembro> miembros;
@@ -142,12 +142,12 @@ public class Proyecto {
 	
 	public void setTitulo(String titulo)
 	{
-	   this.titulo = titulo;
+	   this.nombre = titulo;
 	}
 	
 	public String getTitulo(String titulo)
     {
-      return this.titulo;
+      return this.nombre;
     }
 	
 	/**

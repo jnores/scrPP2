@@ -57,7 +57,7 @@ public class HomeView  extends JFrame implements ActionListener
         listadoPaginadoHistorias = listadoPaginado;
         filtradoHistorias = filtrado;
 
-        setTitle("Scrummer");		
+        setTitle("Sistema para gestionar proyectos de SCRUM");		
         this.setJMenuBar(cargarMenu());
 
 

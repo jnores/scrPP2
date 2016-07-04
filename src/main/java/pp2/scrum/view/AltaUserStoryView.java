@@ -49,7 +49,7 @@ public class AltaUserStoryView extends JPanel{
 	private UserStoryController controlador;
 	
 	private final String resumen="Como <Rol> necesito <Meta> para <Finalidad>.";
-	private final String  detalle="Utilice este espacio para explicar con más detalle, la meta y el propósito de esta user story";
+	private final String  detalle="Utilice este espacio para explicar con más detalle, el propósito de esta user story";
 	private final String criterio="Especifique criterios de aceptación para la user story.\n"
 			+ "Intente que los criterios tengan una correspondencia con los test.";
 	
@@ -81,7 +81,7 @@ public class AltaUserStoryView extends JPanel{
 		areaTitulo.setAlignmentX(Box.CENTER_ALIGNMENT);
 		areaTitulo.setLineWrap(true);
 		areaTitulo.setWrapStyleWord(true);
-		scrollTitulo.setBorder(BorderFactory.createTitledBorder("Titulo"));
+		scrollTitulo.setBorder(BorderFactory.createTitledBorder("Descripción"));
 		scrollTitulo.setViewportView(areaTitulo);
 		scrollTitulo.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED);
 		areaTitulo.setText(resumen);
@@ -91,7 +91,7 @@ public class AltaUserStoryView extends JPanel{
 		areaDetalle.setAlignmentX(Box.CENTER_ALIGNMENT);
 		areaDetalle.setLineWrap(true);
 		areaDetalle.setWrapStyleWord(true);        
-		scrollDetalle.setBorder(BorderFactory.createTitledBorder("Detalle"));
+		scrollDetalle.setBorder(BorderFactory.createTitledBorder("Notas"));
 		scrollDetalle.setViewportView(areaDetalle);
 		scrollDetalle.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED);
 		areaDetalle.setText(detalle);
@@ -128,7 +128,7 @@ public class AltaUserStoryView extends JPanel{
 		panelSugerenciaCriterio.add(areaSugerenciaCriterio);
 		
 		campoPuntos=new JTextField();
-		campoPuntos.setBorder(BorderFactory.createTitledBorder("Puntos:"));
+		campoPuntos.setBorder(BorderFactory.createTitledBorder("Valor:"));
 		campoPuntos.setAlignmentX(Box.LEFT_ALIGNMENT);
 		
         configurarAcciones();
