@@ -33,7 +33,7 @@ public enum UserStoryHelperComparator implements Comparator<UserStoryHelper> {
 	    },
 	ESTADO_SORT {
 		    @Override
-		    public int compare(UserStoryHelper o1, UserStoryHelper o2) {
+		    public int compare(UserStoryHelper o1, UserStoryHelper o2) {    
 		        return o1.getEstado().compareTo(o2.getEstado());
 		    }
 		    @Override

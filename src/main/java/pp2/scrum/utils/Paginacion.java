@@ -6,40 +6,35 @@ import java.util.List;
 import pp2.scrum.domain.UserStory;
 
 //Clase para paginar la lista paginada
-public class Paginacion
+public class Paginacion<T>
 {
          private int Pagina;
          private int ItemsPorPagina;
-         private List<UserStory> model;
+         private List<T> model;
 
-         public Paginacion(int pagina,int itemsPorPagina,List<UserStory> lista)
+         public Paginacion(int pagina,int itemsPorPagina,List<T> lista)
          {
              Pagina = pagina;
              ItemsPorPagina = itemsPorPagina;
              model = lista;
          }
-         
-         public Paginacion()
+
+         public List<T> getModel() 
          {
-             Pagina = 1;
-             ItemsPorPagina = 5;
-             model = new ArrayList<UserStory>();
+			return model;
+		   }
+
+         public void setModel(List<T> model) //FIXME borrar!!
+         { 
+            this.model = model;
          }
 
-         public List<UserStory> getModel() {
-			return model;
-		 }
-
-		 public void setModel(List<UserStory> model) {
-			this.model = model;
-		 }
-
-		 public int getPagina()
+         public int getPagina()
          {
             return Pagina;
          }
 
-         public void setPagina(int pagina)
+         private void setPagina(int pagina)
          {
             Pagina = pagina;
          }
@@ -56,51 +51,45 @@ public class Paginacion
          
          public int getPaginasTotales()
          {
-        	 return getItemsTotales() / getItemsPorPagina() + (getItemsTotales() % getItemsPorPagina() == 0 ? 0 : 1);
+            return getItemsTotales() / getItemsPorPagina() + (getItemsTotales() % getItemsPorPagina() == 0 ? 0 : 1);
          }
 
-         public void setItemsPorPagina(int itemsPorPagina)
+         public List<T> listarPaginacion()
          {
-            ItemsPorPagina = itemsPorPagina;
-         }
-         
-         public List<UserStory> listarUserStories()
-         {
-        	 int itemsTotales = getItemsTotales();
              int indice = (getPagina() - 1) * getItemsPorPagina();
-             List<UserStory> historias = new ArrayList<UserStory>();
+             List<T> lista = new ArrayList<T>();
              int i = 0;
-             while(i < getItemsPorPagina() && (indice + i) < itemsTotales && indice >= 0)
+             while(i < getItemsPorPagina() && (indice + i) < getItemsTotales() && indice >= 0)
              {
-                 UserStory story = model.get(indice + i);
-                 historias.add(story);      
+                 T elemento = model.get(indice + i);
+                 lista.add(elemento);      
                  i++;
              }
-             return historias;
+             return lista;
          }
          
-         public List<UserStory> paginacionAnterior()
+         public List<T> paginacionAnterior()
          {        	 
-        	 setPagina(getPagina() - 1);
-             return listarUserStories();
+        	    setPagina(getPagina() - 1);
+             return listarPaginacion();
          }
          
-         public List<UserStory> paginacionSiguiente()
+         public List<T> paginacionSiguiente()
          {        	 
-        	 setPagina(getPagina() + 1);
-             return listarUserStories();
+        	    setPagina(getPagina() + 1);
+             return listarPaginacion();
          }
          
-         public List<UserStory> paginacionPrimera()
+         public List<T> paginacionPrimera()
          {        	 
-        	 setPagina(1);
-             return listarUserStories();
+        	    setPagina(1);
+             return listarPaginacion();
          }
          
-         public List<UserStory> paginacionUltima()
+         public List<T> paginacionUltima()
          {        	 
-        	 setPagina(getPaginasTotales());
-             return listarUserStories();
+        	    setPagina(getPaginasTotales());
+             return listarPaginacion();
          }
 
 }

@@ -13,7 +13,7 @@ import pp2.scrum.domain.UserStory;
 
 public class SprintTest extends TestCase {
 	
-	UserStoryHelper userStory1
+	UserStory userStory1
 			 ,userStory2
 			 ,userStory3
 			 ,userStory4
@@ -38,10 +38,10 @@ public class SprintTest extends TestCase {
 	public void  setUp() {
 
 
-		userStory1 =  new UserStoryHelper (new UserStory("Titulo1", "Detalle1"));
-		userStory2 =  new UserStoryHelper (new UserStory("Titulo2", "Detalle2"));
-		userStory3 =  new UserStoryHelper (new UserStory("Titulo3", "Detalle3"));
-		userStory4 =  new UserStoryHelper (new UserStory("Titulo4", "Detalle4"));
+		userStory1 =  new UserStory("Titulo1", "Detalle1");
+		userStory2 =  new UserStory("Titulo2", "Detalle2");
+		userStory3 =  new UserStory("Titulo3", "Detalle3");
+		userStory4 =  new UserStory("Titulo4", "Detalle4");
 
 		
 	}
@@ -55,7 +55,7 @@ public class SprintTest extends TestCase {
 		s.setDuracion(21);
 		assertEquals(s.getDuracion(), 21);
 		
-		List<UserStoryHelper> historias = new ArrayList<UserStoryHelper>();
+		List<UserStory> historias = new ArrayList<UserStory>();
 		historias.add(userStory2);
 		historias.add(userStory3);
 		historias.add(userStory4);

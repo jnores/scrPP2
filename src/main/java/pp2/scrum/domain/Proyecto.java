@@ -8,8 +8,6 @@ import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
-import pp2.scrum.controller.UserStoryHelper;
-import pp2.scrum.utils.Logger;
 
 /**
  * @author yoshknight
@@ -18,16 +16,16 @@ import pp2.scrum.utils.Logger;
 public class Proyecto {
    private String nombre;
 //	private Date fechaInicio,fechaFin;
-	private List<UserStoryHelper> backlog;
+	private List<UserStory> backlog;
 	private Map<String,Miembro> miembros;
 	private List<Sprint> iteraciones;
-	private Map<UserStoryHelper,Miembro> asignaciones;
+	private Map<UserStory,Miembro> asignaciones;
 
 	public Proyecto() {
-		this.backlog      = new ArrayList<UserStoryHelper>();
+		this.backlog      = new ArrayList<UserStory>();
 		this.miembros     = new HashMap<String,Miembro>();
 		this.iteraciones  = new ArrayList<Sprint>();
-		this.asignaciones = new HashMap<UserStoryHelper,Miembro>();
+		this.asignaciones = new HashMap<UserStory,Miembro>();
 	}
 	
 	/**
@@ -47,19 +45,19 @@ public class Proyecto {
 	/**
 	 * @return Coleccion de UserStories del proyecto
 	 */
-	public Set<UserStoryHelper> getAllUserStories() {
-		ArrayList<UserStoryHelper> allStories;
-		allStories = new ArrayList<UserStoryHelper>( this.backlog );
+	public Collection<UserStory> getAllUserStories() {
+		ArrayList<UserStory> allStories;
+		allStories = new ArrayList<UserStory>( this.backlog );
 		for (Sprint it: iteraciones) {
 			allStories.addAll(it.getUserStories());
 		}
-		return new HashSet<UserStoryHelper>(allStories);
+		return allStories;
 	}
 	
 	/**
 	 * @return Coleccion de UserStories del backlog
 	 */
-	public List<UserStoryHelper> getBacklog() {
+	public List<UserStory> getBacklog() {
 		return backlog;
 	}
 	
@@ -67,15 +65,15 @@ public class Proyecto {
 	 * @param miembro Miembro del proyecto
 	 * @return Coleccion de UserStories del proyecto asignadas al reurso 
 	 */
-	public Set<UserStoryHelper> getAllUserStoriesFromMiembro(Miembro miembro) {
-		ArrayList<UserStoryHelper> allStories = new ArrayList<UserStoryHelper>();
-		for (Map.Entry<UserStoryHelper, Miembro> entry : this.asignaciones.entrySet()) {
+	public Collection<UserStory> getAllUserStoriesFromMiembro(Miembro miembro) {
+		ArrayList<UserStory> allStories = new ArrayList<UserStory>();
+		for (Map.Entry<UserStory, Miembro> entry : this.asignaciones.entrySet()) {
 			if (entry.getValue().equals(miembro) ) {
 				allStories.add(entry.getKey());
 			}
 		}
 		
-		return new HashSet<UserStoryHelper>(allStories);
+		return allStories;
 	}
 	
 	/**
@@ -93,9 +91,7 @@ public class Proyecto {
 	/**
 	 * @param userStory  La user story que se debe agregar al bachlog
 	 */
-	public void addUserStory(UserStoryHelper userStory) {
-		//Logger.log("ADD USER STORY ["+userStory.getId()+"]: "+userStory.getTitulo());
-		Logger.log("ADD USER STORY: "+userStory.getTitulo());
+	public void addUserStory(UserStory userStory) {
 		this.backlog.add( userStory);
 	}
 	
@@ -112,16 +108,16 @@ public class Proyecto {
 	 * @param userStory  La user story a asignar
 	 * @param miembro El miembro que se le asignara la user story
 	 */
-	public void asignarUserStory(UserStoryHelper userStory,Miembro miembro) {
+	public void asignarUserStory(UserStory userStory,Miembro miembro) {
 		if ( this.backlog.contains(userStory) && this.miembros.containsValue(miembro)) {
 			this.asignaciones.put(userStory, miembro);
 		}
 	}
 
-	public UserStoryHelper getUserStoryPorId(int id) {
-		UserStoryHelper userStory = null;
+	public UserStory getUserStoryPorId(int id) {
+		UserStory userStory = null;
 		getBacklog();
-		for (UserStoryHelper us:backlog) {
+		for (UserStory us:backlog) {
 			if (us.getId() == id) {
 				userStory = us;
 				break;
@@ -130,7 +126,7 @@ public class Proyecto {
 		return userStory;
 	}
 
-	public Miembro getResponsable(UserStoryHelper userStory) {
+	public Miembro getResponsable(UserStory userStory) {
 		Miembro miembro = null;
 		if ( userStory != null ) {
 			if ( this.asignaciones.containsKey(userStory) ) {
@@ -156,7 +152,7 @@ public class Proyecto {
 	 */
 	public long getSiguienteStoryID(){
 		long id=0;
-		for (UserStoryHelper us:backlog)
+		for (UserStory us:backlog)
 			if (us.getId()>id)
 				id=us.getId();
 		return id+1;
