@@ -1,12 +1,10 @@
 package pp2.scrum.burndownChart;
 
-import java.util.Iterator;
 import java.util.List;
 
+import org.jfree.data.xy.XYSeries;
+import org.jfree.data.xy.XYSeriesCollection;
 
-import org.jfree.data.xy.*;
-
-import pp2.scrum.controller.UserStoryHelper;
 import pp2.scrum.domain.Sprint;
 import pp2.scrum.domain.UserStory;
 
@@ -45,16 +43,12 @@ public class Estimado implements DataComponent
 		return null;
 	}
 	
-	private Integer getTotalStoryPoints(List<UserStoryHelper> historias){
-		this.storyPointsPactados=0;
-		Iterator it=historias.iterator();
-
-		while (it.hasNext())
-		{
-			UserStoryHelper story=(UserStoryHelper) it.next();
-			this.storyPointsPactados=this.storyPointsPactados+story.getStoryPoints();
-		}
-		return this.storyPointsPactados;
+	private Integer getTotalStoryPoints(List<UserStory> historias){
+		storyPointsPactados=0;
+		for(UserStory story: historias )
+			storyPointsPactados += story.getStoryPoints();
+		
+		return storyPointsPactados;
 	}
 
 	@Override

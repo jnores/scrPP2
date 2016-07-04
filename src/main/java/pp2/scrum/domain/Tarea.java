@@ -1,8 +1,6 @@
 package pp2.scrum.domain;
 
 import java.util.ArrayList;
-import java.util.Observable;
-import java.util.Observer;
 
 import pp2.scrum.utils.GeneradorIDs;
 
@@ -16,11 +14,11 @@ public class Tarea extends java.util.Observable
 	 * @param id
 	 * @param tareas
 	 */
-//	public Tarea(int id) {
-//		this.id=id;
-//		estado = Estado.getDefault();
-//	}
-	
+	//	public Tarea(int id) {
+	//		this.id=id;
+	//		estado = Estado.getDefault();
+	//	}
+
 	public Tarea() {
 		this.id = GeneradorIDs.generarID();
 		estado = Estado.getDefault();
@@ -52,18 +50,18 @@ public class Tarea extends java.util.Observable
 		estado = estado.avanzar();
 		fueModificado();
 	}
-	
+
 	public void addCommit(String id){
 		this.commitsVinculados.add(id);
 		fueModificado();
 	}
-	
+
 	public ArrayList<String> getCommits(){
 		return this.commitsVinculados;
 	}
-	
+
 	private void fueModificado() {
-      setChanged();
-      notifyObservers();
-   }
+		setChanged();
+		notifyObservers();
+	}
 }

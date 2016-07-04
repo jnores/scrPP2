@@ -2,10 +2,9 @@ package pp2.scrum.controller;
 
 import java.security.InvalidParameterException;
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.List;
-import java.util.Set;
 
-import pp2.scrum.domain.Miembro;
 import pp2.scrum.domain.Proyecto;
 import pp2.scrum.domain.UserStory;
 
@@ -23,10 +22,10 @@ public class ProyectoController extends Controller
      * @return List<UserStory> totalidad de userstories del proyecto.
      */
     public List<UserStoryHelper> getAllUserStories() {
-        Set<UserStoryHelper> userStories = proyecto.getAllUserStories();
+        Collection<UserStory> userStories = proyecto.getAllUserStories();
         ArrayList<UserStoryHelper> userStoriesHelpers = new ArrayList<UserStoryHelper>();
-        for(UserStoryHelper userStory: userStories) {
-            userStoriesHelpers.add( userStory );
+        for(UserStory userStory: userStories) {
+            userStoriesHelpers.add( new UserStoryHelper(userStory,proyecto.getResponsable(userStory) ) );
         }
 
         return userStoriesHelpers;
@@ -37,17 +36,19 @@ public class ProyectoController extends Controller
      * @return List<UserStory> totalidad de userstories del proyecto.
      */
     public List<UserStoryHelper> getBacklog() {
-        List<UserStoryHelper> userStories = proyecto.getBacklog();
+        List<UserStory> userStories = proyecto.getBacklog();
         ArrayList<UserStoryHelper> userStoriesHelpers = new ArrayList<UserStoryHelper>();
-        for(UserStoryHelper userStory: userStories) {
-            userStoriesHelpers.add( userStory);
+        for(UserStory userStory: userStories) {
+        	userStoriesHelpers.add( new UserStoryHelper(userStory,proyecto.getResponsable(userStory) ) );
         }
 
         return userStoriesHelpers;
     }
 
-    public UserStoryHelper getUserStoryHelper(int id) {           //FIXME
-        return proyecto.getUserStoryPorId(id);
+    public UserStoryHelper getUserStory(int id) {
+	    UserStory us= proyecto.getUserStoryPorId(id);
+	    UserStoryHelper ush = new UserStoryHelper(us,proyecto.getResponsable(us));
+        return ush;
     }
 
     public void setProyecto(Proyecto proyecto)
@@ -69,7 +70,7 @@ public class ProyectoController extends Controller
         return proyecto.getSiguienteStoryID();
     }
 
-    public void agregarUserStory(UserStoryHelper us) {
+    public void agregarUserStory(UserStory us) {
         if (us==null)
             throw new InvalidParameterException("Se esperaba una user story para agregar y se recibio un elemento nulo.");
         proyecto.addUserStory(us);

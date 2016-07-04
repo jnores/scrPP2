@@ -28,13 +28,10 @@ public class Avance implements DataComponent{
 	private Integer getStoryPointsDone(Date fecha,Sprint iteracion)
 	{
 		Integer storyPointsDone=0;
-		Iterator<UserStoryHelper> it=iteracion.getUserStories().iterator();
 		
-		while(it.hasNext())
-		{
-			UserStoryHelper story= it.next();
-			storyPointsDone=storyPointsDone+story.getStoryPoints();
-		}
+		for (UserStory story: iteracion.getUserStories() )
+			storyPointsDone += story.getStoryPoints();
+		
 		return storyPointsDone;
 	}
 

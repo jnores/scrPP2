@@ -58,10 +58,10 @@ public class VerificarRetraso implements Runnable {
     public double getPorcentajeAvance() {
         double storyPointsPactados = sprint.getStoryPointsPactados();
         double storyPointsCompletos = 0;
-        List<UserStoryHelper> stories = sprint.getUserStories();
-        for ( UserStoryHelper u : stories ) {
-            if ( u.getEstado().equals( Estado.Done ) ) {
-                storyPointsCompletos += u.getStoryPoints();
+        List<UserStory> stories = sprint.getUserStories();
+        for ( UserStory us : stories ) {
+            if ( sprint.stateStory(us).equals(Estado.Done) ) {
+                storyPointsCompletos += us.getStoryPoints();
             }
         }
         return 100*storyPointsCompletos/storyPointsPactados;

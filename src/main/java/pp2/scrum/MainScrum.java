@@ -30,7 +30,7 @@ public class MainScrum {
 				//Creo la dependencia al iniciar la aplicacion una sola vez
 				MailGateway mailGateway = new EnviadorMail(4444,"127.0.0.1", "pp2mailsender", "mailmail", 15);
 				HomeController controller = new HomeController(mailGateway);
-				BurndownChartView chartView = new BurndownChartView(new BurndownChartController(new Sprint(1,new Date("03/10/2016"), 21, new ArrayList<UserStoryHelper>()), mailGateway));
+				BurndownChartView chartView = new BurndownChartView(new BurndownChartController(new Sprint(1,new Date("03/10/2016"), 21, new ArrayList<UserStory>()), mailGateway));
 				UserStoryPaginadoView listadoPaginado = new UserStoryPaginadoView(new UserStoryPaginadoController(mailGateway),new ArrayList<UserStory>());
 				UserStoryOrderableView filtrado = new UserStoryOrderableView(new UserStoryListView( controller.getProyectoController().getBacklog() ));
 				

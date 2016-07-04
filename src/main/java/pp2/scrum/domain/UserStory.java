@@ -8,14 +8,14 @@ import java.util.Observer;
 
 public class UserStory extends Observable implements Observer
 {
-	
+
 	private long id;
 	private String titulo;
 	private String detalle;
 	private int storyPoints;
 	private List<CriterioAceptacion> criterios;
 	private List<Tarea> tareas;
-	
+
 	public UserStory(String titulo, String detalle, int storyPoints, List<CriterioAceptacion> criterios, List<Tarea> tareas) {
 		this.titulo = titulo;
 		this.detalle = detalle;
@@ -24,24 +24,24 @@ public class UserStory extends Observable implements Observer
 		this.tareas = tareas == null ? new ArrayList<Tarea>() : tareas;
 		observarTareas(this.tareas);
 	}
-	
+
 	public UserStory(String titulo, String detalle) {
 		this.titulo = titulo;
 		this.detalle = detalle;
 		//Estado por defecto al crear la user story
 		this.criterios = new ArrayList<CriterioAceptacion>();
-      this.tareas = new ArrayList<Tarea>();
-      observarTareas(this.tareas);
+		this.tareas = new ArrayList<Tarea>();
+		observarTareas(this.tareas);
 	}
 	public UserStory(long id,String titulo, String detalle) {
 		this.id = id;
 		this.titulo = titulo;
 		this.detalle = detalle;
 		this.criterios = new ArrayList<CriterioAceptacion>();
-      this.tareas = new ArrayList<Tarea>();
-      observarTareas(this.tareas);
+		this.tareas = new ArrayList<Tarea>();
+		observarTareas(this.tareas);
 	}
-	
+
 	public void setId(long id) { //FIXME quitar
 		this.id = id;
 	}
@@ -103,7 +103,8 @@ public class UserStory extends Observable implements Observer
 	public int hashCode() {
 		final int prime = 31;
 		int result = 1;
-		result = prime * result + (int) (id ^ (id >>> 32));
+		result = prime * result + ((titulo == null) ? 0 : titulo.hashCode());;
+		result = prime * result + ((detalle == null) ? 0 : detalle.hashCode());;
 		return result;
 	}
 
@@ -127,42 +128,42 @@ public class UserStory extends Observable implements Observer
 		}
 		return true;
 	}
-	
+
 	public boolean estaTerminada()
 	{
-	   boolean termino = false;
-	   for (Tarea tarea : tareas)
-      {
-         termino = tarea.getEstado() == Estado.Done;
-         if(!termino)
-         {
-            return false;
-         }
-      }
-	   return termino;
+		boolean termino = true;
+		for (Tarea tarea : tareas)
+		{
+			if( ! tarea.getEstado().equals(Estado.Done) )
+			{
+				termino=false;
+				break;
+			}
+		}
+		return termino;
 	}
-	
+
 	private void observarTareas(List<Tarea> tareas)
 	{
-	   for (Tarea tarea : tareas)
-      {
-	      tarea.addObserver(this);
-      }
+		for (Tarea tarea : tareas)
+		{
+			tarea.addObserver(this);
+		}
 	}
-	
+
 	private void fueModificado(Object arg) {
-      setChanged();
-      notifyObservers(arg);
-   }
+		setChanged();
+		notifyObservers(arg);
+	}
 
-   @Override
-   public void update(Observable o, Object arg)
-   {
-      fueModificado(o);
-      //if (estaTerminada())
-      
-   }
-	
+	@Override
+	public void update(Observable o, Object arg)
+	{
+		fueModificado(o);
+		//if (estaTerminada())
 
-	
+	}
+
+
+
 }
