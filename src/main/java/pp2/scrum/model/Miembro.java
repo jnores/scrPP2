@@ -1,4 +1,4 @@
-package pp2.scrum.domain;
+package pp2.scrum.model;
 
 /**
  * @author yoshknight

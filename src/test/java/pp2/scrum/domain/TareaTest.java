@@ -1,8 +1,8 @@
 package pp2.scrum.domain;
 
 import junit.framework.TestCase;
-import pp2.scrum.domain.Estado;
-import pp2.scrum.domain.Tarea;
+import pp2.scrum.model.Estado;
+import pp2.scrum.model.Tarea;
 
 public class TareaTest extends TestCase {
 

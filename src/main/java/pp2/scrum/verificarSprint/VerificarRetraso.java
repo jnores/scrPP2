@@ -9,9 +9,9 @@ import java.util.List;
 import pp2.scrum.controller.BusEvent;
 import pp2.scrum.controller.TaskManager;
 import pp2.scrum.controller.UserStoryHelper;
-import pp2.scrum.domain.Estado;
-import pp2.scrum.domain.Sprint;
-import pp2.scrum.domain.UserStory;
+import pp2.scrum.model.Estado;
+import pp2.scrum.model.Sprint;
+import pp2.scrum.model.UserStory;
 import pp2.scrum.utils.Calendario;
 import pp2.scrum.utils.Logger;
 

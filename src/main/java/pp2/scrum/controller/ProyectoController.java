@@ -5,8 +5,8 @@ import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
 
-import pp2.scrum.domain.Proyecto;
-import pp2.scrum.domain.UserStory;
+import pp2.scrum.model.Proyecto;
+import pp2.scrum.model.UserStory;
 
 public class ProyectoController extends Controller 
 {

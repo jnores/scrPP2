@@ -8,8 +8,8 @@ import java.util.Iterator;
 import org.jfree.data.xy.*;
 
 import pp2.scrum.controller.UserStoryHelper;
-import pp2.scrum.domain.Sprint;
-import pp2.scrum.domain.UserStory;
+import pp2.scrum.model.Sprint;
+import pp2.scrum.model.UserStory;
 
 public class Avance implements DataComponent{
 	private XYSeries avance; 

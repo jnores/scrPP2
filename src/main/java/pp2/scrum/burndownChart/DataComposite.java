@@ -5,7 +5,7 @@ import java.util.ArrayList;
 import org.jfree.data.xy.XYSeries;
 import org.jfree.data.xy.XYSeriesCollection;
 
-import pp2.scrum.domain.Sprint;
+import pp2.scrum.model.Sprint;
 
 public class DataComposite  implements DataComponent{
 	private ArrayList<DataComponent> dataGraficos;

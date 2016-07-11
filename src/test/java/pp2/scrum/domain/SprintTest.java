@@ -7,8 +7,8 @@ import junit.framework.Test;
 import junit.framework.TestCase;
 import junit.framework.TestSuite;
 import pp2.scrum.controller.UserStoryHelper;
-import pp2.scrum.domain.Sprint;
-import pp2.scrum.domain.UserStory;
+import pp2.scrum.model.Sprint;
+import pp2.scrum.model.UserStory;
 
 
 public class SprintTest extends TestCase {

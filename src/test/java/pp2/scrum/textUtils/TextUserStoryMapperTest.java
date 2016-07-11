@@ -8,7 +8,7 @@ import junit.framework.Test;
 import junit.framework.TestCase;
 import junit.framework.TestSuite;
 import pp2.scrum.controller.UserStoryMapper;
-import pp2.scrum.domain.UserStory;
+import pp2.scrum.model.UserStory;
 import pp2.scrum.textUtils.TextUserStoryMapper;
 
 

@@ -2,7 +2,7 @@ package pp2.scrum.controller;
 
 import java.util.List;
 
-import pp2.scrum.domain.UserStory;
+import pp2.scrum.model.UserStory;
 
 /**
  * @author yoshknight

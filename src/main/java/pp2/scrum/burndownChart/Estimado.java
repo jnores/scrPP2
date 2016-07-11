@@ -5,8 +5,8 @@ import java.util.List;
 import org.jfree.data.xy.XYSeries;
 import org.jfree.data.xy.XYSeriesCollection;
 
-import pp2.scrum.domain.Sprint;
-import pp2.scrum.domain.UserStory;
+import pp2.scrum.model.Sprint;
+import pp2.scrum.model.UserStory;
 
 /**
  * Componente hoja, muestra la situación idealizada, 

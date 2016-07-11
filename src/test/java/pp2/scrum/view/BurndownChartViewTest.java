@@ -11,7 +11,7 @@ import pp2.scrum.burndownChart.DataComponent;
 import pp2.scrum.controller.BurndownChartController;
 import pp2.scrum.controller.MailGateway;
 import pp2.scrum.controller.UserStoryHelper;
-import pp2.scrum.domain.Sprint;
+import pp2.scrum.model.Sprint;
 import pp2.scrum.view.BurndownChartView;
 
 public class BurndownChartViewTest extends TestCase

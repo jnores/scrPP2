@@ -2,7 +2,7 @@ package pp2.scrum.burndownChart;
 
 import org.jfree.data.xy.*;
 
-import pp2.scrum.domain.Sprint;
+import pp2.scrum.model.Sprint;
 /**
  * Define el comportamiento base de los componentes
  * que permiten crear un chart. 

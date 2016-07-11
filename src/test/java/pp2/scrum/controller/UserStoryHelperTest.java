@@ -11,8 +11,8 @@ import junit.framework.TestSuite;
 import jxl.Sheet;
 import jxl.Workbook;
 import jxl.read.biff.BiffException;
-import pp2.scrum.domain.Miembro;
-import pp2.scrum.domain.UserStory;
+import pp2.scrum.model.Miembro;
+import pp2.scrum.model.UserStory;
 import pp2.scrum.utils.PluginFactory;
 
 

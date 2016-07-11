@@ -3,8 +3,8 @@ package pp2.scrum.domain;
 import junit.framework.Test;
 import junit.framework.TestCase;
 import junit.framework.TestSuite;
-import pp2.scrum.MainScrum;
-import pp2.scrum.domain.Estado;
+import pp2.scrum.app.MainScrum;
+import pp2.scrum.model.Estado;
 
 
 public class EstadoTest extends TestCase {

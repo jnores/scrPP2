@@ -5,8 +5,8 @@ import java.awt.event.ActionListener;
 import java.util.ArrayList;
 
 import pp2.scrum.command.Comando;
-import pp2.scrum.domain.Proyecto;
-import pp2.scrum.domain.UserStory;
+import pp2.scrum.model.Proyecto;
+import pp2.scrum.model.UserStory;
 import pp2.scrum.view.BacklogNuevoView;
 import pp2.scrum.view.ProyectoNuevoView;
 import pp2.scrum.view.UserStoryPaginadoView;

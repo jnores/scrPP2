@@ -7,11 +7,11 @@ import junit.framework.Test;
 import junit.framework.TestCase;
 import junit.framework.TestSuite;
 import pp2.scrum.controller.UserStoryHelper;
-import pp2.scrum.domain.CriterioAceptacion;
-import pp2.scrum.domain.Estado;
-import pp2.scrum.domain.Miembro;
-import pp2.scrum.domain.Tarea;
-import pp2.scrum.domain.UserStory;
+import pp2.scrum.model.CriterioAceptacion;
+import pp2.scrum.model.Estado;
+import pp2.scrum.model.Miembro;
+import pp2.scrum.model.Tarea;
+import pp2.scrum.model.UserStory;
 
 
 public class UserStoryTest extends TestCase {

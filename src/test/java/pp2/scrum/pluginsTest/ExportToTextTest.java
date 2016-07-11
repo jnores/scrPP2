@@ -9,8 +9,8 @@ import junit.framework.TestCase;
 import junit.framework.TestSuite;
 import pp2.scrum.controller.UserStoryController;
 import pp2.scrum.controller.UserStoryHelper;
-import pp2.scrum.domain.Proyecto;
-import pp2.scrum.domain.UserStory;
+import pp2.scrum.model.Proyecto;
+import pp2.scrum.model.UserStory;
 import pp2.scrum.plugins.ExportToText;
 import pp2.scrum.view.AltaUserStoryView;
 
