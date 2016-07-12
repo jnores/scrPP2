@@ -6,8 +6,7 @@ package pp2.scrum.verificarSprint;
 import java.util.Date;
 import java.util.List;
 
-import pp2.scrum.controller.BusEvent;
-import pp2.scrum.controller.TaskManager;
+import pp2.scrum.controller.EventBus;
 import pp2.scrum.controller.UserStoryHelper;
 import pp2.scrum.model.Estado;
 import pp2.scrum.model.Sprint;
@@ -22,9 +21,9 @@ import pp2.scrum.utils.Logger;
 public class VerificarRetraso implements Runnable {
 
     private Sprint sprint;
-    private BusEvent busEvent;
+    private EventBus busEvent;
     
-    public VerificarRetraso(Sprint sprint,BusEvent busEvent) {
+    public VerificarRetraso(Sprint sprint,EventBus busEvent) {
         this.sprint = sprint;
         this.busEvent = busEvent;
     }

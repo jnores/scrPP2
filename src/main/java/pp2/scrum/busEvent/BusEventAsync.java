@@ -10,13 +10,13 @@ import java.util.Set;
 import java.util.concurrent.BlockingQueue;
 import java.util.concurrent.LinkedBlockingQueue;
 
-import pp2.scrum.controller.BusEvent;
+import pp2.scrum.controller.EventBus;
 
 /**
  * @author yoshknight
  *
  */
-public class BusEventAsync implements BusEvent{
+public class BusEventAsync implements EventBus{
     private Set<ActionListener> listeners = new LinkedHashSet<ActionListener>();
     private BlockingQueue<Runnable> dispatchQueue = new LinkedBlockingQueue<Runnable>();
     private Thread thread = null;

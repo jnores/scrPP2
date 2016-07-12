@@ -8,13 +8,13 @@ import java.awt.event.ActionListener;
 import java.util.LinkedHashSet;
 import java.util.Set;
 
-import pp2.scrum.controller.BusEvent;
+import pp2.scrum.controller.EventBus;
 
 /**
  * @author yoshknight
  *
  */
-public class BusEventSync implements BusEvent{
+public class BusEventSync implements EventBus{
     private Set<ActionListener> listeners = new LinkedHashSet<ActionListener>();
 
     public BusEventSync() {

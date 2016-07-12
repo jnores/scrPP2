@@ -1,4 +1,4 @@
-package pp2.scrum.controller;
+package pp2.scrum.dao;
 
 import java.util.List;
 

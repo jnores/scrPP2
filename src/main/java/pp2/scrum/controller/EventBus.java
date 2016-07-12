@@ -10,7 +10,7 @@ import java.awt.event.ActionListener;
  * @author yoshknight
  *
  */
-public interface BusEvent {
+public interface EventBus {
     public void register(ActionListener listener);
     
     public void unregister(ActionListener listener);

@@ -3,7 +3,7 @@ package pp2.scrum.domain;
 import junit.framework.Test;
 import junit.framework.TestCase;
 import junit.framework.TestSuite;
-import pp2.scrum.app.MainScrum;
+import pp2.scrum.app.AppScrum;
 import pp2.scrum.model.Estado;
 
 
@@ -40,7 +40,7 @@ public class EstadoTest extends TestCase {
 	 * Verifico que al pedir el siguiente se siga la logica de estados
 	 */
 	public void testEstadoSiguiente() {
-		MainScrum.main(null);
+		AppScrum.main(null);
 		
 		Estado estado = Estado.ToDo;
 		assertEquals(estado,Estado.ToDo);

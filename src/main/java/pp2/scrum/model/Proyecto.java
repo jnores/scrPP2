@@ -14,8 +14,8 @@ import java.util.Set;
  *
  */
 public class Proyecto {
-   private String nombre;
-//	private Date fechaInicio,fechaFin;
+	private String nombre;
+	//	private Date fechaInicio,fechaFin;
 	private List<UserStory> backlog;
 	private Map<String,Miembro> miembros;
 	private List<Sprint> iteraciones;
@@ -27,21 +27,28 @@ public class Proyecto {
 		this.iteraciones  = new ArrayList<Sprint>();
 		this.asignaciones = new HashMap<UserStory,Miembro>();
 	}
-	
+	public Proyecto(String nombre) {
+		this.nombre=nombre;
+		this.backlog      = new ArrayList<UserStory>();
+		this.miembros     = new HashMap<String,Miembro>();
+		this.iteraciones  = new ArrayList<Sprint>();
+		this.asignaciones = new HashMap<UserStory,Miembro>();
+	}
+
 	/**
 	 * @return Coleccion de miembros que componene el proyecto
 	 */
 	public Collection<Miembro> getMiembros() {
 		return miembros.values();
 	}
-	
+
 	/**
 	 * @return Coleccion de nombres de los miembros
 	 */
 	public Set<String> getNombresMiembros() {
 		return miembros.keySet();
 	}
-	
+
 	/**
 	 * @return Coleccion de UserStories del proyecto
 	 */
@@ -53,14 +60,14 @@ public class Proyecto {
 		}
 		return allStories;
 	}
-	
+
 	/**
 	 * @return Coleccion de UserStories del backlog
 	 */
 	public List<UserStory> getBacklog() {
 		return backlog;
 	}
-	
+
 	/**
 	 * @param miembro Miembro del proyecto
 	 * @return Coleccion de UserStories del proyecto asignadas al reurso 
@@ -72,10 +79,10 @@ public class Proyecto {
 				allStories.add(entry.getKey());
 			}
 		}
-		
+
 		return allStories;
 	}
-	
+
 	/**
 	 * @param nombre  Nombre del miemro del proyecto
 	 * @return Miebro del proyecto
@@ -87,14 +94,14 @@ public class Proyecto {
 		}
 		return miembro;
 	}
-	
+
 	/**
 	 * @param userStory  La user story que se debe agregar al bachlog
 	 */
 	public void addUserStory(UserStory userStory) {
 		this.backlog.add( userStory);
 	}
-	
+
 	/**
 	 * @param miembro El miembro que se debe agregar al proyecto
 	 */
@@ -103,7 +110,7 @@ public class Proyecto {
 			this.miembros.put(miembro.getNombre(), miembro);
 		}
 	}
-	
+
 	/**
 	 * @param userStory  La user story a asignar
 	 * @param miembro El miembro que se le asignara la user story
@@ -135,17 +142,17 @@ public class Proyecto {
 		}
 		return miembro;
 	}
-	
-	public void setTitulo(String titulo)
+
+	public void setNombre(String nombre)
 	{
-	   this.nombre = titulo;
+		this.nombre = nombre;
 	}
-	
-	public String getTitulo(String titulo)
-    {
-      return this.nombre;
-    }
-	
+
+	public String getNombre()
+	{
+		return this.nombre;
+	}
+
 	/**
 	 * TODO Esto funciona solo para cuando existe un unico proyecto. y todas las us estan en el backlog.
 	 * @return
