@@ -38,14 +38,13 @@ public class UserStoryPaginadoView extends JPanel implements Observer
 	private JLabel PageNumberLabel;
 	private List<UserStory> Stories;
 	private TableModel modelTabla;
-	private JButton btnadd, btnPrimero,btnAnterior,btnSiguiente,btnUltimo ;
+	private JButton  btnPrimero,btnAnterior,btnSiguiente,btnUltimo ;
 	
 	public UserStoryPaginadoView(UserStoryPaginadoController controller,List<UserStory> historias ) 
 	{
 		
 		Controller = controller;
 		
-		btnadd = new JButton("add");
 		btnPrimero = new JButton("");
 		btnAnterior = new JButton("");
 		btnSiguiente = new JButton("");
@@ -54,17 +53,6 @@ public class UserStoryPaginadoView extends JPanel implements Observer
 		Stories = historias;
 		cargarVista();
 		
-		btnadd.addActionListener(new ActionListener() 
-      { 
-         public void actionPerformed(ActionEvent e) 
-         { 
-            List<UserStory> lista = Controller.getModel();
-            lista.add(new UserStory("Added1", "Detalle11", 40, null, null));
-            Controller.setModel(lista);
-            Stories = Controller.obtenerPaginacionActual();
-            setearVista();
-         } 
-      });
 		btnAnterior.addActionListener(new ActionListener() 
 		{ 
 		   public void actionPerformed(ActionEvent e) 
@@ -165,14 +153,11 @@ public class UserStoryPaginadoView extends JPanel implements Observer
 	}
 	private void cargarVista()
 	{
-	   //this.removeAll();
-	   setearVista();
-      //this = new JPanel();
-	   table = new JTable(modelTabla);
+	  setearVista();
+	  table = new JTable(modelTabla);
       panel = new JPanel();
       JTableHeader header = table.getTableHeader();
       header.setReorderingAllowed(false);
-      //setContentPane(contentPane);
       this.setLayout(new BorderLayout());
       this.add(header, BorderLayout.NORTH);
       this.add(table, BorderLayout.CENTER);
@@ -185,7 +170,6 @@ public class UserStoryPaginadoView extends JPanel implements Observer
       
       ImageIcon primero = new ImageIcon(classloader.getResource("images/Primero.png"));
       btnPrimero.setIcon(primero);
-      panel.add(btnadd);
       panel.add(btnPrimero);
       
       
@@ -227,7 +211,7 @@ public class UserStoryPaginadoView extends JPanel implements Observer
 	
 	private void obtenerPaginaAnterior()
 	{
-	   Paginacion actual = Controller.getPaginacionActual();
+	   Paginacion<UserStory> actual = Controller.getPaginacionActual();
 	   if (actual.getPagina() != 1)
 	   {
 	      Stories = Controller.obtenerPaginacionAnterior();
@@ -237,7 +221,7 @@ public class UserStoryPaginadoView extends JPanel implements Observer
 	
 	private void obtenerPaginaSiguiente()
    {
-	   Paginacion actual = Controller.getPaginacionActual();
+	   Paginacion<UserStory> actual = Controller.getPaginacionActual();
       if (actual.getPagina() != Controller.getPaginasTotales())
       {
          Stories = Controller.obtenerPaginacionSiguiente();
@@ -247,7 +231,7 @@ public class UserStoryPaginadoView extends JPanel implements Observer
 	
 	private void obtenerPaginaPrimera()
    {
-	   Paginacion actual = Controller.getPaginacionActual();
+	   Paginacion<UserStory> actual = Controller.getPaginacionActual();
       if (actual.getPagina() != 1)
       {
          Stories = Controller.obtenerPaginacionPrimera();
@@ -257,7 +241,7 @@ public class UserStoryPaginadoView extends JPanel implements Observer
 	
 	private void obtenerPaginaUltima()
    {
-	   Paginacion actual = Controller.getPaginacionActual();
+	   Paginacion<UserStory> actual = Controller.getPaginacionActual();
       if (actual.getPagina() != Controller.getPaginasTotales())
       {
          Stories = Controller.obtenerPaginacionUltima();

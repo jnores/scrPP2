@@ -24,7 +24,7 @@ public class Paginacion<T>
 			return model;
 		   }
 
-         public void setModel(List<T> model) //FIXME borrar!!
+         public void setModel(List<T> model) //Ver justificación en documento
          { 
             this.model = model;
          }

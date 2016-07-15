@@ -12,12 +12,12 @@ import pp2.scrum.utils.Paginacion;
 
 public class UserStoryPaginadoController extends Controller 
 {
-    private Paginacion paginacionActual;
+    private Paginacion<UserStory> paginacionActual;
 
     public UserStoryPaginadoController(MailGateway mailGateway)
     {
         super (mailGateway);
-        paginacionActual = new Paginacion( 1, 5,new ArrayList<UserStory>());
+        paginacionActual = new Paginacion<UserStory>( 1, 5,new ArrayList<UserStory>());
     }
 
     public List<UserStory> getModel()
@@ -35,17 +35,17 @@ public class UserStoryPaginadoController extends Controller
         return paginacionActual.getPaginasTotales();
     }
 
-    public Paginacion getPaginacionActual()
+    public Paginacion<UserStory> getPaginacionActual()
     {
         return paginacionActual;
     }
 
-    public void setModel(List<UserStory> model) //FIXME borrar
+    public void setModel(List<UserStory> model) //Ver justificación en documento
     {
     	paginacionActual.setModel(model);
     }
 
-    public List<UserStory> listarUserStories(Paginacion paginacion)
+    public List<UserStory> listarUserStories(Paginacion<UserStory> paginacion)
     {               
         paginacionActual = paginacion;
         return paginacionActual.listarPaginacion();
