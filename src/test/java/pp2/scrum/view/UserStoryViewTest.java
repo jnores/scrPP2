@@ -45,7 +45,7 @@ public class UserStoryViewTest extends TestCase
       mailGatewayStub = new MailStub();
       controller = new UserStoryPaginadoController(mailGatewayStub);
       //setear controller
-      controller.setModel(historias);
+      controller.actualizarPaginacion(historias);
       observadorhistoria = new ObservadorDeHistoria(controller,"mail");
       //simular finalizar una historia
       controller.finalizarStory(controller.getModel().get(0));
@@ -57,7 +57,7 @@ public class UserStoryViewTest extends TestCase
       EnviadorMail enviador = new EnviadorMail(4444,"127.0.0.1", "pp2mailsender", "mail", 15);    
       controller = new UserStoryPaginadoController(enviador);
       //setear controller
-      controller.setModel(historias);
+      controller.actualizarPaginacion(historias);
       observadorhistoria = new ObservadorDeHistoria(controller,"no-mail@gmail.com");          
       //Enviar Mail
       controller.finalizarStory(controller.getModel().get(0));
@@ -69,7 +69,7 @@ public class UserStoryViewTest extends TestCase
       EnviadorMail enviador = new EnviadorMail(9898,"127.0.0.1", "pp2mailsender", "mail", 15);    
       controller = new UserStoryPaginadoController(enviador);
       //setear controller
-      controller.setModel(historias);
+      controller.actualizarPaginacion(historias);
       observadorhistoria = new ObservadorDeHistoria(controller,"no-mail@gmail.com");          
       //Enviar Mail
       controller.finalizarStory(controller.getModel().get(0));
@@ -81,7 +81,7 @@ public class UserStoryViewTest extends TestCase
       EnviadorMail enviador = new EnviadorMail(4444,"127.0.0.1", "pp2mailsender", "mail", 0);    
       controller = new UserStoryPaginadoController(enviador);
       //setear controller
-      controller.setModel(historias);
+      controller.actualizarPaginacion(historias);
       observadorhistoria = new ObservadorDeHistoria(controller,"no-mail@gmail.com");          
       //Enviar Mail
       controller.finalizarStory(controller.getModel().get(0));
@@ -94,7 +94,7 @@ public class UserStoryViewTest extends TestCase
       EnviadorMail enviador = new EnviadorMail(4444,"127.0.0.1", "pp2mailsender", "mailmail", 15);    
       controller = new UserStoryPaginadoController(enviador);
       //setear controller
-      controller.setModel(historias);
+      controller.actualizarPaginacion(historias);
       observadorhistoria = new ObservadorDeHistoria(controller,"julian.dirisio@gmail.com");          
       //Enviar Mail
       controller.finalizarStory(controller.getModel().get(0));

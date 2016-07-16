@@ -251,7 +251,7 @@ public class UserStoryPaginadoView extends JPanel implements Observer
 	
 	public void limpiarLista()
 	{
-	   Controller.setModel(new ArrayList<UserStory>());
+	   Controller.actualizarPaginacion(new ArrayList<UserStory>());
 	   setearVista();
 	}
 }

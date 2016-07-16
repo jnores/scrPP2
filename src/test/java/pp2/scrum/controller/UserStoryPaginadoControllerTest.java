@@ -42,7 +42,7 @@ public class UserStoryPaginadoControllerTest extends TestCase
       assertTrue(controller.getModel() != null);
       List<UserStory> lista = controller.listarUserStories(new Paginacion<>(1,5,new ArrayList<UserStory>()));
       assertEquals(lista.size(), 0);
-      controller.setModel(null);
+      controller.actualizarPaginacion(null);
    }
    
    public void testUserPaginadoStoryPaginacion()
@@ -75,7 +75,7 @@ public class UserStoryPaginadoControllerTest extends TestCase
       UserStory story = new UserStory("titulo1", "detalle1", 50, null, tareas);
       tareas.add(new Tarea());
       historias.add(story);
-      controller.setModel(historias);
+      controller.actualizarPaginacion(historias);
       assertTrue(!controller.getModel().get(0).estaTerminada());
       controller.finalizarStory(controller.getModel().get(0));
       assertTrue(controller.getModel().get(0).estaTerminada());

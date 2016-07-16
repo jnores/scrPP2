@@ -22,12 +22,7 @@ public class Paginacion<T>
          public List<T> getModel() 
          {
 			return model;
-		   }
-
-         public void setModel(List<T> model) //Ver justificación en documento
-         { 
-            this.model = model;
-         }
+		 }
 
          public int getPagina()
          {

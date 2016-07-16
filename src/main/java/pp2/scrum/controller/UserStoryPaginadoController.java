@@ -40,9 +40,9 @@ public class UserStoryPaginadoController extends Controller
         return paginacionActual;
     }
 
-    public void setModel(List<UserStory> model) //Ver justificación en documento
+    public void actualizarPaginacion(List<UserStory> model)
     {
-    	paginacionActual.setModel(model);
+    	paginacionActual = new Paginacion<UserStory>(paginacionActual.getPagina(), paginacionActual.getItemsPorPagina(), model);
     }
 
     public List<UserStory> listarUserStories(Paginacion<UserStory> paginacion)
