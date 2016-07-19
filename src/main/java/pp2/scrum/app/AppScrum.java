@@ -93,6 +93,7 @@ public class AppScrum {
 		Logger.log("Iniciando Aplicación");
 
 		//Creo la dependencia al iniciar la aplicacion una sola vez
+		// TODO No hardcodear la configuracion del servidor. esto deberia levantarlo de un archivo de confiuracion
 		MailGateway mailGateway = new EnviadorMail(4444,"127.0.0.1", "pp2mailsender", "mailmail", 15);
 		HomeController controller = new HomeController(mailGateway);
 		BurndownChartView chartView = new BurndownChartView(new BurndownChartController(new Sprint(1,new Date("03/10/2016"), 21, new ArrayList<UserStory>()), mailGateway));
