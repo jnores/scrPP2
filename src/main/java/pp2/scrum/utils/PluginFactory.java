@@ -8,6 +8,7 @@ import java.util.List;
 import java.util.Properties;
 
 import pp2.scrum.controller.Exporter;
+import pp2.scrum.controller.MailGateway;
 
 
 public class PluginFactory
@@ -71,18 +72,29 @@ public class PluginFactory
 		}
 	}
 	
-//	public static Object getPlugin(Class iface) 
-//	{
-//		//Busca el nombre de la implementacion
-//		String implName = propiedades.getProperty(iface.getName());
-//		if (implName == null) {
-//			throw new RuntimeException("implementation not specified for " + iface.getName() + " in PluginFactory propeties.");
-//		}
-//		try {
-//			//retorna nueva instancia de la implementacion de la clase
-//			return Class.forName(implName).newInstance();
-//		} catch (Exception ex) {
-//			throw new RuntimeException("factory unable to construct instance of " + iface.getName());
-//		}
-//	}
+	public static MailGateway configurarMail()
+	{
+	   int port,timeOut;
+	   String host,senderMail,SenderPassMail;
+	   EnviadorMail mailer;
+	   
+	   Properties parametros = new Properties();
+	         try
+            {
+               parametros.load(Thread.currentThread().getContextClassLoader().getResourceAsStream("config/mailGatewayParametros"));
+               port = Integer.valueOf(parametros.getProperty("port").trim());
+               host = parametros.getProperty("host").trim();
+               senderMail = parametros.getProperty("senderMail").trim();
+               SenderPassMail = parametros.getProperty("SenderPassMail").trim();
+               timeOut = Integer.valueOf(parametros.getProperty("timeOut").trim());
+               mailer = new EnviadorMail(port,host,senderMail,SenderPassMail,timeOut);
+               
+            } catch (IOException e)
+            {            
+               e.printStackTrace();
+               throw new RuntimeException(e.getMessage());
+            }
+	   
+	   return mailer;
+	}
 }
