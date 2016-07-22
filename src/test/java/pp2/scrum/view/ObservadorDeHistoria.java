@@ -17,13 +17,11 @@ public class ObservadorDeHistoria implements Observer
 {
    private UserStoryPaginadoController controller;
    private String mailDestino;
-   private MailGateway enviador;
    
-   public ObservadorDeHistoria(MailGateway enviador,UserStoryPaginadoController controller,String mail)
+   public ObservadorDeHistoria(UserStoryPaginadoController controller,String mail)
    {
       this.controller = controller;
       this.mailDestino = mail;
-      this.enviador = enviador;
       observarHistorias(this.controller.getModel());
    }
 
@@ -33,7 +31,7 @@ public class ObservadorDeHistoria implements Observer
       UserStory historia = (UserStory) o;
       if (historia.estaTerminada())
       {
-         enviarHistoriaMail(enviador,mailDestino, historia);
+         enviarHistoriaMail(mailDestino, historia);
       }            
    }
    
@@ -45,7 +43,7 @@ public class ObservadorDeHistoria implements Observer
       }
    }
    
-   private Resultado enviarHistoriaMail(MailGateway mailer,String destino , UserStory story)
+   private Resultado enviarHistoriaMail(String destino , UserStory story)
    {        
        String nuevaLinea = System.lineSeparator();
        String criterios="";
@@ -65,7 +63,7 @@ public class ObservadorDeHistoria implements Observer
        
        Mail mail = new Mail(destino, "Historia finalizada: " +  story.getTitulo(),cuerpo);
        Logger.init();
-       Resultado respuesta = mailer.enviar(mail);
+       Resultado respuesta = AppScrum.mailGateway().enviar(mail);
        for (String comment : respuesta.Errores().values())
        {
           Logger.log(comment);

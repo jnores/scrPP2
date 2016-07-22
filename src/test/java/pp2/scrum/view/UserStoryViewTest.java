@@ -18,9 +18,9 @@ import pp2.scrum.utils.EnviadorMail;
 public class UserStoryViewTest extends TestCase
 {
    private UserStoryPaginadoController controller;
-   private MailStub mailGatewayStub;
    private ObservadorDeHistoria observadorhistoria;
    private List<UserStory> historias;
+   private MockUp<AppScrum> appMock;
    
    public UserStoryViewTest( String testName ) {
       super( testName );
@@ -44,62 +44,78 @@ public class UserStoryViewTest extends TestCase
    }
    
    public void testEnviarMailStub() 
-   {   
-      //configurar stub
-      mailGatewayStub = new MailStub();
+   {  
+      //Configuro el mail mock
+      appMock = new MockUp<AppScrum>()
+      {
+         @Mock public MailGateway mailGateway() { return new MailStub(); }
+      };
       controller = new UserStoryPaginadoController();
       //setear controller
       controller.actualizarPaginacion(historias);
-      observadorhistoria = new ObservadorDeHistoria(mailGatewayStub,controller,"mail");
+      observadorhistoria = new ObservadorDeHistoria(controller,"mail");
       //simular finalizar una historia
       controller.finalizarStory(controller.getModel().get(0));
    }
      
    public void testEnviarMailRealFallaPassIncorrecto() 
    {      
-      //configurar Mail
-      EnviadorMail enviador = new EnviadorMail(4444,"127.0.0.1", "pp2mailsender", "mail", 15);    
+    //Configuro el mail mock
+      appMock = new MockUp<AppScrum>()
+      {
+         @Mock public MailGateway mailGateway() { return new EnviadorMail(4444,"127.0.0.1", "pp2mailsender", "mail", 15); }
+      };
+      //configurar Mail   
       controller = new UserStoryPaginadoController();
       //setear controller
       controller.actualizarPaginacion(historias);
-      observadorhistoria = new ObservadorDeHistoria(enviador,controller,"no-mail@gmail.com");          
+      observadorhistoria = new ObservadorDeHistoria(controller,"no-mail@gmail.com");          
       //Enviar Mail
       controller.finalizarStory(controller.getModel().get(0));
    }
    
    public void testEnviarMailRealFallaConectarPuerto() 
    {      
-      //configurar Mail
-      EnviadorMail enviador = new EnviadorMail(9898,"127.0.0.1", "pp2mailsender", "mail", 15);    
+    //Configuro el mail mock
+      appMock = new MockUp<AppScrum>()
+      {
+         @Mock public MailGateway mailGateway() { return new EnviadorMail(9898,"127.0.0.1", "pp2mailsender", "mail", 15); }
+      };
       controller = new UserStoryPaginadoController();
       //setear controller
       controller.actualizarPaginacion(historias);
-      observadorhistoria = new ObservadorDeHistoria(enviador,controller,"no-mail@gmail.com");          
+      observadorhistoria = new ObservadorDeHistoria(controller,"no-mail@gmail.com");          
       //Enviar Mail
       controller.finalizarStory(controller.getModel().get(0));
    }
    
    public void testEnviarMailRealFallaTimeOut() 
    {      
-      //configurar Mail
-      EnviadorMail enviador = new EnviadorMail(4444,"127.0.0.1", "pp2mailsender", "mail", 0);    
+    //Configuro el mail mock
+      appMock = new MockUp<AppScrum>()
+      {
+         @Mock public MailGateway mailGateway() { return new EnviadorMail(4444,"127.0.0.1", "pp2mailsender", "mail", 0); }
+      };   
       controller = new UserStoryPaginadoController();
       //setear controller
       controller.actualizarPaginacion(historias);
-      observadorhistoria = new ObservadorDeHistoria(enviador,controller,"no-mail@gmail.com");          
+      observadorhistoria = new ObservadorDeHistoria(controller,"no-mail@gmail.com");          
       //Enviar Mail
       controller.finalizarStory(controller.getModel().get(0));
    }
    
-   public void testEnviarMailReal() 
+   public void testEnviarMailReal()
    
    {      
-      //configurar Mail
-      EnviadorMail enviador = new EnviadorMail(4444,"127.0.0.1", "pp2mailsender", "mailmail", 15);    
+    //Configuro el mail mock
+      appMock = new MockUp<AppScrum>()
+      {
+         @Mock public MailGateway mailGateway() { return new EnviadorMail(4444,"127.0.0.1", "pp2mailsender", "mailmail", 15); }
+      };    
       controller = new UserStoryPaginadoController();
       //setear controller
       controller.actualizarPaginacion(historias);
-      observadorhistoria = new ObservadorDeHistoria(enviador,controller,"julian.dirisio@gmail.com");          
+      observadorhistoria = new ObservadorDeHistoria(controller,"julian.dirisio@gmail.com");          
       //Enviar Mail
       controller.finalizarStory(controller.getModel().get(0));
    }
