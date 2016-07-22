@@ -18,12 +18,12 @@ public class HomeController extends Controller implements AppController
     private ProyectoController proyectoController;
 
 
-    public HomeController(MailGateway mailGateway)
+    public HomeController()
     {	
-        super( mailGateway);
-        proyectoController = new ProyectoController( new Proyecto(),mailGateway);
+        super();
+        proyectoController = new ProyectoController( new Proyecto());
         proyectoNuevo = new ProyectoNuevoView(proyectoController);
-        backlogNuevo = new BacklogNuevoView(proyectoController,new UserStoryPaginadoView(new UserStoryPaginadoController(mailGateway),new ArrayList<UserStory>()));
+        backlogNuevo = new BacklogNuevoView(proyectoController,new UserStoryPaginadoView(new UserStoryPaginadoController(),new ArrayList<UserStory>()));
     }
 
     @Override    
@@ -54,10 +54,5 @@ public class HomeController extends Controller implements AppController
     public ProyectoController getProyectoController()
     {
         return proyectoController;
-    }
-    @Override
-    public MailGateway getMailGateway()
-    {
-        return mailGateway;
     }
 }

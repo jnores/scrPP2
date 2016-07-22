@@ -24,12 +24,11 @@ public class BurndownChartController extends Controller
 	private Sprint iteracion;
 
 	public BurndownChartController(MailGateway mailGateway) {
-		super( mailGateway);
+		super();
 	}
 	
-	public BurndownChartController(Sprint iteracion,MailGateway mailGateway) 
+	public BurndownChartController(Sprint iteracion) 
 	{
-		super (mailGateway);
 		this.iteracion= iteracion;
 	}
 	

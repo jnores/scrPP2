@@ -3,6 +3,7 @@ package pp2.scrum.controller;
 import java.util.ArrayList;
 import java.util.List;
 
+import pp2.scrum.app.AppScrum;
 import pp2.scrum.model.CriterioAceptacion;
 import pp2.scrum.model.Estado;
 import pp2.scrum.model.Tarea;
@@ -14,9 +15,8 @@ public class UserStoryPaginadoController extends Controller
 {
     private Paginacion<UserStory> paginacionActual;
 
-    public UserStoryPaginadoController(MailGateway mailGateway)
+    public UserStoryPaginadoController()
     {
-        super (mailGateway);
         paginacionActual = new Paginacion<UserStory>( 1, 5,new ArrayList<UserStory>());
     }
 
@@ -76,7 +76,6 @@ public class UserStoryPaginadoController extends Controller
         return paginacionActual.listarPaginacion();
     }
 
-   //Tercera Iteracion
     public void finalizarStory(UserStory story)
     {
         List<Tarea> tareas = story.getTareas();
@@ -89,36 +88,6 @@ public class UserStoryPaginadoController extends Controller
             }          
         }
 
-    }
-    
-    //Tercera Iteracion
-    public Resultado enviarHistoriaMail(String destino , UserStory story)
-    {        
-        String nuevaLinea = System.lineSeparator();
-        String criterios="";
-        for (CriterioAceptacion criterio : story.getCriterios())
-        {
-           criterios+="* "+ criterio.getDescripcion() + nuevaLinea;        
-        }
-                
-        String cuerpo = "Detalle:" + nuevaLinea;
-        cuerpo += story.getDetalle() + nuevaLinea;
-        cuerpo += "Criterios:" + nuevaLinea;
-        cuerpo += criterios;
-        //cuerpo += "Autor:" + nuevaLinea;
-        //cuerpo += story.getAutor() + nuevaLinea;
-        cuerpo += "Puntos:" + nuevaLinea;
-        cuerpo += story.getStoryPoints() + nuevaLinea;
-        
-        Mail mail = new Mail(destino, "Historia finalizada: " +  story.getTitulo(),cuerpo);
-        Logger.init();
-        Resultado respuesta = mailGateway.enviar(mail);
-        for (String comment : respuesta.Errores().values())
-        {
-           Logger.log(comment);
-        }
-        Logger.close();
-        return respuesta;
     }
 
 

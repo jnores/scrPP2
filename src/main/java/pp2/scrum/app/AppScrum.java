@@ -34,7 +34,7 @@ public class AppScrum
 	
 	private static void procesarConfiguracion() 
 	{
-	   mailGateway = PluginFactory.configurarMail();
+	   mailGateway = PluginFactory.configurarMail(); // Configuro el Mail mediante archivo de configuracion
 	}
 	
 
@@ -104,10 +104,9 @@ public class AppScrum
 		Logger.log("Iniciando Aplicación");
 
 		//Creo la dependencia al iniciar la aplicacion una sola vez
-		// TODO No hardcodear la configuracion del servidor. esto deberia levantarlo de un archivo de confiuracion
-		HomeController controller = new HomeController(mailGateway);
-		BurndownChartView chartView = new BurndownChartView(new BurndownChartController(new Sprint(1,new Date("03/10/2016"), 21, new ArrayList<UserStory>()), mailGateway));
-		UserStoryPaginadoView listadoPaginado = new UserStoryPaginadoView(new UserStoryPaginadoController(mailGateway),new ArrayList<UserStory>());
+		HomeController controller = new HomeController();
+		BurndownChartView chartView = new BurndownChartView(new BurndownChartController(new Sprint(1,new Date("03/10/2016"), 21, new ArrayList<UserStory>())));
+		UserStoryPaginadoView listadoPaginado = new UserStoryPaginadoView(new UserStoryPaginadoController(),new ArrayList<UserStory>());
 		UserStoryOrderableView filtrado = new UserStoryOrderableView(new UserStoryListView( controller.getProyectoController().getBacklog() ));
 
 

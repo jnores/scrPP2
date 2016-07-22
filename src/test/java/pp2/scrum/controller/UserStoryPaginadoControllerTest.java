@@ -14,7 +14,6 @@ import pp2.scrum.utils.Paginacion;
 public class UserStoryPaginadoControllerTest extends TestCase
 {
    private UserStoryPaginadoController controller;
-   private MockUp<MailGateway> mailGatewayMock;
    
    public UserStoryPaginadoControllerTest( String testName )
    {
@@ -28,8 +27,7 @@ public class UserStoryPaginadoControllerTest extends TestCase
 
    protected void setUp()
    {     
-      mailGatewayMock = new MockUp<MailGateway>(){};
-      controller = new UserStoryPaginadoController(mailGatewayMock.getMockInstance());
+      controller = new UserStoryPaginadoController();
    }
    
    public void testUserPaginadoStoryController()
