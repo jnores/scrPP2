@@ -13,6 +13,7 @@ import pp2.scrum.controller.HomeController;
 import pp2.scrum.controller.MailGateway;
 import pp2.scrum.controller.UserStoryPaginadoController;
 import pp2.scrum.dao.ProyectoDAO;
+import pp2.scrum.mock.dao.MockProyectoDAO;
 import pp2.scrum.model.Proyecto;
 import pp2.scrum.model.Sprint;
 import pp2.scrum.model.UserStory;
@@ -37,7 +38,7 @@ public class AppScrum {
 
 	private static void iniciarComponentes() {
 		// TODO Auto-generated method stub
-		proyectoDAO= new ProyectoDAO();
+		proyectoDAO = new MockProyectoDAO();
 		
 	}
 
