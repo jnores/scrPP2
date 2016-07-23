@@ -1,4 +1,4 @@
-package pp2.scrum.servicios;
+package pp2.scrum.utils;
 
 import junit.framework.Test;
 import junit.framework.TestCase;

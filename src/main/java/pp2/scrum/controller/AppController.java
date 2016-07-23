@@ -8,5 +8,4 @@ public interface AppController
 {
 
     public Resultado Execute(Comando commando, ActionListener al);
-    public MailGateway getMailGateway();
 }

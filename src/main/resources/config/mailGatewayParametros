@@ -1,0 +1,5 @@
+port = 4444
+host = 127.0.0.1
+senderMail = pp2mailsender
+SenderPassMail = mailmail
+timeOut = 15

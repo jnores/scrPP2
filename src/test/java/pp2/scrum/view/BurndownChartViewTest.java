@@ -40,21 +40,21 @@ public class BurndownChartViewTest extends TestCase
    
    public void testVista() 
    {
-      controller = new BurndownChartController(sprintMock.getMockInstance(),mailGatewayMock.getMockInstance()); 
+      controller = new BurndownChartController(sprintMock.getMockInstance()); 
       BurndownChartView vista = new BurndownChartView(controller);
       assertTrue( true );
    }
    
    public void testVistaComposite() 
    {
-      controller = new BurndownChartController(sprintMock.getMockInstance(),mailGatewayMock.getMockInstance()); 
+      controller = new BurndownChartController(sprintMock.getMockInstance()); 
       BurndownChartView vista = new BurndownChartView(controller);
       assertTrue( true );
    }
    
    public void testActionPerformed()
    {
-      controller = new BurndownChartController(sprintMock.getMockInstance(),mailGatewayMock.getMockInstance()); 
+      controller = new BurndownChartController(sprintMock.getMockInstance()); 
       BurndownChartView vista = new BurndownChartView(controller);
       //vista.actionPerformed(new ActionEvent(vista, 1, "menu4"));
       assertTrue(true);

@@ -19,24 +19,28 @@ import pp2.scrum.model.Sprint;
 import pp2.scrum.model.UserStory;
 import pp2.scrum.utils.EnviadorMail;
 import pp2.scrum.utils.Logger;
+import pp2.scrum.utils.PluginFactory;
 import pp2.scrum.view.BurndownChartView;
 import pp2.scrum.view.HomeView;
 import pp2.scrum.view.UserStoryListView;
 import pp2.scrum.view.UserStoryOrderableView;
 import pp2.scrum.view.UserStoryPaginadoView;
 
-public class AppScrum {
+public class AppScrum 
+{
 	private static ProyectoDAO proyectoDAO;
 	private static Proyecto proyecto;
+	private static MailGateway mailGateway;
 	
 	
-	private static void procesarConfiguracion() {
-		// TODO Auto-generated method stub
-		
+	private static void procesarConfiguracion() 
+	{
+	   mailGateway = PluginFactory.configurarMail(); // Configuro el Mail mediante archivo de configuracion
 	}
 	
 
-	private static void iniciarComponentes() {
+	private static void iniciarComponentes() 
+	{
 		// TODO Auto-generated method stub
 		proyectoDAO = new MockProyectoDAO();
 		
@@ -49,7 +53,8 @@ public class AppScrum {
 	 * TODO Varias funciones para poder crear un proyecto nuevo no estan disponibles por
 	 * lo que solo se permitira inicar  un proyecto pre guardado.
 	 */
-	private static void IniciarPrograma() {
+	private static void IniciarPrograma() 
+	{
 		// TODO Auto-generated method stub
 		List<Proyecto> proyectos = proyectoDAO.getAll();
 		Integer idProyecto=null;
@@ -83,8 +88,14 @@ public class AppScrum {
 			
 	
 	}
+	
+	public static MailGateway mailGateway()
+	{
+	   return mailGateway;
+	}
 
-	public static void main( String[ ] args ) {
+	public static void main( String[ ] args ) 
+	{
 
 
 		procesarConfiguracion();
@@ -94,11 +105,9 @@ public class AppScrum {
 		Logger.log("Iniciando Aplicación");
 
 		//Creo la dependencia al iniciar la aplicacion una sola vez
-		// TODO No hardcodear la configuracion del servidor. esto deberia levantarlo de un archivo de confiuracion
-		MailGateway mailGateway = new EnviadorMail(4444,"127.0.0.1", "pp2mailsender", "mailmail", 15);
-		HomeController controller = new HomeController(mailGateway);
-		BurndownChartView chartView = new BurndownChartView(new BurndownChartController(new Sprint(1,new Date("03/10/2016"), 21, new ArrayList<UserStory>()), mailGateway));
-		UserStoryPaginadoView listadoPaginado = new UserStoryPaginadoView(new UserStoryPaginadoController(mailGateway),new ArrayList<UserStory>());
+		HomeController controller = new HomeController();
+		BurndownChartView chartView = new BurndownChartView(new BurndownChartController(new Sprint(1,new Date("03/10/2016"), 21, new ArrayList<UserStory>())));
+		UserStoryPaginadoView listadoPaginado = new UserStoryPaginadoView(new UserStoryPaginadoController(),new ArrayList<UserStory>());
 		UserStoryOrderableView filtrado = new UserStoryOrderableView(new UserStoryListView( controller.getProyectoController().getBacklog() ));
 
 

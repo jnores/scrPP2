@@ -12,8 +12,7 @@ public class ProyectoController extends Controller
 {
     private Proyecto proyecto;
 
-    public ProyectoController(Proyecto model,MailGateway mailGateway) {
-        super (mailGateway);
+    public ProyectoController(Proyecto model) {
         this.proyecto = model;
     }
 
@@ -59,11 +58,6 @@ public class ProyectoController extends Controller
     public Proyecto getProyecto()
     {
         return proyecto;
-    }
-
-    public MailGateway getMailGateway()
-    {
-        return mailGateway;
     }
 
     public long getSiguienteStoryID() {
