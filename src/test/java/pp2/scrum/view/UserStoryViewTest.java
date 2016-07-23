@@ -14,6 +14,7 @@ import pp2.scrum.controller.UserStoryPaginadoController;
 import pp2.scrum.model.Tarea;
 import pp2.scrum.model.UserStory;
 import pp2.scrum.utils.EnviadorMail;
+import pp2.scrum.utils.ObservadorDeHistoria;
 
 public class UserStoryViewTest extends TestCase
 {
@@ -53,7 +54,7 @@ public class UserStoryViewTest extends TestCase
       controller = new UserStoryPaginadoController();
       //setear controller
       controller.actualizarPaginacion(historias);
-      observadorhistoria = new ObservadorDeHistoria(controller,"mail");
+      observadorhistoria = new ObservadorDeHistoria(controller.getModel(),"mail");
       //simular finalizar una historia
       controller.finalizarStory(controller.getModel().get(0));
    }
@@ -69,7 +70,7 @@ public class UserStoryViewTest extends TestCase
       controller = new UserStoryPaginadoController();
       //setear controller
       controller.actualizarPaginacion(historias);
-      observadorhistoria = new ObservadorDeHistoria(controller,"no-mail@gmail.com");          
+      observadorhistoria = new ObservadorDeHistoria(controller.getModel(),"no-mail@gmail.com");          
       //Enviar Mail
       controller.finalizarStory(controller.getModel().get(0));
    }
@@ -84,7 +85,7 @@ public class UserStoryViewTest extends TestCase
       controller = new UserStoryPaginadoController();
       //setear controller
       controller.actualizarPaginacion(historias);
-      observadorhistoria = new ObservadorDeHistoria(controller,"no-mail@gmail.com");          
+      observadorhistoria = new ObservadorDeHistoria(controller.getModel(),"no-mail@gmail.com");          
       //Enviar Mail
       controller.finalizarStory(controller.getModel().get(0));
    }
@@ -99,7 +100,7 @@ public class UserStoryViewTest extends TestCase
       controller = new UserStoryPaginadoController();
       //setear controller
       controller.actualizarPaginacion(historias);
-      observadorhistoria = new ObservadorDeHistoria(controller,"no-mail@gmail.com");          
+      observadorhistoria = new ObservadorDeHistoria(controller.getModel(),"no-mail@gmail.com");          
       //Enviar Mail
       controller.finalizarStory(controller.getModel().get(0));
    }
@@ -115,7 +116,7 @@ public class UserStoryViewTest extends TestCase
       controller = new UserStoryPaginadoController();
       //setear controller
       controller.actualizarPaginacion(historias);
-      observadorhistoria = new ObservadorDeHistoria(controller,"julian.dirisio@gmail.com");          
+      observadorhistoria = new ObservadorDeHistoria(controller.getModel(),"julian.dirisio@gmail.com");          
       //Enviar Mail
       controller.finalizarStory(controller.getModel().get(0));
    }

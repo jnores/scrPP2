@@ -1,4 +1,4 @@
-package pp2.scrum.view;
+package pp2.scrum.utils;
 
 import java.util.List;
 import java.util.Observable;
@@ -11,18 +11,17 @@ import pp2.scrum.controller.Resultado;
 import pp2.scrum.controller.UserStoryPaginadoController;
 import pp2.scrum.model.CriterioAceptacion;
 import pp2.scrum.model.UserStory;
-import pp2.scrum.utils.Logger;
 
 public class ObservadorDeHistoria implements Observer
 {
-   private UserStoryPaginadoController controller;
+   private List<UserStory> historias;
    private String mailDestino;
    
-   public ObservadorDeHistoria(UserStoryPaginadoController controller,String mail)
+   public ObservadorDeHistoria(List<UserStory> historias,String mail)
    {
-      this.controller = controller;
+      this.historias = historias;
       this.mailDestino = mail;
-      observarHistorias(this.controller.getModel());
+      observarHistorias(this.historias);
    }
 
    @Override
