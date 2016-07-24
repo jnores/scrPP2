@@ -65,7 +65,7 @@ public class HomeView  extends JFrame implements ActionListener
         addWindowListener(new java.awt.event.WindowAdapter() {
             @Override
             public void windowClosing(java.awt.event.WindowEvent windowEvent) {
-                Logger.close();
+                Logger.log("Cerrando Aplicación");
             }
         });
         this.setSize(600,400);

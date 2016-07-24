@@ -62,7 +62,7 @@ public class ObservadorDeHistoria implements Observer
        
        Mail mail = new Mail(destino, "Historia finalizada: " +  story.getTitulo(),cuerpo);
        Logger.init();
-       Resultado respuesta = AppScrum.mailGateway().enviar(mail);
+       Resultado respuesta = AppScrum.getInstance().mailGateway().enviar(mail);
        for (String comment : respuesta.Errores().values())
        {
           Logger.log(comment);
