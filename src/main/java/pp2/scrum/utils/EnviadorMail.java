@@ -23,7 +23,7 @@ public class EnviadorMail implements MailGateway
 	private String senderPassMail;
 	private int timeOut;
 
-	public EnviadorMail (Properties parametros)
+	public EnviadorMail(Properties parametros)
 	{
 		port = Integer.valueOf(parametros.getProperty("MailPort").trim());
 		host = parametros.getProperty("MailHost").trim();
