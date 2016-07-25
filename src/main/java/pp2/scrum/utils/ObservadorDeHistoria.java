@@ -16,11 +16,13 @@ public class ObservadorDeHistoria implements Observer
 {
    private List<UserStory> historias;
    private String mailDestino;
+   private MailGateway mailGateway;
    
-   public ObservadorDeHistoria(List<UserStory> historias,String mail)
+   public ObservadorDeHistoria(List<UserStory> historias,String mail,MailGateway mailGateway)
    {
       this.historias = historias;
       this.mailDestino = mail;
+      this.mailGateway = mailGateway;
       observarHistorias(this.historias);
    }
 
@@ -61,8 +63,8 @@ public class ObservadorDeHistoria implements Observer
        cuerpo += story.getStoryPoints() + nuevaLinea;
        
        Mail mail = new Mail(destino, "Historia finalizada: " +  story.getTitulo(),cuerpo);
-       Logger.init();
-       Resultado respuesta = AppScrum.getInstance().mailGateway().enviar(mail);
+       
+       Resultado respuesta = mailGateway.enviar(mail);
        for (String comment : respuesta.Errores().values())
        {
           Logger.log(comment);

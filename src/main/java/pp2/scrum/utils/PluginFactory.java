@@ -71,30 +71,4 @@ public class PluginFactory
 			throw new ExceptionInInitializerError(e);
 		}
 	}
-
-	public static MailGateway configurarMail()
-	{
-		int port,timeOut;
-		String host,senderMail,SenderPassMail;
-		EnviadorMail mailer;
-
-		Properties parametros = new Properties();
-		try
-		{
-			parametros.load(Thread.currentThread().getContextClassLoader().getResourceAsStream("config/mailGatewayParametros"));
-			port = Integer.valueOf(parametros.getProperty("port").trim());
-			host = parametros.getProperty("host").trim();
-			senderMail = parametros.getProperty("senderMail").trim();
-			SenderPassMail = parametros.getProperty("SenderPassMail").trim();
-			timeOut = Integer.valueOf(parametros.getProperty("timeOut").trim());
-			mailer = new EnviadorMail(port,host,senderMail,SenderPassMail,timeOut);
-
-		} catch (IOException e)
-		{            
-			e.printStackTrace();
-			throw new RuntimeException(e.getMessage());
-		}
-
-		return mailer;
-	}
 }
