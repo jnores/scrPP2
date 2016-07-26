@@ -27,8 +27,6 @@ public class ProyectoNuevoView extends JDialog
    private ProyectoController controller;
    private final JPanel contentPanel = new JPanel();
    private JTextField titulo;
-   private List<Miembro> miembros;
-   private int duracionIteraciones,cantidadIteraciones;
    private JList<Miembro> miembrosCombo;
    private JButton siguientebtn, cancelButton;
    private JComboBox<Integer> comboduracionIteraciones,combocantidadIteraciones ;
@@ -127,6 +125,22 @@ public class ProyectoNuevoView extends JDialog
    
    public void addcancelBtnListener(ActionListener listener) {
       cancelButton.addActionListener(listener);
+   }
+   
+   public String getTitulo(){
+      return titulo.getText();
+   }
+   
+   public int getDuracionIteraciones(){
+      return (int)comboduracionIteraciones.getSelectedItem();
+   }
+   
+   public int getCantidadIteraciones(){
+      return (int)combocantidadIteraciones.getSelectedItem();
+   }
+   
+   public List<Miembro> getMiembros(){
+      return miembrosCombo.getSelectedValuesList();
    }
    
    public void limpiarPantalla()
