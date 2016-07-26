@@ -2,11 +2,14 @@ package pp2.scrum.model;
 
 import java.util.ArrayList;
 import java.util.Collection;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
+
+import pp2.scrum.utils.Calendario;
 
 
 /**
@@ -34,6 +37,14 @@ public class Proyecto {
 		this.iteraciones  = new ArrayList<Sprint>();
 		this.asignaciones = new HashMap<UserStory,Miembro>();
 	}
+	
+	public Proyecto(String nombre,List<UserStory> backlog,Map<String,Miembro> miembros,List<Sprint> iteraciones,HashMap<UserStory,Miembro> asignaciones) {
+      this.nombre=nombre;
+      this.backlog      = new ArrayList<UserStory>();
+      this.miembros     = new HashMap<String,Miembro>();
+      this.iteraciones  = new ArrayList<Sprint>();
+      this.asignaciones = new HashMap<UserStory,Miembro>();
+   }
 
 	/**
 	 * @return Coleccion de miembros que componene el proyecto
@@ -163,6 +174,16 @@ public class Proyecto {
 			if (us.getId()>id)
 				id=us.getId();
 		return id+1;
+	}
+	
+	public Sprint iteracionActual() throws RuntimeException{
+	   Date hoy = new Date();
+	   for (Sprint sprint : iteraciones) {
+	      if (hoy.after(sprint.getfechaInicio()) && hoy.before(Calendario.agregarDias(sprint.getfechaInicio(), sprint.getDuracion()))){
+	         return sprint;
+	      }
+	   }
+	   throw new RuntimeException("No existe Iteración actual");
 	}
 
 }

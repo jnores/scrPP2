@@ -3,36 +3,35 @@ package pp2.scrum.view;
 import java.awt.BorderLayout;
 import java.awt.FlowLayout;
 
+import javax.swing.DefaultListModel;
 import javax.swing.JButton;
 import javax.swing.JDialog;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 import javax.swing.JLabel;
 import javax.swing.JTextField;
-import net.sourceforge.jdatepicker.impl.JDatePanelImpl;
-import net.sourceforge.jdatepicker.impl.JDatePickerImpl;
-import net.sourceforge.jdatepicker.impl.UtilDateModel;
 import pp2.scrum.controller.ProyectoController;
 import pp2.scrum.model.Miembro;
-import net.sourceforge.jdatepicker.DateModel;
-import javax.swing.SpringLayout;
-import java.awt.Dialog.ModalityType;
-import javax.swing.JPopupMenu;
-import java.awt.Component;
-import java.awt.event.MouseAdapter;
-import java.awt.event.MouseEvent;
+import java.util.List;
+
 import javax.swing.JComboBox;
 import java.awt.event.ActionListener;
-import java.awt.event.ActionEvent;
+import javax.swing.JList;
+import javax.swing.border.LineBorder;
+import java.awt.Color;
+import javax.swing.JScrollPane;
+import javax.swing.ScrollPaneConstants;
 
 public class ProyectoNuevoView extends JDialog
 {
    private ProyectoController controller;
    private final JPanel contentPanel = new JPanel();
    private JTextField titulo;
-   private JDatePickerImpl datePickerInicio,datePickerFin;
-   private JComboBox<Miembro> comboLider;
+   private List<Miembro> miembros;
+   private int duracionIteraciones,cantidadIteraciones;
+   private JList<Miembro> miembrosCombo;
    private JButton siguientebtn, cancelButton;
+   private JComboBox<Integer> comboduracionIteraciones,combocantidadIteraciones ;
 
    /**
     * Launch the application.
@@ -59,40 +58,58 @@ public class ProyectoNuevoView extends JDialog
       contentPanel.add(lblNombreDelProyecto);
       
       titulo = new JTextField();
-      titulo.setBounds(148, 8, 134, 20);
+      titulo.setBounds(181, 8, 134, 20);
       contentPanel.add(titulo);
       titulo.setColumns(10);
       
-      
-      UtilDateModel model=new UtilDateModel();
-      JDatePanelImpl datePanel = new JDatePanelImpl(model);    
-      datePickerInicio = new JDatePickerImpl(datePanel);
-      datePickerInicio.setBounds(135, 39, 200, 29);
-      contentPanel.add(datePickerInicio);
-      
-      UtilDateModel model2=new UtilDateModel();
-      JDatePanelImpl datePanel2 = new JDatePanelImpl(model2);
-      datePickerFin = new JDatePickerImpl(datePanel2);
-      datePickerFin.setBounds(135, 83, 200, 29);
-      contentPanel.add(datePickerFin);
-      
-      JLabel lblFechaInicio = new JLabel("Fecha Inicio:");
-      lblFechaInicio.setBounds(10, 36, 78, 32);
+          
+      JLabel lblFechaInicio = new JLabel("Cantidad de Iteraciones:");
+      lblFechaInicio.setBounds(10, 36, 161, 32);
       contentPanel.add(lblFechaInicio);
       
-      JLabel lblFechaFin = new JLabel("Fecha Fin:");
-      lblFechaFin.setBounds(10, 83, 78, 29);
+      JLabel lblFechaFin = new JLabel("Duración Iteracion (Dias):");
+      lblFechaFin.setBounds(10, 83, 161, 29);
       contentPanel.add(lblFechaFin);
       
-      JLabel lblLiderResponsable = new JLabel("Lider / Responsable");
+      JLabel lblLiderResponsable = new JLabel("Miembros");
       lblLiderResponsable.setBounds(10, 133, 113, 20);
       contentPanel.add(lblLiderResponsable);
       
-      comboLider = new JComboBox<Miembro>();
-      comboLider.setBounds(135, 133, 176, 20);
-      comboLider.addItem(new Miembro("Jose"));
-      comboLider.addItem(new Miembro("Ivo"));
-      contentPanel.add(comboLider);
+      combocantidadIteraciones = new JComboBox<Integer>();
+      combocantidadIteraciones.setBounds(181, 42, 41, 20);
+      combocantidadIteraciones.addItem(1);
+      combocantidadIteraciones.addItem(2);
+      combocantidadIteraciones.addItem(3);
+      combocantidadIteraciones.addItem(4);
+      combocantidadIteraciones.addItem(5);
+      combocantidadIteraciones.addItem(6);
+      combocantidadIteraciones.addItem(7);
+      contentPanel.add(combocantidadIteraciones);
+      
+      comboduracionIteraciones = new JComboBox<Integer>();
+      comboduracionIteraciones.setBounds(181, 87, 41, 20);
+      comboduracionIteraciones.addItem(14);
+      comboduracionIteraciones.addItem(21);
+      contentPanel.add(comboduracionIteraciones);
+      DefaultListModel<Miembro> miembros =new DefaultListModel<Miembro>();
+      miembros.addElement(new Miembro("Jose"));
+      miembros.addElement(new Miembro("Ivo"));
+      miembros.addElement(new Miembro("Julian"));
+      miembros.addElement(new Miembro("Marcelo"));
+      miembros.addElement(new Miembro("Javier"));
+      
+      JScrollPane scrollPane = new JScrollPane();
+      scrollPane.setHorizontalScrollBarPolicy(ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
+      scrollPane.setBounds(181, 133, 113, 68);
+      contentPanel.add(scrollPane);
+      
+      
+      
+      miembrosCombo = new JList<Miembro>();
+      scrollPane.setViewportView(miembrosCombo);
+      miembrosCombo.setBorder(new LineBorder(new Color(0, 0, 0), 1, true));
+      miembrosCombo.setVisibleRowCount(10);
+      miembrosCombo.setModel(miembros);
       JPanel buttonPane = new JPanel();
       buttonPane.setLayout(new FlowLayout(FlowLayout.RIGHT));
       getContentPane().add(buttonPane, BorderLayout.SOUTH);
@@ -114,8 +131,6 @@ public class ProyectoNuevoView extends JDialog
    
    public void limpiarPantalla()
    {
-      titulo.setText("");
-      ((UtilDateModel)datePickerInicio.getModel()).setValue(null);
-      ((UtilDateModel)datePickerFin.getModel()).setValue(null);  
+      titulo.setText(""); 
    }
 }

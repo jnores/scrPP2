@@ -80,7 +80,7 @@ public class AppScrum
 		UserStoryOrderableView filtrado = new UserStoryOrderableView(new UserStoryListView( controller.getProyectoController().getBacklog() ));
 
 
-		HomeView view = new HomeView(controller, chartView, listadoPaginado, filtrado);	
+		HomeView view = new HomeView(controller, chartView, listadoPaginado, filtrado,new Proyecto("Scrummer"));	
 		view.setVisible( true );
 	}
 

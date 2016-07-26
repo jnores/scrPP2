@@ -23,6 +23,9 @@ import pp2.scrum.command.LimpiarProyectoNuevoView;
 import pp2.scrum.command.MostrarAgregarHistoria;
 import pp2.scrum.command.MostrarProyectoNuevo;
 import pp2.scrum.controller.AppController;
+import pp2.scrum.model.Proyecto;
+import pp2.scrum.model.Sprint;
+import pp2.scrum.utils.Calendario;
 import pp2.scrum.utils.Logger;
 import pp2.scrum.view.events.ViewUpdateEvent;
 
@@ -35,6 +38,7 @@ public class HomeView  extends JFrame implements ActionListener
      */
     private static final long serialVersionUID = 1L;
     private HomeView thisFrame;
+    private Proyecto proyecto;
     private JPanel panel_Top;
     private AppController AppController;
     private BurndownChartView burndownChartViewpanel;
@@ -45,14 +49,15 @@ public class HomeView  extends JFrame implements ActionListener
     private JMenu menuP,mnIteraciones,mnSprint,mnBacklog,mnBurnDownChart;
     private JMenuItem mnListadoHistoriasItem,mnBurndownItem,mnFiltradoItem,mnNuevoProyectoItem,mnNuevaUserStory,mnit1item,mnit2item,mnit3item,mntmAbrirProyecto,mntmCerrarProyecto;
 
-    public HomeView (AppController controller, BurndownChartView chartview, UserStoryPaginadoView listadoPaginado, UserStoryOrderableView filtrado)
+    public HomeView (AppController controller, BurndownChartView chartview, UserStoryPaginadoView listadoPaginado, UserStoryOrderableView filtrado,Proyecto proyecto)
     {
-        thisFrame = this;
+        this.thisFrame = this;
         this.AppController=controller;
         getContentPane().setLayout(new BorderLayout());
-        burndownChartViewpanel = chartview;
-        listadoPaginadoHistorias = listadoPaginado;
-        filtradoHistorias = filtrado;
+        this.burndownChartViewpanel = chartview;
+        this.listadoPaginadoHistorias = listadoPaginado;
+        this.filtradoHistorias = filtrado;
+        this.proyecto = proyecto;
 
         setTitle("Sistema para gestionar proyectos de SCRUM");		
         this.setJMenuBar(cargarMenu());
@@ -74,17 +79,28 @@ public class HomeView  extends JFrame implements ActionListener
         getContentPane().add(panel_Top,BorderLayout.NORTH);
         //panel_Top.setLayout(new BorderLayout(0, 0));
 
-        JLabel lblProyecto = new JLabel("Proyecto");
+        JLabel lblProyecto = new JLabel(proyecto.getNombre());
         panel_Top.add(lblProyecto);
 
         JLabel label = new JLabel("-");
         panel_Top.add(label);
+        int lblNumero;
+        JLabel lblIteracion;
+        try {
+           Sprint sp = proyecto.iteracionActual();
+           lblNumero = sp.getIdIteracion();
+           lblIteracion = new JLabel("Iteración " + "("+sp.getfechaInicio()+" - "+Calendario.agregarDias(sp.getfechaInicio(),sp.getDuracion())  +")");
+        }
+        catch (Exception e) {
+           lblNumero = 1;
+           lblIteracion = new JLabel("Iteración");
+        }
+        
 
-        JLabel lblNumeroIteracion = new JLabel("#");
+        JLabel lblNumeroIteracion = new JLabel(String.valueOf(lblNumero));
         panel_Top.add(lblNumeroIteracion);
 
-        JLabel lblIteracin = new JLabel("Iteración");
-        panel_Top.add(lblIteracin);
+        panel_Top.add(lblIteracion);
 
         //panel_Main = new JPanel();
         //panel_Main.setLayout(new BorderLayout());	
