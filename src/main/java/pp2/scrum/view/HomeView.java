@@ -23,9 +23,6 @@ import pp2.scrum.command.LimpiarProyectoNuevoView;
 import pp2.scrum.command.MostrarAgregarHistoria;
 import pp2.scrum.command.MostrarProyectoNuevo;
 import pp2.scrum.controller.AppController;
-import pp2.scrum.controller.BurndownChartController;
-import pp2.scrum.controller.HomeController;
-import pp2.scrum.controller.UserStoryPaginadoController;
 import pp2.scrum.utils.Logger;
 import pp2.scrum.view.events.ViewUpdateEvent;
 

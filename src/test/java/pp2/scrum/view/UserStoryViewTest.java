@@ -21,7 +21,6 @@ public class UserStoryViewTest extends TestCase
 	private ObservadorDeHistoria observadorhistoria;
 	private MailGateway mailGateway;
 	private List<UserStory> historias;
-	private MockUp<AppScrum> appMock;
 
 	public UserStoryViewTest( String testName ) {
 		super( testName );
@@ -47,6 +46,7 @@ public class UserStoryViewTest extends TestCase
 
 	public void testEnviarMailStub() 
 	{  
+	   mailGateway = new MailStub();
 		controller = new UserStoryPaginadoController();
 		//setear controller
 		controller.actualizarPaginacion(historias);
@@ -57,7 +57,7 @@ public class UserStoryViewTest extends TestCase
 
 	public void testEnviarMailRealFallaPassIncorrecto() 
 	{      
-
+	   mailGateway = new EnviadorMail(4444,"127.0.0.1", "pp2mailsender", "mail", 0);
 		//configurar Mail   
 		controller = new UserStoryPaginadoController();
 		//setear controller
@@ -69,6 +69,7 @@ public class UserStoryViewTest extends TestCase
 
 	public void testEnviarMailRealFallaConectarPuerto() 
 	{      
+	   mailGateway = new EnviadorMail(9898,"127.0.0.1", "pp2mailsender", "mail", 15);
 		controller = new UserStoryPaginadoController();
 		//setear controller
 		controller.actualizarPaginacion(historias);
@@ -79,6 +80,7 @@ public class UserStoryViewTest extends TestCase
 
 	public void testEnviarMailRealFallaTimeOut() 
 	{      
+	   mailGateway = new EnviadorMail(4444,"127.0.0.1", "pp2mailsender", "mail", 0);
 		controller = new UserStoryPaginadoController();
 		//setear controller
 		controller.actualizarPaginacion(historias);
@@ -89,6 +91,7 @@ public class UserStoryViewTest extends TestCase
 
 	public void testEnviarMailReal()
 	{          
+	   mailGateway = new EnviadorMail(4444,"127.0.0.1", "pp2mailsender", "mailmail", 15);
 		controller = new UserStoryPaginadoController();
 		//setear controller
 		controller.actualizarPaginacion(historias);
