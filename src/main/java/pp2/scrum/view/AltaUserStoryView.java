@@ -174,7 +174,7 @@ public class AltaUserStoryView extends JPanel{
 		boxVertical.add(Box.createVerticalStrut(5));
 		boxVertical.add(check);
 		boxVertical.add(Box.createVerticalStrut(5));
-		boxVertical.add(panelSugerenciaTitulo);
+		boxVertical.add(boxHSugerencia);
 		boxVertical.add(Box.createVerticalStrut(5));
 		boxVertical.add(boxHDetalle);
 		boxVertical.add(Box.createVerticalGlue());
