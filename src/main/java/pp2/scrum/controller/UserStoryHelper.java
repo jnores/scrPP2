@@ -58,8 +58,8 @@ public class UserStoryHelper
 		return responsable;
 	}
 
-	public List<CriterioAceptacion> getCriterios() {
-		return userStory.getCriterios();
+	public String getCriterios() {
+		return userStory.getCriterio();
 	}
 
 	public List<Tarea> getTareas() {
@@ -74,8 +74,8 @@ public class UserStoryHelper
 		iteracion = i;
 	}
 
-	public void setCriterios(List<CriterioAceptacion> criterios) {
-		userStory.setCriterios(criterios);		
+	public void setCriterios(String criterio) {
+		userStory.setCriterio(criterio);		
 	}
 	
 	public void setTareas(List<Tarea> tareas) {

@@ -13,14 +13,14 @@ public class UserStory extends Observable implements Observer
 	private String titulo;
 	private String detalle;
 	private int storyPoints;
-	private List<CriterioAceptacion> criterios;
+	private String criterio;
 	private List<Tarea> tareas;
 
-	public UserStory(String titulo, String detalle, int storyPoints, List<CriterioAceptacion> criterios, List<Tarea> tareas) {
+	public UserStory(String titulo, String detalle, int storyPoints, String criterio, List<Tarea> tareas) {
 		this.titulo = titulo;
 		this.detalle = detalle;
 		this.storyPoints = storyPoints;
-		this.criterios = criterios == null ? new ArrayList<CriterioAceptacion>() : criterios;
+		this.criterio = criterio;
 		this.tareas = tareas == null ? new ArrayList<Tarea>() : tareas;
 		observarTareas(this.tareas);
 	}
@@ -29,7 +29,7 @@ public class UserStory extends Observable implements Observer
 		this.titulo = titulo;
 		this.detalle = detalle;
 		//Estado por defecto al crear la user story
-		this.criterios = new ArrayList<CriterioAceptacion>();
+		this.criterio = "";
 		this.tareas = new ArrayList<Tarea>();
 		observarTareas(this.tareas);
 	}
@@ -37,7 +37,7 @@ public class UserStory extends Observable implements Observer
 		this.id = id;
 		this.titulo = titulo;
 		this.detalle = detalle;
-		this.criterios = new ArrayList<CriterioAceptacion>();
+		this.criterio = "";
 		this.tareas = new ArrayList<Tarea>();
 		observarTareas(this.tareas);
 	}
@@ -62,8 +62,8 @@ public class UserStory extends Observable implements Observer
 		return this.storyPoints;
 	}
 
-	public List<CriterioAceptacion> getCriterios() {
-		return this.criterios;
+	public String getCriterio() {
+		return this.criterio;
 	}
 
 	public List<Tarea> getTareas() {
@@ -85,8 +85,8 @@ public class UserStory extends Observable implements Observer
 		fueModificado(null);
 	}
 
-	public void setCriterios(List<CriterioAceptacion> criterios) {
-		this.criterios = criterios == null ? new ArrayList<CriterioAceptacion>() : criterios;
+	public void setCriterio(String criterio) {
+		this.criterio = criterio;
 		fueModificado(null);
 	}
 

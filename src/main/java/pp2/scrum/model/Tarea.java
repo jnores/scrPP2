@@ -6,7 +6,7 @@ import pp2.scrum.utils.GeneradorIDs;
 
 public class Tarea extends java.util.Observable
 {
-	private String id;
+	private String id,detalle;
 	private Estado estado;
 	//almacena el identificador de los commits que resuelven la tarea
 	private ArrayList<String> commitsVinculados;
@@ -14,10 +14,12 @@ public class Tarea extends java.util.Observable
 	 * @param id
 	 * @param tareas
 	 */
-	//	public Tarea(int id) {
-	//		this.id=id;
-	//		estado = Estado.getDefault();
-	//	}
+	public Tarea(String detalle) {
+	   this.detalle = detalle;
+	   this.id = GeneradorIDs.generarID();
+	   estado = Estado.getDefault();
+	   this.commitsVinculados=new ArrayList<String>();
+	}
 
 	public Tarea() {
 		this.id = GeneradorIDs.generarID();

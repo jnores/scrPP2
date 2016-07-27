@@ -51,10 +51,9 @@ public class UserStoryTest extends TestCase {
 	public void testStory() 
 	{
 
-		List<CriterioAceptacion> criterios = new ArrayList<CriterioAceptacion>();
+		String criterios = "";
 		List<Tarea> tareas = new ArrayList<Tarea>();
 		tareas.add(tarea1);
-		criterios.add(criterio);
 
 		assertTrue(tarea1.getEstado() == Estado.ToDo);
 		//assertTrue(tarea1.getId() == 0);
@@ -76,7 +75,6 @@ public class UserStoryTest extends TestCase {
 		assertTrue(story.getStoryPoints() == 40);
 		assertTrue(story.getIteracion() == 0);
 		//      assertTrue(story.getEstado().equals(Estado.ToDo));
-		assertTrue(story.getCriterios().size() == 0);
 		assertTrue(story.getTareas().size() == 0);
 
 		story.setAutor("au1");
@@ -94,10 +92,9 @@ public class UserStoryTest extends TestCase {
 
 	public void testStoryNoTerminada()
 	{
-		List<CriterioAceptacion> criterios = new ArrayList<CriterioAceptacion>();
+	   String criterios = "";
 		List<Tarea> tareas = new ArrayList<Tarea>();
 		tareas.add(tarea1);
-		criterios.add(criterio);
 		story.setTareas(tareas);
 		story.setCriterios(criterios);
 		assertTrue(story.getEstado().equals(Estado.ToDo));
@@ -107,11 +104,10 @@ public class UserStoryTest extends TestCase {
 
 	public void testStoryTerminadaPorFinalizacionDeTareas()
 	{
-		List<CriterioAceptacion> criterios = new ArrayList<CriterioAceptacion>();
+	   String criterios = "";
 		List<Tarea> tareas = new ArrayList<Tarea>();
 		tareas.add(tarea1);
 		tareas.add(tarea2);
-		criterios.add(criterio);
 		story.setTareas(tareas);
 		story.setCriterios(criterios);
 		assertTrue(story.getEstado().equals(Estado.ToDo));
@@ -130,11 +126,10 @@ public class UserStoryTest extends TestCase {
 
 	public void testStoryTerminadaPorFinalizacionDeTareasCaso2()
 	{
-		List<CriterioAceptacion> criterios = new ArrayList<CriterioAceptacion>();
+	   String criterios = "";
 		List<Tarea> tareas = new ArrayList<Tarea>();
 		tareas.add(tarea1);
 		tareas.add(tarea2);
-		criterios.add(criterio);
 		story.setTareas(tareas);
 		story.setCriterios(criterios);
 		assertTrue(story.getEstado().equals(Estado.ToDo));

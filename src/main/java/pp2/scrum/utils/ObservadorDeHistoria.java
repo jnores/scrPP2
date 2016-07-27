@@ -46,11 +46,7 @@ public class ObservadorDeHistoria implements Observer
    {        
        String nuevaLinea = System.lineSeparator();
        String criterios="";
-       for (CriterioAceptacion criterio : story.getCriterios())
-       {
-          criterios+="* "+ criterio.getDescripcion() + nuevaLinea;        
-       }
-               
+       criterios+=story.getCriterio() + nuevaLinea;               
        String cuerpo = "Detalle:" + nuevaLinea;
        cuerpo += story.getDetalle() + nuevaLinea;
        cuerpo += "Criterios:" + nuevaLinea;
