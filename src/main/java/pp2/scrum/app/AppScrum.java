@@ -10,6 +10,7 @@ import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.NoSuchElementException;
 import java.util.Properties;
 
 import javax.naming.ConfigurationException;
@@ -18,6 +19,7 @@ import javax.swing.JOptionPane;
 import javax.swing.UIManager;
 
 import pp2.scrum.controller.BurndownChartController;
+import pp2.scrum.controller.ComponentFactory;
 import pp2.scrum.controller.HomeController;
 import pp2.scrum.controller.UserStoryPaginadoController;
 import pp2.scrum.dao.ProyectoDAO;
@@ -30,14 +32,18 @@ import pp2.scrum.view.HomeView;
 import pp2.scrum.view.UserStoryListView;
 import pp2.scrum.view.UserStoryOrderableView;
 import pp2.scrum.view.UserStoryPaginadoView;
-
-public class AppScrum 
+/**
+ * Esta clase representa la aplicacion, se encarga de iniciar los componentes necesarios y lanzar la palicacion.
+ * 
+ * @author yoshknight
+ * 
+ * TODO Ahora la clase es un singletone Se debe reemplazar por injeccion de dependencia 
+ */
+public class AppScrum
 {
-	private static AppScrum mInstance;
 	private Properties propiedades;
-	private Map<String,Object> componentes = new HashMap<String,Object>();
-	private ProyectoDAO proyectoDAO;
-	private Proyecto proyecto;
+	private ComponentFactory factory;
+	
 
 
 	private AppScrum() throws RuntimeException{
@@ -45,20 +51,16 @@ public class AppScrum
 	}
 	private AppScrum(Properties config) {
 		propiedades = config;
+		procesarConfiguracion();
+		iniciarComponentes();
 	}
 
 	private void procesarConfiguracion() {
-
+		
 	}
 
 	private void iniciarComponentes() {
-		// TODO Auto-generated method stub
-		try {
-			proyectoDAO = (ProyectoDAO)getComponentByName("ProyectoDAO");
-		} catch (InvalidParameterException | ConfigurationException | InstantiationException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
+		factory = new ComponentFactory(propiedades);
 	}
 
 	/**
@@ -71,7 +73,9 @@ public class AppScrum
 	{
 		Logger.log("Iniciando Aplicación");
 
-		seleccionarProyecto();
+		Proyecto proyecto = seleccionarProyecto();
+		if (proyecto == null)
+			throw new RuntimeException("Error al abrir el proyecto");
 
 		//Creo la dependencia al iniciar la aplicacion una sola vez
 		HomeController controller = new HomeController();
@@ -80,7 +84,7 @@ public class AppScrum
 		UserStoryOrderableView filtrado = new UserStoryOrderableView(new UserStoryListView( controller.getProyectoController().getBacklog() ));
 
 
-		HomeView view = new HomeView(controller, chartView, listadoPaginado, filtrado,new Proyecto("Scrummer"));	
+		HomeView view = new HomeView(controller, chartView, listadoPaginado, filtrado, proyecto);	
 		view.setVisible( true );
 	}
 
@@ -88,10 +92,19 @@ public class AppScrum
 	 * Se muestra al inicio de la aplicacion todos los proyectos que se tienen registrado.
 	 * Si se desea, se puede cancelar para iniciar un nuevo proyecto
 	 */
-	private void seleccionarProyecto() {
+	private Proyecto seleccionarProyecto() {
 
 		Logger.log("Seleccionar proyecto ");
+		ProyectoDAO proyectoDAO;
+		try {
+			proyectoDAO = (ProyectoDAO)factory.getComponentByName("ProyectoDAO");
+		} catch (NoSuchElementException | InstantiationException e) {
+			// TODO Auto-generated catch block
+			return null;
+		}
+		
 		List<Proyecto> proyectos = proyectoDAO.getAll();
+		Proyecto proyecto=null;
 		Integer idProyecto=null;
 
 		boolean consultarProyecto = propiedades.getProperty("ConsultarProyecto","no").toLowerCase().equals("si");
@@ -134,58 +147,8 @@ public class AppScrum
 			proyecto = proyectos.get(idProyecto);
 			Logger.log("Abriendo Proyecto: "+proyecto.getNombre());
 		}
-	}
-
-	/**
-	 * Intancia el componente solicitado con la informacion que este en el archivo de configuracion.
-	 * Trbaja como un Registry para instanciar el componente solo una vez.
-	 * 
-	 * @param componente
-	 * @return Instancia del componente solicitado.
-	 * @throws InvalidParameterException
-	 * @throws ConfigurationException
-	 * @throws InstantiationException
-	 */
-	public Object getComponentByName(String componente) throws InvalidParameterException, ConfigurationException, InstantiationException {
-		if ( !propiedades.containsKey(componente) )
-			throw new InvalidParameterException("No existe configuracion para componente solicitado: "+componente);
-
-		String className = propiedades.getProperty(componente).trim();
-
-		if ( className.length()==0 )
-			throw new ConfigurationException( "Error iniciando componente: "+componente+". El valor configurado no puede ser vacio" );
-
-		Object objTemp;
-
-		if ( componentes.containsKey(componente) )
-			objTemp = componentes.get(componente);
-		else {
-			try {
-				try {
-					Constructor constructor = Class.forName(className).getConstructor(Properties.class);
-					objTemp = constructor.newInstance(propiedades);
-				} catch (Exception e) {
-					Logger.log("No tiene constructor con parametro Properties :D ");
-					objTemp = Class.forName(className).newInstance();
-				}
-
-			} catch (ClassNotFoundException | IllegalAccessException e) {
-				InstantiationError ex = new InstantiationError("Error iniciando componente: "+componente+". No se pudo instanciar el componente.");
-				ex.addSuppressed(e);
-				throw ex;
-			}
-
-			if (objTemp == null )
-				throw new InstantiationError("Error iniciando componente: "+componente+". No se pudo instanciar el componente.");
-			else
-				componentes.put(componente, objTemp);
-		}
-		return objTemp;
-	}
-
-
-	public static AppScrum getInstance() {
-		return mInstance;
+		
+		return proyecto;
 	}
 
 	public static void main( String[ ] args ) 
@@ -200,11 +163,9 @@ public class AppScrum
 			configFile = new FileInputStream(filePath);
 			propiedades.load(configFile);
 
-			mInstance = new AppScrum(propiedades);
-			mInstance.procesarConfiguracion();
-			mInstance.iniciarComponentes();
-
-			mInstance.iniciarPrograma();
+			AppScrum app = new AppScrum(propiedades);
+			app.iniciarPrograma();
+			
 		} catch (FileNotFoundException e) {
 			errorMsg = "ERROR! No se pudo abrir el archivo de configuración: "+filePath;
 			e.printStackTrace();
