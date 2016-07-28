@@ -39,6 +39,7 @@ public class UserStoryTest extends TestCase {
 
 	public void  setUp() 
 	{
+	   criterio = new CriterioAceptacion("criterio1");
 		story = new UserStoryHelper(new UserStory("Titulo1", "Detalle1", 40, null, null),new Miembro("Autor1"));
 		criterio = new CriterioAceptacion("criterio1");
 		tarea1 = new Tarea();
@@ -51,7 +52,7 @@ public class UserStoryTest extends TestCase {
 	public void testStory() 
 	{
 
-		String criterios = "";
+	   
 		List<Tarea> tareas = new ArrayList<Tarea>();
 		tareas.add(tarea1);
 
@@ -78,7 +79,7 @@ public class UserStoryTest extends TestCase {
 		assertTrue(story.getTareas().size() == 0);
 
 		story.setAutor("au1");
-		story.setCriterios(criterios);
+		story.setCriterios(criterio);
 		story.setDetalle("d1");
 		story.setEstado(Estado.Doing);
 		story.setHorasEstimadas(11);
@@ -96,7 +97,7 @@ public class UserStoryTest extends TestCase {
 		List<Tarea> tareas = new ArrayList<Tarea>();
 		tareas.add(tarea1);
 		story.setTareas(tareas);
-		story.setCriterios(criterios);
+		story.setCriterios(criterio);
 		assertTrue(story.getEstado().equals(Estado.ToDo));
 		assertTrue(!story.estaTerminada());
 
@@ -109,7 +110,7 @@ public class UserStoryTest extends TestCase {
 		tareas.add(tarea1);
 		tareas.add(tarea2);
 		story.setTareas(tareas);
-		story.setCriterios(criterios);
+		story.setCriterios(criterio);
 		assertTrue(story.getEstado().equals(Estado.ToDo));
 		assertTrue(!story.estaTerminada());
 		assertTrue(story.getEstado().equals(Estado.ToDo));
@@ -131,7 +132,7 @@ public class UserStoryTest extends TestCase {
 		tareas.add(tarea1);
 		tareas.add(tarea2);
 		story.setTareas(tareas);
-		story.setCriterios(criterios);
+		story.setCriterios(criterio);
 		assertTrue(story.getEstado().equals(Estado.ToDo));
 		assertTrue(!story.estaTerminada());
 		assertTrue(story.getEstado().equals(Estado.ToDo));

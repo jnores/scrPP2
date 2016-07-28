@@ -13,6 +13,7 @@ import javax.swing.border.EmptyBorder;
 
 import net.sourceforge.jdatepicker.impl.UtilDateModel;
 import pp2.scrum.controller.ProyectoController;
+import pp2.scrum.controller.UserStoryController;
 import pp2.scrum.controller.UserStoryPaginadoController;
 import pp2.scrum.model.UserStory;
 import javax.swing.SwingConstants;
@@ -26,16 +27,17 @@ public class HistoriaNuevaView extends JDialog
    /**
     * Create the dialog.
     */
-   public HistoriaNuevaView(AltaUserStoryView panel,BacklogNuevoView padre)
+   public HistoriaNuevaView(BacklogNuevoView padre)
    {
       super(padre,true);
       setResizable(false);
-      this.panel = panel;
+      this.panel = new AltaUserStoryView(new UserStoryController(null), padre);
       this.padre = padre;
       setTitle("Historia Nueva");
       setBounds(100, 100, 548, 495);
       getContentPane().setLayout(new BorderLayout());
       setLocationRelativeTo(null);
+      //panel.getli
       getContentPane().add(panel, BorderLayout.CENTER);
    }
    
@@ -46,10 +48,6 @@ public class HistoriaNuevaView extends JDialog
    
    public void showWindow(boolean esVisible) {
       setVisible(esVisible);
-   }
-   
-   public void addHistoria(){
-	   padre.addHistoria();
    }
    
    public void limpiarPantalla()
