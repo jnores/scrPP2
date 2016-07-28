@@ -342,7 +342,7 @@ public class AltaUserStoryView extends JPanel{
 					if(altaTarea.isDisplayable()){
 						altaTarea.setVisible(true);
 					}else{
-						altaTarea=new AltaTareaView();;
+						altaTarea=new AltaTareaView();
 					}
 				}
 			}	
@@ -361,7 +361,7 @@ public class AltaUserStoryView extends JPanel{
 			}
 			historia = new UserStory(titulo, detalle, puntos, criterio, tareas);
 			padre.addHistoria(historia);
-			//controlador.altaUserStory(titulo,detalle,criterios,puntos);
+			limpiarVista();
 			if(altaTarea != null && altaTarea.isActive()){
 				altaTarea.dispose();
 			}
@@ -396,5 +396,14 @@ public class AltaUserStoryView extends JPanel{
 		    	  areaTitulo.select(0,0);
 		      }
 		});
+	}
+	private void limpiarVista(){
+		check.setSelected(true);
+		check.setText("Sugerencias habilitadas");
+		areaTitulo.setText(resumen);
+		areaDetalle.setText(detalle);
+		areaCriterios.setText(criterio);
+		campoPuntos.setText("");
+		altaTarea.dispose();
 	}
 }

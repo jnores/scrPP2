@@ -82,6 +82,7 @@ public class BacklogNuevoView extends JDialog
    
    public void addHistoria(UserStory historia){
       backlogPanel.agregarHistoria(historia);
+      dialogoHistoria.dispose();
       setearVista();
    }
 

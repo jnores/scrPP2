@@ -145,6 +145,9 @@ public class ProyectoNuevoView extends JDialog
    
    public void limpiarPantalla()
    {
-      titulo.setText(""); 
+      titulo.setText("");
+      comboduracionIteraciones.setSelectedIndex(0);
+      combocantidadIteraciones.setSelectedIndex(0);
+      miembrosCombo.clearSelection();
    }
 }

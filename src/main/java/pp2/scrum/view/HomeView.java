@@ -276,6 +276,7 @@ public class HomeView  extends JFrame implements ActionListener
         if (e instanceof ViewUpdateEvent) {
             setearVista((JPanel)e.getSource(),true);
         }
+        setearVista();
 
     }
 
