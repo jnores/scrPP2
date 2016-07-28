@@ -56,7 +56,6 @@ public class BacklogNuevoView extends JDialog
       cancelButton.setActionCommand("Cancel");
       buttonPane.add(cancelButton);
       dialogoHistoria = new HistoriaNuevaView(new AltaUserStoryView(new UserStoryController(null)), this);
-      dialogoHistoria.pack();
    }
    public void addokButtonListener(ActionListener listener) {
       okButton.addActionListener(listener);
@@ -77,6 +76,10 @@ public class BacklogNuevoView extends JDialog
       getContentPane().remove(0);
       getContentPane().add(backlogPanel,BorderLayout.CENTER,0);
       setearVista();
+   }
+   
+   public void addHistoria(){
+	   
    }
 
 }

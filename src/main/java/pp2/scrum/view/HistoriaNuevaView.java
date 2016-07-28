@@ -29,25 +29,14 @@ public class HistoriaNuevaView extends JDialog
    public HistoriaNuevaView(AltaUserStoryView panel,BacklogNuevoView padre)
    {
       super(padre,true);
+      setResizable(false);
       this.panel = panel;
       this.padre = padre;
       setTitle("Historia Nueva");
-      setBounds(100, 100, 450, 300);
+      setBounds(100, 100, 548, 495);
       getContentPane().setLayout(new BorderLayout());
       setLocationRelativeTo(null);
       getContentPane().add(panel, BorderLayout.CENTER);
-//      JPanel buttonPane = new JPanel();
-//      buttonPane.setLayout(new FlowLayout(FlowLayout.RIGHT));
-//      getContentPane().add(buttonPane, BorderLayout.SOUTH);  
-//      addStory = new JButton("Agregar Historia");
-//      okButton = new JButton("OK");
-//      okButton.setActionCommand("OK");
-//      buttonPane.add(addStory);
-//      buttonPane.add(okButton);
-//      getRootPane().setDefaultButton(okButton);
-//      cancelButton = new JButton("Cancel");
-//      cancelButton.setActionCommand("Cancel");
-//      buttonPane.add(cancelButton);
    }
    
    private void setearVista()
@@ -57,6 +46,10 @@ public class HistoriaNuevaView extends JDialog
    
    public void showWindow(boolean esVisible) {
       setVisible(esVisible);
+   }
+   
+   public void addHistoria(){
+	   padre.addHistoria();
    }
    
    public void limpiarPantalla()

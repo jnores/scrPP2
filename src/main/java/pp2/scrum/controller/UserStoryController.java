@@ -12,6 +12,7 @@ public class UserStoryController {
     public UserStoryController(Proyecto proyecto){
         modeloCorrector=new CorrectorSintaxis(); 
         modelo = proyecto;
+        proyectoController = new ProyectoController(proyecto);
     }
 
     public void altaUserStory(String titulo, String detalle, String criterios,Integer puntos) {

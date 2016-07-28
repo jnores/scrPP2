@@ -11,6 +11,7 @@ import javax.swing.KeyStroke;
 import javax.swing.LayoutFocusTraversalPolicy;
 
 import pp2.scrum.controller.UserStoryController;
+import pp2.scrum.model.Tarea;
 
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
@@ -348,16 +349,17 @@ public class AltaUserStoryView extends JPanel{
 		Integer puntos=0;
 		try{
 			puntos=Integer.parseInt(campoPuntos.getText());
-			if(altaTarea.isDisplayable()){
-				ArrayList<String> tareas=altaTarea.getTareas();
+			if(altaTarea != null && altaTarea.isDisplayable()){
+				ArrayList<Tarea> tareas=altaTarea.getTareas();
 			}
-			controlador.altaUserStory(titulo,detalle,criterios,puntos);
+			//controlador.altaUserStory(titulo,detalle,criterios,puntos);
+			this.getParent();
+			if(altaTarea != null && altaTarea.isActive()){
+				altaTarea.dispose();
+			}
 		}catch(Exception excepcion) {
 			JOptionPane.showMessageDialog(null, "ERROR: Al intentar agregar la user story\n" +
 					excepcion.getMessage());
-		}
-		if(this.altaTarea.isActive()){
-			altaTarea.dispose();
 		}
 	}
 	
