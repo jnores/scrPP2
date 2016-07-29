@@ -58,7 +58,7 @@ public class UserStoryHelper
 		return responsable;
 	}
 
-	public String getCriterios() {
+	public CriterioAceptacion getCriterios() {
 		return userStory.getCriterio();
 	}
 
@@ -74,7 +74,7 @@ public class UserStoryHelper
 		iteracion = i;
 	}
 
-	public void setCriterios(String criterio) {
+	public void setCriterios(CriterioAceptacion criterio) {
 		userStory.setCriterio(criterio);		
 	}
 	

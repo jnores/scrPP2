@@ -13,6 +13,8 @@ import javax.swing.JScrollPane;
 import javax.swing.JTextArea;
 import javax.swing.SwingUtilities;
 
+import pp2.scrum.model.Tarea;
+
 public class AltaTareaView extends JDialog{
 
 	private JPanel panel;
@@ -108,12 +110,12 @@ public class AltaTareaView extends JDialog{
 	    SwingUtilities.updateComponentTreeUI(this);
 	}
 	
-	public ArrayList<String> getTareas(){
-		ArrayList<String> lista=new ArrayList<String>();
+	public ArrayList<Tarea> getTareas(){
+		ArrayList<Tarea> lista=new ArrayList<Tarea>();
 		for(JTextArea texto:descripcionTareas){
 			String data=texto.getText();
 			if(!data.isEmpty()){
-				lista.add(data);
+				lista.add(new Tarea(data));
 			}
 		}
 		return lista;

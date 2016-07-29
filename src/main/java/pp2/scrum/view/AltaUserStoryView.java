@@ -11,6 +11,9 @@ import javax.swing.KeyStroke;
 import javax.swing.LayoutFocusTraversalPolicy;
 
 import pp2.scrum.controller.UserStoryController;
+import pp2.scrum.model.CriterioAceptacion;
+import pp2.scrum.model.Tarea;
+import pp2.scrum.model.UserStory;
 
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
@@ -47,6 +50,7 @@ public class AltaUserStoryView extends JPanel{
 	private Box boxVertical;
 	private JButton botonAgregar,botonAgregarTareas;
 	private UserStoryController controlador;
+	private BacklogNuevoView padre;
 	
 	private final String resumen="Como <Rol> necesito <Meta> para <Finalidad>.";
 	private final String  detalle="Utilice este espacio para explicar con más detalle, el propósito de esta user story";
@@ -57,8 +61,9 @@ public class AltaUserStoryView extends JPanel{
 	
 	private static final long serialVersionUID = 1L; 
 
-	public AltaUserStoryView(UserStoryController controlador)
+	public AltaUserStoryView(UserStoryController controlador,BacklogNuevoView padre)
 	{
+	   this.padre = padre;
 		this.controlador=controlador;
 		mostrarSugerencias=true;
 		boxVertical=Box.createVerticalBox();
@@ -303,7 +308,7 @@ public class AltaUserStoryView extends JPanel{
 	
 	private void agregarListenerAlBoton(){
 		botonAgregar.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e){
+			public void actionPerformed(ActionEvent e){			   
 				String titulo=areaTitulo.getText();
 				String detalle=areaDetalle.getText();
 				if(titulo.equals(resumen)){
@@ -316,6 +321,7 @@ public class AltaUserStoryView extends JPanel{
 						int resultado=JOptionPane.showOptionDialog(null, sugerencia+"\nA pesar de la sugerencia ¿Aún desea guardar esta User Story?", 
 								"Advertencia", JOptionPane.YES_NO_OPTION, JOptionPane.WARNING_MESSAGE, null,null,null);
 						if(resultado==JOptionPane.YES_OPTION){
+						   
 							guardarUserStory(titulo,detalle);
 						}
 					}else{
@@ -336,7 +342,7 @@ public class AltaUserStoryView extends JPanel{
 					if(altaTarea.isDisplayable()){
 						altaTarea.setVisible(true);
 					}else{
-						altaTarea=new AltaTareaView();;
+						altaTarea=new AltaTareaView();
 					}
 				}
 			}	
@@ -344,20 +350,24 @@ public class AltaUserStoryView extends JPanel{
 	}
 	
 	private void guardarUserStory(String titulo,String detalle){
-		String criterios=areaCriterios.getText();
+	   UserStory historia;
+	   ArrayList<Tarea> tareas = new ArrayList<Tarea>();
+		CriterioAceptacion criterio = new CriterioAceptacion(areaCriterios.getText());
 		Integer puntos=0;
 		try{
 			puntos=Integer.parseInt(campoPuntos.getText());
-			if(altaTarea.isDisplayable()){
-				ArrayList<String> tareas=altaTarea.getTareas();
+			if(altaTarea != null && altaTarea.isDisplayable()){
+			   tareas = altaTarea.getTareas();
 			}
-			controlador.altaUserStory(titulo,detalle,criterios,puntos);
+			historia = new UserStory(titulo, detalle, puntos, criterio, tareas);
+			padre.addHistoria(historia);
+			limpiarVista();
+			if(altaTarea != null && altaTarea.isActive()){
+				altaTarea.dispose();
+			}
 		}catch(Exception excepcion) {
 			JOptionPane.showMessageDialog(null, "ERROR: Al intentar agregar la user story\n" +
 					excepcion.getMessage());
-		}
-		if(this.altaTarea.isActive()){
-			altaTarea.dispose();
 		}
 	}
 	
@@ -386,5 +396,14 @@ public class AltaUserStoryView extends JPanel{
 		    	  areaTitulo.select(0,0);
 		      }
 		});
+	}
+	private void limpiarVista(){
+		check.setSelected(true);
+		check.setText("Sugerencias habilitadas");
+		areaTitulo.setText(resumen);
+		areaDetalle.setText(detalle);
+		areaCriterios.setText(criterio);
+		campoPuntos.setText("");
+		altaTarea.dispose();
 	}
 }

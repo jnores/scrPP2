@@ -4,6 +4,8 @@ import java.awt.BorderLayout;
 import java.awt.FlowLayout;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
+import java.util.Observable;
+import java.util.Observer;
 
 import javax.swing.JButton;
 import javax.swing.JDialog;
@@ -55,8 +57,7 @@ public class BacklogNuevoView extends JDialog
       cancelButton = new JButton("Cancel");
       cancelButton.setActionCommand("Cancel");
       buttonPane.add(cancelButton);
-      dialogoHistoria = new HistoriaNuevaView(new AltaUserStoryView(new UserStoryController(null)), this);
-      dialogoHistoria.pack();
+      dialogoHistoria = new HistoriaNuevaView( this);
    }
    public void addokButtonListener(ActionListener listener) {
       okButton.addActionListener(listener);
@@ -76,6 +77,12 @@ public class BacklogNuevoView extends JDialog
       backlogPanel = new UserStoryPaginadoView(new UserStoryPaginadoController(),new ArrayList<UserStory>() );
       getContentPane().remove(0);
       getContentPane().add(backlogPanel,BorderLayout.CENTER,0);
+      setearVista();
+   }
+   
+   public void addHistoria(UserStory historia){
+      backlogPanel.agregarHistoria(historia);
+      dialogoHistoria.dispose();
       setearVista();
    }
 

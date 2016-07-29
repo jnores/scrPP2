@@ -13,10 +13,10 @@ public class UserStory extends Observable implements Observer
 	private String titulo;
 	private String detalle;
 	private int storyPoints;
-	private String criterio;
+	private CriterioAceptacion criterio;
 	private List<Tarea> tareas;
 
-	public UserStory(String titulo, String detalle, int storyPoints, String criterio, List<Tarea> tareas) {
+	public UserStory(String titulo, String detalle, int storyPoints, CriterioAceptacion criterio, List<Tarea> tareas) {
 		this.titulo = titulo;
 		this.detalle = detalle;
 		this.storyPoints = storyPoints;
@@ -29,7 +29,7 @@ public class UserStory extends Observable implements Observer
 		this.titulo = titulo;
 		this.detalle = detalle;
 		//Estado por defecto al crear la user story
-		this.criterio = "";
+		this.criterio = new CriterioAceptacion("");
 		this.tareas = new ArrayList<Tarea>();
 		observarTareas(this.tareas);
 	}
@@ -37,7 +37,7 @@ public class UserStory extends Observable implements Observer
 		this.id = id;
 		this.titulo = titulo;
 		this.detalle = detalle;
-		this.criterio = "";
+		this.criterio = new CriterioAceptacion("");
 		this.tareas = new ArrayList<Tarea>();
 		observarTareas(this.tareas);
 	}
@@ -62,7 +62,7 @@ public class UserStory extends Observable implements Observer
 		return this.storyPoints;
 	}
 
-	public String getCriterio() {
+	public CriterioAceptacion getCriterio() {
 		return this.criterio;
 	}
 
@@ -85,7 +85,7 @@ public class UserStory extends Observable implements Observer
 		fueModificado(null);
 	}
 
-	public void setCriterio(String criterio) {
+	public void setCriterio(CriterioAceptacion criterio) {
 		this.criterio = criterio;
 		fueModificado(null);
 	}

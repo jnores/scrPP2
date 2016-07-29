@@ -20,7 +20,6 @@ import pp2.scrum.command.AgregarOkListenerBacklogNuevo;
 import pp2.scrum.command.AgregarSiguienteListenerProyectoNuevo;
 import pp2.scrum.command.LimpiarBacklogNuevoView;
 import pp2.scrum.command.LimpiarProyectoNuevoView;
-import pp2.scrum.command.MostrarAgregarHistoria;
 import pp2.scrum.command.MostrarProyectoNuevo;
 import pp2.scrum.controller.AppController;
 import pp2.scrum.model.Proyecto;
@@ -143,7 +142,7 @@ public class HomeView  extends JFrame implements ActionListener
         { 
             public void actionPerformed(ActionEvent e) 
             {
-                AppController.Execute(new MostrarAgregarHistoria(), thisFrame);
+                //AppController.Execute(new MostrarAgregarHistoria(), thisFrame);
                 // MostrarUserStoryUpload();
                 // setearVista();
             } 
@@ -276,6 +275,7 @@ public class HomeView  extends JFrame implements ActionListener
         if (e instanceof ViewUpdateEvent) {
             setearVista((JPanel)e.getSource(),true);
         }
+        setearVista();
 
     }
 

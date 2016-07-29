@@ -13,6 +13,7 @@ import javax.swing.border.EmptyBorder;
 
 import net.sourceforge.jdatepicker.impl.UtilDateModel;
 import pp2.scrum.controller.ProyectoController;
+import pp2.scrum.controller.UserStoryController;
 import pp2.scrum.controller.UserStoryPaginadoController;
 import pp2.scrum.model.UserStory;
 import javax.swing.SwingConstants;
@@ -26,28 +27,18 @@ public class HistoriaNuevaView extends JDialog
    /**
     * Create the dialog.
     */
-   public HistoriaNuevaView(AltaUserStoryView panel,BacklogNuevoView padre)
+   public HistoriaNuevaView(BacklogNuevoView padre)
    {
       super(padre,true);
-      this.panel = panel;
+      setResizable(false);
+      this.panel = new AltaUserStoryView(new UserStoryController(null), padre);
       this.padre = padre;
       setTitle("Historia Nueva");
-      setBounds(100, 100, 450, 300);
+      setBounds(100, 100, 548, 495);
       getContentPane().setLayout(new BorderLayout());
       setLocationRelativeTo(null);
+      //panel.getli
       getContentPane().add(panel, BorderLayout.CENTER);
-//      JPanel buttonPane = new JPanel();
-//      buttonPane.setLayout(new FlowLayout(FlowLayout.RIGHT));
-//      getContentPane().add(buttonPane, BorderLayout.SOUTH);  
-//      addStory = new JButton("Agregar Historia");
-//      okButton = new JButton("OK");
-//      okButton.setActionCommand("OK");
-//      buttonPane.add(addStory);
-//      buttonPane.add(okButton);
-//      getRootPane().setDefaultButton(okButton);
-//      cancelButton = new JButton("Cancel");
-//      cancelButton.setActionCommand("Cancel");
-//      buttonPane.add(cancelButton);
    }
    
    private void setearVista()
