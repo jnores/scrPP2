@@ -16,12 +16,13 @@ public class HomeController extends Controller implements AppController
 	private ProyectoNuevoView proyectoNuevo;
 	private BacklogNuevoView backlogNuevo;
 	private ProyectoController proyectoController;
+	
 
 
-	public HomeController()
+	public HomeController(Proyecto proyecto)
 	{	
 		super();
-		proyectoController = new ProyectoController( new Proyecto());
+		proyectoController = new ProyectoController(proyecto);
 		proyectoNuevo = new ProyectoNuevoView(proyectoController);
 		backlogNuevo = new BacklogNuevoView(proyectoController,new UserStoryPaginadoView(new UserStoryPaginadoController(),new ArrayList<UserStory>()));
 	}

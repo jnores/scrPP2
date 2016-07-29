@@ -38,7 +38,6 @@ public class HomeView  extends JFrame implements ActionListener
      */
     private static final long serialVersionUID = 1L;
     private HomeView thisFrame;
-    private Proyecto proyecto;
     private JPanel panel_Top;
     private AppController AppController;
     private BurndownChartView burndownChartViewpanel;
@@ -57,7 +56,7 @@ public class HomeView  extends JFrame implements ActionListener
         this.burndownChartViewpanel = chartview;
         this.listadoPaginadoHistorias = listadoPaginado;
         this.filtradoHistorias = filtrado;
-        this.proyecto = proyecto;
+        
 
         setTitle("Sistema para gestionar proyectos de SCRUM");		
         this.setJMenuBar(cargarMenu());

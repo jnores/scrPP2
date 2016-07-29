@@ -43,16 +43,14 @@ public class AppScrum
 {
 	private Properties propiedades;
 	private ComponentFactory factory;
-	
 
-
-	private AppScrum() throws RuntimeException{
-		throw new RuntimeException("Invalid Operation Exception.");
+	private AppScrum() {
 	}
 	private AppScrum(Properties config) {
 		propiedades = config;
 		procesarConfiguracion();
 		iniciarComponentes();
+		iniciarPrograma();
 	}
 
 	private void procesarConfiguracion() {
@@ -73,12 +71,25 @@ public class AppScrum
 	{
 		Logger.log("Iniciando Aplicación");
 
-		Proyecto proyecto = seleccionarProyecto();
-		if (proyecto == null)
-			throw new RuntimeException("Error al abrir el proyecto");
-
+		ProyectoDAO proyectoDAO;
+		try {
+			proyectoDAO = (ProyectoDAO)factory.getComponentByName("ProyectoDAO");
+		} catch (NoSuchElementException | InstantiationException e) {
+			throw new RuntimeException("No se pudo iniciar el componente ProyectDAO", e);
+		}
+		List<Proyecto> proyectos = proyectoDAO.getAll();
+		
+		Proyecto proyecto = seleccionarProyecto(proyectos);
+		
+		if (proyecto==null){
+			Logger.log("Creando nuevo proyecto");
+			// TODO esto deberia lanzar un asistente para crear un nuevo proyecto y de paso guardarlo.
+			proyecto = new Proyecto("Proyecto Nuevo");
+		} 
+		
+		// TODO A partir de aca falta corregir hta tal y cual parte!
 		//Creo la dependencia al iniciar la aplicacion una sola vez
-		HomeController controller = new HomeController();
+		HomeController controller = new HomeController(proyecto);
 		BurndownChartView chartView = new BurndownChartView(new BurndownChartController(new Sprint(1,new Date("03/10/2016"), 21, new ArrayList<UserStory>())));
 		UserStoryPaginadoView listadoPaginado = new UserStoryPaginadoView(new UserStoryPaginadoController(),new ArrayList<UserStory>());
 		UserStoryOrderableView filtrado = new UserStoryOrderableView(new UserStoryListView( controller.getProyectoController().getBacklog() ));
@@ -92,18 +103,10 @@ public class AppScrum
 	 * Se muestra al inicio de la aplicacion todos los proyectos que se tienen registrado.
 	 * Si se desea, se puede cancelar para iniciar un nuevo proyecto
 	 */
-	private Proyecto seleccionarProyecto() {
+	private Proyecto seleccionarProyecto(List<Proyecto> proyectos) {
 
 		Logger.log("Seleccionar proyecto ");
-		ProyectoDAO proyectoDAO;
-		try {
-			proyectoDAO = (ProyectoDAO)factory.getComponentByName("ProyectoDAO");
-		} catch (NoSuchElementException | InstantiationException e) {
-			// TODO Auto-generated catch block
-			return null;
-		}
 		
-		List<Proyecto> proyectos = proyectoDAO.getAll();
 		Proyecto proyecto=null;
 		Integer idProyecto=null;
 
@@ -139,11 +142,7 @@ public class AppScrum
 
 		Logger.log("ID proyecto: "+idProyecto);
 
-		if(idProyecto==null){
-			Logger.log("Creando nuevo proyecto");
-			// TODO esto deberia lanzar un asistente para crear un nuevo proyecto y de paso guardarlo.
-			proyecto = new Proyecto("Proyecto Nuevo");
-		} else {
+		if(idProyecto!=null){
 			proyecto = proyectos.get(idProyecto);
 			Logger.log("Abriendo Proyecto: "+proyecto.getNombre());
 		}
@@ -163,8 +162,7 @@ public class AppScrum
 			configFile = new FileInputStream(filePath);
 			propiedades.load(configFile);
 
-			AppScrum app = new AppScrum(propiedades);
-			app.iniciarPrograma();
+			new AppScrum(propiedades);
 			
 		} catch (FileNotFoundException e) {
 			errorMsg = "ERROR! No se pudo abrir el archivo de configuración: "+filePath;
