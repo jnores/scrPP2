@@ -3,17 +3,13 @@ package pp2.scrum.app;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.IOException;
-import java.lang.reflect.Constructor;
 import java.security.InvalidParameterException;
 import java.util.ArrayList;
 import java.util.Date;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 import java.util.NoSuchElementException;
 import java.util.Properties;
 
-import javax.naming.ConfigurationException;
 import javax.swing.Icon;
 import javax.swing.JOptionPane;
 import javax.swing.UIManager;
@@ -36,36 +32,30 @@ import pp2.scrum.view.UserStoryPaginadoView;
  * Esta clase representa la aplicacion, se encarga de iniciar los componentes necesarios y lanzar la palicacion.
  * 
  * @author yoshknight
- * 
- * TODO Ahora la clase es un singletone Se debe reemplazar por injeccion de dependencia 
+ *  
  */
 public class AppScrum
 {
 	private Properties propiedades;
 	private ComponentFactory factory;
 
-	private AppScrum() {
-	}
 	private AppScrum(Properties config) {
 		propiedades = config;
-		procesarConfiguracion();
 		iniciarComponentes();
 		iniciarPrograma();
 	}
 
-	private void procesarConfiguracion() {
-		
-	}
-
+	/**
+	 * Inicia los componentes que necesita el sistema. Segun el archivo de configuración
+	 * por el momento inicia un factory.
+	 */
 	private void iniciarComponentes() {
 		factory = new ComponentFactory(propiedades);
 	}
 
 	/**
-	 * consulta que proyecto iniciar y ejecuta la aplicacion con el mismo.
-	 * 
-	 * TODO Varias funciones para poder crear un proyecto nuevo no estan disponibles por
-	 * lo que solo se permitira inicar  un proyecto pre guardado.
+	 * Consulta que proyecto iniciar y ejecuta la aplicacion con el mismo.
+	 *  
 	 */
 	private void iniciarPrograma() 
 	{
@@ -75,29 +65,39 @@ public class AppScrum
 		try {
 			proyectoDAO = (ProyectoDAO)factory.getComponentByName("ProyectoDAO");
 		} catch (NoSuchElementException | InstantiationException e) {
-			throw new RuntimeException("No se pudo iniciar el componente ProyectDAO", e);
+			throw new RuntimeException("No se pudo iniciar el componente ProyectoDAO", e);
 		}
-		List<Proyecto> proyectos = proyectoDAO.getAll();
-		
-		Proyecto proyecto = seleccionarProyecto(proyectos);
-		
-		if (proyecto==null){
+		List<Proyecto> proyectosGuardados = proyectoDAO.getAll();
+
+		Proyecto proyecto = null;
+		if ( proyectosGuardados.size()>0 )
+			proyecto = seleccionarProyecto(proyectosGuardados);
+
+		if ( proyecto==null ) {
 			Logger.log("Creando nuevo proyecto");
-			// TODO esto deberia lanzar un asistente para crear un nuevo proyecto y de paso guardarlo.
-			proyecto = new Proyecto("Proyecto Nuevo");
+			proyecto = crearNuevoProyecto(proyectoDAO);
 		} 
-		
-		// TODO A partir de aca falta corregir hta tal y cual parte!
-		//Creo la dependencia al iniciar la aplicacion una sola vez
-		HomeController controller = new HomeController(proyecto);
-		BurndownChartView chartView = new BurndownChartView(new BurndownChartController(new Sprint(1,new Date("03/10/2016"), 21, new ArrayList<UserStory>())));
-		UserStoryPaginadoView listadoPaginado = new UserStoryPaginadoView(new UserStoryPaginadoController(),new ArrayList<UserStory>());
-		UserStoryOrderableView filtrado = new UserStoryOrderableView(new UserStoryListView( controller.getProyectoController().getBacklog() ));
 
+		if (proyecto != null) {
+			// TODO Aca solo se deberia crear el home controller y home view y pasar factory y proyecto.
+			HomeController controller = new HomeController(proyecto);
 
-		HomeView view = new HomeView(controller, chartView, listadoPaginado, filtrado, proyecto);	
-		view.setVisible( true );
+			BurndownChartView chartView = new BurndownChartView(new BurndownChartController(new Sprint(1,new Date("03/10/2016"), 21, new ArrayList<UserStory>())));
+			UserStoryPaginadoView listadoPaginado = new UserStoryPaginadoView(new UserStoryPaginadoController(),new ArrayList<UserStory>());
+			UserStoryOrderableView filtrado = new UserStoryOrderableView(new UserStoryListView( controller.getProyectoController().getBacklog() ));
+
+			HomeView view = new HomeView(controller, chartView, listadoPaginado, filtrado, proyecto);	
+			view.setVisible( true );
+		} else {
+			JOptionPane.showMessageDialog(null, "No se Seleccionó ningun proyecto", "Finalizando programa", JOptionPane.INFORMATION_MESSAGE);
+		}
 	}
+
+	private Proyecto crearNuevoProyecto(ProyectoDAO proyectoDAO) {
+		// TODO Esto deberia lanzar un asistente para crear un nuevo proyecto y guardarlo antes de retornarlo.
+		return new Proyecto("Proyecto Nuevo");
+	}
+
 
 	/**
 	 * Se muestra al inicio de la aplicacion todos los proyectos que se tienen registrado.
@@ -106,38 +106,32 @@ public class AppScrum
 	private Proyecto seleccionarProyecto(List<Proyecto> proyectos) {
 
 		Logger.log("Seleccionar proyecto ");
-		
+
 		Proyecto proyecto=null;
 		Integer idProyecto=null;
 
 		boolean consultarProyecto = propiedades.getProperty("ConsultarProyecto","no").toLowerCase().equals("si");
 
-		if (consultarProyecto) {
-			switch (proyectos.size()) {
-			case 0: // TODO iniciar nuevo proyecto
-				break;
+		if (consultarProyecto && proyectos.size() > 0) {
+			Icon questionIcon = UIManager.getIcon("OptionPane.questionIcon");  
+			Object[] possibilities = new Object[proyectos.size()];
+			int id = 0;
+			for (Proyecto p : proyectos) {
+				possibilities[id++] = p.getNombre();
+			}
 
-			default: // Pregutar que proyecto se desea iniciar.
-				Icon questionIcon = UIManager.getIcon("OptionPane.questionIcon");  
-				Object[] possibilities = new Object[proyectos.size()];
-				int id = 0;
-				for (Proyecto p : proyectos) {
-					possibilities[id++] = p.getNombre();
-				}
-
-				Object option = JOptionPane.showInputDialog(null,  
-						"Por favor Seleccione un proyeco para continuar:", "Proyectos...",  
-						JOptionPane.PLAIN_MESSAGE, questionIcon, possibilities, "Proyectos");
-				if (option != null ) {
-					for (id = 0; id < possibilities.length ; id++)
-						if (possibilities[id].equals(option))
-							break;
-					idProyecto = id;
-				}
-				break;
+			Object option = JOptionPane.showInputDialog(null,  
+					"Por favor Seleccione un proyeco para continuar:", "Proyectos...",  
+					JOptionPane.PLAIN_MESSAGE, questionIcon, possibilities, "Proyectos");
+			if (option != null ) {
+				for (id = 0; id < possibilities.length ; id++)
+					if (possibilities[id].equals(option))
+						break;
+				idProyecto = id;
 			}
 		} else {
-			if (proyectos.size()>0) idProyecto=0;
+			if (proyectos.size()>0) 
+				idProyecto= Integer.getInteger( propiedades.getProperty("IdProyectoDefault","0") ) ;
 		}
 
 		Logger.log("ID proyecto: "+idProyecto);
@@ -146,13 +140,11 @@ public class AppScrum
 			proyecto = proyectos.get(idProyecto);
 			Logger.log("Abriendo Proyecto: "+proyecto.getNombre());
 		}
-		
 		return proyecto;
 	}
 
 	public static void main( String[ ] args ) 
 	{
-
 		String filePath = "src/main/resources/config/app_develop.properties";
 		String errorMsg="";
 		Properties propiedades = new Properties();		
@@ -163,7 +155,7 @@ public class AppScrum
 			propiedades.load(configFile);
 
 			new AppScrum(propiedades);
-			
+
 		} catch (FileNotFoundException e) {
 			errorMsg = "ERROR! No se pudo abrir el archivo de configuración: "+filePath;
 			e.printStackTrace();
