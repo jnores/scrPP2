@@ -16,19 +16,19 @@ public class ProyectoController extends Controller
         this.proyecto = model;
     }
 
-    /**
-     * Genera una Lista de UserStories
-     * @return List<UserStory> totalidad de userstories del proyecto.
-     */
-    public List<UserStoryHelper> getAllUserStories() {
-        Collection<UserStory> userStories = proyecto.getAllUserStories();
-        ArrayList<UserStoryHelper> userStoriesHelpers = new ArrayList<UserStoryHelper>();
-        for(UserStory userStory: userStories) {
-            userStoriesHelpers.add( new UserStoryHelper(userStory,proyecto.getResponsable(userStory) ) );
-        }
-
-        return userStoriesHelpers;
-    }
+//    /**
+//     * Genera una Lista de UserStories
+//     * @return List<UserStory> totalidad de userstories del proyecto.
+//     */
+//    public List<UserStoryHelper> getAllUserStories() {
+//        Collection<UserStory> userStories = proyecto.getAllUserStories();
+//        ArrayList<UserStoryHelper> userStoriesHelpers = new ArrayList<UserStoryHelper>();
+//        for(UserStory userStory: userStories) {
+//            userStoriesHelpers.add( new UserStoryHelper(userStory,proyecto.getResponsable(userStory) ) );
+//        }
+//
+//        return userStoriesHelpers;
+//    }
 
     /**
      * Genera una Lista de UserStories
@@ -48,20 +48,6 @@ public class ProyectoController extends Controller
 	    UserStory us= proyecto.getUserStoryPorId(id);
 	    UserStoryHelper ush = new UserStoryHelper(us,proyecto.getResponsable(us));
         return ush;
-    }
-
-    public void setProyecto(Proyecto proyecto)
-    {
-        this.proyecto = proyecto;
-    }
-
-    public Proyecto getProyecto()
-    {
-        return proyecto;
-    }
-
-    public long getSiguienteStoryID() {
-        return proyecto.getSiguienteStoryID();
     }
 
     public void agregarUserStory(UserStory us) {

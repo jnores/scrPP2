@@ -14,8 +14,8 @@ import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.filechooser.FileNameExtensionFilter;
 
-import pp2.scrum.controller.Exporter;
 import pp2.scrum.controller.UserStoryHelper;
+import pp2.scrum.exporter.Exporter;
 import pp2.scrum.utils.UserStoryHelperComparator;
 
 public class UserStoryListView extends JPanel implements Observer

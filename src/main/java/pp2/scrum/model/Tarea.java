@@ -2,7 +2,7 @@ package pp2.scrum.model;
 
 import java.util.ArrayList;
 
-import pp2.scrum.utils.GeneradorIDs;
+import pp2.scrum.logCommits.GeneradorIDs;
 
 public class Tarea extends java.util.Observable
 {

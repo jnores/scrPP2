@@ -11,9 +11,10 @@ import junit.framework.TestSuite;
 import jxl.Sheet;
 import jxl.Workbook;
 import jxl.read.biff.BiffException;
+import pp2.scrum.exporter.Exporter;
+import pp2.scrum.exporter.PluginFactory;
 import pp2.scrum.model.Miembro;
 import pp2.scrum.model.UserStory;
-import pp2.scrum.utils.PluginFactory;
 
 
 public class UserStoryHelperTest 

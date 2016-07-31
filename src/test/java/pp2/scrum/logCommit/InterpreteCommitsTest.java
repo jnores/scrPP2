@@ -7,7 +7,7 @@ import junit.framework.TestCase;
 import junit.framework.TestSuite;
 import pp2.scrum.logCommits.Commit;
 import pp2.scrum.logCommits.InterpreteCommits;
-import pp2.scrum.utils.Lector;
+import pp2.scrum.logCommits.Lector;
 
 public class InterpreteCommitsTest extends TestCase {
 

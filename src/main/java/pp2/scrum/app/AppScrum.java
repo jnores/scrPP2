@@ -164,6 +164,9 @@ public class AppScrum
 		}
 	}
 
+	public static void setArchivoConfiguracion(String filePath) {
+		configFilePath = filePath;
+	}
 
 	/**
 	 *  Método encargado de iniciar una nueva instancia de la aplicacion que trabajara de forma independiente.
@@ -199,7 +202,7 @@ public class AppScrum
 
 	public static void main( String[ ] args ) 
 	{
-		configFilePath = "src/main/resources/config/app_develop.properties";
+		setArchivoConfiguracion("src/main/resources/config/app_develop.properties");
 		// abrirPrograma(null);
 		
 		// Como estamos en ambiente de desarrollo esto inicia un proyecto predefinido sin consultarle al usuario.

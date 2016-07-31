@@ -1,4 +1,4 @@
-package pp2.scrum.utils;
+package pp2.scrum.correctorSintaxis;
 
 import java.text.Normalizer;
 import java.util.regex.Matcher;

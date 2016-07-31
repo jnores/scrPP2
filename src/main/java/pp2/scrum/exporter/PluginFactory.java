@@ -1,4 +1,4 @@
-package pp2.scrum.utils;
+package pp2.scrum.exporter;
 
 import java.io.File;
 import java.io.IOException;
@@ -7,7 +7,6 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Properties;
 
-import pp2.scrum.controller.Exporter;
 import pp2.scrum.controller.MailGateway;
 
 

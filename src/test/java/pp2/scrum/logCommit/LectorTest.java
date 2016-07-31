@@ -3,8 +3,8 @@ package pp2.scrum.logCommit;
 import junit.framework.Test;
 import junit.framework.TestCase;
 import junit.framework.TestSuite;
-import pp2.scrum.utils.Lector;
-import pp2.scrum.utils.RegexFacilities;
+import pp2.scrum.correctorSintaxis.RegexFacilities;
+import pp2.scrum.logCommits.Lector;
 
 public class LectorTest extends TestCase{
 	

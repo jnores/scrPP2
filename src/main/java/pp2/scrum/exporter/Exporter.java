@@ -1,8 +1,8 @@
-package pp2.scrum.controller;
+package pp2.scrum.exporter;
 
 import java.util.List;
 
-import pp2.scrum.utils.PluginFactory;
+import pp2.scrum.controller.UserStoryHelper;
 
 public interface Exporter {
 			

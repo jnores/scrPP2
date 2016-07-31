@@ -1,4 +1,4 @@
-package pp2.scrum.utils;
+package pp2.scrum.logCommits;
 
 import java.io.BufferedReader;
 import java.io.FileNotFoundException;

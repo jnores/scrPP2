@@ -26,12 +26,7 @@ public class UserStory extends Observable implements Observer
 	}
 
 	public UserStory(String titulo, String detalle) {
-		this.titulo = titulo;
-		this.detalle = detalle;
-		//Estado por defecto al crear la user story
-		this.criterio = new CriterioAceptacion("");
-		this.tareas = new ArrayList<Tarea>();
-		observarTareas(this.tareas);
+		this(-1,titulo,detalle);
 	}
 	public UserStory(long id,String titulo, String detalle) {
 		this.id = id;

@@ -2,8 +2,6 @@ package pp2.scrum.logCommits;
 
 import java.util.ArrayList;
 
-import pp2.scrum.utils.Lector;
-
 public class GestorVinculos {
 	
 	private String defaultPath="src/main/resources/file/GitLog.txt";

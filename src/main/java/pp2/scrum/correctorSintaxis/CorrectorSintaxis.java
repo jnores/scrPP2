@@ -1,7 +1,5 @@
 package pp2.scrum.correctorSintaxis;
 
-import pp2.scrum.utils.RegexFacilities;
-
 public class CorrectorSintaxis {
 
 	private GestorDiccionario gestorDatos;

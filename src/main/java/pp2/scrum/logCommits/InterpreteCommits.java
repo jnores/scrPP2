@@ -2,7 +2,7 @@ package pp2.scrum.logCommits;
 
 import java.util.ArrayList;
 
-import pp2.scrum.utils.RegexFacilities;
+import pp2.scrum.correctorSintaxis.RegexFacilities;
 
 public class InterpreteCommits {
 

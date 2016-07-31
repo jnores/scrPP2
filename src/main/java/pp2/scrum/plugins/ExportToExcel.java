@@ -10,8 +10,8 @@ import jxl.write.WritableSheet;
 import jxl.write.WritableWorkbook;
 import jxl.write.WriteException;
 import jxl.write.biff.RowsExceededException;
-import pp2.scrum.controller.Exporter;
 import pp2.scrum.controller.UserStoryHelper;
+import pp2.scrum.exporter.Exporter;
 
 public class ExportToExcel implements Exporter {
 	private String pathExl;

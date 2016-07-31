@@ -5,10 +5,10 @@ import mockit.Mock;
 import mockit.MockUp;
 import pp2.scrum.logCommits.GestorConsultas;
 import pp2.scrum.logCommits.InterpreteCommits;
+import pp2.scrum.logCommits.Lector;
 import pp2.scrum.logCommits.VinculadorCommitsTarea;
 import pp2.scrum.model.Estado;
 import pp2.scrum.model.Tarea;
-import pp2.scrum.utils.Lector;
 
 public class VinculadorCommitsTareaTest extends TestCase {
 

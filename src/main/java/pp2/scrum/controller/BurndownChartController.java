@@ -11,9 +11,9 @@ import pp2.scrum.burndownChart.Avance;
 import pp2.scrum.burndownChart.DataComponent;
 import pp2.scrum.burndownChart.DataComposite;
 import pp2.scrum.burndownChart.Estimado;
+import pp2.scrum.burndownChart.OpcionGrafico;
 import pp2.scrum.model.Sprint;
 import pp2.scrum.model.UserStory;
-import pp2.scrum.utils.OpcionGrafico;
 import pp2.scrum.view.BurndownChartView;
 
 public class BurndownChartController extends Controller

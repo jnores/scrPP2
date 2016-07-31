@@ -15,8 +15,8 @@ import javax.swing.JToggleButton;
 import javax.swing.event.ChangeEvent;
 import javax.swing.event.ChangeListener;
 
-import pp2.scrum.controller.Exporter;
-import pp2.scrum.utils.PluginFactory;
+import pp2.scrum.exporter.Exporter;
+import pp2.scrum.exporter.PluginFactory;
 import pp2.scrum.utils.UserStoryHelperComparator;
 
 public class UserStoryOrderableView extends JPanel {

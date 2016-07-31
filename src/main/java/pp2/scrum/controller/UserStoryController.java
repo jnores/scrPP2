@@ -21,7 +21,7 @@ public class UserStoryController {
         //			throw new InvalidParameterException("Se esperaba una cantidad de horas mayor a cero y se recibio un elemento nulo.");
         //		if (puntos==null)
         //			throw new InvalidParameterException("Se esperaba una cantidad de puntos mayor a cero y se recibio un elemento nulo.");
-    	UserStory us = new UserStory(proyectoController.getSiguienteStoryID(),titulo,detalle);
+    	UserStory us = new UserStory(titulo,detalle);
         proyectoController.agregarUserStory(us);
 
     }
