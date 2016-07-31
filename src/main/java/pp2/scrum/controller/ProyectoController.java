@@ -2,7 +2,6 @@ package pp2.scrum.controller;
 
 import java.security.InvalidParameterException;
 import java.util.ArrayList;
-import java.util.Collection;
 import java.util.List;
 
 import pp2.scrum.model.Proyecto;
@@ -16,19 +15,19 @@ public class ProyectoController extends Controller
         this.proyecto = model;
     }
 
-//    /**
-//     * Genera una Lista de UserStories
-//     * @return List<UserStory> totalidad de userstories del proyecto.
-//     */
-//    public List<UserStoryHelper> getAllUserStories() {
-//        Collection<UserStory> userStories = proyecto.getAllUserStories();
-//        ArrayList<UserStoryHelper> userStoriesHelpers = new ArrayList<UserStoryHelper>();
-//        for(UserStory userStory: userStories) {
-//            userStoriesHelpers.add( new UserStoryHelper(userStory,proyecto.getResponsable(userStory) ) );
-//        }
-//
-//        return userStoriesHelpers;
-//    }
+    //    /**
+    //     * Genera una Lista de UserStories
+    //     * @return List<UserStory> totalidad de userstories del proyecto.
+    //     */
+    //    public List<UserStoryHelper> getAllUserStories() {
+    //        Collection<UserStory> userStories = proyecto.getAllUserStories();
+    //        ArrayList<UserStoryHelper> userStoriesHelpers = new ArrayList<UserStoryHelper>();
+    //        for(UserStory userStory: userStories) {
+    //            userStoriesHelpers.add( new UserStoryHelper(userStory,proyecto.getResponsable(userStory) ) );
+    //        }
+    //
+    //        return userStoriesHelpers;
+    //    }
 
     /**
      * Genera una Lista de UserStories
@@ -38,15 +37,15 @@ public class ProyectoController extends Controller
         List<UserStory> userStories = proyecto.getBacklog();
         ArrayList<UserStoryHelper> userStoriesHelpers = new ArrayList<UserStoryHelper>();
         for(UserStory userStory: userStories) {
-        	userStoriesHelpers.add( new UserStoryHelper(userStory,proyecto.getResponsable(userStory) ) );
+            userStoriesHelpers.add( new UserStoryHelper(userStory,proyecto.getResponsable(userStory) ) );
         }
 
         return userStoriesHelpers;
     }
 
     public UserStoryHelper getUserStory(int id) {
-	    UserStory us= proyecto.getUserStoryPorId(id);
-	    UserStoryHelper ush = new UserStoryHelper(us,proyecto.getResponsable(us));
+        UserStory us= proyecto.getUserStoryPorId(id);
+        UserStoryHelper ush = new UserStoryHelper(us,proyecto.getResponsable(us));
         return ush;
     }
 
