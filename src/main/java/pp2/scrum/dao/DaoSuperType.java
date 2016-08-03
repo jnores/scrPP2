@@ -6,4 +6,5 @@ public interface DaoSuperType<T> {
 
 	List<T> getAll();
 	T getById(long id);
+	long guardar(T proyecto);
 }

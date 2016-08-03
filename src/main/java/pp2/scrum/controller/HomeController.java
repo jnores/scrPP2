@@ -5,7 +5,9 @@ import java.awt.event.ActionListener;
 import java.util.ArrayList;
 
 import pp2.scrum.command.Comando;
+import pp2.scrum.dao.ProyectoDAO;
 import pp2.scrum.model.Proyecto;
+import pp2.scrum.model.ProyectoNuevo;
 import pp2.scrum.model.UserStory;
 import pp2.scrum.view.BacklogNuevoView;
 import pp2.scrum.view.ProyectoNuevoView;
@@ -19,11 +21,12 @@ public class HomeController extends Controller implements AppController
 	
 
 
-	public HomeController(Proyecto proyecto)
+	public HomeController(Proyecto proyecto,ComponentFactory factory) throws InstantiationException
 	{	
 		super();
-		proyectoController = new ProyectoController(proyecto);
-		proyectoNuevo = new ProyectoNuevoView(proyectoController);
+		
+		proyectoController = new ProyectoController(proyecto,(ProyectoDAO)factory.getComponentByName("ProyectoDAO"));
+		proyectoNuevo = new ProyectoNuevoView(proyectoController,new ProyectoNuevo());
 		backlogNuevo = new BacklogNuevoView(proyectoController,new UserStoryPaginadoView(new UserStoryPaginadoController(),new ArrayList<UserStory>()));
 	}
 

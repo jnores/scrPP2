@@ -42,17 +42,17 @@ public class AppScrum {
     private Properties propiedades;
     private ComponentFactory factory;
 
-    private AppScrum(Properties config) {
+    private AppScrum(Properties config) throws InstantiationException {
         this(config, null);
     }
 
-    private AppScrum(Properties config, Proyecto proyecto) {
+    private AppScrum(Properties config, String nombreProyecto)
+            throws InstantiationException {
         Logger.log("Iniciando Aplicación");
 
         propiedades = config;
         iniciarComponentes();
-        if (proyecto == null)
-            proyecto = obtenerProyecto();
+        Proyecto proyecto = obtenerProyecto(nombreProyecto);
         abrirProyecto(proyecto);
     }
 
@@ -73,7 +73,7 @@ public class AppScrum {
      * 
      * @return Proyecto. Retorna le proyecto elejido.
      */
-    private Proyecto obtenerProyecto() {
+    private Proyecto obtenerProyecto(String nombreProyecto) {
         Logger.log("Obteniendo Proyecto");
         ProyectoDAO proyectoDAO;
         Proyecto proyecto = null;
@@ -88,7 +88,7 @@ public class AppScrum {
         List<Proyecto> proyectosGuardados = proyectoDAO.getAll();
 
         if (proyectosGuardados.size() > 0)
-            proyecto = seleccionarProyecto(proyectosGuardados);
+            proyecto = seleccionarProyecto(proyectosGuardados, nombreProyecto);
 
         if (proyecto == null) {
             Logger.log("Creando nuevo proyecto");
@@ -102,29 +102,40 @@ public class AppScrum {
      * Se muestra al inicio de la aplicacion todos los proyectos que se tienen
      * registrado. Si se desea, se puede cancelar para iniciar un nuevo proyecto
      */
-    private Proyecto seleccionarProyecto(List<Proyecto> proyectos) {
+    private Proyecto seleccionarProyecto(List<Proyecto> proyectos,
+            String nombreProyecto) {
         Logger.log("Seleccionando Proyecto");
 
         Proyecto proyecto = null;
+        boolean proyectoSeleccionado = false;
         Integer idProyecto = null;
+
+        if (nombreProyecto == null)
+            nombreProyecto = "";
 
         if (proyectos.size() > 0) {
             Icon questionIcon = UIManager.getIcon("OptionPane.questionIcon");
             Object[] possibilities = new Object[proyectos.size()];
             int id = 0;
             for (Proyecto p : proyectos) {
+                if (p.getNombre().equals(nombreProyecto)) {
+                    proyecto = p;
+                    proyectoSeleccionado = true;
+                    break;
+                }
                 possibilities[id++] = p.getNombre();
             }
-
-            Object option = JOptionPane.showInputDialog(null,
-                    "Por favor Seleccione un proyeco para continuar:",
-                    "Proyectos...", JOptionPane.PLAIN_MESSAGE, questionIcon,
-                    possibilities, "Proyectos");
-            if (option != null) {
-                for (id = 0; id < possibilities.length; id++)
-                    if (possibilities[id].equals(option))
-                        break;
-                idProyecto = id;
+            if (!proyectoSeleccionado) {
+                Object option = JOptionPane.showInputDialog(null,
+                        "Por favor Seleccione un proyeco para continuar:",
+                        "Proyectos...", JOptionPane.PLAIN_MESSAGE, questionIcon,
+                        possibilities, "Proyectos");
+                if (option != null) {
+                    for (id = 0; id < possibilities.length; id++)
+                        if (possibilities[id].equals(option))
+                            break;
+                    idProyecto = id;
+                }
             }
         }
 
@@ -145,19 +156,22 @@ public class AppScrum {
         Logger.log("Creando proyecto Nuevo");
         // TODO Esto deberia lanzar un asistente para crear un nuevo proyecto y
         // guardarlo antes de retornarlo.
-        return new Proyecto("Proyecto Nuevo");
+        return new Proyecto(37, "Proyecto Nuevo");
     }
 
     /**
      * Consulta que proyecto iniciar y ejecuta la aplicacion con el mismo.
      * 
+     * @throws InstantiationException
+     * 
      */
-    private void abrirProyecto(Proyecto proyecto) {
+    private void abrirProyecto(Proyecto proyecto)
+            throws InstantiationException {
         if (proyecto != null) {
             Logger.log("Abriendo Proyecto: " + proyecto.getNombre());
             // TODO Aca solo se deberia crear el home controller y home view y
             // pasar factory y proyecto.
-            HomeController controller = new HomeController(proyecto);
+            HomeController controller = new HomeController(proyecto, factory);
 
             BurndownChartView chartView = new BurndownChartView(
                     new BurndownChartController(
@@ -184,24 +198,27 @@ public class AppScrum {
         configFilePath = filePath;
     }
 
-    /**
-     * Método encargado de iniciar una nueva instancia de la aplicacion que
-     * trabajara de forma independiente.
-     * 
-     * @param proyecto
-     *            si es null se consulta al usuario que proyecto de los que
-     *            tiene gurdados desea iniciar.
-     */
-    public static void abrirPrograma(Proyecto proyecto) {
+    public static void main(String[] args) {
+        setArchivoConfiguracion(
+                "src/main/resources/config/app_develop.properties");
+
         String errorMsg = "";
         Properties propiedades = new Properties();
+        String nombreProyecto = (args!=null && args.length == 2) ? args[1] : "";
 
         FileInputStream configFile;
+
         try {
-            configFile = new FileInputStream(configFilePath);
+            configFile = new FileInputStream(AppScrum.configFilePath);
             propiedades.load(configFile);
 
-            new AppScrum(propiedades, proyecto);
+            if (nombreProyecto.isEmpty()
+                    && propiedades.getProperty("iniciarProyecto", "no")
+                            .toLowerCase().equals("si"))
+                nombreProyecto = propiedades.getProperty("proyectoDefault",
+                        "Test 1");
+
+            new AppScrum(propiedades, nombreProyecto);
 
         } catch (FileNotFoundException e) {
             errorMsg = "ERROR! No se pudo abrir el archivo de configuración: "
@@ -210,7 +227,7 @@ public class AppScrum {
         } catch (IOException e) {
             errorMsg = "ERROR! El archivo de configuracion no respeta el formato properties";
             e.printStackTrace();
-        } catch (InvalidParameterException e) {
+        } catch (InstantiationException | InvalidParameterException e) {
             // Levantando configuracion
             errorMsg = "ERROR! No se pudieron iniciar todo los componentes.";
             e.printStackTrace();
@@ -219,16 +236,6 @@ public class AppScrum {
         if (errorMsg.trim().length() > 0)
             JOptionPane.showMessageDialog(null, errorMsg, "ERROR!",
                     JOptionPane.ERROR_MESSAGE);
-    }
 
-    public static void main(String[] args) {
-        setArchivoConfiguracion(
-                "src/main/resources/config/app_develop.properties");
-        // abrirPrograma(null);
-
-        // Como estamos en ambiente de desarrollo esto inicia un proyecto
-        // predefinido sin consultarle al usuario.
-        Proyecto proyecto = new pp2.mock.scrum.dao.MockProyectoDAO().getById(0);
-        abrirPrograma(proyecto);
     }
 }

@@ -49,7 +49,7 @@ public class ProyectoTest extends TestCase {
 		userStory4 =  new UserStory("Titulo4", "Detalle4");//,miembro2);
 
 		
-		proyecto= new Proyecto();
+		proyecto= new Proyecto(12,"test");
 		proyecto.addMiembro(miembro1);
 		proyecto.addMiembro(miembro2);
 		
@@ -70,9 +70,6 @@ public class ProyectoTest extends TestCase {
 		
 		Collection<Miembro> miembros = this.proyecto.getMiembros();
 		assertEquals(miembros.size(),2);
-		
-		Set<String> nombresMiembros = this.proyecto.getNombresMiembros();
-		assertEquals(nombresMiembros.size(),2);
 		
 //		ProyectoNuevoView p = new ProyectoNuevoView(null);
 		

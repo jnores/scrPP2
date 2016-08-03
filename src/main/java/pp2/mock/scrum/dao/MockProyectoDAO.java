@@ -7,23 +7,34 @@ import pp2.scrum.dao.ProyectoDAO;
 import pp2.scrum.model.Proyecto;
 
 public class MockProyectoDAO extends ProyectoDAO {
-	
-	private Proyecto proyecto; 
-	public MockProyectoDAO() {
-		proyecto = new Proyecto("proyecto1");
-	}
 
-	@Override
-	public List<Proyecto> getAll() {
-		// TODO Auto-generated method stub
-		List<Proyecto> all = new ArrayList<Proyecto>();
-		all.add(proyecto);
-		return all;
-	}
+    List<Proyecto> listaProyectos = new ArrayList<Proyecto>();
 
-	@Override
-	public Proyecto getById(long id) {
-		return proyecto;
-	}
-	
+    public MockProyectoDAO() {
+         listaProyectos.add(0, new Proyecto(1, "Test 1"));
+
+    }
+
+    @Override
+    public List<Proyecto> getAll() {
+        return listaProyectos;
+    }
+
+    @Override
+    public Proyecto getById(long id) {
+        return listaProyectos.get((int) id - 1);
+    }
+
+    @Override
+    public long guardar(Proyecto proyecto) {
+        long id = proyecto.getId();
+        if (id < 1)
+            id = listaProyectos.size();
+
+        listaProyectos.add(new Proyecto(id, proyecto.getNombre(),
+                proyecto.getBacklog(), proyecto.getMiembros(),
+                proyecto.getIteraciones(), proyecto.getAsignaciones()));
+        return id;
+    }
+
 }

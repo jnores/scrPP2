@@ -9,13 +9,13 @@ package pp2.scrum.controller;
  */
 public class ControllerFactory {
     
-    public static UserStoryController getUserStoryController() {
-        UserStoryController usc=null;
-        try {
-            usc = new UserStoryController(null);
-        } catch (Exception e) {
-            
-        }
-        return usc;
-    }
+//    public static UserStoryController getUserStoryController() {
+//        UserStoryController usc=null;
+//        try {
+//            usc = new UserStoryController(null);
+//        } catch (Exception e) {
+//            
+//        }
+//        return usc;
+//    }
 }

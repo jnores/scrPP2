@@ -4,15 +4,19 @@ import java.security.InvalidParameterException;
 import java.util.ArrayList;
 import java.util.List;
 
+import pp2.scrum.dao.ProyectoDAO;
 import pp2.scrum.model.Proyecto;
+import pp2.scrum.model.ProyectoNuevo;
 import pp2.scrum.model.UserStory;
 
 public class ProyectoController extends Controller 
 {
     private Proyecto proyecto;
+    private ProyectoDAO proyectoDao;
 
-    public ProyectoController(Proyecto model) {
+    public ProyectoController(Proyecto model,ProyectoDAO proyectoDao) {
         this.proyecto = model;
+        this.proyectoDao = proyectoDao;
     }
 
     //    /**
@@ -54,5 +58,15 @@ public class ProyectoController extends Controller
             throw new InvalidParameterException("Se esperaba una user story para agregar y se recibio un elemento nulo.");
         proyecto.addUserStory(us);
 
+    }
+
+    /**
+     * Metodo encargado de guardar un proyecto nuevo y retornar el proyecto persistido.
+     * @param newProyecto Si el proyecto es un prpyecto nuevo, lo guarda. sino, lo actualiza.
+     * @return
+     */
+    public Proyecto save(ProyectoNuevo newProyecto) {
+        long proyectoId = proyectoDao.guardar(newProyecto);
+        return proyectoDao.getById(proyectoId);
     }
 }
