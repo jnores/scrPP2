@@ -9,11 +9,11 @@ public class UserStoryController {
     private Proyecto modelo;
     private ProyectoController proyectoController; 
 
-    public UserStoryController(Proyecto proyecto,ProyectoController pController){
-        modeloCorrector=new CorrectorSintaxis(); 
-        modelo = proyecto;
-        proyectoController = pController;
-    }
+    public UserStoryController(Proyecto proyecto){
+       modeloCorrector=new CorrectorSintaxis(); 
+       modelo = proyecto;
+       proyectoController = new ProyectoController(proyecto,null);
+   }
 
     public void altaUserStory(String titulo, String detalle, String criterios,Integer puntos) {
         //Falta lo importante

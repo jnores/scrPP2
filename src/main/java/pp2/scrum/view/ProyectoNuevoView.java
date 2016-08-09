@@ -1,36 +1,30 @@
 package pp2.scrum.view;
 
 import java.awt.BorderLayout;
-import java.awt.Color;
 import java.awt.FlowLayout;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
-import java.util.List;
 
 import javax.swing.DefaultListModel;
 import javax.swing.JButton;
-import javax.swing.JComboBox;
 import javax.swing.JDialog;
-import javax.swing.JLabel;
-import javax.swing.JList;
-import javax.swing.JOptionPane;
 import javax.swing.JPanel;
-import javax.swing.JScrollPane;
-import javax.swing.JTextField;
-import javax.swing.ScrollPaneConstants;
 import javax.swing.border.EmptyBorder;
-import javax.swing.border.LineBorder;
-
-import pp2.scrum.app.AppScrum;
+import javax.swing.JLabel;
+import javax.swing.JTextField;
 import pp2.scrum.controller.ProyectoController;
 import pp2.scrum.model.Miembro;
-import pp2.scrum.model.Proyecto;
-import pp2.scrum.model.ProyectoNuevo;
+import java.util.List;
+
+import javax.swing.JComboBox;
+import java.awt.event.ActionListener;
+import javax.swing.JList;
+import javax.swing.border.LineBorder;
+import java.awt.Color;
+import javax.swing.JScrollPane;
+import javax.swing.ScrollPaneConstants;
 
 public class ProyectoNuevoView extends JDialog
 {
    private ProyectoController controller;
-   private ProyectoNuevo nuevoProyecto;
    private final JPanel contentPanel = new JPanel();
    private JTextField titulo;
    private JList<Miembro> miembrosCombo;
@@ -44,12 +38,11 @@ public class ProyectoNuevoView extends JDialog
    /**
     * Create the dialog.
     */
-   public ProyectoNuevoView(ProyectoController proyectoController,ProyectoNuevo newProyecto)
+   public ProyectoNuevoView(ProyectoController controller)
    {
       setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
       setModalityType(ModalityType.APPLICATION_MODAL);
-      this.controller = proyectoController;
-      nuevoProyecto= newProyecto;
+      this.controller = controller;
       setTitle("Nuevo Proyecto");
       setBounds(100, 100, 450, 300);
       setLocationRelativeTo(null);
@@ -82,7 +75,6 @@ public class ProyectoNuevoView extends JDialog
       
       combocantidadIteraciones = new JComboBox<Integer>();
       combocantidadIteraciones.setBounds(181, 42, 41, 20);
-      // TODO levantar estos numeros desde la configuracion
       combocantidadIteraciones.addItem(1);
       combocantidadIteraciones.addItem(2);
       combocantidadIteraciones.addItem(3);
@@ -94,12 +86,10 @@ public class ProyectoNuevoView extends JDialog
       
       comboduracionIteraciones = new JComboBox<Integer>();
       comboduracionIteraciones.setBounds(181, 87, 41, 20);
-      // TODO levantar estos numeros desde la configuracion
       comboduracionIteraciones.addItem(14);
       comboduracionIteraciones.addItem(21);
       contentPanel.add(comboduracionIteraciones);
       DefaultListModel<Miembro> miembros =new DefaultListModel<Miembro>();
-      // TODO Pedir al proyectoController
       miembros.addElement(new Miembro("Jose"));
       miembros.addElement(new Miembro("Ivo"));
       miembros.addElement(new Miembro("Julian"));
@@ -121,18 +111,8 @@ public class ProyectoNuevoView extends JDialog
       JPanel buttonPane = new JPanel();
       buttonPane.setLayout(new FlowLayout(FlowLayout.RIGHT));
       getContentPane().add(buttonPane, BorderLayout.SOUTH);
-      siguientebtn = new JButton("Crear");
+      siguientebtn = new JButton("Siguiente");
       siguientebtn.setActionCommand("OK");
-      siguientebtn.addActionListener( new ActionListener() {
-          public void actionPerformed(ActionEvent e) {
-              nuevoProyecto.setNombre(titulo.getText());
-              Proyecto proyecto = controller.save(nuevoProyecto);
-              if (proyecto != null)
-                  JOptionPane.showMessageDialog(null, "Proyecto guardado Correctamente", "Pproyecto guardado", JOptionPane.INFORMATION_MESSAGE);
-              else
-                  JOptionPane.showMessageDialog(null, "No se pudo guardar el proyecto", "Error guardando proyecto", JOptionPane.ERROR_MESSAGE);
-          }
-      });
       buttonPane.add(siguientebtn);
       cancelButton = new JButton("Cancel");
       cancelButton.setActionCommand("Cancel");
@@ -140,7 +120,7 @@ public class ProyectoNuevoView extends JDialog
    }
    
    public void addsiguienteBtnListener(ActionListener listener) {
-//      siguientebtn.addActionListener(listener);
+      siguientebtn.addActionListener(listener);
    }
    
    public void addcancelBtnListener(ActionListener listener) {

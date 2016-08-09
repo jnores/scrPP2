@@ -1,9 +1,23 @@
 package pp2.scrum.view;
 
 import java.awt.BorderLayout;
+import java.awt.FlowLayout;
+import java.awt.event.ActionListener;
+import java.util.ArrayList;
 
+import javax.swing.JButton;
 import javax.swing.JDialog;
+import javax.swing.JPanel;
 import javax.swing.SwingUtilities;
+import javax.swing.border.EmptyBorder;
+
+import net.sourceforge.jdatepicker.impl.UtilDateModel;
+import pp2.scrum.controller.ProyectoController;
+import pp2.scrum.controller.UserStoryController;
+import pp2.scrum.controller.UserStoryPaginadoController;
+import pp2.scrum.model.UserStory;
+import javax.swing.SwingConstants;
+import javax.swing.JInternalFrame;
 
 public class HistoriaNuevaView extends JDialog
 {
@@ -17,14 +31,14 @@ public class HistoriaNuevaView extends JDialog
    {
       super(padre,true);
       setResizable(false);
-//      this.panel = new AltaUserStoryView(new UserStoryController(null), padre);
+      this.panel = new AltaUserStoryView(new UserStoryController(null), padre);
       this.padre = padre;
       setTitle("Historia Nueva");
       setBounds(100, 100, 548, 495);
       getContentPane().setLayout(new BorderLayout());
       setLocationRelativeTo(null);
       //panel.getli
-//      getContentPane().add(panel, BorderLayout.CENTER);
+      getContentPane().add(panel, BorderLayout.CENTER);
    }
    
    private void setearVista()

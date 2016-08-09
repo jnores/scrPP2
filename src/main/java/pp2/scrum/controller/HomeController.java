@@ -26,7 +26,7 @@ public class HomeController extends Controller implements AppController
 		super();
 		
 		proyectoController = new ProyectoController(proyecto,(ProyectoDAO)factory.getComponentByName("ProyectoDAO"));
-		proyectoNuevo = new ProyectoNuevoView(proyectoController,new ProyectoNuevo());
+		proyectoNuevo = new ProyectoNuevoView(proyectoController);
 		backlogNuevo = new BacklogNuevoView(proyectoController,new UserStoryPaginadoView(new UserStoryPaginadoController(),new ArrayList<UserStory>()));
 	}
 

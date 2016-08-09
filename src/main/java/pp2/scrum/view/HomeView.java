@@ -39,6 +39,7 @@ public class HomeView  extends JFrame implements ActionListener
     private HomeView thisFrame;
     private JPanel panel_Top;
     private AppController AppController;
+    private Proyecto proyecto;
     private BurndownChartView burndownChartViewpanel;
     private UserStoryPaginadoView listadoPaginadoHistorias;
     private UserStoryOrderableView filtradoHistorias;
@@ -55,6 +56,7 @@ public class HomeView  extends JFrame implements ActionListener
         this.burndownChartViewpanel = chartview;
         this.listadoPaginadoHistorias = listadoPaginado;
         this.filtradoHistorias = filtrado;
+        this.proyecto = proyecto;
         
 
         setTitle("Sistema para gestionar proyectos de SCRUM");		
