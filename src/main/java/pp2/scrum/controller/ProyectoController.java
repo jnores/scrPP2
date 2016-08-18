@@ -6,7 +6,6 @@ import java.util.List;
 
 import pp2.scrum.dao.ProyectoDAO;
 import pp2.scrum.model.Proyecto;
-import pp2.scrum.model.ProyectoNuevo;
 import pp2.scrum.model.UserStory;
 
 public class ProyectoController extends Controller 
@@ -65,7 +64,7 @@ public class ProyectoController extends Controller
      * @param newProyecto Si el proyecto es un prpyecto nuevo, lo guarda. sino, lo actualiza.
      * @return
      */
-    public Proyecto save(ProyectoNuevo newProyecto) {
+    public Proyecto save(Proyecto newProyecto) {
         long proyectoId = proyectoDao.guardar(newProyecto);
         return proyectoDao.getById(proyectoId);
     }

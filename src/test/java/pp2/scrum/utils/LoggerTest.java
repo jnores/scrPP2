@@ -6,6 +6,7 @@ import java.io.IOException;
 import junit.framework.Test;
 import junit.framework.TestCase;
 import junit.framework.TestSuite;
+import pp2.scrum.logCommits.GeneradorIDs;
 import pp2.scrum.utils.Logger;
 
 
@@ -40,7 +41,11 @@ public class LoggerTest extends TestCase {
     public void testLogger() {
         Logger.close();
         String textLogged="Logger Iniciado\nmensaje 1\nLogger Finalizado\n";
-        assertTrue(outStream.toString().equals(textLogged));	
+        assertTrue(outStream.toString().equals(textLogged));
+        
+        GeneradorIDs generador = new GeneradorIDs();
+        generador.generarID();
+        generador.generarIDLong();
     }
 
 

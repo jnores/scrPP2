@@ -1,11 +1,18 @@
 package pp2.scrum.domain;
 
+import java.io.FileInputStream;
 import java.util.Collection;
+import java.util.Properties;
 import java.util.Set;
 
 import junit.framework.Test;
 import junit.framework.TestCase;
 import junit.framework.TestSuite;
+import pp2.mock.scrum.dao.MockProyectoDAO;
+import pp2.scrum.app.AppScrum;
+import pp2.scrum.command.MostrarProyectoNuevo;
+import pp2.scrum.controller.ComponentFactory;
+import pp2.scrum.controller.HomeController;
 import pp2.scrum.controller.UserStoryHelper;
 import pp2.scrum.model.Miembro;
 import pp2.scrum.model.Proyecto;
@@ -49,7 +56,7 @@ public class ProyectoTest extends TestCase {
 		userStory4 =  new UserStory("Titulo4", "Detalle4");//,miembro2);
 
 		
-		proyecto= new Proyecto(12,"test");
+		proyecto= new Proyecto(1,"test");
 		proyecto.addMiembro(miembro1);
 		proyecto.addMiembro(miembro2);
 		
@@ -94,5 +101,15 @@ public class ProyectoTest extends TestCase {
 		Miembro miembro = this.proyecto.getMiembroPorNombre("Ivo");
 		assertEquals(miembro,this.miembro2);
 		
-	}	
+	}
+	
+	public void testPryectoDAO() {
+      
+   MockProyectoDAO mockProyecto = new MockProyectoDAO();
+   assertTrue(mockProyecto.getById(1) != null);
+   assertEquals(mockProyecto.guardar(proyecto),1);
+   Collection<Miembro> miembros = this.proyecto.getMiembros();
+   assertEquals(miembros.size(),2);
+      
+   }	    
 }

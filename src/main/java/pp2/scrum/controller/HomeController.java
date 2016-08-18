@@ -7,7 +7,6 @@ import java.util.ArrayList;
 import pp2.scrum.command.Comando;
 import pp2.scrum.dao.ProyectoDAO;
 import pp2.scrum.model.Proyecto;
-import pp2.scrum.model.ProyectoNuevo;
 import pp2.scrum.model.UserStory;
 import pp2.scrum.view.BacklogNuevoView;
 import pp2.scrum.view.ProyectoNuevoView;

@@ -12,7 +12,7 @@ public class GestorVinculos {
 		if(pathCommits==null)
 			pathCommits=defaultPath;
 		Lector lector= new Lector();
-		String datos=lector.leerArchivo(path);
+		String datos=lector.leerArchivo(pathCommits);
 		InterpreteCommits interprete=new InterpreteCommits(datos);
         ArrayList<Commit> commits=interprete.getCommits();
         VinculadorCommitsTarea viculador=new VinculadorCommitsTarea(gestor,commits); 

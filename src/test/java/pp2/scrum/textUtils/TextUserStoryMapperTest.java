@@ -84,4 +84,17 @@ public class TextUserStoryMapperTest extends TestCase {
 			fail("no se genero la excepcion cuando el path corresponde a un directorio");
 		}
 	}
+	
+	public void testMapperDirError() {
+      f.delete();
+      f.mkdir();
+      
+      try {
+         UserStoryMapper usMapper = new TextUserStoryMapper("historiasTest2.dat");
+      } catch (RuntimeException e) {
+         
+      } catch (IOException e) {
+         fail("no se genero la excepcion cuando el path corresponde a un directorio");
+      }
+   }
 }

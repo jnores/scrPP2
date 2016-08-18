@@ -52,5 +52,11 @@ public class LectorTest extends TestCase{
 		assertTrue(RegexFacilities.existeEnElTexto("[cC][oO][Mm][Mm][iI][tT]:*\\s*"+idCommit1, texto));
 		assertTrue(RegexFacilities.existeEnElTexto("[cC][oO][Mm][Mm][iI][tT]:*\\s*"+idCommit2, texto));
 	}
+	
+	public void  testError() {
+	   Lector lector=new Lector();
+      texto=lector.leerArchivo("");
+   }
+
 
 }

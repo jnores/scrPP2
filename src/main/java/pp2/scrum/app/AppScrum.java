@@ -91,8 +91,8 @@ public class AppScrum {
             proyecto = seleccionarProyecto(proyectosGuardados, nombreProyecto);
 
         if (proyecto == null) {
-            Logger.log("Creando nuevo proyecto");
-            proyecto = crearNuevoProyecto(proyectoDAO);
+            //Logger.log("Creando nuevo proyecto");
+            //proyecto = crearNuevoProyecto(proyectoDAO);
         }
 
         return proyecto;
@@ -125,18 +125,18 @@ public class AppScrum {
                 }
                 possibilities[id++] = p.getNombre();
             }
-            if (!proyectoSeleccionado) {
-                Object option = JOptionPane.showInputDialog(null,
-                        "Por favor Seleccione un proyeco para continuar:",
-                        "Proyectos...", JOptionPane.PLAIN_MESSAGE, questionIcon,
-                        possibilities, "Proyectos");
-                if (option != null) {
-                    for (id = 0; id < possibilities.length; id++)
-                        if (possibilities[id].equals(option))
-                            break;
-                    idProyecto = id;
-                }
-            }
+//            if (!proyectoSeleccionado) {
+//                Object option = JOptionPane.showInputDialog(null,
+//                        "Por favor Seleccione un proyeco para continuar:",
+//                        "Proyectos...", JOptionPane.PLAIN_MESSAGE, questionIcon,
+//                        possibilities, "Proyectos");
+//                if (option != null) {
+//                    for (id = 0; id < possibilities.length; id++)
+//                        if (possibilities[id].equals(option))
+//                            break;
+//                    idProyecto = id;
+//                }
+           // }
         }
 
         Logger.log("ID proyecto: " + idProyecto);
@@ -152,12 +152,12 @@ public class AppScrum {
      * @param proyectoDAO
      * @return Proyecto nuevo.
      */
-    private Proyecto crearNuevoProyecto(ProyectoDAO proyectoDAO) {
-        Logger.log("Creando proyecto Nuevo");
-        // TODO Esto deberia lanzar un asistente para crear un nuevo proyecto y
-        // guardarlo antes de retornarlo.
-        return new Proyecto(37, "Proyecto Nuevo");
-    }
+//    private Proyecto crearNuevoProyecto(ProyectoDAO proyectoDAO) {
+//        Logger.log("Creando proyecto Nuevo");
+//        // TODO Esto deberia lanzar un asistente para crear un nuevo proyecto y
+//        // guardarlo antes de retornarlo.
+//        return new Proyecto(37, "Proyecto Nuevo");
+//    }
 
     /**
      * Consulta que proyecto iniciar y ejecuta la aplicacion con el mismo.
@@ -188,9 +188,9 @@ public class AppScrum {
                     filtrado, proyecto);
             view.setVisible(true);
         } else {
-            JOptionPane.showMessageDialog(null,
-                    "No se Seleccionó ningun proyecto", "Finalizando programa",
-                    JOptionPane.INFORMATION_MESSAGE);
+//            JOptionPane.showMessageDialog(null,
+//                    "No se Seleccionó ningun proyecto", "Finalizando programa",
+//                    JOptionPane.INFORMATION_MESSAGE);
         }
     }
 

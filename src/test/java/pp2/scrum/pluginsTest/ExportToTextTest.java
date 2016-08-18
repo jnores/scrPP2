@@ -52,19 +52,15 @@ public class ExportToTextTest extends TestCase {
 		if (f.exists())
 		    f.delete();
 		List<UserStoryHelper> lst = new ArrayList<>();
+		try {
+		   exporter.export(path, lst);
+		}
+		catch(Exception e){
+		   assertEquals(e.getMessage(),"No existen historias de usuario para exportar.");
+		}
 		lst.add(userStoryHelper);
 		exporter.export(path, lst);
-		
-					
-		
-//		AltaUserStoryView altv = new AltaUserStoryView(null);
-//		FilterStoriesView v = new FilterStoriesView(null); 
-//		ProyectoNuevoView nuev = new ProyectoNuevoView(null);
-//		BacklogNuevoView bcklg = new BacklogNuevoView(null);
-//		Avance a = new Avance(null);
-//		DataComposite dt = new DataComposite(null);
-//		Estimado e = new Estimado(null);
-	
+			
 	}
 	
 }

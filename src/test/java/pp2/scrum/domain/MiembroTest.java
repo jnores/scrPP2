@@ -34,9 +34,22 @@ public class MiembroTest extends TestCase {
 	 * Verifico que se asignen bien los atributos con el constructor completo
 	 */
 	public void testMiembro() {
+	   String a="";
 		Miembro miembro = new Miembro("Victoria","Desarrolladora");
 		assertTrue(miembro.getNombre().equals("Victoria"));
 		assertTrue(miembro.getPerfil().equals("Desarrolladora"));
+		assertFalse(miembro.equals(null));
+		assertFalse(miembro.equals(a));
+		miembro.setNombre(null);
+		assertFalse(miembro.equals(new Miembro("Pepe")));
+		miembro.setNombre("Marcelo");
+      assertFalse(miembro.equals(new Miembro("Pepe")));
+      miembro.setPerfil(null);
+      miembro.setNombre("Pepe");
+      assertFalse(miembro.equals(new Miembro("Pepe","P1")));
+      miembro.setPerfil("P2");
+      assertFalse(miembro.equals(new Miembro("Pepe","P1")));
+      assertTrue(miembro.equals(miembro));
 	}
 	
 	/**
@@ -57,6 +70,7 @@ public class MiembroTest extends TestCase {
 		miembro.setNombre("Ivo");
 		assertFalse(miembro.getNombre().equals("Victoria"));
 		assertTrue(miembro.getNombre().equals("Ivo"));
+		assertTrue(miembro.toString().equals("Ivo"));
 		miembro.setPerfil("Diseñador");
 		assertFalse(miembro.getPerfil().equals("Desarrollador"));
 		assertTrue(miembro.getPerfil().equals("Diseñador"));
