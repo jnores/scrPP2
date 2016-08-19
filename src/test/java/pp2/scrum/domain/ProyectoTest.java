@@ -1,9 +1,14 @@
 package pp2.scrum.domain;
 
 import java.io.FileInputStream;
+import java.util.ArrayList;
 import java.util.Collection;
+import java.util.Date;
+import java.util.HashSet;
+import java.util.List;
 import java.util.Properties;
 import java.util.Set;
+import java.util.TreeSet;
 
 import junit.framework.Test;
 import junit.framework.TestCase;
@@ -16,6 +21,7 @@ import pp2.scrum.controller.HomeController;
 import pp2.scrum.controller.UserStoryHelper;
 import pp2.scrum.model.Miembro;
 import pp2.scrum.model.Proyecto;
+import pp2.scrum.model.Sprint;
 import pp2.scrum.model.UserStory;
 
 
@@ -111,5 +117,23 @@ public class ProyectoTest extends TestCase {
    Collection<Miembro> miembros = this.proyecto.getMiembros();
    assertEquals(miembros.size(),2);
       
-   }	    
+   }	
+	
+	public void testPryectoEntidad() {
+      
+	   Set<Miembro> miembros = new HashSet<>();
+	   List<Sprint> iteraciones = new ArrayList<>();
+	   List<UserStory> historias = new ArrayList<>();
+	   miembros.add(miembro1);
+	   historias.add(userStory1);
+	   historias.add(userStory2);
+	   iteraciones.add(new Sprint(1, new Date(), 14, historias));
+	   Proyecto proyecto = new Proyecto(0, "P1",new ArrayList<UserStory>(),miembros,iteraciones,null);
+	   
+	   assertEquals(proyecto.getAllUserStories().size(),2);
+	   assertTrue(proyecto.getMiembroPorNombre("Victoria") != null);
+	   proyecto.getUserStoryPorId(-1);
+	   proyecto.getResponsable(userStory1);
+	   proyecto.setNombre("n1");
+	   }  
 }
