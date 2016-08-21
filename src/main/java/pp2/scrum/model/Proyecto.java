@@ -191,9 +191,7 @@ public class Proyecto {
     public Sprint iteracionActual() throws RuntimeException {
         Date hoy = new Date();
         for (Sprint sprint : iteraciones) {
-            if (hoy.after(sprint.getfechaInicio())
-                    && hoy.before(Calendario.agregarDias(
-                            sprint.getfechaInicio(), sprint.getDuracion()))) {
+            if (hoy.after(sprint.getfechaInicio()) && hoy.before(Calendario.agregarDias(sprint.getfechaInicio(), sprint.getDuracion()))) {
                 return sprint;
             }
         }

@@ -62,7 +62,22 @@ public class UserStoryPaginadoControllerTest extends TestCase
       Paginacion<UserStory> paginacion = new Paginacion<>(1, 5,new ArrayList<UserStory>());
       listaDefault = controller.listarUserStories(paginacion);
       paginacion.paginacionSiguiente();
-      assertEquals(controller.getPaginacionActual().getPagina(), 2);
+      assertEquals(controller.getPaginacionActual().getPagina(), 2);     
+      controller.getPaginacionActual().paginacionAnterior();
+      assertEquals(controller.getPaginacionActual().getPagina(), 1);
+      
+      
+      List<UserStory> historias = new ArrayList<>();
+      historias.add(new UserStory("t1", "d1"));
+      historias.add(new UserStory("t2", "d2"));
+      historias.add(new UserStory("t3", "d3"));
+      controller.actualizarPaginacion(historias);
+      controller.obtenerPaginacionActual();
+      controller.getPaginacionActual().listarPaginacion();
+      controller.getPaginacionActual().paginacionSiguiente();
+      controller.getPaginacionActual().paginacionAnterior();
+      
+      
       
    }
    

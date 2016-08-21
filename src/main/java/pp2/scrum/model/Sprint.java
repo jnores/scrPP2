@@ -27,11 +27,7 @@ public class Sprint {
 		
 		Estado estadoAux = Estado.getDefault();
 		
-		pizarraEstados.put( estadoAux, new ArrayList<UserStory>() );
-		while ( estadoAux.hasSiguiente() ) {
-			estadoAux = estadoAux.avanzar();
-			pizarraEstados.put( estadoAux, new ArrayList<UserStory>() );
-		}
+		pizarraEstados.put( estadoAux, historias );
 		
 	}
 	

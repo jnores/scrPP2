@@ -4,25 +4,32 @@ import java.io.FileInputStream;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Date;
+import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Properties;
 import java.util.Set;
 import java.util.TreeSet;
 
+import org.jfree.data.xy.XYSeriesCollection;
+
 import junit.framework.Test;
 import junit.framework.TestCase;
 import junit.framework.TestSuite;
 import pp2.mock.scrum.dao.MockProyectoDAO;
 import pp2.scrum.app.AppScrum;
+import pp2.scrum.burndownChart.DataComponent;
+import pp2.scrum.burndownChart.DataComposite;
 import pp2.scrum.command.MostrarProyectoNuevo;
 import pp2.scrum.controller.ComponentFactory;
 import pp2.scrum.controller.HomeController;
 import pp2.scrum.controller.UserStoryHelper;
+import pp2.scrum.model.Estado;
 import pp2.scrum.model.Miembro;
 import pp2.scrum.model.Proyecto;
 import pp2.scrum.model.Sprint;
 import pp2.scrum.model.UserStory;
+import pp2.scrum.utils.Calendario;
 
 
 public class ProyectoTest extends TestCase {
@@ -125,15 +132,25 @@ public class ProyectoTest extends TestCase {
 	   List<Sprint> iteraciones = new ArrayList<>();
 	   List<UserStory> historias = new ArrayList<>();
 	   miembros.add(miembro1);
+	   userStory1.setId(2);
 	   historias.add(userStory1);
 	   historias.add(userStory2);
-	   iteraciones.add(new Sprint(1, new Date(), 14, historias));
-	   Proyecto proyecto = new Proyecto(0, "P1",new ArrayList<UserStory>(),miembros,iteraciones,null);
+	   Date manana = Calendario.agregarDias(new Date() , -1);
+	   iteraciones.add(new Sprint(1, manana, 14, historias));
+	   Proyecto proyecto = new Proyecto(0, "P1",historias,miembros,iteraciones,new HashMap<UserStory, Miembro>());
 	   
-	   assertEquals(proyecto.getAllUserStories().size(),2);
+	   assertEquals(proyecto.getAllUserStories().size(),4);
 	   assertTrue(proyecto.getMiembroPorNombre("Victoria") != null);
 	   proyecto.getUserStoryPorId(-1);
+	   proyecto.asignarUserStory(userStory1, miembro1);
 	   proyecto.getResponsable(userStory1);
 	   proyecto.setNombre("n1");
+	   assertEquals(proyecto.getSiguienteStoryID(),3);
+	   assertTrue(proyecto.iteracionActual()!= null);
+	   iteraciones.get(0).stateStory(userStory1);
+	   
+	   DataComposite compo = new DataComposite(iteraciones.get(0));
+	   compo.addData(compo);	   
+	   
 	   }  
 }

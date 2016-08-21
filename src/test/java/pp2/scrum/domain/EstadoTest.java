@@ -44,6 +44,7 @@ public class EstadoTest extends TestCase {
 		
 		Estado estado = Estado.ToDo;
 		assertEquals(estado,Estado.ToDo);
+		assertEquals(estado.hasSiguiente(),true);
 		estado = estado.avanzar();
 		assertEquals(estado,Estado.Doing);
 		estado = estado.avanzar();
