@@ -36,7 +36,7 @@ public class AltaTareaView extends JDialog{
 		organizar();
 		agregarAcciones();
 		
-		setVisible(true);
+		//setVisible(true);
 	}
 	
 	private void iniciar(){

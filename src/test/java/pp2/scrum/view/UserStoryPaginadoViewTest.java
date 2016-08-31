@@ -9,6 +9,7 @@ import junit.framework.TestSuite;
 import mockit.MockUp;
 import pp2.scrum.controller.MailGateway;
 import pp2.scrum.controller.UserStoryPaginadoController;
+import pp2.scrum.model.Tarea;
 import pp2.scrum.model.UserStory;
 import pp2.scrum.view.UserStoryPaginadoView;
 
@@ -39,6 +40,14 @@ public class UserStoryPaginadoViewTest extends TestCase
    {
       UserStoryPaginadoView vista = new UserStoryPaginadoView(controller,model);
       assertTrue( true );
+      vista.update(null,new Tarea());
+      vista.agregarHistoria(new UserStory("user1", "detalle1"));
+      vista.agregarHistoria(new UserStory("user2", "detalle2"));
+      vista.agregarHistoria(new UserStory("user3", "detalle3"));
+      vista.agregarHistoria(new UserStory("user4", "detalle4"));
+      vista.agregarHistoria(new UserStory("user5", "detalle5"));
+      vista.agregarHistoria(new UserStory("user6", "detalle6"));
+      vista.limpiarLista();
    }
 
 }

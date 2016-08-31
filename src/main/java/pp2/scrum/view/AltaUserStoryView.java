@@ -338,11 +338,13 @@ public class AltaUserStoryView extends JPanel{
 			public void actionPerformed(ActionEvent e){
 				if(altaTarea==null){
 					altaTarea=new AltaTareaView();
+					altaTarea.setVisible(true);
 				}else{
 					if(altaTarea.isDisplayable()){
 						altaTarea.setVisible(true);
 					}else{
 						altaTarea=new AltaTareaView();
+						altaTarea.setVisible(true);
 					}
 				}
 			}	

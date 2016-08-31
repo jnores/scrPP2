@@ -234,8 +234,6 @@ public class HomeView  extends JFrame implements ActionListener
         //burndownChartViewpanel.setBorder(new LineBorder(new Color(0, 0, 0)));
         getContentPane().add(filtradoHistorias,BorderLayout.CENTER);
     }
-
-    //Roger espero que no haya agregado mal esta ventana
     private void MostrarUserStoryUpload()
     {
         getContentPane().remove(1);

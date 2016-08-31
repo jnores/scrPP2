@@ -252,6 +252,7 @@ public class UserStoryPaginadoView extends JPanel implements Observer
 	public void agregarHistoria(UserStory e)
    {
 	   Stories.add(e);
+	   Controller.actualizarPaginacion(Stories);
 	   setearVista();
    }
 	
