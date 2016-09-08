@@ -14,6 +14,7 @@ import pp2.scrum.controller.UserStoryController;
 import pp2.scrum.model.CriterioAceptacion;
 import pp2.scrum.model.Tarea;
 import pp2.scrum.model.UserStory;
+import pp2.scrum.utils.Logger;
 
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
@@ -363,6 +364,7 @@ public class AltaUserStoryView extends JPanel{
 			}
 			historia = new UserStory(titulo, detalle, puntos, criterio, tareas);
 			padre.addHistoria(historia);
+			Logger.log("Nueva Historia creada: "+ titulo);
 			limpiarVista();
 			if(altaTarea != null && altaTarea.isActive()){
 				altaTarea.dispose();
