@@ -13,7 +13,9 @@ import jxl.Workbook;
 import jxl.read.biff.BiffException;
 import pp2.scrum.exporter.Exporter;
 import pp2.scrum.exporter.PluginFactory;
+import pp2.scrum.model.CriterioAceptacion;
 import pp2.scrum.model.Miembro;
+import pp2.scrum.model.Tarea;
 import pp2.scrum.model.UserStory;
 
 
@@ -41,7 +43,9 @@ extends TestCase
 	
 	public void  setUp()
 	{
-	   this.userStory = new UserStory("Titulo1", "Detalle1");
+	   List<Tarea> tareas = new ArrayList<>();
+	   tareas.add(new Tarea("Tarea1"));
+	   this.userStory = new UserStory("Titulo1", "Detalle1",10,new CriterioAceptacion("Criterio 1"),tareas);
 	}
 	
 	/**
@@ -119,7 +123,7 @@ extends TestCase
 	    //Detalle de user story
 	    assertTrue(sheet.getCell(0, 1).getContents().equals(this.userStory.getId()+""));
 	    assertTrue(sheet.getCell(1, 1).getContents().equals(this.userStory.getTitulo()));
-	    //assertTrue(sheet.getCell(2, 1).getContents().equals(this.userStory.getEstado().name()));
+	    assertTrue(sheet.getCell(2, 1).getContents().equals(userStoryHelper.getEstado().name()));
 	    assertTrue(sheet.getCell(3, 1).getContents().equals(m.getNombre()));
 	    assertTrue(sheet.getCell(4, 1).getContents().equals(this.userStory.getStoryPoints()+""));
 	    
