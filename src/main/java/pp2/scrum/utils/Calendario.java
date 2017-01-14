@@ -3,6 +3,8 @@
  */
 package pp2.scrum.utils;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.Date;
 
 /**
@@ -11,7 +13,8 @@ import java.util.Date;
  */
 public class Calendario {
 
-	public static final long DAY = 86400000;
+    public static final long DAY = 86400000;
+    private static SimpleDateFormat dateFormat = new SimpleDateFormat("mm/dd/yyyy");
 
     public static Date getFechaIntermedia(Date inicio, Date fin) {
 		long diferencia= fin.getTime()-inicio.getTime();
@@ -29,5 +32,10 @@ public class Calendario {
             long diasEnMili= dias * DAY ;
             return new Date(inicio.getTime()+diasEnMili); 
 	}
+
+    public static Date getDate(String string) throws ParseException {
+        
+        return dateFormat.parse(string);
+    }
 
 }

@@ -4,6 +4,7 @@ import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.security.InvalidParameterException;
+import java.text.ParseException;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -22,16 +23,16 @@ import pp2.scrum.dao.ProyectoDAO;
 import pp2.scrum.model.Proyecto;
 import pp2.scrum.model.Sprint;
 import pp2.scrum.model.UserStory;
+import pp2.scrum.utils.Calendario;
 import pp2.scrum.utils.Logger;
 import pp2.scrum.view.BurndownChartView;
 import pp2.scrum.view.HomeView;
-import pp2.scrum.view.UserStoryListView;
 import pp2.scrum.view.UserStoryOrderableView;
 import pp2.scrum.view.UserStoryPaginadoView;
 
 /**
  * Esta clase representa la aplicacion, se encarga de iniciar los componentes
- * necesarios y lanzar la palicacion.
+ * necesarios e instanciar la palicacion.
  * 
  * @author yoshknight
  * 
@@ -125,25 +126,25 @@ public class AppScrum {
                 }
                 possibilities[id++] = p.getNombre();
             }
-//            if (!proyectoSeleccionado) {
-//                Object option = JOptionPane.showInputDialog(null,
-//                        "Por favor Seleccione un proyeco para continuar:",
-//                        "Proyectos...", JOptionPane.PLAIN_MESSAGE, questionIcon,
-//                        possibilities, "Proyectos");
-//                if (option != null) {
-//                    for (id = 0; id < possibilities.length; id++)
-//                        if (possibilities[id].equals(option))
-//                            break;
-//                    idProyecto = id;
-//                }
-           // }
+            if (!proyectoSeleccionado) {
+                Object option = JOptionPane.showInputDialog(null,
+                        "Por favor Seleccione un proyeco para continuar:",
+                        "Proyectos...", JOptionPane.PLAIN_MESSAGE, questionIcon,
+                        possibilities, "Proyectos");
+                if (option != null) {
+                    for (id = 0; id < possibilities.length; id++)
+                        if (possibilities[id].equals(option))
+                            break;
+                    idProyecto = id;
+                }
+            }
         }
 
         Logger.log("ID proyecto: " + idProyecto);
 
-        if (idProyecto != null) {
+        if (idProyecto != null) 
             proyecto = proyectos.get(idProyecto);
-        }
+
         return proyecto;
     }
 
@@ -165,6 +166,7 @@ public class AppScrum {
      * @throws InstantiationException
      * 
      */
+    @SuppressWarnings("deprecation")
     private void abrirProyecto(Proyecto proyecto)
             throws InstantiationException {
         if (proyecto != null) {
@@ -172,17 +174,26 @@ public class AppScrum {
             // TODO Aca solo se deberia crear el home controller y home view y
             // pasar factory y proyecto.
             HomeController controller = new HomeController(proyecto, factory);
+            
+            Date inicioSprint;
+            try {
+                inicioSprint = Calendario.getDate("03/10/2016");
+            }
+            catch (ParseException e) {
+                inicioSprint = new Date("03/10/2016");
+            }
 
             BurndownChartView chartView = new BurndownChartView(
                     new BurndownChartController(
-                            new Sprint(1, new Date("03/10/2016"), 21,
+                            new Sprint(1, inicioSprint, 21,
                                     new ArrayList<UserStory>())));
             UserStoryPaginadoView listadoPaginado = new UserStoryPaginadoView(
                     new UserStoryPaginadoController(),
                     new ArrayList<UserStory>());
-            UserStoryOrderableView filtrado = new UserStoryOrderableView(
-                    new UserStoryListView(
-                            controller.getProyectoController().getBacklog()));
+            UserStoryOrderableView filtrado = null;
+//            UserStoryOrderableView filtrado = new UserStoryOrderableView(
+//                    new UserStoryListView(
+//                            controller.getProyectoController().getBacklog()));
 
             HomeView view = new HomeView(controller, chartView, listadoPaginado,
                     filtrado, proyecto);
@@ -190,7 +201,7 @@ public class AppScrum {
         } else {
 //            JOptionPane.showMessageDialog(null,
 //                    "No se Seleccionó ningun proyecto", "Finalizando programa",
-//                    JOptionPane.INFORMATION_MESSAGE);
+//                           JOptionPane.INFORMATION_MESSAGE);
         }
     }
 

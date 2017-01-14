@@ -60,7 +60,7 @@ public class ComponentFactory {
 					Constructor constructor = Class.forName(className).getConstructor(Properties.class);
 					objTemp = constructor.newInstance(properties);
 				} catch (Exception e) {
-					Logger.log("No tiene constructor con parametro Properties");
+					Logger.log("El componente '"+componente+"' - No tiene constructor con parametro Properties");
 				}
 				
 				if (objTemp == null)

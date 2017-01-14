@@ -16,7 +16,7 @@ import pp2.scrum.model.UserStory;
 
 public class UserStoryTest extends TestCase {
 
-	UserStoryHelper story;
+	UserStory story;
 	CriterioAceptacion criterio;
 	Tarea tarea1,tarea2;
 
@@ -39,11 +39,14 @@ public class UserStoryTest extends TestCase {
 
 	public void  setUp() 
 	{
-	   criterio = new CriterioAceptacion("criterio1");
-		story = new UserStoryHelper(new UserStory("Titulo1", "Detalle1", 40, null, null),new Miembro("Autor1"));
-		criterio = new CriterioAceptacion("criterio1");
-		tarea1 = new Tarea();
-		tarea2 = new Tarea();
+	    criterio = new CriterioAceptacion("criterio1");
+	    tarea1 = new Tarea();
+	    tarea2 = new Tarea();
+	    List<Tarea> tareas = new ArrayList<Tarea>();
+	    tareas.add(tarea1);
+	    tareas.add(tarea2);
+	        
+	    story = new UserStory("Titulo1", "Detalle1", 40, criterio, tareas);
 	}
 
 	/**
@@ -69,81 +72,27 @@ public class UserStoryTest extends TestCase {
 		criterio.setDescripcion("d2");
 		criterio.setId(1);
 
-		assertTrue(story.getAutor().equals("Autor1"));
 		assertTrue(story.getTitulo().equals("Titulo1"));
 		assertTrue(story.getDetalle().equals("Detalle1"));
-		assertTrue(story.getResponsable().equals("Autor1"));
 		assertTrue(story.getStoryPoints() == 40);
-		assertTrue(story.getIteracion() == 0);
 		//      assertTrue(story.getEstado().equals(Estado.ToDo));
 		assertTrue(story.getTareas().size() == 0);
 
-		story.setAutor("au1");
-		story.setCriterios(criterio);
 		story.setDetalle("d1");
-		story.setEstado(Estado.Doing);
-		story.setHorasEstimadas(11);
-		story.setIteracion(2);
-		story.setResponsable("r1");    
-		story.setTareas(tareas);
-		story.setTitulo("t1");
-		story.setStoryPoints(11);
-
-	}
-
-	public void testStoryNoTerminada()
-	{
-	   String criterios = "";
-		List<Tarea> tareas = new ArrayList<Tarea>();
-		tareas.add(tarea1);
-		story.setTareas(tareas);
-		story.setCriterios(criterio);
-		assertTrue(story.getEstado().equals(Estado.ToDo));
-		assertTrue(!story.estaTerminada());
 
 	}
 
 	public void testStoryTerminadaPorFinalizacionDeTareas()
 	{
-	   String criterios = "";
-		List<Tarea> tareas = new ArrayList<Tarea>();
-		tareas.add(tarea1);
-		tareas.add(tarea2);
-		story.setTareas(tareas);
-		story.setCriterios(criterio);
-		assertTrue(story.getEstado().equals(Estado.ToDo));
-		assertTrue(!story.estaTerminada());
-		assertTrue(story.getEstado().equals(Estado.ToDo));
+		assertFalse(story.estaTerminada());
+	
 		tarea1.avanzarEstado();
 		tarea1.avanzarEstado();
-		assertTrue(!story.estaTerminada());
-		assertEquals(story.getEstado(), Estado.ToDo);
+		assertFalse(story.estaTerminada());
+		
 		tarea2.avanzarEstado();
 		tarea2.avanzarEstado();
 		assertTrue(story.estaTerminada());
-		assertEquals(story.getEstado(), Estado.Done);
-
-	}
-
-	public void testStoryTerminadaPorFinalizacionDeTareasCaso2()
-	{
-	   String criterios = "";
-		List<Tarea> tareas = new ArrayList<Tarea>();
-		tareas.add(tarea1);
-		tareas.add(tarea2);
-		story.setTareas(tareas);
-		story.setCriterios(criterio);
-		assertTrue(story.getEstado().equals(Estado.ToDo));
-		assertTrue(!story.estaTerminada());
-		assertTrue(story.getEstado().equals(Estado.ToDo));
-		tarea2.avanzarEstado();
-		tarea2.avanzarEstado();
-		assertTrue(!story.estaTerminada());
-		assertEquals(story.getEstado(), Estado.ToDo);
-		tarea1.avanzarEstado();
-		tarea1.avanzarEstado();
-		assertTrue(story.estaTerminada());
-		assertEquals(story.getEstado(), Estado.Done);
 
 	}
 

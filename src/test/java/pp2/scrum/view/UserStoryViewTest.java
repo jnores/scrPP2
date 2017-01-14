@@ -6,11 +6,10 @@ import java.util.List;
 import junit.framework.Test;
 import junit.framework.TestCase;
 import junit.framework.TestSuite;
-import mockit.MockUp;
-import pp2.scrum.app.AppScrum;
 import pp2.scrum.controller.MailGateway;
 import pp2.scrum.controller.UserStoryHelper;
 import pp2.scrum.controller.UserStoryPaginadoController;
+import pp2.scrum.model.Estado;
 import pp2.scrum.model.Tarea;
 import pp2.scrum.model.UserStory;
 import pp2.scrum.utils.EnviadorMail;
@@ -44,7 +43,7 @@ public class UserStoryViewTest extends TestCase
 		historias.add(story);
 
 		mailGateway = new EnviadorMail(4444,"127.0.0.1", "pp2mailsender", "mail", 0);
-		vista = new UserStoryView(new UserStoryHelper(new UserStory("user1", "detalle1")));
+		vista = new UserStoryView(new UserStoryHelper(new UserStory("user1", "detalle1"),null,Estado.getDefault()));
 	}
 
 	public void testEnviarMailStub() 
@@ -98,7 +97,7 @@ public class UserStoryViewTest extends TestCase
 		controller = new UserStoryPaginadoController();
 		//setear controller
 		controller.actualizarPaginacion(historias);
-		observadorhistoria = new ObservadorDeHistoria(controller.getModel(),"julian.dirisio@gmail.com",mailGateway);          
+		observadorhistoria = new ObservadorDeHistoria(controller.getModel(),"julian.dirisio@gmail.com",mailGateway);
 		//Enviar Mail
 		controller.finalizarStory(controller.getModel().get(0));
 	}

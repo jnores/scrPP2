@@ -49,18 +49,10 @@ public class UserStoryHelperComparatorTest extends TestCase {
 		miembro3 = new Miembro("Jualian");
 		miembro4 = new Miembro("Nores");
 		
-		userStory1 =  new UserStoryHelper( new UserStory("Como Recepcionista ...", "Detalle1"),miembro3);
-		userStory1.setId(1);
-		userStory1.setEstado(Estado.Done);
-		userStory2 =  new UserStoryHelper( new UserStory("Como Administrador ...", "Detalle2"),miembro1);
-		userStory2.setId(2);
-		userStory2.setEstado(Estado.Doing);
-		userStory3 = new UserStoryHelper(  new UserStory("Como Gerente ...", "Detalle3"),miembro2);
-		userStory3.setId(3);
-		userStory3.setEstado(Estado.ToDo);
-		userStory4 = new UserStoryHelper(  new UserStory("Como Vendedor ...", "Detalle4"),miembro4);
-		userStory4.setId(4);
-		userStory4.setEstado(Estado.ToDo);
+		userStory1 =  new UserStoryHelper( new UserStory(1,"Como Recepcionista ...", "Detalle1"),miembro3,Estado.Done);
+		userStory2 =  new UserStoryHelper( new UserStory(2,"Como Administrador ...", "Detalle2"),miembro1,Estado.Doing);		
+		userStory3 = new UserStoryHelper(  new UserStory(3,"Como Gerente ...", "Detalle3"),miembro2, Estado.ToDo);
+		userStory4 = new UserStoryHelper(  new UserStory(4,"Como Vendedor ...", "Detalle4"),miembro4, Estado.ToDo);
 		
 		stories.add(userStory3);
 		stories.add(userStory2);

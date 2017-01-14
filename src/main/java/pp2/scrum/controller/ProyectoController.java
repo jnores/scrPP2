@@ -36,21 +36,22 @@ public class ProyectoController extends Controller
      * Genera una Lista de UserStories
      * @return List<UserStory> totalidad de userstories del proyecto.
      */
-    public List<UserStoryHelper> getBacklog() {
-        List<UserStory> userStories = proyecto.getBacklog();
-        ArrayList<UserStoryHelper> userStoriesHelpers = new ArrayList<UserStoryHelper>();
-        for(UserStory userStory: userStories) {
-            userStoriesHelpers.add( new UserStoryHelper(userStory,proyecto.getResponsable(userStory) ) );
-        }
-
-        return userStoriesHelpers;
+    public List<UserStory> getBacklog() {
+        return proyecto.getBacklog();
+//        List<UserStory> userStories = proyecto.getBacklog();
+//        ArrayList<UserStoryHelper> userStoriesHelpers = new ArrayList<UserStoryHelper>();
+//        for(UserStory userStory: userStories) {
+//            userStoriesHelpers.add( new UserStoryHelper(userStory,proyecto.getResponsable(userStory) ) );
+//        }
+//
+//        return userStoriesHelpers;
     }
 
-    public UserStoryHelper getUserStory(int id) {
-        UserStory us= proyecto.getUserStoryPorId(id);
-        UserStoryHelper ush = new UserStoryHelper(us,proyecto.getResponsable(us));
-        return ush;
-    }
+//    public UserStoryHelper getUserStory(int id) {
+//        UserStory us= proyecto.getUserStoryPorId(id);
+//        UserStoryHelper ush = new UserStoryHelper(us,proyecto.getResponsable(us));
+//        return ush;
+//    }
 
     public void agregarUserStory(UserStory us) {
         if (us==null)

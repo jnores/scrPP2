@@ -15,19 +15,11 @@ public class UserStoryHelper
 	private int iteracion,horasEstimadas;
 	private Estado estado;
 	
-	@SuppressWarnings("unused")
-	private UserStoryHelper(){ }
 	
-	public UserStoryHelper(UserStory us) {
-		this.userStory = us;
-		this.miembro   = null;
-		estado = Estado.getDefault();
-	}
-	
-	public UserStoryHelper(UserStory us,Miembro miembro) {
+	public UserStoryHelper(UserStory us,Miembro miembro,Estado estado) {
 		this.userStory = us;
 		this.miembro   = miembro;
-		estado = Estado.getDefault();
+		this.estado    = estado;
 	}
 
 	public long getId() {
@@ -133,10 +125,4 @@ public class UserStoryHelper
 	public int getHorasEstimadas() {
 		return horasEstimadas;
 	}
-
-	public void setId(int i) {
-		userStory.setId(i);;	
-	}
-	
-	
 }

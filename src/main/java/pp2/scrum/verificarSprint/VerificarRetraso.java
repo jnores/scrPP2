@@ -7,7 +7,6 @@ import java.util.Date;
 import java.util.List;
 
 import pp2.scrum.controller.EventBus;
-import pp2.scrum.controller.UserStoryHelper;
 import pp2.scrum.model.Estado;
 import pp2.scrum.model.Sprint;
 import pp2.scrum.model.UserStory;

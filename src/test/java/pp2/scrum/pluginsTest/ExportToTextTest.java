@@ -7,12 +7,10 @@ import java.util.List;
 import junit.framework.Test;
 import junit.framework.TestCase;
 import junit.framework.TestSuite;
-import pp2.scrum.controller.UserStoryController;
 import pp2.scrum.controller.UserStoryHelper;
-import pp2.scrum.model.Proyecto;
+import pp2.scrum.model.Estado;
 import pp2.scrum.model.UserStory;
 import pp2.scrum.plugins.ExportToText;
-import pp2.scrum.view.AltaUserStoryView;
 
 
 public class ExportToTextTest extends TestCase {
@@ -33,7 +31,7 @@ public class ExportToTextTest extends TestCase {
 	    return new TestSuite( ExportToTextTest.class );
 	}
 	
-	public void  setUp() {
+	public void  setUp() { 
 		userStory = new UserStory("Titulo1", "Detalle1");
 	}
 	
@@ -41,7 +39,7 @@ public class ExportToTextTest extends TestCase {
 	 * Verifico el texto logueado
 	 */
 	public void testExportToText() {
-		UserStoryHelper userStoryHelper = new UserStoryHelper(this.userStory);
+		UserStoryHelper userStoryHelper = new UserStoryHelper(this.userStory,null,Estado.getDefault());
 		
 		ExportToText exporter = new ExportToText();
 		

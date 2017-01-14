@@ -14,6 +14,7 @@ import jxl.read.biff.BiffException;
 import pp2.scrum.exporter.Exporter;
 import pp2.scrum.exporter.PluginFactory;
 import pp2.scrum.model.CriterioAceptacion;
+import pp2.scrum.model.Estado;
 import pp2.scrum.model.Miembro;
 import pp2.scrum.model.Tarea;
 import pp2.scrum.model.UserStory;
@@ -23,6 +24,7 @@ public class UserStoryHelperTest
 extends TestCase
 {
 	private UserStory userStory;
+	private Miembro miembro;
 	/**
 	 * Create the test case
 	 *
@@ -46,6 +48,8 @@ extends TestCase
 	   List<Tarea> tareas = new ArrayList<>();
 	   tareas.add(new Tarea("Tarea1"));
 	   this.userStory = new UserStory("Titulo1", "Detalle1",10,new CriterioAceptacion("Criterio 1"),tareas);
+           miembro = new Miembro("José");
+
 	}
 	
 	/**
@@ -53,7 +57,7 @@ extends TestCase
 	 */
 	public void testUserStoryHelper()
 	{
-		UserStoryHelper userStoryHelper = new UserStoryHelper(this.userStory);
+		UserStoryHelper userStoryHelper = new UserStoryHelper(this.userStory, this.miembro,Estado.getDefault());
 		assertTrue(userStoryHelper.getTitulo().equals(this.userStory.getTitulo()));
 		assertTrue(userStoryHelper.getDetalle().equals(this.userStory.getDetalle()));
 		//assertTrue(userStoryHelper.getAutor().equals(this.userStory.getAutor()));
@@ -66,8 +70,7 @@ extends TestCase
 	 */
 	public void testUserStoryHelperUpdateStory() throws BiffException, IOException
 	{
-		Miembro m = new Miembro("José");
-		UserStoryHelper userStoryHelper = new UserStoryHelper(this.userStory,m);
+		UserStoryHelper userStoryHelper = new UserStoryHelper(this.userStory,this.miembro,Estado.getDefault());
 		
 		String   titulo = "testUserStoryHelper update model"
 				,detalle= "Se probara el acceso al modelo posterior a la modificacion de datos"
@@ -124,7 +127,7 @@ extends TestCase
 	    assertTrue(sheet.getCell(0, 1).getContents().equals(this.userStory.getId()+""));
 	    assertTrue(sheet.getCell(1, 1).getContents().equals(this.userStory.getTitulo()));
 	    assertTrue(sheet.getCell(2, 1).getContents().equals(userStoryHelper.getEstado().name()));
-	    assertTrue(sheet.getCell(3, 1).getContents().equals(m.getNombre()));
+	    assertTrue(sheet.getCell(3, 1).getContents().equals(this.miembro.getNombre()));
 	    assertTrue(sheet.getCell(4, 1).getContents().equals(this.userStory.getStoryPoints()+""));
 	    
 	    //Algunos test de orden

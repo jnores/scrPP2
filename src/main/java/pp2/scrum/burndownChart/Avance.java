@@ -3,11 +3,10 @@ package pp2.scrum.burndownChart;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.GregorianCalendar;
-import java.util.Iterator;
 
-import org.jfree.data.xy.*;
+import org.jfree.data.xy.XYSeries;
+import org.jfree.data.xy.XYSeriesCollection;
 
-import pp2.scrum.controller.UserStoryHelper;
 import pp2.scrum.model.Sprint;
 import pp2.scrum.model.UserStory;
 
@@ -41,7 +40,6 @@ public class Avance implements DataComponent{
 		avance = new XYSeries( "Avance" );
 		
 		Date fecha=iteracion.getfechaInicio();
-		Date fechaF= new Date();
 		int dias=iteracion.getDiasTranscurridos();
 		
 		if (dias > iteracion.getDuracion())
