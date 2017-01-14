@@ -76,7 +76,7 @@ public class UserStoryTest extends TestCase {
 		assertTrue(story.getDetalle().equals("Detalle1"));
 		assertTrue(story.getStoryPoints() == 40);
 		//      assertTrue(story.getEstado().equals(Estado.ToDo));
-		assertTrue(story.getTareas().size() == 0);
+		assertTrue(story.getTareas().size() == 2);
 
 		story.setDetalle("d1");
 

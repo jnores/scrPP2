@@ -58,7 +58,7 @@ public class VerificarRetraso implements Runnable {
         double storyPointsCompletos = 0;
         List<UserStory> stories = sprint.getUserStories();
         for ( UserStory us : stories ) {
-            if ( sprint.stateStory(us).equals(Estado.Done) ) {
+            if ( sprint.isDone(us) ) {
                 storyPointsCompletos += us.getStoryPoints();
             }
         }

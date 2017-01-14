@@ -1,30 +1,18 @@
 package pp2.scrum.domain;
 
-import java.io.FileInputStream;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
-import java.util.Properties;
 import java.util.Set;
-import java.util.TreeSet;
-
-import org.jfree.data.xy.XYSeriesCollection;
 
 import junit.framework.Test;
 import junit.framework.TestCase;
 import junit.framework.TestSuite;
 import pp2.mock.scrum.dao.MockProyectoDAO;
-import pp2.scrum.app.AppScrum;
-import pp2.scrum.burndownChart.DataComponent;
 import pp2.scrum.burndownChart.DataComposite;
-import pp2.scrum.command.MostrarProyectoNuevo;
-import pp2.scrum.controller.ComponentFactory;
-import pp2.scrum.controller.HomeController;
-import pp2.scrum.controller.UserStoryHelper;
-import pp2.scrum.model.Estado;
 import pp2.scrum.model.Miembro;
 import pp2.scrum.model.Proyecto;
 import pp2.scrum.model.Sprint;
@@ -147,7 +135,7 @@ public class ProyectoTest extends TestCase {
 	   proyecto.setNombre("n1");
 	   assertEquals(proyecto.getSiguienteStoryID(),3);
 	   assertTrue(proyecto.iteracionActual()!= null);
-	   iteraciones.get(0).stateStory(userStory1);
+//	   iteraciones.get(0).stateStory(userStory1);
 	   
 	   DataComposite compo = new DataComposite(iteraciones.get(0));
 	   compo.addData(compo);	   
