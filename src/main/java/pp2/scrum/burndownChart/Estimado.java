@@ -55,7 +55,7 @@ public class Estimado implements DataComponent
 	public XYSeriesCollection getData(Sprint iteracion) {
 		this.dias=iteracion.getDuracion();
 		Integer storyPoints,reduccion;
-		storyPoints=this.getTotalStoryPoints(iteracion.getUserStories());
+		storyPoints=this.getTotalStoryPoints(iteracion.getBacklog());
 		final XYSeries estimado = new XYSeries( "Estimado" );
 		
 		reduccion=this.storyPointsPactados/this.dias;

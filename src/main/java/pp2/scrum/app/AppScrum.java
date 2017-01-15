@@ -43,10 +43,6 @@ public class AppScrum {
     private Properties propiedades;
     private ComponentFactory factory;
 
-    private AppScrum(Properties config) throws InstantiationException {
-        this(config, null);
-    }
-
     private AppScrum(Properties config, String nombreProyecto)
             throws InstantiationException {
         Logger.log("Iniciando Aplicación");
@@ -155,8 +151,8 @@ public class AppScrum {
      */
 //    private Proyecto crearNuevoProyecto(ProyectoDAO proyectoDAO) {
 //        Logger.log("Creando proyecto Nuevo");
-//        // TODO Esto deberia lanzar un asistente para crear un nuevo proyecto y
-//        // guardarlo antes de retornarlo.
+//        // TODO Esto deberia lanzar un asistente para crear un nuevo proyecto
+//        // y guardarlo antes de retornarlo.
 //        return new Proyecto(37, "Proyecto Nuevo");
 //    }
 
@@ -220,6 +216,7 @@ public class AppScrum {
         FileInputStream configFile;
 
         try {
+            
             configFile = new FileInputStream(AppScrum.configFilePath);
             propiedades.load(configFile);
 

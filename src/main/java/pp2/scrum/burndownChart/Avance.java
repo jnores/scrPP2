@@ -9,6 +9,7 @@ import org.jfree.data.xy.XYSeriesCollection;
 
 import pp2.scrum.model.Sprint;
 import pp2.scrum.model.UserStory;
+import pp2.scrum.utils.Calendario;
 
 public class Avance implements DataComponent{
 	private XYSeries avance; 
@@ -28,7 +29,7 @@ public class Avance implements DataComponent{
 	{
 		Integer storyPointsDone=0;
 		
-		for (UserStory story: iteracion.getUserStories() )
+		for (UserStory story: iteracion.getBacklog() )
 			storyPointsDone += story.getStoryPoints();
 		
 		return storyPointsDone;
@@ -39,16 +40,16 @@ public class Avance implements DataComponent{
 	public XYSeriesCollection getData(Sprint iteracion) {
 		avance = new XYSeries( "Avance" );
 		
-		Date fecha=iteracion.getfechaInicio();
-		int dias=iteracion.getDiasTranscurridos();
+		Date fechaInicio=iteracion.getfechaInicio();
+		int dias=Calendario.getDuracion(fechaInicio,Calendario.getToday());
 		
 		if (dias > iteracion.getDuracion())
 			dias = iteracion.getDuracion();
 		
 		Integer storyPoints=iteracion.getStoryPointsPactados();
 		for(int i=0;i<=dias;i++){
-			storyPoints=storyPoints-this.getStoryPointsDone(fecha, iteracion);
-			fecha = this.sumarDia(fecha);
+			storyPoints=storyPoints-this.getStoryPointsDone(fechaInicio, iteracion);
+			fechaInicio = this.sumarDia(fechaInicio);
 			avance.add(i,storyPoints);
 		}
 	             

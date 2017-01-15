@@ -63,40 +63,11 @@ public class Proyecto {
         return asignaciones;
     }
 
-    /**
-     * @return Coleccion de UserStories del proyecto
-     */
-    public Collection<UserStory> getAllUserStories() {
-        ArrayList<UserStory> allStories;
-        allStories = new ArrayList<UserStory>(this.backlog);
-        for (Sprint it : iteraciones) {
-            allStories.addAll(it.getUserStories());
-        }
-        return allStories;
-    }
-
-    /**
+       /**
      * @return Coleccion de UserStories del backlog
      */
     public List<UserStory> getBacklog() {
         return backlog;
-    }
-
-    /**
-     * @param miembro
-     *            Miembro del proyecto
-     * @return Coleccion de UserStories del proyecto asignadas al reurso
-     */
-    public Collection<UserStory> getAllUserStoriesFromMiembro(Miembro miembro) {
-        ArrayList<UserStory> allStories = new ArrayList<UserStory>();
-        for (Map.Entry<UserStory, Miembro> entry : this.asignaciones
-                .entrySet()) {
-            if (entry.getValue().equals(miembro)) {
-                allStories.add(entry.getKey());
-            }
-        }
-
-        return allStories;
     }
 
     /**
@@ -191,11 +162,18 @@ public class Proyecto {
     public Sprint iteracionActual() throws RuntimeException {
         Date hoy = new Date();
         for (Sprint sprint : iteraciones) {
-            if (hoy.after(sprint.getfechaInicio()) && hoy.before(Calendario.agregarDias(sprint.getfechaInicio(), sprint.getDuracion()))) {
+            if (hoy.after(sprint.getfechaInicio()) &&
+                    hoy.before(
+                            Calendario.agregarDias(
+                                    sprint.getfechaInicio(),
+                                    sprint.getDuracion()
+                                    )
+                            )
+                    ) {
                 return sprint;
             }
         }
-        throw new RuntimeException("No existe Iteración actual");
+        throw new RuntimeException("No existe una iteración actual");
     }
 
 }

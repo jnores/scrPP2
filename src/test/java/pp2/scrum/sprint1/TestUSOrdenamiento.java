@@ -10,6 +10,7 @@ public class TestUSOrdenamiento extends TestCase {
 
     protected void setUp() throws Exception {
         super.setUp();
+        
     }
     
     /**
@@ -17,15 +18,16 @@ public class TestUSOrdenamiento extends TestCase {
      * des-habilitadas
      */
     public void testOrdenadorConlistaVacia() {
+        
         assertTrue(false);
     }
     
     /**
-     * "Teniendo la lista detallada en la historia de filtro, si se ordena 
-     * por ""Número"" de historia se obtendrá la siguiente lista:
-     * ""#1- Como recepcionista...""
-     * ""#2- Como administrador...""
-     * ""#3- Como gerente de finanzas..."""
+     * Teniendo la lista detallada en la historia de filtro, si se ordena 
+     * por "Número" de historia se obtendrá la siguiente lista:
+     * "#1- Como recepcionista..."
+     * "#2- Como administrador..."
+     * "#3- Como gerente de finanzas..."
      */
     public void testOrdenPorNumero() {
         assertTrue(false);
@@ -33,10 +35,10 @@ public class TestUSOrdenamiento extends TestCase {
 
     
     /**
-     * "Si se ordena por ""Titulo"" (historia): 
-     * ""#2- Como administrador..."" 
-     * ""#3-Como gerente de finanzas..."" 
-     * ""#1- Como recepcionista..."""
+     * Si se ordena por "Titulo" (historia): 
+     * "#2- Como administrador..."
+     * "#3-Como gerente de finanzas..." 
+     * "#1- Como recepcionista..."
      */
     public void testOrdenPorTitulo() {
         assertTrue(false);

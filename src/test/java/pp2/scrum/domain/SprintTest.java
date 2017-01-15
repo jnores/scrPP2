@@ -6,7 +6,6 @@ import java.util.List;
 import junit.framework.Test;
 import junit.framework.TestCase;
 import junit.framework.TestSuite;
-import pp2.scrum.controller.UserStoryHelper;
 import pp2.scrum.model.Sprint;
 import pp2.scrum.model.UserStory;
 
@@ -54,15 +53,6 @@ public class SprintTest extends TestCase {
 		assertTrue(true);
 		s.setDuracion(21);
 		assertEquals(s.getDuracion(), 21);
-		
-		List<UserStory> historias = new ArrayList<UserStory>();
-		historias.add(userStory2);
-		historias.add(userStory3);
-		historias.add(userStory4);
-		s.setUserStories(historias);
-		
-		s.setUserStory(userStory1);
-		
 
 	}
 	

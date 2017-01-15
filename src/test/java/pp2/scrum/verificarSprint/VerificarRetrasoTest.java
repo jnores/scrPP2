@@ -92,10 +92,10 @@ public class VerificarRetrasoTest extends TestCase {
         bus.register(new NotificarRetraso(new NotificadorMock()));
         // TODO Aca se debe cambiar el estado de las tareas necesarias para 
         // simular el avance del proyecto.
-        sprintAvanzado.changeEstado(t1a,Estado.Done);
-        sprintAvanzado.changeEstado(t1b,Estado.Done);
-        sprintAvanzado.changeEstado(t2a,Estado.Done);
-        sprintAvanzado.changeEstado(t2b,Estado.Done);
+        sprintAvanzado.changeEstadoTarea(t1a,Estado.Done);
+        sprintAvanzado.changeEstadoTarea(t1b,Estado.Done);
+        sprintAvanzado.changeEstadoTarea(t2a,Estado.Done);
+        sprintAvanzado.changeEstadoTarea(t2b,Estado.Done);
         
         new VerificarRetraso(sprintAvanzado, bus ).run();
         assertTrue(notificado);
@@ -108,10 +108,10 @@ public class VerificarRetrasoTest extends TestCase {
         bus.register(new NotificarRetraso(new NotificadorMock()));
         // TODO Aca se debe cambiar el estado de las tareas necesarias para 
         // simular el avance del proyecto.
-        sprintAvanzado.changeEstado(t2a,Estado.Done);
-        sprintAvanzado.changeEstado(t2b,Estado.Done);
-        sprintAvanzado.changeEstado(t3a,Estado.Done);
-        sprintAvanzado.changeEstado(t3b,Estado.Done);
+        sprintAvanzado.changeEstadoTarea(t2a,Estado.Done);
+        sprintAvanzado.changeEstadoTarea(t2b,Estado.Done);
+        sprintAvanzado.changeEstadoTarea(t3a,Estado.Done);
+        sprintAvanzado.changeEstadoTarea(t3b,Estado.Done);
         
         new VerificarRetraso(sprintAvanzado, bus ).run();
         assertFalse(notificado);

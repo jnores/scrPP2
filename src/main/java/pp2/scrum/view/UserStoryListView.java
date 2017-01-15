@@ -26,14 +26,12 @@ public class UserStoryListView extends JPanel implements Observer
 	private JFileChooser archivo;
 	private static final long serialVersionUID = 1L;
 	private List<UserStoryHelper> userStoriesHelper;
-	//private List<IExporter> proof;
 	
 	public UserStoryListView(List<UserStoryHelper> userStoriesHelper) 
 	{
 		this.userStoriesHelper = userStoriesHelper;
 		setLayout(new BoxLayout(this, BoxLayout.Y_AXIS));
 		this.cargarUserStories();
-		//this.proof = new ArrayList<IExporter>();
 		
 	}
 	

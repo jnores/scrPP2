@@ -47,12 +47,6 @@ public class UserStoryOrderableView extends JPanel {
 				userStoriesPane.exportar(cmbTipoExport.getSelectedItem());
 			}
 		});
-
-//		setTitle("Historia de Usuario");
-//		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-//		setBounds(400, 400, 520, 300);
-//		setResizable(false);
-//		getContentPane().setLayout(new BorderLayout(0, 0));
 		
 		JPanel panel = new JPanel();
 		this.add(panel, BorderLayout.NORTH);

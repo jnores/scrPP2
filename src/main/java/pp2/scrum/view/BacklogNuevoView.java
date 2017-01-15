@@ -2,25 +2,18 @@ package pp2.scrum.view;
 
 import java.awt.BorderLayout;
 import java.awt.FlowLayout;
+import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
-import java.util.Observable;
-import java.util.Observer;
 
 import javax.swing.JButton;
 import javax.swing.JDialog;
 import javax.swing.JPanel;
 import javax.swing.SwingUtilities;
-import javax.swing.border.EmptyBorder;
 
-import net.sourceforge.jdatepicker.impl.UtilDateModel;
 import pp2.scrum.controller.ProyectoController;
-import pp2.scrum.controller.UserStoryController;
 import pp2.scrum.controller.UserStoryPaginadoController;
 import pp2.scrum.model.UserStory;
-import javax.swing.SwingConstants;
-import javax.swing.JInternalFrame;
-import java.awt.event.ActionEvent;
 
 public class BacklogNuevoView extends JDialog
 {

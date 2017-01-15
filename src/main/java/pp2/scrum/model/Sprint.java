@@ -5,14 +5,13 @@ import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-import java.util.Map.Entry;
 
 
 public class Sprint {
     private int idIteracion;
     private Date fechaInicio;
     private int duracion;
-    private List<UserStory> sprintBacklog;
+    private List<UserStory> backlog;
     private int StoryPointsPactados; 
     private Map<Tarea, Estado > pizarraEstados;
 
@@ -20,7 +19,7 @@ public class Sprint {
         this.idIteracion = idIteracion;
         this.fechaInicio = fechaInicio;
         this.duracion = duracion;
-        this.sprintBacklog = historias;
+        this.backlog = historias;
         this.setStoryPointsPactados();
 
         pizarraEstados = new HashMap< Tarea,Estado >(); 
@@ -38,8 +37,8 @@ public class Sprint {
 
     private void setStoryPointsPactados(){
         int puntos=0;
-        if(this.sprintBacklog!=null){
-            for (UserStory us: this.sprintBacklog) {
+        if(this.backlog!=null){
+            for (UserStory us: this.backlog) {
                 puntos+=us.getStoryPoints();
             }
         }
@@ -54,8 +53,8 @@ public class Sprint {
         return this.fechaInicio;
     }
 
-    public List<UserStory> getUserStories() {
-        return this.sprintBacklog;
+    public List<UserStory> getBacklog() {
+        return this.backlog;
     }
 
     public void setDuracion(int dias) {
@@ -63,12 +62,12 @@ public class Sprint {
     }
 
     public void setUserStories(List<UserStory> historias) {
-        this.sprintBacklog=historias;
+        this.backlog=historias;
     }
 
     public void setUserStory(UserStory historia) {
         this.StoryPointsPactados=+historia.getStoryPoints();
-        this.sprintBacklog.add(historia);
+        this.backlog.add(historia);
     }
 
     public int getDuracion() {
@@ -76,34 +75,9 @@ public class Sprint {
     }
 
     public int getStoryPointsPactados() {
+        
         return this.StoryPointsPactados;
     }
-
-    public int getDiasTranscurridos() {
-        Date fechaFinal=new Date();
-        long tiempo = fechaFinal.getTime()-this.fechaInicio.getTime();
-        Number convertir=tiempo/(1000*3600*24);
-        int dias = convertir.intValue();
-
-        return dias;
-    }
-
-//    /**
-//     * 
-//     * @param us UserStory de la que se quiere obtener el estado.
-//     * @return Estado que tiene la userStory,. si no se encuentra la historia retorna null.
-//     */
-//    public Estado stateStory(UserStory us) {
-//        Estado key=null;
-//        for( Entry<Estado, List<UserStory> > entry : pizarraEstados.entrySet()) {
-//            if ( entry.getValue().contains(us) ) {
-//                key = entry.getKey();
-//                break;
-//            }
-//        }
-//        //FIXME Si la histora no pertenece a este sprint, retorna null.
-//        return key;
-//    }
 
     /**
      * Verifica si la userStory esta terminada o no en base al estado de sus 
@@ -112,7 +86,7 @@ public class Sprint {
      * @param us
      * @return
      */
-    public boolean isDone(UserStory us) throws InvalidParameterException{
+    public boolean isUserStoryDone(UserStory us) throws InvalidParameterException{
         if (! contieneUserStory(us) )
             throw new InvalidParameterException("La UserStory especificada no corresponde a este Sprint.");
         
@@ -128,14 +102,27 @@ public class Sprint {
     }
 
     public boolean contieneUserStory(UserStory us) {
-        return sprintBacklog.contains(us);
+        return backlog.contains(us);
     }
 
-    public void changeEstado(Tarea tarea, Estado newEstado) throws InvalidParameterException{
-        if ( ! pizarraEstados.containsKey(tarea) )
+    public void changeEstadoTarea(Tarea tarea, Estado newEstado) throws InvalidParameterException{
+        if ( ! contieneTarea(tarea) )
             throw new InvalidParameterException("La UserStory especificada no corresponde a este Sprint.");
         
         pizarraEstados.put(tarea, newEstado);
     }
+
+    public Estado getEstadoTarea(Tarea tarea) {
+        return pizarraEstados.get(tarea);
+    }
+
+    public boolean contieneTarea(Tarea tarea) {
+        return pizarraEstados.containsKey(tarea);
+    }
+
+    public Map<Tarea, Estado> getPizarra() {
+        return pizarraEstados;
+    }
+    
 
 }
