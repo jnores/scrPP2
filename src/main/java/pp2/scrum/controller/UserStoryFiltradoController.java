@@ -39,7 +39,7 @@ public class UserStoryFiltradoController {
     }
     private void actualizarVista() {
         if (vista != null) {
-            vista.actualizarModel(modeloFiltrado);
+            vista.actualizarModelo(modeloFiltrado);
         }
     }
     

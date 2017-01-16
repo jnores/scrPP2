@@ -36,7 +36,7 @@ public class UserStoryOrdenadoController {
     }
     private void actualizarVista() {
         if (vista != null) {
-            vista.actualizarModel(modelo);
+            vista.actualizarModelo(modelo);
         }
     }
     

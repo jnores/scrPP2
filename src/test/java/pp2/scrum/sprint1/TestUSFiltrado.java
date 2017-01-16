@@ -81,8 +81,8 @@ public class TestUSFiltrado extends TestCase implements ListaUserStoryView {
     }
 
     @Override
-    public void actualizarModel(List<UserStory> model) {
-        this.model = model;
+    public void actualizarModelo(List<UserStory> modelo) {
+        this.model = modelo;
     }
 
 

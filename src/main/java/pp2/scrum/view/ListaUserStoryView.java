@@ -12,5 +12,5 @@ import pp2.scrum.model.UserStory;
  *
  */
 public interface ListaUserStoryView {
-    public void actualizarModel(List<UserStory> model) ;
+    public void actualizarModelo(List<UserStory> modelo) ;
 }
