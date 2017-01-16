@@ -97,7 +97,8 @@ public class AppScrum {
 
     /**
      * Se muestra al inicio de la aplicacion todos los proyectos que se tienen
-     * registrado. Si se desea, se puede cancelar para iniciar un nuevo proyecto
+     * registrado. Si se desea, se puede cancelar para iniciar un nuevo
+     * proyecto.
      */
     private Proyecto seleccionarProyecto(List<Proyecto> proyectos,
             String nombreProyecto) {

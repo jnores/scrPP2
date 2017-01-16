@@ -16,7 +16,7 @@ import javax.swing.filechooser.FileNameExtensionFilter;
 
 import pp2.scrum.controller.UserStoryHelper;
 import pp2.scrum.exporter.Exporter;
-import pp2.scrum.utils.UserStoryHelperComparator;
+import pp2.scrum.utils.UserStoryComparator;
 
 public class UserStoryListView extends JPanel implements Observer
 {
@@ -61,12 +61,12 @@ public class UserStoryListView extends JPanel implements Observer
 		this.cargarUserStories();
 	}
 	
-	public void ordenarPorOpcion(UserStoryHelperComparator opcion,boolean desc) {
-		if (desc) {
-			Collections.sort(userStoriesHelper, UserStoryHelperComparator.decending(opcion));
-		} else {
-			Collections.sort(userStoriesHelper, opcion);
-		}
+	public void ordenarPorOpcion(UserStoryComparator opcion,boolean desc) {
+//		if (desc) {
+//			Collections.sort(userStoriesHelper, UserStoryComparator.decending(opcion));
+//		} else {
+//			Collections.sort(userStoriesHelper, opcion);
+//		}
 		removeAll();
 		cargarUserStories();
 	}

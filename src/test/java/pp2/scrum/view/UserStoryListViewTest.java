@@ -9,7 +9,7 @@ import junit.framework.TestSuite;
 import pp2.scrum.controller.UserStoryHelper;
 import pp2.scrum.model.Estado;
 import pp2.scrum.model.UserStory;
-import pp2.scrum.utils.UserStoryHelperComparator;
+import pp2.scrum.utils.UserStoryComparator;
 
 public class UserStoryListViewTest extends TestCase
 {
@@ -35,8 +35,8 @@ public class UserStoryListViewTest extends TestCase
 	}
 	
 	public void testVista(){
-	   vista.ordenarPorOpcion(UserStoryHelperComparator.TITULO_SORT , true);
-	   vista.ordenarPorOpcion(UserStoryHelperComparator.TITULO_SORT , false);
+	   vista.ordenarPorOpcion(UserStoryComparator.TITULO_SORT , true);
+	   vista.ordenarPorOpcion(UserStoryComparator.TITULO_SORT , false);
 	   vista.update(null,null);
 	}
 

@@ -17,7 +17,7 @@ import javax.swing.event.ChangeListener;
 
 import pp2.scrum.exporter.Exporter;
 import pp2.scrum.exporter.PluginFactory;
-import pp2.scrum.utils.UserStoryHelperComparator;
+import pp2.scrum.utils.UserStoryComparator;
 
 public class UserStoryOrderableView extends JPanel {
 
@@ -26,7 +26,7 @@ public class UserStoryOrderableView extends JPanel {
 	 */
 	private static final long serialVersionUID = 1L;
 	private UserStoryListView userStoriesPane;
-	private JComboBox<UserStoryHelperComparator> cmbOpciones;
+	private JComboBox<UserStoryComparator> cmbOpciones;
 	private JToggleButton tglbtnAscdesc;
 	private JButton btnOrdenar;
 	private JComboBox<Exporter> cmbTipoExport;
@@ -54,8 +54,8 @@ public class UserStoryOrderableView extends JPanel {
 		panel.setLayout(new FlowLayout(FlowLayout.CENTER, 5, 5));
 
 		
-		cmbOpciones = new JComboBox<UserStoryHelperComparator>();
-		cmbOpciones.setModel(new DefaultComboBoxModel<UserStoryHelperComparator>(UserStoryHelperComparator.values()));
+		cmbOpciones = new JComboBox<UserStoryComparator>();
+		cmbOpciones.setModel(new DefaultComboBoxModel<UserStoryComparator>(UserStoryComparator.values()));
 		panel.add(cmbOpciones);
 		
 		tglbtnAscdesc = new JToggleButton("ASC(desc)");
