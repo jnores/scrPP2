@@ -24,7 +24,7 @@ public class TestUSPaginacion extends TestCase {
      * Existe una botonera para las paginas, y sus botones se pueden grisear
      * (deshabilitar).
      */
-    public void testdeshabilitarControles() {
+    public void testDeshabilitarControles() {
         assertTrue(false);
     }
     
