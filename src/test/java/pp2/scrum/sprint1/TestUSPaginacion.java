@@ -1,15 +1,32 @@
 package pp2.scrum.sprint1;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import junit.framework.TestCase;
+import pp2.scrum.controller.UserStoryPaginadoController;
+import pp2.scrum.model.UserStory;
+import pp2.scrum.utils.Paginacion;
 
 public class TestUSPaginacion extends TestCase {
 
+    private UserStoryPaginadoController controllerVacio;
+    private UserStoryPaginadoController controller2paginas;
+    
     public TestUSPaginacion(String name) {
         super(name);
     }
 
     protected void setUp() throws Exception {
         super.setUp();
+        controllerVacio = new UserStoryPaginadoController();
+        List<UserStory> historias = new ArrayList<>();
+        historias.add(new UserStory("t1", "d1"));
+        historias.add(new UserStory("t2", "d2"));
+        historias.add(new UserStory("t3", "d3"));
+        controller2paginas = new UserStoryPaginadoController(
+                    new Paginacion<UserStory>( 1, 2,historias)
+                );
     }
 
     /**
@@ -17,7 +34,9 @@ public class TestUSPaginacion extends TestCase {
      * totales.
      */
     public void testCantidadPaginas() {
-        assertTrue(false);
+        
+        assertEquals(controllerVacio.getPaginasTotales(), 0);
+        assertEquals(controller2paginas.getPaginasTotales(), 2);
     }
     
     /**
@@ -25,7 +44,10 @@ public class TestUSPaginacion extends TestCase {
      * (deshabilitar).
      */
     public void testDeshabilitarControles() {
-        assertTrue(false);
+        assertFalse(controllerVacio.isEnabled());
+        
+        assertTrue(controller2paginas.isEnabled());
+
     }
     
     /**

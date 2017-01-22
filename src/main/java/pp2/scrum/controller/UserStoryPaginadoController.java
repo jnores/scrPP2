@@ -17,7 +17,12 @@ public class UserStoryPaginadoController extends Controller
 
     public UserStoryPaginadoController()
     {
-        paginacionActual = new Paginacion<UserStory>( 1, 5,new ArrayList<UserStory>());
+        this(new Paginacion<UserStory>( 1, 5,new ArrayList<UserStory>()));
+    }
+    public UserStoryPaginadoController(Paginacion<UserStory> paginacion)
+    {
+        paginacionActual = paginacion;
+
     }
 
     public List<UserStory> getModel()
@@ -88,6 +93,9 @@ public class UserStoryPaginadoController extends Controller
             }          
         }
 
+    }
+    public boolean isEnabled() {
+        return paginacionActual.getPaginasTotales()>1;
     }
 
 
