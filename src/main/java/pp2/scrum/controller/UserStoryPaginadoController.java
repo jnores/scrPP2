@@ -92,7 +92,7 @@ public class UserStoryPaginadoController extends Controller
 
     }
     public boolean isEnabled() {
-        return paginacionActual.getPaginasTotales()>1;
+        return paginacionActual.getModel().size() > 0;
     }
     public boolean hasNext() {
         return isEnabled() && 
@@ -112,5 +112,8 @@ public class UserStoryPaginadoController extends Controller
                     +paginacionActual.getPaginasTotales();
         
         return retValue;
+    }
+    public int getPaginaActual() {
+        return paginacionActual.getPagina();
     }
 }
