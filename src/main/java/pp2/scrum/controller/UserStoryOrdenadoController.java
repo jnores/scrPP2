@@ -1,45 +1,51 @@
 package pp2.scrum.controller;
 
+import java.util.ArrayList;
 import java.util.Collections;
+import java.util.Comparator;
 import java.util.List;
+import java.util.Observer;
 
+import pp2.scrum.model.Backlog;
 import pp2.scrum.model.UserStory;
 import pp2.scrum.utils.UserStoryComparator;
-import pp2.scrum.view.ListaUserStoryView;
 
 public class UserStoryOrdenadoController {
 
-    private List<UserStory> modelo;
-    private ListaUserStoryView vista;
-    public UserStoryOrdenadoController(List<UserStory> modelo,
-            ListaUserStoryView vista) {
-        this.modelo = modelo;
-        this.vista = vista;
-        
-        actualizarVista();
+    private Backlog backlog;
+    private List<UserStory> modeloOrdenado;
+    private Comparator<UserStory> comparator;
+    
+    public UserStoryOrdenadoController(Backlog backlog) {
+        this.backlog = backlog;
+        comparator = UserStoryComparator.getDefault();
+        modeloOrdenado = new ArrayList<>();
     }
     public boolean isEnabled() {
-        return modelo != null && modelo.size()>0;
+        return backlog.size()>0;
     }
-    public void ordenarPor(UserStoryComparator tituloSort) {
-        ordenarPor(tituloSort,true);
+    
+    public void orderBy(UserStoryComparator tituloSort) {
+        orderBy(tituloSort,true);
     }
         
-    public void ordenarPor(UserStoryComparator comparator,boolean isAscendente) {
-        if (isAscendente) {
-            Collections.sort(modelo, comparator);
+    public void orderBy(UserStoryComparator comparator,boolean isAscendente) {
+        if (isAscendente) { 
+            this.comparator =  comparator;
         } else {
-            Collections.sort(modelo, UserStoryComparator.decending(comparator));
-        }
-        
-        actualizarVista();
-    }
-    private void actualizarVista() {
-        if (vista != null) {
-            vista.actualizarModelo(modelo);
+            this.comparator =  comparator;
         }
     }
     
+    public List<UserStory> getData() {
+        modeloOrdenado.clear();
+        modeloOrdenado.addAll( backlog.getList() ); 
+        Collections.sort(modeloOrdenado, comparator);
+        return modeloOrdenado;
+    }
     
+    public void addObserver(Observer observer) {
+        backlog.addObserver(observer);
+    }
 
 }

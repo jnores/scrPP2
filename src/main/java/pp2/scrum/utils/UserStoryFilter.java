@@ -31,5 +31,9 @@ public enum UserStoryFilter  {
     };
     
     public abstract boolean match(UserStory userStory, String busqueda);
+
+    public static UserStoryFilter getDefault() {
+        return UserStoryFilter.TITULO;
+    }
     
 }

@@ -1,19 +1,20 @@
 package pp2.scrum.sprint1;
 
-import java.util.ArrayList;
 import java.util.List;
+import java.util.Observable;
+import java.util.Observer;
 
 import junit.framework.TestCase;
 import pp2.scrum.controller.UserStoryFiltradoController;
+import pp2.scrum.model.Backlog;
 import pp2.scrum.model.UserStory;
 import pp2.scrum.utils.UserStoryFilter;
-import pp2.scrum.view.ListaUserStoryView;
 
-public class TestUSFiltrado extends TestCase implements ListaUserStoryView {
+public class TestUSFiltrado extends TestCase implements Observer {
 
     UserStoryFiltradoController usfcVacio;
     UserStoryFiltradoController usfcCargado;
-    List<UserStory> model;
+    boolean observerUpdate;
     
     public TestUSFiltrado(String name) {
         super(name);
@@ -27,14 +28,19 @@ public class TestUSFiltrado extends TestCase implements ListaUserStoryView {
      */
     protected void setUp() throws Exception {
         super.setUp();
-        List<UserStory> listaVacia = new ArrayList<>();
-        List<UserStory> listaCargada = new ArrayList<>();
-        listaCargada.add( new UserStory( 3, "Como gerente de finanzas necesito...", "detalle Gerente...") );
-        listaCargada.add( new UserStory( 2, "Como administrador necesito poder generar un reporte ...", "detalle Administrador...") );
-        listaCargada.add( new UserStory( 1, "Como recepcionista necesito...", "detalle Recepcionista...") );
+
+        Backlog backlogVacio = new Backlog();
         
-        usfcVacio = new UserStoryFiltradoController(listaVacia,this);
-        usfcCargado = new UserStoryFiltradoController(listaCargada,this);
+        Backlog backlogCargado = new Backlog();
+        backlogCargado.addUserStory( new UserStory( 3, "Como gerente de finanzas necesito...", "detalle Gerente...") );
+        backlogCargado.addUserStory( new UserStory( 2, "Como administrador necesito poder generar un reporte ...", "detalle Administrador...") );
+        backlogCargado.addUserStory( new UserStory( 1, "Como recepcionista necesito...", "detalle Recepcionista...") );        
+
+        usfcVacio = new UserStoryFiltradoController(backlogVacio);
+        usfcVacio.addObserver(this);
+        usfcCargado = new UserStoryFiltradoController(backlogCargado);
+        usfcCargado.addObserver(this);
+        observerUpdate = false;
     }
     
 
@@ -44,6 +50,7 @@ public class TestUSFiltrado extends TestCase implements ListaUserStoryView {
      */
     public void testFiltradorConlistaVacia() {
         assertFalse(usfcVacio.isEnabled());
+        assertFalse(observerUpdate);
     }
     
     /**
@@ -51,12 +58,17 @@ public class TestUSFiltrado extends TestCase implements ListaUserStoryView {
      */
     public void testFiltroSinResultados() {
         assertTrue(usfcCargado.isEnabled());
-        
+
+        List<UserStory> model = usfcCargado.getData();
+        assertEquals(model.size(), 3);
+
         assertEquals(model.get(0).getId(), 3);
         assertEquals(model.get(1).getId(), 2);
         assertEquals(model.get(2).getId(), 1);
         
-        usfcCargado.filtrarPor(UserStoryFilter.TITULO,"Filtro sin resultados");
+        usfcCargado.filterBy(UserStoryFilter.TITULO,"Filtro sin resultados");
+
+        model = usfcCargado.getData();        
         
         assertEquals(model.size(), 0);
         
@@ -70,20 +82,26 @@ public class TestUSFiltrado extends TestCase implements ListaUserStoryView {
     public void testFiltroConUnResultado() {
         assertTrue(usfcCargado.isEnabled());
         
+        List<UserStory> model = usfcCargado.getData();
+        assertEquals(model.size(), 3);
+        
         assertEquals(model.get(0).getId(), 3);
         assertEquals(model.get(1).getId(), 2);
         assertEquals(model.get(2).getId(), 1);
         
-        usfcCargado.filtrarPor(UserStoryFilter.TITULO,"administrador");
-        
+        usfcCargado.filterBy(UserStoryFilter.TITULO,"administrador");
+
+        model = usfcCargado.getData();
+
         assertEquals(model.size(), 1);
         assertEquals(model.get(0).getId(), 2);
     }
 
-    @Override
-    public void actualizarModelo(List<UserStory> modelo) {
-        this.model = modelo;
-    }
 
+    @Override
+    public void update(Observable o, Object arg) {
+        observerUpdate = true;
+        
+    }
 
 }

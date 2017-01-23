@@ -20,6 +20,7 @@ public class TestUSPaginacion extends TestCase {
     protected void setUp() throws Exception {
         super.setUp();
         controllerVacio = new UserStoryPaginadoController();
+        
         List<UserStory> historias = new ArrayList<>();
         historias.add(new UserStory("t1", "d1"));
         historias.add(new UserStory("t2", "d2"));
@@ -27,6 +28,7 @@ public class TestUSPaginacion extends TestCase {
         controller2paginas = new UserStoryPaginadoController(
                     new Paginacion<UserStory>( 1, 2,historias)
                 );
+        
     }
 
     /**
@@ -37,6 +39,9 @@ public class TestUSPaginacion extends TestCase {
         
         assertEquals(controllerVacio.getPaginasTotales(), 0);
         assertEquals(controller2paginas.getPaginasTotales(), 2);
+        
+        assertTrue( controller2paginas.toString().trim().equals("1 / 2") );
+        
     }
     
     /**
@@ -46,8 +51,14 @@ public class TestUSPaginacion extends TestCase {
     public void testDeshabilitarControles() {
         assertFalse(controllerVacio.isEnabled());
         
+        assertFalse(controllerVacio.hasNext());
+        assertFalse(controllerVacio.hasPrev());
+        
+        // ----------------------------------
         assertTrue(controller2paginas.isEnabled());
-
+        
+        assertTrue(controller2paginas.hasNext());
+        assertFalse(controller2paginas.hasPrev());
     }
     
     /**
@@ -56,8 +67,13 @@ public class TestUSPaginacion extends TestCase {
      * número de paginas al pie igual a "-" y los botones de navegacion de 
      * páginas grisados.
      */
-    public void testListaVacia() {
-        assertTrue(false);
+    public void testListaVacia() {        
+        assertTrue( controllerVacio.toString().trim().equals("-") );
+        
+        assertFalse(controllerVacio.hasNext());
+        assertFalse(controllerVacio.hasPrev());
+        
+        // TODO Pedir los Datos y validar el mensaje a mostrar. JN 20170122
     }
     
     /**

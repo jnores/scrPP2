@@ -54,4 +54,11 @@ public enum UserStoryComparator implements Comparator<UserStory> {
         };
     }
 
+    public static Comparator<UserStory> getDefault() {
+        return new Comparator<UserStory>() {
+            public int compare(UserStory o1, UserStory o2) {
+                return 1;
+            };
+        };
+    }
 }

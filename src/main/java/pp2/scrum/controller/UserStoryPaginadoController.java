@@ -3,12 +3,9 @@ package pp2.scrum.controller;
 import java.util.ArrayList;
 import java.util.List;
 
-import pp2.scrum.app.AppScrum;
-import pp2.scrum.model.CriterioAceptacion;
 import pp2.scrum.model.Estado;
 import pp2.scrum.model.Tarea;
 import pp2.scrum.model.UserStory;
-import pp2.scrum.utils.Logger;
 import pp2.scrum.utils.Paginacion;
 
 public class UserStoryPaginadoController extends Controller 
@@ -17,7 +14,7 @@ public class UserStoryPaginadoController extends Controller
 
     public UserStoryPaginadoController()
     {
-        this(new Paginacion<UserStory>( 1, 5,new ArrayList<UserStory>()));
+        this( new Paginacion<UserStory>( 1, 5,new ArrayList<UserStory>()) );
     }
     public UserStoryPaginadoController(Paginacion<UserStory> paginacion)
     {
@@ -97,6 +94,23 @@ public class UserStoryPaginadoController extends Controller
     public boolean isEnabled() {
         return paginacionActual.getPaginasTotales()>1;
     }
+    public boolean hasNext() {
+        return isEnabled() && 
+            paginacionActual.getPagina() < paginacionActual.getPaginasTotales();
+    }
+    public boolean hasPrev() {
+        return isEnabled() && 
+                paginacionActual.getPagina() > 1;
+    }
 
-
+    @Override
+    public String toString() {
+        String retValue = "-";
+        if ( isEnabled() )
+            retValue = paginacionActual.getPagina()
+                    +" / "
+                    +paginacionActual.getPaginasTotales();
+        
+        return retValue;
+    }
 }

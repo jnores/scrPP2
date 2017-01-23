@@ -2,47 +2,56 @@ package pp2.scrum.controller;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Observer;
 
+import pp2.scrum.model.Backlog;
 import pp2.scrum.model.UserStory;
 import pp2.scrum.utils.UserStoryFilter;
-import pp2.scrum.view.ListaUserStoryView;
 
 public class UserStoryFiltradoController {
 
-    private List<UserStory> modelo;
+    private Backlog backlog;
     private List<UserStory> modeloFiltrado;
-    private ListaUserStoryView vista;
-    public UserStoryFiltradoController(List<UserStory> modelo,
-            ListaUserStoryView vista) {
-        this.modelo = modelo;
-        this.vista = vista;
+    
+    UserStoryFilter filtro;
+    String txtBusqueda;
+    boolean isContenido;
+    
+    public UserStoryFiltradoController(Backlog backlog) {
+        this.backlog = backlog;
         this.modeloFiltrado = new ArrayList<>();
-        this.modeloFiltrado.addAll(modelo);
-        actualizarVista();
+        
+        filtro = UserStoryFilter.getDefault();
+        txtBusqueda = "";
+        isContenido = true;
     }
     public boolean isEnabled() {
-        return modelo != null && modelo.size()>0;
+        return backlog.size()>0;
     }
-    public void filtrarPor(UserStoryFilter filtro,String busqueda) {
-        filtrarPor(filtro,busqueda,true);
+    public void filterBy(UserStoryFilter filtro,String busqueda) {
+        filterBy(filtro,busqueda,true);
     }
         
-    public void filtrarPor(UserStoryFilter filtro,String busqueda,boolean isContenido) {
+    public void filterBy(UserStoryFilter filtro,String busqueda,boolean isContenido) {
+        this.filtro = filtro;
+        this.txtBusqueda = busqueda;
+        this.isContenido = isContenido;
+        
+    }
+
+    public List<UserStory> getData() {
         modeloFiltrado.clear();
-        for(UserStory us : modelo) {
-            if (isContenido == filtro.match(us,busqueda)) {
+        for ( UserStory us : backlog.getList() ) {
+            if (isContenido == filtro.match(us,txtBusqueda)) {
                 modeloFiltrado.add(us);
             }
         }
-        
-        actualizarVista();
-    }
-    private void actualizarVista() {
-        if (vista != null) {
-            vista.actualizarModelo(modeloFiltrado);
-        }
+        return modeloFiltrado;
     }
     
+    public void addObserver(Observer observer) {
+        backlog.addObserver(observer);
+    }
     
 
 }

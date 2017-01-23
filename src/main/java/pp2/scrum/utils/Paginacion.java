@@ -3,8 +3,6 @@ package pp2.scrum.utils;
 import java.util.ArrayList;
 import java.util.List;
 
-import pp2.scrum.model.UserStory;
-
 //Clase para paginar la lista paginada
 public class Paginacion<T>
 {

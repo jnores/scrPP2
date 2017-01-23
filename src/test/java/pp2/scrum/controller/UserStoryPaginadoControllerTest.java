@@ -6,7 +6,6 @@ import java.util.List;
 import junit.framework.Test;
 import junit.framework.TestCase;
 import junit.framework.TestSuite;
-import mockit.MockUp;
 import pp2.scrum.model.Tarea;
 import pp2.scrum.model.UserStory;
 import pp2.scrum.utils.Paginacion;
@@ -90,7 +89,6 @@ public class UserStoryPaginadoControllerTest extends TestCase
         historias.add(story);
         controller.actualizarPaginacion(historias);
         assertTrue(!controller.getModel().get(0).estaTerminada());
-        controller.finalizarStory(controller.getModel().get(0));
         assertTrue(controller.getModel().get(0).estaTerminada());
         assertTrue(story.estaTerminada());
         assertTrue(story.getCriterio() == null);

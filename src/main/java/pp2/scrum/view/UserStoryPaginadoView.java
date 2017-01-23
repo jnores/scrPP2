@@ -8,10 +8,11 @@ import java.util.List;
 import java.util.Observable;
 import java.util.Observer;
 
-import javax.swing.JFrame;
+import javax.swing.ImageIcon;
+import javax.swing.JButton;
+import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTable;
-import javax.swing.SwingUtilities;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.JTableHeader;
 import javax.swing.table.TableModel;
@@ -20,10 +21,6 @@ import pp2.scrum.controller.UserStoryPaginadoController;
 import pp2.scrum.model.Tarea;
 import pp2.scrum.model.UserStory;
 import pp2.scrum.utils.Paginacion;
-
-import javax.swing.JButton;
-import javax.swing.ImageIcon;
-import javax.swing.JLabel;
 
 public class UserStoryPaginadoView extends JPanel implements Observer
 {
