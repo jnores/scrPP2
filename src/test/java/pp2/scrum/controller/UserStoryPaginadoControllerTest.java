@@ -88,7 +88,8 @@ public class UserStoryPaginadoControllerTest extends TestCase
         tareas.add(new Tarea());
         historias.add(story);
         controller.actualizarPaginacion(historias);
-        assertTrue(!controller.getModel().get(0).estaTerminada());
+        assertFalse(controller.getModel().get(0).estaTerminada());
+        controller.finalizarStory(story);
         assertTrue(controller.getModel().get(0).estaTerminada());
         assertTrue(story.estaTerminada());
         assertTrue(story.getCriterio() == null);
