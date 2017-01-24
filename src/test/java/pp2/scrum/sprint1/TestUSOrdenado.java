@@ -39,9 +39,9 @@ public class TestUSOrdenado extends TestCase implements Observer {
         
 
         usocVacio = new UserStoryOrdenadoController(backlogVacio);
-        usocVacio.addObserver(this);
+        backlogVacio.addObserver(this);
         usocCargado = new UserStoryOrdenadoController(backlogCargado);
-        usocCargado.addObserver(this);
+        backlogCargado.addObserver(this);
         observerUpdate = false;
         
     }
