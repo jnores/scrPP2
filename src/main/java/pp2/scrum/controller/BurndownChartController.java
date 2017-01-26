@@ -1,5 +1,7 @@
 package pp2.scrum.controller;
 
+import java.util.List;
+
 import org.jfree.data.xy.XYSeriesCollection;
 
 import pp2.scrum.burndownChart.Avance;
@@ -8,17 +10,11 @@ import pp2.scrum.burndownChart.DataComposite;
 import pp2.scrum.burndownChart.Estimado;
 import pp2.scrum.burndownChart.OpcionGrafico;
 import pp2.scrum.model.Sprint;
-import pp2.scrum.view.BurndownChartView;
 
 public class BurndownChartController extends Controller {
     private DataComponent modelo;
-    private BurndownChartView vista;
-    private OpcionGrafico Opcion;
     private Sprint iteracion;
-
-    public BurndownChartController(MailGateway mailGateway) {
-        super();
-    }
+    
 
     public BurndownChartController(Sprint iteracion) {
         this.iteracion = iteracion;
@@ -48,6 +44,14 @@ public class BurndownChartController extends Controller {
     public XYSeriesCollection getData(OpcionGrafico opcion) {
         // setModelo(opcion);
         return null;
+    }
+
+    public boolean isEnabled() {
+        return iteracion.getBacklog().size()>0;
+    }
+
+    public List<Integer> getTablaDeValores(OpcionGrafico tipo) {
+        return tipo.getGraficador().getTablaDeValores(iteracion);
     }
 
 }
