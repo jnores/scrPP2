@@ -1,6 +1,7 @@
 package pp2.scrum.sprint1;
 
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 import junit.framework.TestCase;
@@ -16,7 +17,7 @@ public class TestUSBurndownChart extends TestCase {
 
     Sprint sprintCargado;
     BurndownChartController controllerSinHistorias, controllerConHistorias;
-    int totalSp;
+    int totalSp, diasTranscurridos;
 
     public TestUSBurndownChart(String name) {
         super(name);
@@ -65,8 +66,10 @@ public class TestUSBurndownChart extends TestCase {
         stories.add(new UserStory("Titulo4", "Detalle4", sp4, null, tareas4));
 
         totalSp = sp1 + sp2 + sp3 + sp4;
-        sprintCargado = new Sprint(1, Calendario.getToday(), 21,
-                stories);
+        Date inicioSprint = Calendario.agregarDias(Calendario.getToday(),
+                -diasTranscurridos);
+        sprintCargado = new Sprint(1, inicioSprint, 21, stories);
+
         sprintCargado.changeEstadoTarea(t1a, Estado.Done);
         sprintCargado.changeEstadoTarea(t1b, Estado.Done);
         sprintCargado.changeEstadoTarea(t2a, Estado.Done);
@@ -97,7 +100,7 @@ public class TestUSBurndownChart extends TestCase {
 
         List<Integer> tablaDeValores = controllerConHistorias
                 .getTablaDeValores(OpcionGrafico.Estimado);
-        assertEquals(tablaDeValores.get(0).intValue(), totalSp );
+        assertEquals(tablaDeValores.get(0).intValue(), totalSp);
     }
 
     /**
@@ -111,12 +114,12 @@ public class TestUSBurndownChart extends TestCase {
         List<Integer> tablaDeValores = controllerConHistorias
                 .getTablaDeValores(OpcionGrafico.Estimado);
         int storyPoints = tablaDeValores.get(0);
-        int dias = tablaDeValores.size()-1;
-        int reduccion=storyPoints/dias;
+        int dias = tablaDeValores.size() - 1;
+        int reduccion = storyPoints / dias;
 
-        for(int dia=1;dia<=dias;dia++) {
-            assertEquals(reduccion, (storyPoints-tablaDeValores.get(dia)));    
-            storyPoints=storyPoints-reduccion;
+        for (int dia = 1; dia <= dias; dia++) {
+            assertEquals(reduccion, (storyPoints - tablaDeValores.get(dia)));
+            storyPoints = storyPoints - reduccion;
         }
     }
 
@@ -130,8 +133,8 @@ public class TestUSBurndownChart extends TestCase {
 
         List<Integer> tablaDeValores = controllerConHistorias
                 .getTablaDeValores(OpcionGrafico.Estimado);
-        int duracionSprintMasValorInicial = sprintCargado.getDuracion() +1;
-        assertEquals(tablaDeValores.size(),  duracionSprintMasValorInicial);
+        int duracionSprintMasEjeY = sprintCargado.getDuracion() + 1;
+        assertEquals(duracionSprintMasEjeY, tablaDeValores.size());
     }
 
     /**
@@ -141,7 +144,10 @@ public class TestUSBurndownChart extends TestCase {
      * días del periodo.
      */
     public void testBurndownChartRealizado_LongitudTiempoTranscurrido() {
-        assertTrue(false);
+        List<Integer> tablaDeValores = controllerConHistorias
+                .getTablaDeValores(OpcionGrafico.Avance);
+        int diasTranscurridosMasEjeY = diasTranscurridos + 1;
+        assertEquals(diasTranscurridosMasEjeY, tablaDeValores.size());
     }
 
     /**
