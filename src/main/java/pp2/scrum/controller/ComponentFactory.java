@@ -10,7 +10,7 @@ import java.util.Map;
 import java.util.NoSuchElementException;
 import java.util.Properties;
 
-import pp2.scrum.utils.Logger;
+import pp2.scrum.logger.Logger;
 
 /**
  * @author yoshknight

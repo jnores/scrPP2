@@ -7,7 +7,7 @@ import junit.framework.Test;
 import junit.framework.TestCase;
 import junit.framework.TestSuite;
 import pp2.scrum.logCommits.GeneradorIDs;
-import pp2.scrum.utils.Logger;
+import pp2.scrum.logger.Logger;
 
 
 public class LoggerTest extends TestCase {

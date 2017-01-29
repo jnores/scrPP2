@@ -6,11 +6,13 @@ package pp2.scrum.verificarSprint;
 import java.util.Date;
 import java.util.List;
 
+import pp2.scrm.calendario.Calendario;
+import pp2.scrm.calendario.CalendarioService;
 import pp2.scrum.controller.EventBus;
+import pp2.scrum.logger.Logger;
 import pp2.scrum.model.Sprint;
 import pp2.scrum.model.UserStory;
-import pp2.scrum.utils.Calendario;
-import pp2.scrum.utils.Logger;
+import pp2.scrum.servicios.ServiceRegistry;
 
 /**
  * @author yoshknight
@@ -32,7 +34,7 @@ public class VerificarRetraso implements Runnable {
     public void run() {
         double porcentajeTranscurrido = getPorcentajeTiempoTranscurrido();
             if ( porcentajeTranscurrido < 50 ) {
-                TaskManager.addTask(this, Calendario.DAY );
+                TaskManager.addTask(this, CalendarioService.DAY );
             } else if (porcentajeTranscurrido < 100) {
                 double porcentajeAvance = getPorcentajeAvance();
                 if ( porcentajeAvance < porcentajeTranscurrido ) {
@@ -47,7 +49,7 @@ public class VerificarRetraso implements Runnable {
                         Logger.log( "ERROR generando evento de retraso: " + e.getMessage() );
                     }
                 } else {
-                    TaskManager.addTask(this, Calendario.DAY );
+                    TaskManager.addTask(this, CalendarioService.DAY );
                 }
             }
     }
@@ -67,7 +69,13 @@ public class VerificarRetraso implements Runnable {
     public double getPorcentajeTiempoTranscurrido() {
         Date today = new Date();
         Date inicio = sprint.getfechaInicio();
-        double factorTranscurrido = ((double) Calendario.getDuracion(inicio, today)) / sprint.getDuracion();
+        if (!ServiceRegistry.getInstance().hasService("calendario"))
+            throw new RuntimeException(
+                    "El servicio Calendario no fue inicializado.");
+        
+        Calendario calendario = (Calendario) ServiceRegistry.getInstance()
+                .getService("calendario");
+        double factorTranscurrido = ((double) calendario.getDuracion(inicio, today)) / sprint.getDuracion();
         return 100 * factorTranscurrido;
     }
     

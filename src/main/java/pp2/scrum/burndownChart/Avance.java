@@ -7,9 +7,10 @@ import java.util.GregorianCalendar;
 import org.jfree.data.xy.XYSeries;
 import org.jfree.data.xy.XYSeriesCollection;
 
+import pp2.scrm.calendario.Calendario;
 import pp2.scrum.model.Sprint;
 import pp2.scrum.model.UserStory;
-import pp2.scrum.utils.Calendario;
+import pp2.scrum.servicios.ServiceRegistry;
 
 public class Avance implements DataComponent{
 	private XYSeries avance; 
@@ -41,7 +42,14 @@ public class Avance implements DataComponent{
 		avance = new XYSeries( "Avance" );
 		
 		Date fechaInicio=iteracion.getfechaInicio();
-		int dias=Calendario.getDuracion(fechaInicio,Calendario.getToday());
+		if (!ServiceRegistry.getInstance().hasService("calendario"))
+	            throw new RuntimeException(
+	                    "El servicio Calendario no fue inicializado.");
+	        
+	        Calendario calendario = (Calendario) ServiceRegistry.getInstance()
+	                .getService("calendario");
+	        
+		int dias=calendario.getDuracion(fechaInicio,calendario.getToday());
 		
 		if (dias > iteracion.getDuracion())
 			dias = iteracion.getDuracion();

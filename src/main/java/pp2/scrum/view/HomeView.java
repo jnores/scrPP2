@@ -4,7 +4,6 @@ import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.util.ArrayList;
 
 import javax.swing.JFrame;
 import javax.swing.JLabel;
@@ -16,16 +15,17 @@ import javax.swing.JScrollPane;
 import javax.swing.SwingUtilities;
 import javax.swing.border.LineBorder;
 
+import pp2.scrm.calendario.Calendario;
 import pp2.scrum.command.AgregarOkListenerBacklogNuevo;
 import pp2.scrum.command.AgregarSiguienteListenerProyectoNuevo;
 import pp2.scrum.command.LimpiarBacklogNuevoView;
 import pp2.scrum.command.LimpiarProyectoNuevoView;
 import pp2.scrum.command.MostrarProyectoNuevo;
 import pp2.scrum.controller.AppController;
+import pp2.scrum.logger.Logger;
 import pp2.scrum.model.Proyecto;
 import pp2.scrum.model.Sprint;
-import pp2.scrum.utils.Calendario;
-import pp2.scrum.utils.Logger;
+import pp2.scrum.servicios.ServiceRegistry;
 import pp2.scrum.view.events.ViewUpdateEvent;
 
 
@@ -86,10 +86,16 @@ public class HomeView  extends JFrame implements ActionListener
         panel_Top.add(label);
         int lblNumero;
         JLabel lblIteracion;
+        if (!ServiceRegistry.getInstance().hasService("calendario"))
+            throw new RuntimeException(
+                    "El servicio Calendario no fue inicializado.");
+        
+        Calendario calendario = (Calendario) ServiceRegistry.getInstance()
+                .getService("calendario");
         try {
            Sprint sp = proyecto.iteracionActual();
            lblNumero = sp.getIdIteracion();
-           lblIteracion = new JLabel("Iteración " + "("+sp.getfechaInicio()+" - "+Calendario.agregarDias(sp.getfechaInicio(),sp.getDuracion())  +")");
+           lblIteracion = new JLabel("Iteración " + "("+sp.getfechaInicio()+" - "+calendario.agregarDias(sp.getfechaInicio(),sp.getDuracion())  +")");
         }
         catch (Exception e) {
            lblNumero = 1;

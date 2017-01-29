@@ -9,7 +9,8 @@ import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
-import pp2.scrum.utils.Calendario;
+import pp2.scrm.calendario.Calendario;
+import pp2.scrum.servicios.ServiceRegistry;
 
 /**
  * @author yoshknight
@@ -161,10 +162,17 @@ public class Proyecto {
 
     public Sprint iteracionActual() throws RuntimeException {
         Date hoy = new Date();
+        
+        if (!ServiceRegistry.getInstance().hasService("calendario"))
+            throw new RuntimeException(
+                    "El servicio Calendario no fue inicializado.");
+        
+        Calendario calendario = (Calendario) ServiceRegistry.getInstance()
+                .getService("calendario"); 
         for (Sprint sprint : iteraciones) {
             if (hoy.after(sprint.getfechaInicio()) &&
                     hoy.before(
-                            Calendario.agregarDias(
+                            calendario.agregarDias(
                                     sprint.getfechaInicio(),
                                     sprint.getDuracion()
                                     )

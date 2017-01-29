@@ -7,6 +7,7 @@ import java.util.Calendar;
 import java.util.Date;
 
 import junit.framework.TestCase;
+import pp2.scrm.calendario.Calendario;
 
 /**
  * @author yoshknight
@@ -14,6 +15,7 @@ import junit.framework.TestCase;
  */
 public class CalendarioTest extends TestCase {
 
+    Calendario calendario;
     /**
      * @param name
      */
@@ -26,10 +28,11 @@ public class CalendarioTest extends TestCase {
      */
     protected void setUp() throws Exception {
         super.setUp();
+        calendario = new Calendario();
     }
 
     public void testCAlendario() {
-        Calendario calendario = new Calendario();
+        calendario = new Calendario();
     }
 
     public void testGetFechaIntermedia() {
@@ -41,7 +44,7 @@ public class CalendarioTest extends TestCase {
         c1.set(2016, 0 , 11); // 2016 enero 11
         Date medio = c1.getTime();
 
-        assertEquals(medio.getTime(),Calendario.getFechaIntermedia(inicio,fin).getTime());
+        assertEquals(medio.getTime(),calendario.getFechaIntermedia(inicio,fin).getTime());
     }
 
     public void testGetDuracion() {
@@ -52,11 +55,10 @@ public class CalendarioTest extends TestCase {
         c1.add(Calendar.DATE,duracion); // 2016 enero 21
         Date fin = c1.getTime();
 
-        assertEquals(duracion,Calendario.getDuracion(inicio,fin));
+        assertEquals(duracion,calendario.getDuracion(inicio,fin));
     }
 
     public void testAgregarDias() {
-        int duracion = 20;
         Calendar c1 = Calendar.getInstance();
         c1.set(2016, 0 , 1); // 2016 enero 1
         Date inicio = c1.getTime();
@@ -64,7 +66,7 @@ public class CalendarioTest extends TestCase {
         Date fin = c1.getTime();
         
 
-        assertTrue(fin.equals(Calendario.agregarDias(inicio,10)) );
+        assertTrue(fin.equals(calendario.agregarDias(inicio,10)) );
     }
 
 

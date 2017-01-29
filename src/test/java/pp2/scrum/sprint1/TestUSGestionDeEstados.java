@@ -5,12 +5,14 @@ import java.util.Date;
 import java.util.List;
 
 import junit.framework.TestCase;
+import pp2.scrm.calendario.Calendario;
+import pp2.scrm.calendario.CalendarioService;
 import pp2.scrum.controller.SprintController;
 import pp2.scrum.model.Estado;
 import pp2.scrum.model.Sprint;
 import pp2.scrum.model.Tarea;
 import pp2.scrum.model.UserStory;
-import pp2.scrum.utils.Calendario;
+import pp2.scrum.servicios.ServiceRegistry;
 
 public class TestUSGestionDeEstados extends TestCase {
     Tarea tareaDefault,tareaDoing,tareaDone;
@@ -22,6 +24,7 @@ public class TestUSGestionDeEstados extends TestCase {
 
     protected void setUp() throws Exception {
         super.setUp();
+        ServiceRegistry.getInstance().registerService(new Calendario());
         
         List<UserStory> stories = new ArrayList<UserStory>();
         
@@ -63,7 +66,7 @@ public class TestUSGestionDeEstados extends TestCase {
         stories.add(new UserStory("Titulo3", "Detalle3", 10, null, tareas3));
         stories.add(new UserStory("Titulo4", "Detalle4",  5, null, tareas4));
         
-        Date inicio = new Date(System.currentTimeMillis() - 6*Calendario.DAY);
+        Date inicio = new Date(System.currentTimeMillis() - 6*CalendarioService.DAY);
         
         sprint = new Sprint(2, inicio,10,stories);
         sprint.changeEstadoTarea(tareaDoing, Estado.Doing);

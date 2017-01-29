@@ -20,10 +20,10 @@ import javax.swing.JTextArea;
 import javax.swing.JTextField;
 
 import pp2.scrum.controller.UserStoryController;
+import pp2.scrum.logger.Logger;
 import pp2.scrum.model.CriterioAceptacion;
 import pp2.scrum.model.Tarea;
 import pp2.scrum.model.UserStory;
-import pp2.scrum.utils.Logger;
 
 //No incluyo autor, eso esta almacenado en el logueo. El id igual, viene como dato. 
 public class AltaUserStoryView extends JPanel{

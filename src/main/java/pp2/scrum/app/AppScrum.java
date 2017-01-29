@@ -15,16 +15,17 @@ import javax.swing.Icon;
 import javax.swing.JOptionPane;
 import javax.swing.UIManager;
 
+import pp2.scrm.calendario.Calendario;
 import pp2.scrum.controller.BurndownChartController;
 import pp2.scrum.controller.ComponentFactory;
 import pp2.scrum.controller.HomeController;
 import pp2.scrum.controller.UserStoryPaginadoController;
 import pp2.scrum.dao.ProyectoDAO;
+import pp2.scrum.logger.Logger;
 import pp2.scrum.model.Proyecto;
 import pp2.scrum.model.Sprint;
 import pp2.scrum.model.UserStory;
-import pp2.scrum.utils.Calendario;
-import pp2.scrum.utils.Logger;
+import pp2.scrum.servicios.ServiceRegistry;
 import pp2.scrum.view.BurndownChartView;
 import pp2.scrum.view.HomeView;
 import pp2.scrum.view.UserStoryOrderableView;
@@ -174,7 +175,13 @@ public class AppScrum {
             
             Date inicioSprint;
             try {
-                inicioSprint = Calendario.getDate("03/10/2016");
+                if (!ServiceRegistry.getInstance().hasService("calendario"))
+                    throw new RuntimeException(
+                            "El servicio Calendario no fue inicializado.");
+                
+                Calendario calendario = (Calendario) ServiceRegistry.getInstance()
+                        .getService("calendario");
+                inicioSprint = calendario.getDate("03/10/2016");
             }
             catch (ParseException e) {
                 inicioSprint = new Date("03/10/2016");

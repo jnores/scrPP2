@@ -7,6 +7,7 @@ import java.util.Observer;
 import pp2.scrum.controller.Mail;
 import pp2.scrum.controller.MailGateway;
 import pp2.scrum.controller.Resultado;
+import pp2.scrum.logger.Logger;
 import pp2.scrum.model.UserStory;
 
 public class ObservadorDeHistoria implements Observer

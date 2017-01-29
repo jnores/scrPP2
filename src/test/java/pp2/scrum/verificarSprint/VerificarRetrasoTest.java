@@ -8,6 +8,7 @@ import java.util.Date;
 import java.util.List;
 
 import junit.framework.TestCase;
+import pp2.scrm.calendario.CalendarioService;
 import pp2.scrum.busEvent.BusEventSync;
 import pp2.scrum.controller.EventBus;
 import pp2.scrum.controller.Notificador;
@@ -15,7 +16,6 @@ import pp2.scrum.model.Estado;
 import pp2.scrum.model.Sprint;
 import pp2.scrum.model.Tarea;
 import pp2.scrum.model.UserStory;
-import pp2.scrum.utils.Calendario;
 
 /**
  * @author yoshknight
@@ -75,7 +75,7 @@ public class VerificarRetrasoTest extends TestCase {
         stories.add(new UserStory("Titulo4", "Detalle4",  5, null, tareas4));
         
 
-        Date inicio = new Date(System.currentTimeMillis() - 6*Calendario.DAY);
+        Date inicio = new Date(System.currentTimeMillis() - 6*CalendarioService.DAY);
         
         sprintAvanzado = new Sprint(2, inicio,10,stories);
         sprintNuevo = new Sprint(3, new Date() ,10,stories);
