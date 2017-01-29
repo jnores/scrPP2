@@ -21,9 +21,6 @@ public class ComponentFactory {
     private Map<String,Object> loadedComponents = new HashMap<String,Object>();
     private Properties properties;
 
-    @SuppressWarnings("unused")
-    private ComponentFactory(){}
-
     public ComponentFactory(Properties properties) {
         if (properties == null)
             throw new NullPointerException("ERROR Instanciando ComponentFactory, El argumento no puede ser nulo.");
