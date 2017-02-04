@@ -6,7 +6,7 @@ import java.awt.event.ActionListener;
 import pp2.scrum.controller.HomeController;
 import pp2.scrum.controller.Resultado;
 
-public class AgregarOkListenerBacklogNuevo implements Comando<HomeController>
+public class AgregarOkListenerBacklogNuevo implements Comando
 {
 
     @Override

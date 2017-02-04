@@ -15,7 +15,6 @@ import javax.swing.JScrollPane;
 import javax.swing.SwingUtilities;
 import javax.swing.border.LineBorder;
 
-import pp2.scrm.calendario.Calendario;
 import pp2.scrum.command.AgregarOkListenerBacklogNuevo;
 import pp2.scrum.command.AgregarSiguienteListenerProyectoNuevo;
 import pp2.scrum.command.LimpiarBacklogNuevoView;
@@ -23,9 +22,6 @@ import pp2.scrum.command.LimpiarProyectoNuevoView;
 import pp2.scrum.command.MostrarProyectoNuevo;
 import pp2.scrum.controller.AppController;
 import pp2.scrum.logger.Logger;
-import pp2.scrum.model.Proyecto;
-import pp2.scrum.model.Sprint;
-import pp2.scrum.servicios.ServiceRegistry;
 import pp2.scrum.view.events.ViewUpdateEvent;
 
 public class HomeView extends JFrame implements ActionListener {
@@ -33,30 +29,25 @@ public class HomeView extends JFrame implements ActionListener {
      * 
      */
     private static final long serialVersionUID = 1L;
-    private HomeView thisFrame;
     private JPanel panel_Top;
-    private AppController AppController;
-    private Proyecto proyecto;
+    private AppController appController;
     private BurndownChartView burndownChartViewpanel;
     private UserStoryPaginadoView listadoPaginadoHistorias;
     private UserStoryOrderableView filtradoHistorias;
-    private AltaUserStoryView userStoryUpload; // Alta de User Stories
     private JMenuBar menuBar;
     private JMenu menuP, mnIteraciones, mnSprint, mnBacklog, mnBurnDownChart;
     private JMenuItem mnListadoHistoriasItem, mnBurndownItem, mnFiltradoItem,
-            mnNuevoProyectoItem, mnNuevaUserStory, mnit1item, mnit2item,
-            mnit3item, mntmAbrirProyecto, mntmCerrarProyecto;
+            mnNuevoProyectoItem, mnNuevaUserStory, mntmAbrirProyecto, mntmCerrarProyecto;
 
     public HomeView(AppController controller, BurndownChartView chartview,
             UserStoryPaginadoView listadoPaginado,
-            UserStoryOrderableView filtrado, Proyecto proyecto) {
-        this.thisFrame = this;
-        this.AppController = controller;
+            UserStoryOrderableView filtrado) {
+        
+        this.appController = controller;
         getContentPane().setLayout(new BorderLayout());
         this.burndownChartViewpanel = chartview;
         this.listadoPaginadoHistorias = listadoPaginado;
         this.filtradoHistorias = filtrado;
-        this.proyecto = proyecto;
 
         setTitle("Sistema para gestionar proyectos de SCRUM");
         this.setJMenuBar(cargarMenu());
@@ -77,35 +68,35 @@ public class HomeView extends JFrame implements ActionListener {
         getContentPane().add(panel_Top, BorderLayout.NORTH);
         // panel_Top.setLayout(new BorderLayout(0, 0));
 
-        JLabel lblProyecto = new JLabel(proyecto.getNombre());
+        JLabel lblProyecto = new JLabel(appController.getApplicationName());
         panel_Top.add(lblProyecto);
 
         JLabel label = new JLabel("-");
         panel_Top.add(label);
-        int lblNumero;
-        JLabel lblIteracion;
-        if (!ServiceRegistry.getInstance().hasService("calendario"))
-            throw new RuntimeException(
-                    "El servicio Calendario no fue inicializado.");
+//        int lblNumero;
+//        JLabel lblIteracion;
+//        if (!ServiceRegistry.getInstance().hasService("calendario"))
+//            throw new RuntimeException(
+//                    "El servicio Calendario no fue inicializado.");
+//
+//        Calendario calendario = (Calendario) ServiceRegistry.getInstance()
+//                .getService("calendario");
+//        try {
+//            Sprint sp = proyecto.iteracionActual();
+//            lblNumero = sp.getIdIteracion();
+//            lblIteracion = new JLabel("Iteración "
+//                    + "(" + sp.getfechaInicio() + " - " + calendario
+//                            .agregarDias(sp.getfechaInicio(), sp.getDuracion())
+//                    + ")");
+//        } catch (Exception e) {
+//            lblNumero = 1;
+//            lblIteracion = new JLabel("Iteración");
+//        }
 
-        Calendario calendario = (Calendario) ServiceRegistry.getInstance()
-                .getService("calendario");
-        try {
-            Sprint sp = proyecto.iteracionActual();
-            lblNumero = sp.getIdIteracion();
-            lblIteracion = new JLabel("Iteración "
-                    + "(" + sp.getfechaInicio() + " - " + calendario
-                            .agregarDias(sp.getfechaInicio(), sp.getDuracion())
-                    + ")");
-        } catch (Exception e) {
-            lblNumero = 1;
-            lblIteracion = new JLabel("Iteración");
-        }
+//        JLabel lblNumeroIteracion = new JLabel(String.valueOf(lblNumero));
+//        panel_Top.add(lblNumeroIteracion);
 
-        JLabel lblNumeroIteracion = new JLabel(String.valueOf(lblNumero));
-        panel_Top.add(lblNumeroIteracion);
-
-        panel_Top.add(lblIteracion);
+//        panel_Top.add(lblIteracion);
 
         // panel_Main = new JPanel();
         // panel_Main.setLayout(new BorderLayout());
@@ -162,24 +153,24 @@ public class HomeView extends JFrame implements ActionListener {
         // menuP.add(menu2=new JMenuItem("Estimado"));
         // menuP.add(menu3=new JMenuItem("Comparativo"));
 
-        mnIteraciones.add(mnit1item = new JMenuItem("Primera"));
-        mnIteraciones.add(mnit2item = new JMenuItem("Segunda"));
-        mnIteraciones.add(mnit3item = new JMenuItem("Tercera"));
+//        mnIteraciones.add(mnit1item = new JMenuItem("Primera"));
+//        mnIteraciones.add(mnit2item = new JMenuItem("Segunda"));
+//        mnIteraciones.add(mnit3item = new JMenuItem("Tercera"));
 
         menuBar.add(menuP);
 
         mnNuevoProyectoItem = new JMenuItem("Nuevo Proyecto");
         mnNuevoProyectoItem.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
-                AppController.Execute(new MostrarProyectoNuevo(), this);
+                appController.Execute(new MostrarProyectoNuevo(), this);
             }
         });
 
-        AppController.Execute(new AgregarOkListenerBacklogNuevo(), this);
-        AppController.Execute(new AgregarSiguienteListenerProyectoNuevo(),
+        appController.Execute(new AgregarOkListenerBacklogNuevo(), this);
+        appController.Execute(new AgregarSiguienteListenerProyectoNuevo(),
                 this);
-        AppController.Execute(new LimpiarProyectoNuevoView(), this);
-        AppController.Execute(new LimpiarBacklogNuevoView(), this);
+        appController.Execute(new LimpiarProyectoNuevoView(), this);
+        appController.Execute(new LimpiarBacklogNuevoView(), this);
 
         menuP.add(mnNuevoProyectoItem);
 
@@ -230,16 +221,6 @@ public class HomeView extends JFrame implements ActionListener {
         getContentPane().remove(1);
         // burndownChartViewpanel.setBorder(new LineBorder(new Color(0, 0, 0)));
         getContentPane().add(filtradoHistorias, BorderLayout.CENTER);
-    }
-
-    private void MostrarUserStoryUpload() {
-        getContentPane().remove(1);
-        JScrollPane scroll = new JScrollPane(userStoryUpload);
-        scroll.setVerticalScrollBarPolicy(
-                JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED);
-        scroll.setHorizontalScrollBarPolicy(
-                JScrollPane.HORIZONTAL_SCROLLBAR_AS_NEEDED);
-        getContentPane().add(scroll, BorderLayout.CENTER);
     }
 
     private void setearVista(JPanel panel, boolean conScroll) {

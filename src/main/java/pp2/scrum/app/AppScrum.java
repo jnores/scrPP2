@@ -164,14 +164,10 @@ public class AppScrum {
      * @throws InstantiationException
      * 
      */
-    @SuppressWarnings("deprecation")
     private void abrirProyecto(Proyecto proyecto)
             throws InstantiationException {
         if (proyecto != null) {
             Logger.log("Abriendo Proyecto: " + proyecto.getNombre());
-            // TODO Aca solo se deberia crear el home controller y home view y
-            // pasar factory y proyecto.
-            HomeController controller = new HomeController(proyecto, factory);
 
             Date inicioSprint;
             try {
@@ -179,15 +175,17 @@ public class AppScrum {
                 Calendario calendario = (Calendario) factory
                         .getComponentByName("Calendario");
                 ServiceRegistry.getInstance().registerService(calendario);
-
-                if (!ServiceRegistry.getInstance().hasService("calendario"))
-                    throw new RuntimeException(
-                            "El servicio Calendario no fue inicializado.");
                 
                 inicioSprint = calendario.getDate("03/10/2016");
             } catch (ParseException e) {
-                inicioSprint = new Date("03/10/2016");
+                throw new RuntimeException(
+                        "El servicio Calendario no fue inicializado.",e);
             }
+            
+            // TODO Aca solo se deberia crear el home controller y home view y
+            // pasar factory y proyecto.
+            HomeController controller = new HomeController(proyecto, factory);
+
 
             BurndownChartView chartView = new BurndownChartView(
                     new BurndownChartController(new Sprint(1, inicioSprint, 21,
@@ -201,7 +199,7 @@ public class AppScrum {
             // controller.getProyectoController().getBacklog()));
 
             HomeView view = new HomeView(controller, chartView, listadoPaginado,
-                    filtrado, proyecto);
+                    filtrado);
             view.setVisible(true);
         } else {
             // JOptionPane.showMessageDialog(null,

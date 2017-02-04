@@ -6,6 +6,7 @@ import pp2.scrum.command.Comando;
 
 public interface AppController {
 
-    @SuppressWarnings("rawtypes")
     public Resultado Execute(Comando commando, ActionListener al);
+
+    public String getApplicationName();
 }

@@ -6,10 +6,7 @@ import java.util.List;
 import junit.framework.Test;
 import junit.framework.TestCase;
 import junit.framework.TestSuite;
-import pp2.scrum.controller.UserStoryHelper;
-import pp2.scrum.model.Estado;
 import pp2.scrum.model.UserStory;
-import pp2.scrum.utils.UserStoryComparator;
 
 public class UserStoryListViewTest extends TestCase
 {
@@ -28,16 +25,17 @@ public class UserStoryListViewTest extends TestCase
 
 	protected void setUp()
 	{
-	   List<UserStoryHelper> lista = new ArrayList<>();
-	   lista.add(new UserStoryHelper(new UserStory("titulo1", "detalle1"),null,Estado.getDefault()));
-	   lista.add(new UserStoryHelper(new UserStory("titulo2", "detalle2"),null,Estado.getDefault()));
+	   List<UserStory> lista = new ArrayList<>();
+	   lista.add(new UserStory("titulo1", "detalle1"));
+	   lista.add(new UserStory("titulo2", "detalle2"));
 		vista = new UserStoryListView(lista);
 	}
 	
 	public void testVista(){
-	   vista.ordenarPorOpcion(UserStoryComparator.TITULO_SORT , true);
-	   vista.ordenarPorOpcion(UserStoryComparator.TITULO_SORT , false);
+	   ;
 	   vista.update(null,null);
 	}
 
 }
+
+

@@ -2,11 +2,12 @@ package pp2.scrum.command;
 
 import java.awt.event.ActionListener;
 
+import pp2.scrum.controller.HomeController;
 import pp2.scrum.controller.Resultado;
 
-public interface Comando<T>
+public interface Comando
 {
 
-    Resultado Execute(final T homeController, ActionListener al);
+    Resultado Execute(final HomeController homeController, ActionListener al);
 
 }
