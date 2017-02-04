@@ -45,7 +45,7 @@ public class UserStoryOrderableView extends JFrame implements Observer {
         controller.addObserver(this);
         
         listaUserStories = new JPanel();
-        listaUserStories.setLayout(new BoxLayout(this, BoxLayout.Y_AXIS));
+        listaUserStories.setLayout(new BoxLayout(listaUserStories, BoxLayout.Y_AXIS));
 
         JPanel panel = new JPanel();
         this.
@@ -97,6 +97,7 @@ public class UserStoryOrderableView extends JFrame implements Observer {
         scrollPane.setBounds(0, 0, 350, 160);
         this.add(scrollPane, BorderLayout.CENTER);
         scrollPane.validate();
+        cargarLista();
     }
 
     public void showWindow(boolean b) {
