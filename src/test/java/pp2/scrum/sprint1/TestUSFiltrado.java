@@ -37,9 +37,9 @@ public class TestUSFiltrado extends TestCase implements Observer {
         backlogCargado.addUserStory( new UserStory( 1, "Como recepcionista necesito...", "detalle Recepcionista...") );        
 
         usfcVacio = new UserStoryFiltradoController(backlogVacio);
-        backlogVacio.addObserver(this);
+        usfcVacio.addObserver(this);
         usfcCargado = new UserStoryFiltradoController(backlogCargado);
-        backlogCargado.addObserver(this);
+        usfcCargado.addObserver(this);
         observerUpdate = false;
     }
     
