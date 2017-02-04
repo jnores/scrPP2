@@ -13,10 +13,7 @@ import junit.framework.TestCase;
 import junit.framework.TestSuite;
 import pp2.mock.scrum.dao.MockProyectoDAO;
 import pp2.scrm.calendario.Calendario;
-import pp2.scrum.model.Miembro;
-import pp2.scrum.model.Proyecto;
-import pp2.scrum.model.Sprint;
-import pp2.scrum.model.UserStory;
+import pp2.scrum.servicios.ServiceRegistry;
 
 public class ProyectoTest extends TestCase {
 
@@ -44,6 +41,7 @@ public class ProyectoTest extends TestCase {
     }
 
     public void setUp() {
+        ServiceRegistry.getInstance().registerService(new Calendario());
         calendario = new Calendario();
         miembro1 = new Miembro("Victoria", "Desarrollador");
         miembro2 = new Miembro("Ivo", "Diseñador");
@@ -97,6 +95,9 @@ public class ProyectoTest extends TestCase {
     public void testProyectoGetMiembro() {
         Miembro miembro = this.proyecto.getMiembroPorNombre("Ivo");
         assertEquals(miembro, this.miembro2);
+        
+        miembro = this.proyecto.getMiembroPorNombre("No Existe");
+        assertNull(miembro);
 
     }
 
