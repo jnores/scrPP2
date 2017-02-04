@@ -72,7 +72,6 @@ public class TestUSOrdenado extends TestCase implements Observer {
         assertEquals(model.get(2).getId(), 1);
         
         usocCargado.orderBy(UserStoryComparator.NUMERO_SORT);
-        
 //        
 //        assertTrue(observerUpdate);
         
@@ -82,6 +81,17 @@ public class TestUSOrdenado extends TestCase implements Observer {
         assertEquals(model.get(0).getId(), 1);
         assertEquals(model.get(1).getId(), 2);
         assertEquals(model.get(2).getId(), 3);
+        
+        usocCargado.orderBy(UserStoryComparator.NUMERO_SORT,false);
+//      
+//      assertTrue(observerUpdate);
+      
+        model = usocCargado.getData();
+        assertEquals(model.size(), 3);
+
+        assertEquals(model.get(0).getId(), 3);
+        assertEquals(model.get(1).getId(), 2);
+        assertEquals(model.get(2).getId(), 1);
     }
     
     /**

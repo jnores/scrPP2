@@ -33,7 +33,7 @@ public class UserStoryOrdenadoController {
         if (isAscendente) { 
             this.comparator =  comparator;
         } else {
-            this.comparator =  comparator;
+            this.comparator =  UserStoryComparator.decending(comparator);
         }
     }
     
