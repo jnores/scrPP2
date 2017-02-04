@@ -1,7 +1,7 @@
 /**
  * 
  */
-package pp2.scrm.calendario;
+package pp2.scrum.calendario;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;

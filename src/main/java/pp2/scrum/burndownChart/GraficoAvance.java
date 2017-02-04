@@ -9,8 +9,8 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import pp2.scrm.calendario.Calendario;
-import pp2.scrm.calendario.CalendarioService;
+import pp2.scrum.calendario.Calendario;
+import pp2.scrum.calendario.CalendarioService;
 import pp2.scrum.model.Sprint;
 import pp2.scrum.model.UserStory;
 import pp2.scrum.servicios.ServiceRegistry;
@@ -58,7 +58,7 @@ public class GraficoAvance implements Graficador {
         Integer storyPoints = iteracion.getStoryPointsPactados();
         Map<Date, Integer> fechasFinalizacion = new HashMap<>();
         // Create historigrama
-        for (UserStory us : iteracion.getBacklog()) {
+        for (UserStory us : iteracion.getBacklog().getList()) {
             if ( iteracion.isUserStoryDone(us) ) {
                 fechaAux = iteracion.getUltimoCambio(us);
                 nivelActual = 0;

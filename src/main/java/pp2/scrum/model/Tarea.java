@@ -5,6 +5,42 @@ import java.util.ArrayList;
 import pp2.scrum.logCommits.GeneradorIDs;
 
 public class Tarea extends java.util.Observable {
+    /* (non-Javadoc)
+     * @see java.lang.Object#hashCode()
+     */
+    @Override
+    public int hashCode() {
+        final int prime = 31;
+        int result = 1;
+        result = prime * result + ((detalle == null) ? 0 : detalle.hashCode());
+        return result;
+    }
+
+    /* (non-Javadoc)
+     * @see java.lang.Object#equals(java.lang.Object)
+     */
+    @Override
+    public boolean equals(Object obj) {
+        if (this == obj) {
+            return true;
+        }
+        if (obj == null) {
+            return false;
+        }
+        if (!(obj instanceof Tarea)) {
+            return false;
+        }
+        Tarea other = (Tarea) obj;
+        if (detalle == null) {
+            if (other.detalle != null) {
+                return false;
+            }
+        } else if (!detalle.equals(other.detalle)) {
+            return false;
+        }
+        return true;
+    }
+
     private String id, detalle;
     /**
      * @return the detalle

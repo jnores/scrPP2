@@ -11,7 +11,8 @@ public class MockProyectoDAO extends ProyectoDAO {
     List<Proyecto> listaProyectos = new ArrayList<Proyecto>();
 
     public MockProyectoDAO() {
-         listaProyectos.add(0, new Proyecto(1, "Test 1"));
+
+        listaProyectos.add(0, new Proyecto(1, "Test 1"));
 
     }
 

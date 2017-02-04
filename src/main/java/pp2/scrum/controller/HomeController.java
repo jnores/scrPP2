@@ -3,7 +3,7 @@ package pp2.scrum.controller;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
 
-import pp2.scrm.calendario.CalendarioService;
+import pp2.scrum.calendario.CalendarioService;
 import pp2.scrum.command.Comando;
 import pp2.scrum.dao.ProyectoDAO;
 import pp2.scrum.model.Proyecto;

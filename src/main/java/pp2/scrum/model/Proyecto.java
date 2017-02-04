@@ -8,7 +8,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
-import pp2.scrm.calendario.CalendarioService;
+import pp2.scrum.calendario.CalendarioService;
 import pp2.scrum.servicios.ServiceRegistry;
 
 /**
@@ -19,18 +19,18 @@ public class Proyecto {
     private long id;
     protected String nombre;
     // private Date fechaInicio,fechaFin;
-    private List<UserStory> backlog;
+    private Backlog backlog;
     protected Set<Miembro> miembros;
     protected List<Sprint> iteraciones;
     private Map<UserStory, Miembro> asignaciones;
 
     public Proyecto(long id, String nombre) {
-        this(id, nombre, new ArrayList<UserStory>(), new HashSet<Miembro>(),
+        this(id, nombre, new Backlog(), new HashSet<Miembro>(),
                 new ArrayList<Sprint>(), new HashMap<UserStory, Miembro>());
 
     }
 
-    public Proyecto(long id, String nombre, List<UserStory> backlog,
+    public Proyecto(long id, String nombre, Backlog backlog,
             Set<Miembro> miembros, List<Sprint> iteraciones,
             Map<UserStory, Miembro> asignaciones) {
         this.id = id;
@@ -63,7 +63,7 @@ public class Proyecto {
     /**
      * @return Coleccion de UserStories del backlog
      */
-    public List<UserStory> getBacklog() {
+    public Backlog getBacklog() {
         return backlog;
     }
 
@@ -88,7 +88,7 @@ public class Proyecto {
      *            La user story que se debe agregar al bachlog
      */
     public void addUserStory(UserStory userStory) {
-        this.backlog.add(userStory);
+        this.backlog.addUserStory(userStory);
     }
 
     /**
@@ -106,7 +106,7 @@ public class Proyecto {
      *            El miembro que se le asignara la user story
      */
     public void asignarUserStory(UserStory userStory, Miembro miembro) {
-        if (this.backlog.contains(userStory)
+        if (this.backlog.getList().contains(userStory)
                 && this.miembros.contains(miembro)) {
             this.asignaciones.put(userStory, miembro);
         }
@@ -115,7 +115,7 @@ public class Proyecto {
     public UserStory getUserStoryPorId(int id) {
         UserStory userStory = null;
         getBacklog();
-        for (UserStory us : backlog) {
+        for (UserStory us : backlog.getList()) {
             if (us.getId() == id) {
                 userStory = us;
                 break;
@@ -150,7 +150,7 @@ public class Proyecto {
      */
     public long getSiguienteStoryID() {
         long id = 0;
-        for (UserStory us : backlog)
+        for (UserStory us : backlog.getList())
             if (us.getId() > id)
                 id = us.getId();
         return id + 1;

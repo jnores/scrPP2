@@ -6,8 +6,8 @@ package pp2.scrum.verificarSprint;
 import java.util.Date;
 import java.util.List;
 
-import pp2.scrm.calendario.Calendario;
-import pp2.scrm.calendario.CalendarioService;
+import pp2.scrum.calendario.Calendario;
+import pp2.scrum.calendario.CalendarioService;
 import pp2.scrum.controller.EventBus;
 import pp2.scrum.logger.Logger;
 import pp2.scrum.model.Sprint;
@@ -57,7 +57,7 @@ public class VerificarRetraso implements Runnable {
     public double getPorcentajeAvance() {
         double storyPointsPactados = sprint.getStoryPointsPactados();
         double storyPointsCompletos = 0;
-        List<UserStory> stories = sprint.getBacklog();
+        List<UserStory> stories = sprint.getBacklog().getList();
         for ( UserStory us : stories ) {
             if ( sprint.isUserStoryDone(us) ) {
                 storyPointsCompletos += us.getStoryPoints();

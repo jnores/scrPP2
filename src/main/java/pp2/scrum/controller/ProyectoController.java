@@ -1,7 +1,6 @@
 package pp2.scrum.controller;
 
 import java.security.InvalidParameterException;
-import java.util.ArrayList;
 import java.util.List;
 
 import pp2.scrum.dao.ProyectoDAO;
@@ -37,7 +36,7 @@ public class ProyectoController extends Controller
      * @return List<UserStory> totalidad de userstories del proyecto.
      */
     public List<UserStory> getBacklog() {
-        return proyecto.getBacklog();
+        return proyecto.getBacklog().getList();
 //        List<UserStory> userStories = proyecto.getBacklog();
 //        ArrayList<UserStoryHelper> userStoriesHelpers = new ArrayList<UserStoryHelper>();
 //        for(UserStory userStory: userStories) {

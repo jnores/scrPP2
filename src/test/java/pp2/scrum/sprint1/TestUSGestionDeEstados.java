@@ -5,9 +5,10 @@ import java.util.Date;
 import java.util.List;
 
 import junit.framework.TestCase;
-import pp2.scrm.calendario.Calendario;
-import pp2.scrm.calendario.CalendarioService;
+import pp2.scrum.calendario.Calendario;
+import pp2.scrum.calendario.CalendarioService;
 import pp2.scrum.controller.SprintController;
+import pp2.scrum.model.Backlog;
 import pp2.scrum.model.Estado;
 import pp2.scrum.model.Sprint;
 import pp2.scrum.model.Tarea;
@@ -26,7 +27,7 @@ public class TestUSGestionDeEstados extends TestCase {
         super.setUp();
         ServiceRegistry.getInstance().registerService(new Calendario());
         
-        List<UserStory> stories = new ArrayList<UserStory>();
+        Backlog stories = new Backlog();
         
         tareaDefault = new Tarea("tarea en estado ToDo");
         tareaDoing = new Tarea("tarea en estado Doing");
@@ -61,10 +62,10 @@ public class TestUSGestionDeEstados extends TestCase {
         tareas4.add(t4a);
         tareas4.add(t4b);
         
-        stories.add(new UserStory("Titulo1", "Detalle1",  5, null, tareas1));
-        stories.add(new UserStory("Titulo2", "Detalle2", 10, null, tareas2));
-        stories.add(new UserStory("Titulo3", "Detalle3", 10, null, tareas3));
-        stories.add(new UserStory("Titulo4", "Detalle4",  5, null, tareas4));
+        stories.addUserStory(new UserStory("Titulo1", "Detalle1",  5, null, tareas1));
+        stories.addUserStory(new UserStory("Titulo2", "Detalle2", 10, null, tareas2));
+        stories.addUserStory(new UserStory("Titulo3", "Detalle3", 10, null, tareas3));
+        stories.addUserStory(new UserStory("Titulo4", "Detalle4",  5, null, tareas4));
         
         Date inicio = new Date(System.currentTimeMillis() - 6*CalendarioService.DAY);
         

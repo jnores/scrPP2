@@ -2,7 +2,7 @@ package pp2.mock.scrum.calendario;
 
 import java.util.Date;
 
-import pp2.scrm.calendario.Calendario;
+import pp2.scrum.calendario.Calendario;
 
 public class MockCalendario extends Calendario {
     Date fecha;

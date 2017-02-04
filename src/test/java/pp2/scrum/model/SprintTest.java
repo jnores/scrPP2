@@ -1,5 +1,7 @@
 package pp2.scrum.model;
 
+import java.util.Date;
+
 import junit.framework.Test;
 import junit.framework.TestCase;
 import junit.framework.TestSuite;
@@ -44,10 +46,8 @@ public class SprintTest extends TestCase {
 	 * Verifico que se asignen bien los atributos en el setUp
 	 */
 	public void testSprint() {
-		Sprint s = new Sprint(1,null,30,null);
-		assertTrue(true);
-		s.setDuracion(21);
-		assertEquals(s.getDuracion(), 21);
+		Sprint s = new Sprint(1,new Date(),30,new Backlog());
+		assertEquals(s.getDuracion(), 30);
 
 	}
 	

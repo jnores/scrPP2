@@ -12,7 +12,7 @@ import junit.framework.Test;
 import junit.framework.TestCase;
 import junit.framework.TestSuite;
 import pp2.mock.scrum.dao.MockProyectoDAO;
-import pp2.scrm.calendario.Calendario;
+import pp2.scrum.calendario.Calendario;
 import pp2.scrum.servicios.ServiceRegistry;
 
 public class ProyectoTest extends TestCase {
@@ -114,15 +114,15 @@ public class ProyectoTest extends TestCase {
     public void testPryectoEntidad() {
         Set<Miembro> miembros = new HashSet<>();
         List<Sprint> iteraciones = new ArrayList<>();
-        List<UserStory> historias = new ArrayList<>();
+        Backlog historias = new Backlog();
         miembros.add(miembro1);
         userStory1.setId(2);
-        historias.add(userStory1);
-        historias.add(userStory2);
+        historias.addUserStory(userStory1);
+        historias.addUserStory(userStory2);
         Date manana = calendario.agregarDias(new Date(), -1);
         iteraciones.add(new Sprint(1, manana, 14, historias));
         Proyecto proyecto = new Proyecto(0, "P1", historias, miembros,
-                iteraciones, new HashMap<UserStory, Miembro>());
+                null, new HashMap<UserStory, Miembro>());
 
         // assertEquals(proyecto.getAllUserStories().size(),4);
         assertTrue(proyecto.getMiembroPorNombre("Victoria") != null);
@@ -131,7 +131,7 @@ public class ProyectoTest extends TestCase {
         proyecto.getResponsable(userStory1);
         proyecto.setNombre("n1");
         assertEquals(proyecto.getSiguienteStoryID(), 3);
-        assertTrue(proyecto.iteracionActual() != null);
+        
         // iteraciones.get(0).stateStory(userStory1);
 
 

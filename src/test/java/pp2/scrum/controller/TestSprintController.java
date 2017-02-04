@@ -9,6 +9,7 @@ import java.util.Date;
 import java.util.List;
 
 import junit.framework.TestCase;
+import pp2.scrum.model.Backlog;
 import pp2.scrum.model.Sprint;
 import pp2.scrum.model.Tarea;
 import pp2.scrum.model.UserStory;
@@ -35,7 +36,7 @@ public class TestSprintController extends TestCase {
      */
     protected void setUp() throws Exception {
         super.setUp();
-        List<UserStory> stories = new ArrayList<UserStory>();
+        Backlog stories = new Backlog();
 
         Tarea t1a = new Tarea("tarea a de us 1");
         t1b = new Tarea("tarea b de us 1");
@@ -49,8 +50,8 @@ public class TestSprintController extends TestCase {
         tareas2.add(t2a);
         tareas2.add(t2b);
 
-        stories.add(new UserStory("Titulo1", "Detalle1", 5, null, tareas1));
-        stories.add(new UserStory("Titulo2", "Detalle2", 10, null, tareas2));
+        stories.addUserStory(new UserStory("Titulo1", "Detalle1", 5, null, tareas1));
+        stories.addUserStory(new UserStory("Titulo2", "Detalle2", 10, null, tareas2));
 
         Sprint sprint = new Sprint(1, new Date(), 21, stories);
         controller = new SprintController(sprint);

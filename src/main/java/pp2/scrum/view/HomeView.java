@@ -39,15 +39,10 @@ public class HomeView extends JFrame implements ActionListener {
     private JMenuItem mnListadoHistoriasItem, mnBurndownItem, mnFiltradoItem,
             mnNuevoProyectoItem, mnNuevaUserStory, mntmAbrirProyecto, mntmCerrarProyecto;
 
-    public HomeView(AppController controller, BurndownChartView chartview,
-            UserStoryPaginadoView listadoPaginado,
-            UserStoryOrderableView filtrado) {
+    public HomeView(AppController controller) {
         
         this.appController = controller;
         getContentPane().setLayout(new BorderLayout());
-        this.burndownChartViewpanel = chartview;
-        this.listadoPaginadoHistorias = listadoPaginado;
-        this.filtradoHistorias = filtrado;
 
         setTitle("Sistema para gestionar proyectos de SCRUM");
         this.setJMenuBar(cargarMenu());
@@ -68,11 +63,9 @@ public class HomeView extends JFrame implements ActionListener {
         getContentPane().add(panel_Top, BorderLayout.NORTH);
         // panel_Top.setLayout(new BorderLayout(0, 0));
 
-        JLabel lblProyecto = new JLabel(appController.getApplicationName());
+        JLabel lblProyecto = new JLabel(controller.getApplicationName());
         panel_Top.add(lblProyecto);
 
-        JLabel label = new JLabel("-");
-        panel_Top.add(label);
 //        int lblNumero;
 //        JLabel lblIteracion;
 //        if (!ServiceRegistry.getInstance().hasService("calendario"))
@@ -101,8 +94,8 @@ public class HomeView extends JFrame implements ActionListener {
         // panel_Main = new JPanel();
         // panel_Main.setLayout(new BorderLayout());
 
-        burndownChartViewpanel.setBorder(new LineBorder(new Color(0, 0, 0)));
-        getContentPane().add(burndownChartViewpanel, BorderLayout.CENTER);
+//        burndownChartViewpanel.setBorder(new LineBorder(new Color(0, 0, 0)));
+//        getContentPane().add(burndownChartViewpanel, BorderLayout.CENTER);
 
         // burndownChartViewpanel.setVisible(true);
         /*

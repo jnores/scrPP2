@@ -9,6 +9,7 @@ import junit.framework.TestCase;
 import junit.framework.TestSuite;
 import pp2.mock.scrum.calendario.MockCalendario;
 import pp2.scrum.controller.BurndownChartController;
+import pp2.scrum.model.Backlog;
 import pp2.scrum.model.Estado;
 import pp2.scrum.model.Sprint;
 import pp2.scrum.model.Tarea;
@@ -39,7 +40,7 @@ public class BurndownChartViewTest extends TestCase {
 
         Tarea t1a, t1b, t2a, t2b, t3a, t3b, t4a, t4b;
 
-        List<UserStory> stories = new ArrayList<UserStory>();
+        Backlog stories = new Backlog();
 
         t1a = new Tarea("tarea a de us 1");
         t1b = new Tarea("tarea b de us 1");
@@ -65,10 +66,10 @@ public class BurndownChartViewTest extends TestCase {
         tareas4.add(t4a);
         tareas4.add(t4b);
 
-        stories.add(new UserStory("Titulo1", "Detalle1", sp1, null, tareas1));
-        stories.add(new UserStory("Titulo2", "Detalle2", sp2, null, tareas2));
-        stories.add(new UserStory("Titulo3", "Detalle3", sp3, null, tareas3));
-        stories.add(new UserStory("Titulo4", "Detalle4", sp4, null, tareas4));
+        stories.addUserStory(new UserStory("Titulo1", "Detalle1", sp1, null, tareas1));
+        stories.addUserStory(new UserStory("Titulo2", "Detalle2", sp2, null, tareas2));
+        stories.addUserStory(new UserStory("Titulo3", "Detalle3", sp3, null, tareas3));
+        stories.addUserStory(new UserStory("Titulo4", "Detalle4", sp4, null, tareas4));
 
         diasTranscurridos = 7;
         calendario.setFecha(new Date());

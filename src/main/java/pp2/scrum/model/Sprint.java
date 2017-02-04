@@ -3,24 +3,23 @@ package pp2.scrum.model;
 import java.security.InvalidParameterException;
 import java.util.Date;
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
 
-import pp2.scrm.calendario.CalendarioService;
+import pp2.scrum.calendario.CalendarioService;
 import pp2.scrum.servicios.ServiceRegistry;
 
 public class Sprint {
     private int idIteracion;
     private Date fechaInicio;
     private int duracion;
-    private List<UserStory> backlog;
+    private Backlog backlog;
     private int StoryPointsPactados;
     private Map<Tarea, Estado> pizarraEstados;
     private Map<Tarea, Date> ultimoCambio;
     CalendarioService calendario;
 
     public Sprint(int idIteracion, Date fechaInicio, int duracion,
-            List<UserStory> historias) {
+            Backlog historias) {
 
         calendario = (CalendarioService) ServiceRegistry.getInstance()
                 .getService(CalendarioService.SERVICE_NAME);
@@ -36,18 +35,16 @@ public class Sprint {
         // TODO: Esto se debe realizar cuando se commitea el sprint backlog
         // -- JN 20170114
         Estado estadoAux = Estado.getDefault();
-        if (historias != null) {
-            for (UserStory us : historias)
-                for (Tarea t : us.getTareas())
-                    pizarraEstados.put(t, estadoAux);
-        }
+        for (UserStory us : backlog.getList())
+            for (Tarea t : us.getTareas())
+                pizarraEstados.put(t, estadoAux);
 
     }
 
     private void setStoryPointsPactados() {
         int puntos = 0;
         if (this.backlog != null) {
-            for (UserStory us : this.backlog) {
+            for (UserStory us : this.backlog.getList()) {
                 puntos += us.getStoryPoints();
             }
         }
@@ -62,22 +59,15 @@ public class Sprint {
         return this.fechaInicio;
     }
 
-    public List<UserStory> getBacklog() {
+    public Backlog getBacklog() {
         return this.backlog;
     }
 
-    public void setDuracion(int dias) {
-        this.duracion = dias;
-    }
-
-    public void setUserStories(List<UserStory> historias) {
-        this.backlog = historias;
-    }
-
-    public void setUserStory(UserStory historia) {
-        this.StoryPointsPactados = +historia.getStoryPoints();
-        this.backlog.add(historia);
-    }
+//
+//    public void setUserStory(UserStory historia) {
+//        this.StoryPointsPactados = +historia.getStoryPoints();
+//        this.backlog.add(historia);
+//    }
 
     public int getDuracion() {
         return this.duracion;
@@ -112,7 +102,7 @@ public class Sprint {
     }
 
     public boolean contieneUserStory(UserStory us) {
-        return backlog.contains(us);
+        return backlog.getList().contains(us);
     }
 
     public void changeEstadoTarea(Tarea tarea, Estado newEstado)

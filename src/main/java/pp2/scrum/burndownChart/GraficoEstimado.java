@@ -21,7 +21,7 @@ public class GraficoEstimado implements Graficador {
     public List<Integer> getTablaDeValores(Sprint iteracion) {
         int dias = iteracion.getDuracion();
         Integer storyPoints,reduccion;
-        storyPoints=this.getTotalStoryPoints(iteracion.getBacklog());
+        storyPoints=this.getTotalStoryPoints(iteracion.getBacklog().getList());
         List<Integer> tablaEstimado =  new ArrayList<>();
         
         reduccion=storyPoints/dias;

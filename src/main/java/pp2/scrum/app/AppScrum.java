@@ -4,9 +4,6 @@ import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.security.InvalidParameterException;
-import java.text.ParseException;
-import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
 import java.util.NoSuchElementException;
 import java.util.Properties;
@@ -15,21 +12,14 @@ import javax.swing.Icon;
 import javax.swing.JOptionPane;
 import javax.swing.UIManager;
 
-import pp2.scrm.calendario.Calendario;
-import pp2.scrum.controller.BurndownChartController;
+import pp2.scrum.calendario.CalendarioService;
 import pp2.scrum.controller.ComponentFactory;
 import pp2.scrum.controller.HomeController;
-import pp2.scrum.controller.UserStoryPaginadoController;
 import pp2.scrum.dao.ProyectoDAO;
 import pp2.scrum.logger.Logger;
 import pp2.scrum.model.Proyecto;
-import pp2.scrum.model.Sprint;
-import pp2.scrum.model.UserStory;
 import pp2.scrum.servicios.ServiceRegistry;
-import pp2.scrum.view.BurndownChartView;
 import pp2.scrum.view.HomeView;
-import pp2.scrum.view.UserStoryOrderableView;
-import pp2.scrum.view.UserStoryPaginadoView;
 
 /**
  * Esta clase representa la aplicacion, se encarga de iniciar los componentes
@@ -57,10 +47,16 @@ public class AppScrum {
     /**
      * Inicia los componentes que necesita el sistema. Segun el archivo de
      * configuración por el momento inicia un factory.
+     * @throws InstantiationException 
+     * @throws NoSuchElementException 
      */
-    private void iniciarComponentes() {
+    private void iniciarComponentes() throws NoSuchElementException, InstantiationException {
         Logger.log("Iniciando Componentes");
         factory = new ComponentFactory(propiedades);
+        CalendarioService calendario = (CalendarioService) factory
+              .getComponentByName("Calendario");
+      ServiceRegistry.getInstance().registerService(calendario);
+      
         Logger.log("Componentes Iniciados");
     }
 
@@ -168,38 +164,36 @@ public class AppScrum {
             throws InstantiationException {
         if (proyecto != null) {
             Logger.log("Abriendo Proyecto: " + proyecto.getNombre());
-
-            Date inicioSprint;
-            try {
-
-                Calendario calendario = (Calendario) factory
-                        .getComponentByName("Calendario");
-                ServiceRegistry.getInstance().registerService(calendario);
-                
-                inicioSprint = calendario.getDate("03/10/2016");
-            } catch (ParseException e) {
-                throw new RuntimeException(
-                        "El servicio Calendario no fue inicializado.",e);
-            }
-            
+//
+//            try {
+//
+//                Calendario calendario = (Calendario) factory
+//                        .getComponentByName("Calendario");
+//                ServiceRegistry.getInstance().registerService(calendario);
+//                
+//                inicioSprint = calendario.getDate("03/10/2016");
+//            } catch (ParseException e) {
+//                throw new RuntimeException(
+//                        "El servicio Calendario no fue inicializado.",e);
+//            }
+//            
             // TODO Aca solo se deberia crear el home controller y home view y
             // pasar factory y proyecto.
             HomeController controller = new HomeController(proyecto, factory);
 
 
-            BurndownChartView chartView = new BurndownChartView(
-                    new BurndownChartController(new Sprint(1, inicioSprint, 21,
-                            new ArrayList<UserStory>())));
-            UserStoryPaginadoView listadoPaginado = new UserStoryPaginadoView(
-                    new UserStoryPaginadoController(),
-                    new ArrayList<UserStory>());
-            UserStoryOrderableView filtrado = null;
+//            BurndownChartView chartView = new BurndownChartView(
+//                    new BurndownChartController(new Sprint(1, inicioSprint, 21,
+//                            new ArrayList<UserStory>())));
+//            UserStoryPaginadoView listadoPaginado = new UserStoryPaginadoView(
+//                    new UserStoryPaginadoController(),
+//                    new ArrayList<UserStory>());
+//            UserStoryOrderableView filtrado = null;
             // UserStoryOrderableView filtrado = new UserStoryOrderableView(
             // new UserStoryListView(
             // controller.getProyectoController().getBacklog()));
 
-            HomeView view = new HomeView(controller, chartView, listadoPaginado,
-                    filtrado);
+            HomeView view = new HomeView(controller);
             view.setVisible(true);
         } else {
             // JOptionPane.showMessageDialog(null,

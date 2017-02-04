@@ -7,7 +7,7 @@ import java.util.Calendar;
 import java.util.Date;
 
 import junit.framework.TestCase;
-import pp2.scrm.calendario.Calendario;
+import pp2.scrum.calendario.Calendario;
 
 /**
  * @author yoshknight

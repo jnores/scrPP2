@@ -120,6 +120,8 @@ public class UserStory extends Observable implements Observer
         if (id != other.id) {
             return false;
         }
+        if (! other.titulo.equals(this.titulo))
+            return false;
         return true;
     }
 
