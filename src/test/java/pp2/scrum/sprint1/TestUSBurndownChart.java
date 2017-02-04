@@ -5,7 +5,7 @@ import java.util.Date;
 import java.util.List;
 
 import junit.framework.TestCase;
-import pp2.mock.scrum.utils.MockCalendario;
+import pp2.mock.scrum.calendario.MockCalendario;
 import pp2.scrum.burndownChart.OpcionGrafico;
 import pp2.scrum.controller.BurndownChartController;
 import pp2.scrum.model.Estado;

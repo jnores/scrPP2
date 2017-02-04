@@ -89,8 +89,8 @@ public class AppScrum {
             proyecto = seleccionarProyecto(proyectosGuardados, nombreProyecto);
 
         if (proyecto == null) {
-            //Logger.log("Creando nuevo proyecto");
-            //proyecto = crearNuevoProyecto(proyectoDAO);
+            // Logger.log("Creando nuevo proyecto");
+            // proyecto = crearNuevoProyecto(proyectoDAO);
         }
 
         return proyecto;
@@ -140,7 +140,7 @@ public class AppScrum {
 
         Logger.log("ID proyecto: " + idProyecto);
 
-        if (idProyecto != null) 
+        if (idProyecto != null)
             proyecto = proyectos.get(idProyecto);
 
         return proyecto;
@@ -151,12 +151,12 @@ public class AppScrum {
      * @param proyectoDAO
      * @return Proyecto nuevo.
      */
-//    private Proyecto crearNuevoProyecto(ProyectoDAO proyectoDAO) {
-//        Logger.log("Creando proyecto Nuevo");
-//        // TODO Esto deberia lanzar un asistente para crear un nuevo proyecto
-//        // y guardarlo antes de retornarlo.
-//        return new Proyecto(37, "Proyecto Nuevo");
-//    }
+    // private Proyecto crearNuevoProyecto(ProyectoDAO proyectoDAO) {
+    // Logger.log("Creando proyecto Nuevo");
+    // // TODO Esto deberia lanzar un asistente para crear un nuevo proyecto
+    // // y guardarlo antes de retornarlo.
+    // return new Proyecto(37, "Proyecto Nuevo");
+    // }
 
     /**
      * Consulta que proyecto iniciar y ejecuta la aplicacion con el mismo.
@@ -172,40 +172,41 @@ public class AppScrum {
             // TODO Aca solo se deberia crear el home controller y home view y
             // pasar factory y proyecto.
             HomeController controller = new HomeController(proyecto, factory);
-            
+
             Date inicioSprint;
             try {
+
+                Calendario calendario = (Calendario) factory
+                        .getComponentByName("Calendario");
+                ServiceRegistry.getInstance().registerService(calendario);
+
                 if (!ServiceRegistry.getInstance().hasService("calendario"))
                     throw new RuntimeException(
                             "El servicio Calendario no fue inicializado.");
                 
-                Calendario calendario = (Calendario) ServiceRegistry.getInstance()
-                        .getService("calendario");
                 inicioSprint = calendario.getDate("03/10/2016");
-            }
-            catch (ParseException e) {
+            } catch (ParseException e) {
                 inicioSprint = new Date("03/10/2016");
             }
 
             BurndownChartView chartView = new BurndownChartView(
-                    new BurndownChartController(
-                            new Sprint(1, inicioSprint, 21,
-                                    new ArrayList<UserStory>())));
+                    new BurndownChartController(new Sprint(1, inicioSprint, 21,
+                            new ArrayList<UserStory>())));
             UserStoryPaginadoView listadoPaginado = new UserStoryPaginadoView(
                     new UserStoryPaginadoController(),
                     new ArrayList<UserStory>());
             UserStoryOrderableView filtrado = null;
-//            UserStoryOrderableView filtrado = new UserStoryOrderableView(
-//                    new UserStoryListView(
-//                            controller.getProyectoController().getBacklog()));
+            // UserStoryOrderableView filtrado = new UserStoryOrderableView(
+            // new UserStoryListView(
+            // controller.getProyectoController().getBacklog()));
 
             HomeView view = new HomeView(controller, chartView, listadoPaginado,
                     filtrado, proyecto);
             view.setVisible(true);
         } else {
-//            JOptionPane.showMessageDialog(null,
-//                    "No se Seleccionó ningun proyecto", "Finalizando programa",
-//                           JOptionPane.INFORMATION_MESSAGE);
+            // JOptionPane.showMessageDialog(null,
+            // "No se Seleccionó ningun proyecto", "Finalizando programa",
+            // JOptionPane.INFORMATION_MESSAGE);
         }
     }
 
@@ -219,12 +220,13 @@ public class AppScrum {
 
         String errorMsg = "";
         Properties propiedades = new Properties();
-        String nombreProyecto = (args!=null && args.length == 2) ? args[1] : "";
+        String nombreProyecto = (args != null && args.length == 2) ? args[1]
+                : "";
 
         FileInputStream configFile;
 
         try {
-            
+
             configFile = new FileInputStream(AppScrum.configFilePath);
             propiedades.load(configFile);
 

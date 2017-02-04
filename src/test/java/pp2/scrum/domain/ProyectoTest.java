@@ -13,7 +13,6 @@ import junit.framework.TestCase;
 import junit.framework.TestSuite;
 import pp2.mock.scrum.dao.MockProyectoDAO;
 import pp2.scrm.calendario.Calendario;
-import pp2.scrum.burndownChart.DataComposite;
 import pp2.scrum.model.Miembro;
 import pp2.scrum.model.Proyecto;
 import pp2.scrum.model.Sprint;
@@ -134,8 +133,6 @@ public class ProyectoTest extends TestCase {
         assertTrue(proyecto.iteracionActual() != null);
         // iteraciones.get(0).stateStory(userStory1);
 
-        DataComposite compo = new DataComposite(iteraciones.get(0));
-        compo.addData(compo);
 
     }
 }

@@ -10,6 +10,7 @@ import java.util.List;
 import java.util.Map;
 
 import pp2.scrm.calendario.Calendario;
+import pp2.scrm.calendario.CalendarioService;
 import pp2.scrum.model.Sprint;
 import pp2.scrum.model.UserStory;
 import pp2.scrum.servicios.ServiceRegistry;
@@ -44,7 +45,7 @@ public class GraficoAvance implements Graficador {
             throw new RuntimeException(
                     "El servicio Calendario no fue inicializado.");
 
-        Calendario calendario = (Calendario) ServiceRegistry.getInstance()
+        CalendarioService calendario = (Calendario) ServiceRegistry.getInstance()
                 .getService("calendario");
 
         Date fechaAux, fecha = iteracion.getfechaInicio();
