@@ -12,6 +12,11 @@ import java.awt.event.ActionEvent;
 public class ViewUpdateEvent extends ActionEvent {
 
     /**
+     * 
+     */
+    private static final long serialVersionUID = 1L;
+
+    /**
      * @param source
      * @param id
      * @param command

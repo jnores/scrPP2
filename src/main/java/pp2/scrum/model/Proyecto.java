@@ -1,7 +1,6 @@
 package pp2.scrum.model;
 
 import java.util.ArrayList;
-import java.util.Collection;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.HashSet;
@@ -25,16 +24,13 @@ public class Proyecto {
     protected List<Sprint> iteraciones;
     private Map<UserStory, Miembro> asignaciones;
 
-
-    public Proyecto(long id,String nombre) {
-        this(id, nombre, new ArrayList<UserStory>(),
-                new HashSet<Miembro>(),
-                new ArrayList<Sprint>(),
-                new HashMap<UserStory, Miembro>());
+    public Proyecto(long id, String nombre) {
+        this(id, nombre, new ArrayList<UserStory>(), new HashSet<Miembro>(),
+                new ArrayList<Sprint>(), new HashMap<UserStory, Miembro>());
 
     }
 
-    public Proyecto(long id,String nombre, List<UserStory> backlog,
+    public Proyecto(long id, String nombre, List<UserStory> backlog,
             Set<Miembro> miembros, List<Sprint> iteraciones,
             Map<UserStory, Miembro> asignaciones) {
         this.id = id;
@@ -44,10 +40,10 @@ public class Proyecto {
         this.iteraciones = iteraciones;
         this.asignaciones = asignaciones;
     }
-    
+
     public long getId() {
         return id;
-    }    
+    }
 
     /**
      * @return Coleccion de miembros que componene el proyecto
@@ -55,16 +51,16 @@ public class Proyecto {
     public Set<Miembro> getMiembros() {
         return miembros;
     }
-    
+
     public List<Sprint> getIteraciones() {
         return iteraciones;
     }
-    
+
     public Map<UserStory, Miembro> getAsignaciones() {
         return asignaciones;
     }
 
-       /**
+    /**
      * @return Coleccion de UserStories del backlog
      */
     public List<UserStory> getBacklog() {
@@ -78,7 +74,7 @@ public class Proyecto {
      */
     public Miembro getMiembroPorNombre(String nombre) {
         Miembro miembro = null;
-        for (Miembro m: miembros) {
+        for (Miembro m : miembros) {
             if (m.getNombre().equals(nombre)) {
                 miembro = m;
                 break;
@@ -162,22 +158,17 @@ public class Proyecto {
 
     public Sprint iteracionActual() throws RuntimeException {
         Date hoy = new Date();
-        
+
         if (!ServiceRegistry.getInstance().hasService("calendario"))
             throw new RuntimeException(
                     "El servicio Calendario no fue inicializado.");
-        
+
         Calendario calendario = (Calendario) ServiceRegistry.getInstance()
-                .getService("calendario"); 
+                .getService("calendario");
         for (Sprint sprint : iteraciones) {
-            if (hoy.after(sprint.getfechaInicio()) &&
-                    hoy.before(
-                            calendario.agregarDias(
-                                    sprint.getfechaInicio(),
-                                    sprint.getDuracion()
-                                    )
-                            )
-                    ) {
+            if (hoy.after(sprint.getfechaInicio())
+                    && hoy.before(calendario.agregarDias(
+                            sprint.getfechaInicio(), sprint.getDuracion()))) {
                 return sprint;
             }
         }

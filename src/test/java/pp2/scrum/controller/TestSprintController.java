@@ -28,13 +28,15 @@ public class TestSprintController extends TestCase {
         super(name);
     }
 
-    /* (non-Javadoc)
+    /*
+     * (non-Javadoc)
+     * 
      * @see junit.framework.TestCase#setUp()
      */
     protected void setUp() throws Exception {
         super.setUp();
         List<UserStory> stories = new ArrayList<UserStory>();
-        
+
         Tarea t1a = new Tarea("tarea a de us 1");
         t1b = new Tarea("tarea b de us 1");
         List<Tarea> tareas1 = new ArrayList<Tarea>();
@@ -47,40 +49,38 @@ public class TestSprintController extends TestCase {
         tareas2.add(t2a);
         tareas2.add(t2b);
 
-        stories.add(new UserStory("Titulo1", "Detalle1",  5, null, tareas1));
+        stories.add(new UserStory("Titulo1", "Detalle1", 5, null, tareas1));
         stories.add(new UserStory("Titulo2", "Detalle2", 10, null, tareas2));
-        
-        Sprint sprint = new Sprint(1,new Date(), 21, stories);
+
+        Sprint sprint = new Sprint(1, new Date(), 21, stories);
         controller = new SprintController(sprint);
     }
-    
+
     /**
-     * Se consulta por una historia que pertenezca a alguna de las User
-     * Stories del sprint.
-     * Se espera que no se generen excepiones ni errores
+     * Se consulta por una historia que pertenezca a alguna de las User Stories
+     * del sprint. Se espera que no se generen excepiones ni errores
      */
     public void testHistoriaExistente() {
         try {
             controller.getEstadoTarea(t1b);
-        }catch (Exception e) {
+        } catch (Exception e) {
             assertTrue(false);
         }
     }
 
     /**
      * Se consulta por una historia que no pertenezca a ninguna de las User
-     * Stories del sprint.
-     * Se espera que se generé una excepcion
+     * Stories del sprint. Se espera que se generé una excepcion
      */
     public void testHistoriaNoExistente() {
         Tarea tareaNoCargada = new Tarea("Tarea No Cargada");
         try {
             controller.getEstadoTarea(tareaNoCargada);
             assertTrue(false);
-        }catch(InvalidParameterException e ) {
-        }catch (Exception e) {
+        } catch (InvalidParameterException e) {
+        } catch (Exception e) {
             assertTrue(false);
-        }        
+        }
     }
 
 }

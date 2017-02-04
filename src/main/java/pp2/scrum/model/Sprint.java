@@ -6,8 +6,6 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import org.jfree.xml.parser.coretypes.FontReadHandler;
-
 import pp2.scrm.calendario.CalendarioService;
 import pp2.scrum.servicios.ServiceRegistry;
 
@@ -23,9 +21,9 @@ public class Sprint {
 
     public Sprint(int idIteracion, Date fechaInicio, int duracion,
             List<UserStory> historias) {
-        
-        calendario = (CalendarioService) ServiceRegistry
-                .getInstance().getService(CalendarioService.SERVICE_NAME);
+
+        calendario = (CalendarioService) ServiceRegistry.getInstance()
+                .getService(CalendarioService.SERVICE_NAME);
         this.idIteracion = idIteracion;
         this.fechaInicio = fechaInicio;
         this.duracion = duracion;
@@ -134,21 +132,20 @@ public class Sprint {
     public boolean contieneTarea(Tarea tarea) {
         return pizarraEstados.containsKey(tarea);
     }
-    
+
     public Date getUltimoCambio(Tarea tarea) {
         return ultimoCambio.get(tarea);
     }
-    
 
     public Date getUltimoCambio(UserStory us) {
         Date lastUpdate = fechaInicio;
-        for (Tarea t: us.getTareas()) {
-            Date aux = this.getUltimoCambio(t); 
-            if (aux != null && lastUpdate.before(aux) )
+        for (Tarea t : us.getTareas()) {
+            Date aux = this.getUltimoCambio(t);
+            if (aux != null && lastUpdate.before(aux))
                 lastUpdate = aux;
         }
-        
-        return lastUpdate.after(fechaInicio)? lastUpdate : null;
+
+        return lastUpdate.after(fechaInicio) ? lastUpdate : null;
     }
 
     public Map<Tarea, Estado> getPizarra() {
@@ -156,4 +153,3 @@ public class Sprint {
     }
 
 }
-

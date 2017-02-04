@@ -10,42 +10,38 @@ import pp2.scrum.model.Tarea;
 import pp2.scrum.model.UserStory;
 import pp2.scrum.utils.Paginacion;
 
-public class UserStoryPaginadoControllerTest extends TestCase
-{
+public class UserStoryPaginadoControllerTest extends TestCase {
     private UserStoryPaginadoController controller;
 
-    public UserStoryPaginadoControllerTest( String testName )
-    {
-        super( testName );
+    public UserStoryPaginadoControllerTest(String testName) {
+        super(testName);
     }
 
-    public static Test suite()
-    {
-        return new TestSuite( UserStoryPaginadoControllerTest.class );
+    public static Test suite() {
+        return new TestSuite(UserStoryPaginadoControllerTest.class);
     }
 
-    protected void setUp()
-    {     
+    protected void setUp() {
         controller = new UserStoryPaginadoController();
     }
 
-    public void testUserPaginadoStoryController()
-    {        
+    public void testUserPaginadoStoryController() {
         controller.getModel();
 
         assertEquals(controller.getPaginacionActual().getPagina(), 1);
         assertEquals(controller.getItemsTotales(), 0);
         assertEquals(controller.getPaginasTotales(), 0);
         assertTrue(controller.getModel() != null);
-        List<UserStory> lista = controller.listarUserStories(new Paginacion<>(1,5,new ArrayList<UserStory>()));
+        List<UserStory> lista = controller.listarUserStories(
+                new Paginacion<>(1, 5, new ArrayList<UserStory>()));
         assertEquals(lista.size(), 0);
         controller.actualizarPaginacion(null);
     }
 
-    public void testUserPaginadoStoryPaginacion()
-    {        
-        List<UserStory> listaDefault,lista;
-        listaDefault = controller.listarUserStories(new Paginacion<>(1,5,new ArrayList<UserStory>()));
+    public void testUserPaginadoStoryPaginacion() {
+        List<UserStory> listaDefault, lista;
+        listaDefault = controller.listarUserStories(
+                new Paginacion<>(1, 5, new ArrayList<UserStory>()));
         lista = controller.obtenerPaginacionAnterior();
         assertEquals(listaDefault.size(), lista.size());
 
@@ -58,13 +54,13 @@ public class UserStoryPaginadoControllerTest extends TestCase
         lista = controller.obtenerPaginacionUltima();
         assertEquals(controller.getPaginacionActual().getPagina(), 0);
 
-        Paginacion<UserStory> paginacion = new Paginacion<>(1, 5,new ArrayList<UserStory>());
+        Paginacion<UserStory> paginacion = new Paginacion<>(1, 5,
+                new ArrayList<UserStory>());
         listaDefault = controller.listarUserStories(paginacion);
         paginacion.paginacionSiguiente();
-        assertEquals(controller.getPaginacionActual().getPagina(), 2);     
+        assertEquals(controller.getPaginacionActual().getPagina(), 2);
         controller.getPaginacionActual().paginacionAnterior();
         assertEquals(controller.getPaginacionActual().getPagina(), 1);
-
 
         List<UserStory> historias = new ArrayList<>();
         historias.add(new UserStory("t1", "d1"));
@@ -76,15 +72,13 @@ public class UserStoryPaginadoControllerTest extends TestCase
         controller.getPaginacionActual().paginacionSiguiente();
         controller.getPaginacionActual().paginacionAnterior();
 
-
-
     }
 
-    public void testFinalizarStory()
-    {  
+    public void testFinalizarStory() {
         List<UserStory> historias = new ArrayList<UserStory>();
         List<Tarea> tareas = new ArrayList<Tarea>();
-        UserStory story = new UserStory("titulo1", "detalle1", 50, null, tareas);
+        UserStory story = new UserStory("titulo1", "detalle1", 50, null,
+                tareas);
         tareas.add(new Tarea());
         historias.add(story);
         controller.actualizarPaginacion(historias);

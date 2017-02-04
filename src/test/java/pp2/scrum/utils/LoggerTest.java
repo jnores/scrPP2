@@ -43,9 +43,9 @@ public class LoggerTest extends TestCase {
         String textLogged="Logger Iniciado\nmensaje 1\nLogger Finalizado\n";
         assertTrue(outStream.toString().equals(textLogged));
         
-        GeneradorIDs generador = new GeneradorIDs();
-        generador.generarID();
-        generador.generarIDLong();
+        new GeneradorIDs();
+        GeneradorIDs.generarID();
+        GeneradorIDs.generarIDLong();
     }
 
 

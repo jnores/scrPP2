@@ -57,7 +57,7 @@ public class GraficoAvance implements Graficador {
 
         Integer storyPoints = iteracion.getStoryPointsPactados();
         Map<Date, Integer> fechasFinalizacion = new HashMap<>();
-        
+        // Create historigrama
         for (UserStory us : iteracion.getBacklog()) {
             if ( iteracion.isUserStoryDone(us) ) {
                 fechaAux = iteracion.getUltimoCambio(us);
@@ -80,10 +80,4 @@ public class GraficoAvance implements Graficador {
 
         return tablaEstimado;
     }
-
-    private Map<UserStory, Date> calculateFechasFinalizacion() {
-        // TODO Auto-generated method stub
-        return null;
-    }
-
 }
