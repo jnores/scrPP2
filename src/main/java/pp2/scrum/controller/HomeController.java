@@ -30,13 +30,14 @@ public class HomeController extends Controller implements AppController {
     @Override
     public String getApplicationName() {
         String nombre = proyecto.getNombre();
-        Sprint s = proyecto.iteracionActual();
+        Sprint iteracion = proyecto.iteracionActual();
         CalendarioService calendario = (CalendarioService) ServiceRegistry
                 .getInstance().getService("Calendario");
-        if (s != null)
-            nombre += " - Iteración " + s.getIdIteracion() + "("
-                    + s.getfechaInicio() + " - " + calendario.agregarDias(
-                            s.getfechaInicio(), s.getDuracion())
+        if (iteracion != null)
+            nombre += " - Iteración " + iteracion.getIdIteracion() + "("
+                    + iteracion.getfechaInicio() + " - "
+                    + calendario.agregarDias(iteracion.getfechaInicio(),
+                            iteracion.getDuracion())
                     + ")";
         return nombre;
     }

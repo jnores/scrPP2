@@ -10,8 +10,6 @@ import java.util.Map;
 import java.util.NoSuchElementException;
 import java.util.Properties;
 
-import pp2.scrum.logger.Logger;
-
 /**
  * @author yoshknight
  *
@@ -36,7 +34,6 @@ public class ComponentFactory {
      * @throws NoSuchElementException
      * @throws InstantiationException
      */
-    @SuppressWarnings("rawtypes")
     public Object getComponentByName(String componente) throws NoSuchElementException,InstantiationException {
 
         Object objTemp=null;
@@ -63,13 +60,13 @@ public class ComponentFactory {
         Object objTemp=null;
         
         try {
-            Constructor constructor = null;
+            Constructor<?> constructor = null;
             boolean hasVoidConstructor=false;
             boolean hasConstructorWithParameter=false;
     
-            Constructor[] constructors = Class.forName(className).getConstructors();
+            Constructor<?>[] constructors = Class.forName(className).getConstructors();
     
-            for (Constructor tmpConstructor : constructors) {
+            for (Constructor<?> tmpConstructor : constructors) {
                 if ( tmpConstructor.getParameterTypes().length == 0 
                         && !hasConstructorWithParameter) {
                     constructor=tmpConstructor;
@@ -101,7 +98,7 @@ public class ComponentFactory {
 
     }
     
-    private boolean isConstructorWithProperties(Constructor constructor) {
+    private boolean isConstructorWithProperties(Constructor<?> constructor) {
         return constructor.getParameterTypes().length == 1 
                 && constructor.getParameterTypes()[0].equals(Properties.class);
     }
