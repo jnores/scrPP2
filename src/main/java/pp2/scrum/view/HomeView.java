@@ -4,6 +4,7 @@ import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.WindowEvent;
 
 import javax.swing.JFrame;
 import javax.swing.JLabel;
@@ -15,13 +16,8 @@ import javax.swing.JScrollPane;
 import javax.swing.SwingUtilities;
 import javax.swing.border.LineBorder;
 
-import pp2.scrum.command.AgregarOkListenerBacklogNuevo;
-import pp2.scrum.command.AgregarSiguienteListenerProyectoNuevo;
-import pp2.scrum.command.LimpiarBacklogNuevoView;
-import pp2.scrum.command.LimpiarProyectoNuevoView;
-import pp2.scrum.command.MostrarProyectoNuevo;
+import pp2.scrum.command.AbrirPaginadoHistorias;
 import pp2.scrum.controller.AppController;
-import pp2.scrum.logger.Logger;
 import pp2.scrum.view.events.ViewUpdateEvent;
 
 public class HomeView extends JFrame implements ActionListener {
@@ -29,29 +25,23 @@ public class HomeView extends JFrame implements ActionListener {
      * 
      */
     private static final long serialVersionUID = 1L;
+    private HomeView mThis = this;
     private JPanel panel_Top;
     private AppController appController;
-    private BurndownChartView burndownChartViewpanel;
-    private UserStoryPaginadoView listadoPaginadoHistorias;
-    private UserStoryOrderableView filtradoHistorias;
-    private JMenuBar menuBar;
-    private JMenu menuP, mnIteraciones, mnSprint, mnBacklog, mnBurnDownChart;
-    private JMenuItem mnListadoHistoriasItem, mnBurndownItem, mnFiltradoItem,
-            mnNuevoProyectoItem, mnNuevaUserStory, mntmAbrirProyecto, mntmCerrarProyecto;
 
     public HomeView(AppController controller) {
-        
+
         this.appController = controller;
         getContentPane().setLayout(new BorderLayout());
 
         setTitle("Sistema para gestionar proyectos de SCRUM");
-        this.setJMenuBar(cargarMenu());
+        this.setJMenuBar(createMenu());
 
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         addWindowListener(new java.awt.event.WindowAdapter() {
             @Override
             public void windowClosing(java.awt.event.WindowEvent windowEvent) {
-                Logger.log("Cerrando Aplicación");
+                appController.closeApp();
             }
         });
         this.setSize(600, 400);
@@ -66,154 +56,160 @@ public class HomeView extends JFrame implements ActionListener {
         JLabel lblProyecto = new JLabel(controller.getApplicationName());
         panel_Top.add(lblProyecto);
 
-//        int lblNumero;
-//        JLabel lblIteracion;
-//        if (!ServiceRegistry.getInstance().hasService("calendario"))
-//            throw new RuntimeException(
-//                    "El servicio Calendario no fue inicializado.");
-//
-//        Calendario calendario = (Calendario) ServiceRegistry.getInstance()
-//                .getService("calendario");
-//        try {
-//            Sprint sp = proyecto.iteracionActual();
-//            lblNumero = sp.getIdIteracion();
-//            lblIteracion = new JLabel("Iteración "
-//                    + "(" + sp.getfechaInicio() + " - " + calendario
-//                            .agregarDias(sp.getfechaInicio(), sp.getDuracion())
-//                    + ")");
-//        } catch (Exception e) {
-//            lblNumero = 1;
-//            lblIteracion = new JLabel("Iteración");
-//        }
-
-//        JLabel lblNumeroIteracion = new JLabel(String.valueOf(lblNumero));
-//        panel_Top.add(lblNumeroIteracion);
-
-//        panel_Top.add(lblIteracion);
-
-        // panel_Main = new JPanel();
-        // panel_Main.setLayout(new BorderLayout());
-
-//        burndownChartViewpanel.setBorder(new LineBorder(new Color(0, 0, 0)));
-//        getContentPane().add(burndownChartViewpanel, BorderLayout.CENTER);
-
-        // burndownChartViewpanel.setVisible(true);
-        /*
-         * panel_Main.add(burndownChartViewpanel); panel_Main.setBorder(new
-         * LineBorder(new Color(0, 0, 0))); panel_Main.setBounds(0, 21, 584,
-         * 319);
-         */
-
-        mnListadoHistoriasItem.addActionListener(new ActionListener() {
-            public void actionPerformed(ActionEvent e) {
-                MostrarListadoPaginadoHistorias();
-                setearVista();
-            }
-        });
-
-        mnBurndownItem.addActionListener(new ActionListener() {
-            public void actionPerformed(ActionEvent e) {
-                MostrarBurndownChart();
-                setearVista();
-            }
-        });
-
-        mnFiltradoItem.addActionListener(new ActionListener() {
-            public void actionPerformed(ActionEvent e) {
-                MostrarFiltradoHistorias();
-                setearVista();
-            }
-        });
-
-        mnNuevaUserStory.addActionListener(new ActionListener() {
-            public void actionPerformed(ActionEvent e) {
-                // AppController.Execute(new MostrarAgregarHistoria(),
-                // thisFrame);
-                // MostrarUserStoryUpload();
-                // setearVista();
-            }
-        });
     }
 
     // Menu donde se selecciona el tipo de chart
-    private JMenuBar cargarMenu() {
+    private JMenuBar createMenu() {
+        // -- Se crea la barra de menus
+        JMenuBar menuBar = new JMenuBar();
 
-        menuBar = new JMenuBar();
-        menuP = new JMenu("Proyectos");
-        mnIteraciones = new JMenu("Iteraciones");
+        // -- MENU
 
-        // menuP.add(menu1=new JMenuItem("Avance"));
-        // menuP.add(menu2=new JMenuItem("Estimado"));
-        // menuP.add(menu3=new JMenuItem("Comparativo"));
+        JMenu menuArchivo = new JMenu("Archivo");
+        menuArchivo.setMnemonic('A');
+        menuBar.add(menuArchivo);
 
-//        mnIteraciones.add(mnit1item = new JMenuItem("Primera"));
-//        mnIteraciones.add(mnit2item = new JMenuItem("Segunda"));
-//        mnIteraciones.add(mnit3item = new JMenuItem("Tercera"));
+        JMenu menuProyecto = new JMenu("Proyecto");
+        menuProyecto.setMnemonic('P');
+        menuBar.add(menuProyecto);
 
-        menuBar.add(menuP);
+        JMenu menuSprint = new JMenu("Sprint");
+        menuSprint.setMnemonic('S');
+        menuBar.add(menuSprint);
 
-        mnNuevoProyectoItem = new JMenuItem("Nuevo Proyecto");
-        mnNuevoProyectoItem.addActionListener(new ActionListener() {
+        JMenu menuHelp = new JMenu("Help");
+        menuHelp.setMnemonic('H');
+        menuBar.add(menuHelp);
+
+        // -- /MENU
+
+        // -- ARCHIVO
+
+        JMenuItem menuItemNuevoProyecto = new JMenuItem("Nuevo Proyecto");
+        menuItemNuevoProyecto.setEnabled(false);
+        menuArchivo.add(menuItemNuevoProyecto);
+
+        JMenuItem menuItemAbrirProyecto = new JMenuItem("Abrir Proyecto");
+        menuItemAbrirProyecto.setEnabled(false);
+        menuArchivo.add(menuItemAbrirProyecto);
+
+        JMenuItem menuItemCerrarProyecto = new JMenuItem("Cerrar Proyecto");
+        menuItemCerrarProyecto.setEnabled(false);
+        menuArchivo.add(menuItemCerrarProyecto);
+
+        menuArchivo.addSeparator();
+        JMenuItem menuItemSalir = new JMenuItem("Salir");
+        menuItemSalir.addActionListener(new ActionListener() {
+            @Override
             public void actionPerformed(ActionEvent e) {
-                appController.Execute(new MostrarProyectoNuevo(), this);
+                mThis.dispatchEvent(
+                        new WindowEvent(mThis, WindowEvent.WINDOW_CLOSING));
             }
         });
+        menuArchivo.add(menuItemSalir);
+        
+        // -- /ARCHIVO
 
-        appController.Execute(new AgregarOkListenerBacklogNuevo(), this);
-        appController.Execute(new AgregarSiguienteListenerProyectoNuevo(),
-                this);
-        appController.Execute(new LimpiarProyectoNuevoView(), this);
-        appController.Execute(new LimpiarBacklogNuevoView(), this);
+        // -- PROYECTO
+        
+        JMenuItem menuItemNuevaHistoria = new JMenuItem("Agregar historia");
+        menuProyecto.add(menuItemNuevaHistoria);
 
-        menuP.add(mnNuevoProyectoItem);
+        // -- PRODUCT BACKLOG
 
-        mntmAbrirProyecto = new JMenuItem("Abrir Proyecto");
-        mntmAbrirProyecto.setEnabled(false);
-        menuP.add(mntmAbrirProyecto);
+        JMenu subMenuProductBacklog = new JMenu("Product Backlog");
+        menuProyecto.add(subMenuProductBacklog);
 
-        mntmCerrarProyecto = new JMenuItem("Cerrar Proyecto");
-        mntmCerrarProyecto.setEnabled(false);
-        menuP.add(mntmCerrarProyecto);
+        JMenuItem MenuItemPaginadoHistorias = new JMenuItem("Paginado");
+        MenuItemPaginadoHistorias.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+                // appController.Execute(new AbrirPaginadoHistorias(), mThis);
+            }
+        });
+        subMenuProductBacklog.add(MenuItemPaginadoHistorias);
 
-        mnBacklog = new JMenu("Product Backlog");
-        menuBar.add(mnBacklog);
+        JMenuItem menuItemFiltradoHistoras = new JMenuItem("Filtrado");
+        menuItemFiltradoHistoras.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+                // appController.Execute(new AbrirFiltradoHistorias(), mThis);
+            }
+        });
+        subMenuProductBacklog.add(menuItemFiltradoHistoras);
 
-        mnSprint = new JMenu("Sprint Backlog");
-        menuBar.add(mnSprint);
+        JMenuItem menuItemOrdenadoHistoras = new JMenuItem("Ordenado");
+        menuItemOrdenadoHistoras.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+                // appController.Execute(new AbrirFiltradoHistorias(), mThis);
+            }
+        });
+        subMenuProductBacklog.add(menuItemOrdenadoHistoras);
 
-        mnListadoHistoriasItem = new JMenuItem("Listado");
-        mnSprint.add(mnListadoHistoriasItem);
+        // -- /PRODUCT BACKLOG
+        
+        JMenuItem menuItemMiembros = new JMenuItem("Miembros");
+        menuProyecto.add(menuItemMiembros);
+        
+        JMenuItem menuItemDetalles = new JMenuItem("Detalles");
+        menuProyecto.add(menuItemDetalles);
 
-        mnFiltradoItem = new JMenuItem("Filtrado");
-        mnSprint.add(mnFiltradoItem);
+        // -- /PROYECTO
 
-        mnBurnDownChart = new JMenu("Burndown Chart");
-        menuBar.add(mnBurnDownChart);
+        // -- SPRINT
+        // -- SPRINT BACKLOG
+        
+        JMenu subMenuSprintBacklog = new JMenu("Sprint Backlog");
+        menuSprint.add(subMenuSprintBacklog);
 
-        mnBurndownItem = new JMenuItem("Gráfico");
-        mnBurnDownChart.add(mnBurndownItem);
-        menuBar.add(mnIteraciones);
+        JMenuItem MenuItemSprintPaginadoHistorias = new JMenuItem("Paginado");
+        MenuItemSprintPaginadoHistorias.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+                appController.Execute(new AbrirPaginadoHistorias("Sprint Backlog"), mThis);
+            }
+        });
+        subMenuSprintBacklog.add(MenuItemSprintPaginadoHistorias);
 
-        mnNuevaUserStory = new JMenuItem("Nueva historia");
-        mnBacklog.add(mnNuevaUserStory);
+        JMenuItem menuItemSprintFiltradoHistoras = new JMenuItem("Filtrado");
+        menuItemSprintFiltradoHistoras.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+//                 appController.Execute(new AbrirFiltradoHistorias(appController.getProductBacklog()), mThis);
+            }
+        });
+        subMenuSprintBacklog.add(menuItemSprintFiltradoHistoras);
+
+        JMenuItem menuItemSprintOrdenadoHistoras = new JMenuItem("Ordenado");
+        menuItemSprintOrdenadoHistoras.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+//                 appController.Execute(new AbrirFiltradoHistorias(), mThis);
+            }
+        });
+        subMenuSprintBacklog.add(menuItemSprintOrdenadoHistoras);
+        
+        // -- /SPRINT BACKLOG
+
+        JMenuItem menuItemBurndownChart = new JMenuItem("Gráficos");
+        menuItemBurndownChart.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+                // appController.Execute(new MostrarBurnDownChart(), mThis);
+            }
+        });
+        menuSprint.add(menuItemBurndownChart);
+
+        JMenuItem menuItemPizarra = new JMenuItem("Pizarra");
+        menuItemPizarra.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+                // appController.Execute(new MostrarBurnDownChart(), mThis);
+            }
+        });
+        menuSprint.add(menuItemPizarra);
+        
+        // -- /SPRINT
+
+        // -- HELP
+        JMenuItem subMenuAcercaDe = new JMenuItem("Acerca de...");
+        menuHelp.add(subMenuAcercaDe);
+        // -- /HELP
+
         return menuBar;
-    }
-
-    private void MostrarListadoPaginadoHistorias() {
-        getContentPane().remove(1);
-        getContentPane().add(listadoPaginadoHistorias, BorderLayout.CENTER);
-    }
-
-    private void MostrarBurndownChart() {
-        getContentPane().remove(1);
-        burndownChartViewpanel.setBorder(new LineBorder(new Color(0, 0, 0)));
-        getContentPane().add(burndownChartViewpanel, BorderLayout.CENTER);
-    }
-
-    private void MostrarFiltradoHistorias() {
-        getContentPane().remove(1);
-        // burndownChartViewpanel.setBorder(new LineBorder(new Color(0, 0, 0)));
-        getContentPane().add(filtradoHistorias, BorderLayout.CENTER);
     }
 
     private void setearVista(JPanel panel, boolean conScroll) {
@@ -229,11 +225,11 @@ public class HomeView extends JFrame implements ActionListener {
             getContentPane().add(panel, BorderLayout.CENTER);
         }
 
-        SwingUtilities.updateComponentTreeUI(this);
+        SwingUtilities.updateComponentTreeUI(mThis);
     }
 
     private void setearVista() {
-        SwingUtilities.updateComponentTreeUI(this);
+        SwingUtilities.updateComponentTreeUI(mThis);
     }
 
     public void showWindow(boolean esVisible) {

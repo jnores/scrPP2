@@ -86,7 +86,6 @@ public class UserStoryPaginadoControllerTest extends TestCase {
         controller.finalizarStory(story);
         assertTrue(controller.getModel().get(0).estaTerminada());
         assertTrue(story.estaTerminada());
-        assertTrue(story.getCriterio() == null);
     }
 
 }

@@ -12,7 +12,7 @@ public class MostrarProyectoNuevo implements Comando {
             ActionListener al) {
         Resultado resultado = new Resultado();
         try {
-            homeController.getProyectoNuevo().setVisible(true);
+            
         } catch (Exception e) {
             resultado.AgregarError("Error", e.getMessage());
         }

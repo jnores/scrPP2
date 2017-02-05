@@ -43,7 +43,6 @@ public class AltaUserStoryView extends JPanel{
     private Box boxVertical;
     private JButton botonAgregar,botonAgregarTareas;
     private UserStoryController controlador;
-    private BacklogNuevoView padre;
 
     private final String resumen="Como <Rol> necesito <Meta> para <Finalidad>.";
     private final String  detalle="Utilice este espacio para explicar con más detalle, el propósito de esta user story";
@@ -54,9 +53,8 @@ public class AltaUserStoryView extends JPanel{
 
     private static final long serialVersionUID = 1L; 
 
-    public AltaUserStoryView(UserStoryController controlador,BacklogNuevoView padre)
+    public AltaUserStoryView(UserStoryController controlador)
     {
-        this.padre = padre;
         this.controlador=controlador;
         mostrarSugerencias=true;
         boxVertical=Box.createVerticalBox();
@@ -355,15 +353,14 @@ public class AltaUserStoryView extends JPanel{
     private void guardarUserStory(String titulo,String detalle){
         UserStory historia;
         ArrayList<Tarea> tareas = new ArrayList<Tarea>();
-        CriterioAceptacion criterio = new CriterioAceptacion(areaCriterios.getText());
+        String criterio = areaCriterios.getText();
         Integer puntos=0;
         try{
             puntos=Integer.parseInt(campoPuntos.getText());
             if(altaTarea != null && altaTarea.isDisplayable()){
                 tareas = altaTarea.getTareas();
             }
-            historia = new UserStory(titulo, detalle, puntos, criterio, tareas);
-            padre.addHistoria(historia);
+            controlador.altaUserStory(titulo, detalle, criterio, puntos);
             Logger.log("Nueva Historia creada: "+ titulo);
             limpiarVista();
             if(altaTarea != null && altaTarea.isActive()){

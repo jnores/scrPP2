@@ -18,7 +18,6 @@ import javax.swing.table.JTableHeader;
 import javax.swing.table.TableModel;
 
 import pp2.scrum.controller.UserStoryPaginadoController;
-import pp2.scrum.model.Tarea;
 import pp2.scrum.model.UserStory;
 import pp2.scrum.utils.Paginacion;
 
@@ -30,14 +29,14 @@ public class UserStoryPaginadoView extends JPanel implements Observer
     private static final long serialVersionUID = 1L;
     private UserStoryPaginadoController Controller;
     private JTable table;
-    private JPanel contentPane,panel;
+    private JPanel panel;
     private Object[][] data;
     private JLabel PageNumberLabel;
     private List<UserStory> Stories;
     private TableModel modelTabla;
     private JButton  btnPrimero,btnAnterior,btnSiguiente,btnUltimo ;
 
-    public UserStoryPaginadoView(UserStoryPaginadoController controller,List<UserStory> historias ) 
+    public UserStoryPaginadoView(UserStoryPaginadoController controller ) 
     {
 
         Controller = controller;
@@ -47,7 +46,7 @@ public class UserStoryPaginadoView extends JPanel implements Observer
         btnSiguiente = new JButton("");
         btnUltimo = new JButton("");
 
-        Stories = historias;
+        Stories = controller.getModel();
         cargarVista();
 
         btnAnterior.addActionListener(new ActionListener() 
@@ -84,9 +83,6 @@ public class UserStoryPaginadoView extends JPanel implements Observer
     @Override
     public void update(Observable o, Object arg) {
         setearVista();
-        if (arg.getClass().equals(Tarea.class)){
-            //controller.enviarHistoriaMail(historia)
-        }
     }
 
     public void showWindow(boolean b) {
@@ -125,8 +121,11 @@ public class UserStoryPaginadoView extends JPanel implements Observer
         }
 
         String[] columnNames = {"Titulo", "Descripcion","Puntos"};
-        //@SuppressWarnings("serial")
+
         modelTabla = new DefaultTableModel(data, columnNames){
+
+            private static final long serialVersionUID = 1L;
+
             @Override
             public boolean isCellEditable(int row, int column) {
                 //No editable
@@ -245,14 +244,7 @@ public class UserStoryPaginadoView extends JPanel implements Observer
             setearVista();
         }      
     }
-
-    public void agregarHistoria(UserStory e)
-    {
-        Stories.add(e);
-        Controller.actualizarPaginacion(Stories);
-        setearVista();
-    }
-
+    
     public void limpiarLista()
     {
         Controller.actualizarPaginacion(new ArrayList<UserStory>());
