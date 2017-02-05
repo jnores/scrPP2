@@ -85,7 +85,6 @@ public class ProyectoController extends Controller {
         CriterioAceptacion criterio = new CriterioAceptacion(criterios);
         UserStory us = new UserStory(titulo, detalle, puntos, criterio, tareas);
         agregarUserStory(us);
-
     }
 
     public String obtenerSugerenciaTitulo(String frase) {

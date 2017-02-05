@@ -37,8 +37,12 @@ public class EnviadorMailTest extends TestCase {
     }
 
     public void testEnvioMail() {
-        mail = new Mail("julian.dirisio@gmail.com", "Titulo mail 1",
-                "Este mail es de prueba PP2");
+        String destino = "julian.dirisio@gmail.com", tema = "Titulo mail 1",
+                cuerpo = "Este mail es de prueba PP2";
+        mail = new Mail(destino, tema, cuerpo);
+        assertTrue(mail.getDestinoMail().equals(destino));
+        assertTrue(mail.getTema().equals(tema));
+        assertTrue(mail.getCuerpo().equals(cuerpo));
         enviador.enviar(mail);
     }
 

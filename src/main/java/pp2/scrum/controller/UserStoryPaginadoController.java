@@ -41,7 +41,7 @@ public class UserStoryPaginadoController extends Controller {
     public Paginacion<UserStory> getPaginacionActual() {
         return paginacionActual;
     }
-    
+
     public void actualizarPaginacion() {
         paginacionActual = new Paginacion<UserStory>(
                 paginacionActual.getPagina(),
@@ -91,7 +91,6 @@ public class UserStoryPaginadoController extends Controller {
                 tarea.avanzarEstado();
             }
         }
-
     }
 
     public boolean isEnabled() {

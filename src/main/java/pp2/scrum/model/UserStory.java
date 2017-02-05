@@ -64,29 +64,8 @@ public class UserStory extends Observable implements Observer
         return this.tareas;
     }
 
-    public void setTitulo(String titulo) {
-        this.titulo = titulo;
-        fueModificado(null);
-    }
-
     public void setDetalle(String detalle) {
         this.detalle = detalle;
-        fueModificado(null);
-    }
-
-    public void setStoryPoints(int storyPoints) {
-        this.storyPoints = storyPoints;
-        fueModificado(null);
-    }
-
-    public void setCriterio(CriterioAceptacion criterio) {
-        this.criterio = criterio;
-        fueModificado(null);
-    }
-
-    public void setTareas(List<Tarea> tareas) {
-        this.tareas = tareas== null ? new ArrayList<Tarea>() : tareas;
-        observarTareas(this.tareas);
         fueModificado(null);
     }
 
@@ -97,8 +76,8 @@ public class UserStory extends Observable implements Observer
     public int hashCode() {
         final int prime = 31;
         int result = 1;
-        result = prime * result + ((titulo == null) ? 0 : titulo.hashCode());;
-        result = prime * result + ((detalle == null) ? 0 : detalle.hashCode());;
+        result = prime * result + ((titulo == null) ? 0 : titulo.hashCode());
+        result = prime * result + ((detalle == null) ? 0 : detalle.hashCode());
         return result;
     }
 
