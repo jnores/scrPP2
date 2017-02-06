@@ -16,6 +16,9 @@ import javax.swing.JScrollPane;
 import javax.swing.SwingUtilities;
 import javax.swing.border.LineBorder;
 
+import pp2.scrum.command.AbrirCrearHistoria;
+import pp2.scrum.command.AbrirFiltradoHistorias;
+import pp2.scrum.command.AbrirOrdenadoHistorias;
 import pp2.scrum.command.AbrirPaginadoHistorias;
 import pp2.scrum.command.MostrarBurnDownChart;
 import pp2.scrum.controller.AppController;
@@ -115,6 +118,11 @@ public class HomeView extends JFrame implements ActionListener {
         // -- PROYECTO
         
         JMenuItem menuItemNuevaHistoria = new JMenuItem("Agregar historia");
+        menuItemNuevaHistoria.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+                 appController.Execute(new AbrirCrearHistoria(), mThis);
+            }
+        });
         menuProyecto.add(menuItemNuevaHistoria);
 
         // -- PRODUCT BACKLOG
@@ -122,18 +130,18 @@ public class HomeView extends JFrame implements ActionListener {
         JMenu subMenuProductBacklog = new JMenu("Product Backlog");
         menuProyecto.add(subMenuProductBacklog);
 
-        JMenuItem MenuItemPaginadoHistorias = new JMenuItem("Paginado");
-        MenuItemPaginadoHistorias.addActionListener(new ActionListener() {
+        JMenuItem menuItemPaginadoHistorias = new JMenuItem("Paginado");
+        menuItemPaginadoHistorias.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
-                // appController.Execute(new AbrirPaginadoHistorias(), mThis);
+                 appController.Execute(new AbrirPaginadoHistorias("Product Backlog"), mThis);
             }
         });
-        subMenuProductBacklog.add(MenuItemPaginadoHistorias);
+        subMenuProductBacklog.add(menuItemPaginadoHistorias);
 
         JMenuItem menuItemFiltradoHistoras = new JMenuItem("Filtrado");
         menuItemFiltradoHistoras.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
-                // appController.Execute(new AbrirFiltradoHistorias(), mThis);
+                 appController.Execute(new AbrirFiltradoHistorias("Product Backlog"), mThis);
             }
         });
         subMenuProductBacklog.add(menuItemFiltradoHistoras);
@@ -141,7 +149,7 @@ public class HomeView extends JFrame implements ActionListener {
         JMenuItem menuItemOrdenadoHistoras = new JMenuItem("Ordenado");
         menuItemOrdenadoHistoras.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
-                // appController.Execute(new AbrirFiltradoHistorias(), mThis);
+                 appController.Execute(new AbrirOrdenadoHistorias("Product Backlog"), mThis);
             }
         });
         subMenuProductBacklog.add(menuItemOrdenadoHistoras);
@@ -162,18 +170,18 @@ public class HomeView extends JFrame implements ActionListener {
         JMenu subMenuSprintBacklog = new JMenu("Sprint Backlog");
         menuSprint.add(subMenuSprintBacklog);
 
-        JMenuItem MenuItemSprintPaginadoHistorias = new JMenuItem("Paginado");
-        MenuItemSprintPaginadoHistorias.addActionListener(new ActionListener() {
+        JMenuItem menuItemSprintPaginadoHistorias = new JMenuItem("Paginado");
+        menuItemSprintPaginadoHistorias.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
                 appController.Execute(new AbrirPaginadoHistorias("Sprint Backlog"), mThis);
             }
         });
-        subMenuSprintBacklog.add(MenuItemSprintPaginadoHistorias);
+        subMenuSprintBacklog.add(menuItemSprintPaginadoHistorias);
 
         JMenuItem menuItemSprintFiltradoHistoras = new JMenuItem("Filtrado");
         menuItemSprintFiltradoHistoras.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
-//                 appController.Execute(new AbrirFiltradoHistorias(appController.getProductBacklog()), mThis);
+                 appController.Execute(new AbrirFiltradoHistorias("Sprint Backlog"), mThis);
             }
         });
         subMenuSprintBacklog.add(menuItemSprintFiltradoHistoras);
@@ -181,7 +189,7 @@ public class HomeView extends JFrame implements ActionListener {
         JMenuItem menuItemSprintOrdenadoHistoras = new JMenuItem("Ordenado");
         menuItemSprintOrdenadoHistoras.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
-//                 appController.Execute(new AbrirFiltradoHistorias(), mThis);
+                 appController.Execute(new AbrirOrdenadoHistorias("Sprint Backlog"), mThis);
             }
         });
         subMenuSprintBacklog.add(menuItemSprintOrdenadoHistoras);

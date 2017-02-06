@@ -13,6 +13,7 @@ import javax.swing.BorderFactory;
 import javax.swing.Box;
 import javax.swing.JButton;
 import javax.swing.JCheckBox;
+import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
@@ -24,7 +25,7 @@ import pp2.scrum.logger.Logger;
 import pp2.scrum.model.Tarea;
 
 //No incluyo autor, eso esta almacenado en el logueo. El id igual, viene como dato. 
-public class AltaUserStoryView extends JPanel {
+public class AltaUserStoryView extends JFrame {
 
     private final JTextArea areaTitulo;
     private final JTextArea areaDetalle;
@@ -54,6 +55,7 @@ public class AltaUserStoryView extends JPanel {
 
     public AltaUserStoryView(ProyectoController controlador) {
         this.controlador = controlador;
+        setTitle("Alta UserStory");
         mostrarSugerencias = true;
         boxVertical = Box.createVerticalBox();
 

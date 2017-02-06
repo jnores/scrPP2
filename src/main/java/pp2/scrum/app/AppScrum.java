@@ -164,37 +164,14 @@ public class AppScrum {
             throws InstantiationException {
         if (proyecto != null) {
             Logger.log("Abriendo Proyecto: " + proyecto.getNombre());
-//
-//            try {
-//
-//                Calendario calendario = (Calendario) factory
-//                        .getComponentByName("Calendario");
-//                ServiceRegistry.getInstance().registerService(calendario);
-//                
-//                inicioSprint = calendario.getDate("03/10/2016");
-//            } catch (ParseException e) {
-//                throw new RuntimeException(
-//                        "El servicio Calendario no fue inicializado.",e);
-//            }
-//            
+
             // TODO Aca solo se deberia crear el home controller y home view y
             // pasar factory y proyecto.
             HomeController controller = new HomeController(proyecto, factory);
 
-
-//            BurndownChartView chartView = new BurndownChartView(
-//                    new BurndownChartController(new Sprint(1, inicioSprint, 21,
-//                            new ArrayList<UserStory>())));
-//            UserStoryPaginadoView listadoPaginado = new UserStoryPaginadoView(
-//                    new UserStoryPaginadoController(),
-//                    new ArrayList<UserStory>());
-//            UserStoryOrderableView filtrado = null;
-            // UserStoryOrderableView filtrado = new UserStoryOrderableView(
-            // new UserStoryListView(
-            // controller.getProyectoController().getBacklog()));
-
             HomeView view = new HomeView(controller);
             view.setVisible(true);
+            
         } else {
             // JOptionPane.showMessageDialog(null,
             // "No se Seleccionó ningun proyecto", "Finalizando programa",

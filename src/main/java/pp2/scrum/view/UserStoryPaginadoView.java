@@ -10,6 +10,7 @@ import java.util.Observer;
 
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
+import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTable;
@@ -21,7 +22,7 @@ import pp2.scrum.controller.UserStoryPaginadoController;
 import pp2.scrum.model.UserStory;
 import pp2.scrum.utils.Paginacion;
 
-public class UserStoryPaginadoView extends JPanel implements Observer
+public class UserStoryPaginadoView extends JFrame implements Observer
 {
     /**
      * default serial version
@@ -40,6 +41,8 @@ public class UserStoryPaginadoView extends JPanel implements Observer
     {
 
         Controller = controller;
+        
+        setSize(600,400);
 
         btnPrimero = new JButton("");
         btnAnterior = new JButton("");
@@ -78,7 +81,6 @@ public class UserStoryPaginadoView extends JPanel implements Observer
             } 
         });
     }
-
 
     @Override
     public void update(Observable o, Object arg) {
