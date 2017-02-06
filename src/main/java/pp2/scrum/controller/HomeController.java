@@ -32,7 +32,7 @@ public class HomeController extends Controller implements AppController {
         String nombre = proyecto.getNombre();
         Sprint iteracion = proyecto.iteracionActual();
         CalendarioService calendario = (CalendarioService) ServiceRegistry
-                .getInstance().getService("Calendario");
+                .getInstance().getService("calendario");
         if (iteracion != null)
             nombre += " - Iteración " + iteracion.getIdIteracion() + "("
                     + iteracion.getfechaInicio() + " - "

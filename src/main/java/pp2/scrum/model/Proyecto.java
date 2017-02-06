@@ -176,4 +176,9 @@ public class Proyecto {
         return null;
     }
 
+    public void addIteracion(Sprint iteracion) {
+        iteraciones.add(iteracion);
+    }
+
 }
+

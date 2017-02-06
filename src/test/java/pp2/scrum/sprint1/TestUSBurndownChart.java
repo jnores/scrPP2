@@ -39,7 +39,6 @@ public class TestUSBurndownChart extends TestCase {
 
         Tarea t1a, t1b, t2a, t2b, t3a, t3b, t4a, t4b;
 
-
         Backlog stories = new Backlog();
 
         t1a = new Tarea("tarea a de us 1");
@@ -66,10 +65,14 @@ public class TestUSBurndownChart extends TestCase {
         tareas4.add(t4a);
         tareas4.add(t4b);
 
-        stories.addUserStory(new UserStory("Titulo1", "Detalle1", sp1, null, tareas1));
-        stories.addUserStory(new UserStory("Titulo2", "Detalle2", sp2, null, tareas2));
-        stories.addUserStory(new UserStory("Titulo3", "Detalle3", sp3, null, tareas3));
-        stories.addUserStory(new UserStory("Titulo4", "Detalle4", sp4, null, tareas4));
+        stories.addUserStory(
+                new UserStory("Titulo1", "Detalle1", sp1, null, tareas1));
+        stories.addUserStory(
+                new UserStory("Titulo2", "Detalle2", sp2, null, tareas2));
+        stories.addUserStory(
+                new UserStory("Titulo3", "Detalle3", sp3, null, tareas3));
+        stories.addUserStory(
+                new UserStory("Titulo4", "Detalle4", sp4, null, tareas4));
 
         totalSp = sp1 + sp2 + sp3 + sp4;
         diasTranscurridos = 7;
@@ -77,27 +80,27 @@ public class TestUSBurndownChart extends TestCase {
         Date inicioSprint = calendario.agregarDias(calendario.getToday(),
                 -diasTranscurridos);
         sprintCargado = new Sprint(1, inicioSprint, 21, stories);
-        
+
         Date fechaAux = calendario.agregarDias(inicioSprint, 1);
         calendario.setFecha(fechaAux);
         sprintCargado.changeEstadoTarea(t1a, Estado.Done);
-        
+
         fechaAux = calendario.agregarDias(inicioSprint, 2);
         calendario.setFecha(fechaAux);
         sprintCargado.changeEstadoTarea(t1b, Estado.Done);
-        
+
         fechaAux = calendario.agregarDias(inicioSprint, 3);
         calendario.setFecha(fechaAux);
         sprintCargado.changeEstadoTarea(t2a, Estado.Done);
-        
+
         fechaAux = calendario.agregarDias(inicioSprint, 4);
         calendario.setFecha(fechaAux);
         sprintCargado.changeEstadoTarea(t2b, Estado.Done);
-        
+
         fechaAux = calendario.agregarDias(inicioSprint, 5);
         calendario.setFecha(fechaAux);
         sprintCargado.changeEstadoTarea(t3b, Estado.Done);
-        
+
         fechaAux = calendario.agregarDias(inicioSprint, 6);
         calendario.setFecha(fechaAux);
         sprintCargado.changeEstadoTarea(t4a, Estado.Done);
@@ -140,13 +143,15 @@ public class TestUSBurndownChart extends TestCase {
 
         List<Integer> tablaDeValores = controllerConHistorias
                 .getTablaDeValores(OpcionGrafico.Estimado);
-        int storyPoints = tablaDeValores.get(0);
-        int dias = tablaDeValores.size() - 1;
-        int reduccion = storyPoints / dias;
+        
+        int dias = tablaDeValores.size()-1;
+        // Para 30SP en 21 dias
+        int[] valoresEsperados = { 30, 29, 28, 26, 25, 23, 22, 20, 19, 18, 16,
+                15, 13, 12, 10, 9, 8, 6, 5, 3, 2, 0 };
 
-        for (int dia = 1; dia <= dias; dia++) {
-            assertEquals(reduccion, (storyPoints - tablaDeValores.get(dia)));
-            storyPoints = storyPoints - reduccion;
+        for (int dia = 0; dia <= dias; dia++) {
+            assertEquals(valoresEsperados[dia],
+                    tablaDeValores.get(dia).intValue());
         }
     }
 
@@ -190,13 +195,12 @@ public class TestUSBurndownChart extends TestCase {
         assertEquals(tablaDeValores.get(0).intValue(), totalSp);
         // JN: Estos son 7 dias transcurridos.
         assertEquals(tablaDeValores.get(1).intValue(), totalSp);
-        assertEquals(tablaDeValores.get(2).intValue(), totalSp-sp1);
-        assertEquals(tablaDeValores.get(3).intValue(), totalSp-sp1);
-        assertEquals(tablaDeValores.get(4).intValue(), totalSp-sp1-sp2);
-        assertEquals(tablaDeValores.get(5).intValue(), totalSp-sp1-sp2);
-        assertEquals(tablaDeValores.get(6).intValue(), totalSp-sp1-sp2);
-        assertEquals(tablaDeValores.get(7).intValue(), totalSp-sp1-sp2);
-
+        assertEquals(tablaDeValores.get(2).intValue(), totalSp - sp1);
+        assertEquals(tablaDeValores.get(3).intValue(), totalSp - sp1);
+        assertEquals(tablaDeValores.get(4).intValue(), totalSp - sp1 - sp2);
+        assertEquals(tablaDeValores.get(5).intValue(), totalSp - sp1 - sp2);
+        assertEquals(tablaDeValores.get(6).intValue(), totalSp - sp1 - sp2);
+        assertEquals(tablaDeValores.get(7).intValue(), totalSp - sp1 - sp2);
     }
 
 }

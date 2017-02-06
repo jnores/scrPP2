@@ -147,6 +147,7 @@ public class UserStoryPaginadoView extends JPanel implements Observer
         this.revalidate();
         this.repaint();
     }
+    
     private void cargarVista()
     {
         setearVista();

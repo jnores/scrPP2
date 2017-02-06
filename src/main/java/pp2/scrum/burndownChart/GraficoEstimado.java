@@ -20,15 +20,14 @@ public class GraficoEstimado implements Graficador {
     @Override
     public List<Integer> getTablaDeValores(Sprint iteracion) {
         int dias = iteracion.getDuracion();
-        Integer storyPoints,reduccion;
+        Integer storyPoints;
         storyPoints=this.getTotalStoryPoints(iteracion.getBacklog().getList());
         List<Integer> tablaEstimado =  new ArrayList<>();
-        
-        reduccion=storyPoints/dias;
 
         for(int dia=0;dia<=dias;dia++){
-                tablaEstimado.add(dia, storyPoints);
-                storyPoints=storyPoints-reduccion;
+                double realizado=(dia*storyPoints)/dias ;
+                double pendiente = storyPoints - realizado;
+                tablaEstimado.add(dia, (int)(pendiente));
         }             
         return tablaEstimado;
     }

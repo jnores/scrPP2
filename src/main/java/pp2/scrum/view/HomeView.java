@@ -17,6 +17,7 @@ import javax.swing.SwingUtilities;
 import javax.swing.border.LineBorder;
 
 import pp2.scrum.command.AbrirPaginadoHistorias;
+import pp2.scrum.command.MostrarBurnDownChart;
 import pp2.scrum.controller.AppController;
 import pp2.scrum.view.events.ViewUpdateEvent;
 
@@ -55,7 +56,8 @@ public class HomeView extends JFrame implements ActionListener {
 
         JLabel lblProyecto = new JLabel(controller.getApplicationName());
         panel_Top.add(lblProyecto);
-
+        
+        appController.Execute(new MostrarBurnDownChart(), mThis);
     }
 
     // Menu donde se selecciona el tipo de chart
@@ -189,7 +191,7 @@ public class HomeView extends JFrame implements ActionListener {
         JMenuItem menuItemBurndownChart = new JMenuItem("Gráficos");
         menuItemBurndownChart.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
-                // appController.Execute(new MostrarBurnDownChart(), mThis);
+                 appController.Execute(new MostrarBurnDownChart(), mThis);
             }
         });
         menuSprint.add(menuItemBurndownChart);
@@ -197,7 +199,7 @@ public class HomeView extends JFrame implements ActionListener {
         JMenuItem menuItemPizarra = new JMenuItem("Pizarra");
         menuItemPizarra.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
-                // appController.Execute(new MostrarBurnDownChart(), mThis);
+//                 appController.Execute(new MostrarPizarra(), mThis);
             }
         });
         menuSprint.add(menuItemPizarra);
@@ -213,7 +215,8 @@ public class HomeView extends JFrame implements ActionListener {
     }
 
     private void setearVista(JPanel panel, boolean conScroll) {
-        getContentPane().remove(1);
+        if ( getContentPane().getComponentCount() > 1 )
+            getContentPane().remove(1);
         if (conScroll) {
             JScrollPane scroll = new JScrollPane(panel);
             scroll.setVerticalScrollBarPolicy(

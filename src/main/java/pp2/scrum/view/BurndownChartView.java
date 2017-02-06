@@ -6,6 +6,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.List;
 
+import javax.swing.JPanel;
 import javax.swing.JTabbedPane;
 import javax.swing.border.EmptyBorder;
 
@@ -21,20 +22,22 @@ import org.jfree.data.xy.XYSeriesCollection;
 import pp2.scrum.burndownChart.OpcionGrafico;
 import pp2.scrum.controller.BurndownChartController;
 
-public class BurndownChartView extends JTabbedPane implements ActionListener {
+public class BurndownChartView extends JPanel implements ActionListener {
     /**
     * 
     */
     private static final long serialVersionUID = 1L;
+    private JTabbedPane tabbedPanel;
     private ChartPanel panelAvance, panelEstimado, panelComparativo;
     private BurndownChartController controller;
     private JFreeChart xylineChart;
 
     public BurndownChartView(BurndownChartController controller) {
         this.controller = controller;
-        
+        tabbedPanel = new JTabbedPane();
+        add(tabbedPanel);
         initGraficos();
-        
+
         setVisible(true);
         revalidate();
         repaint();
@@ -42,11 +45,12 @@ public class BurndownChartView extends JTabbedPane implements ActionListener {
 
     private void initGraficos() {
 
-        dibujarGrafico( createSeries(OpcionGrafico.Avance), panelAvance,
+        dibujarGrafico(createSeries(OpcionGrafico.Avance), panelAvance,
                 "Avance");
-        dibujarGrafico(createSeries(OpcionGrafico.Estimado),
-                panelEstimado, "Estimado");
-        dibujarGrafico( createSeries(OpcionGrafico.Avance,OpcionGrafico.Estimado),
+        dibujarGrafico(createSeries(OpcionGrafico.Estimado), panelEstimado,
+                "Estimado");
+        dibujarGrafico(
+                createSeries(OpcionGrafico.Avance, OpcionGrafico.Estimado),
                 panelComparativo, "Comparativo");
     }
     // Menu donde se selecciona el tipo de chart
@@ -55,17 +59,16 @@ public class BurndownChartView extends JTabbedPane implements ActionListener {
 
     private XYSeriesCollection createSeries(OpcionGrafico... tiposGraficos) {
         XYSeriesCollection collection = new XYSeriesCollection();
-        for (OpcionGrafico grafico: tiposGraficos)
-        {
+        for (OpcionGrafico grafico : tiposGraficos) {
             List<Integer> tabla = controller.getTablaDeValores(grafico);
             XYSeries serie = new XYSeries(grafico.toString());
             int pos = 0;
-            for(Integer valor:tabla)
+            for (Integer valor : tabla)
                 serie.add(pos++, valor.doubleValue());
-            
+
             collection.addSeries(serie);
         }
-        
+
         return collection;
     }
 
@@ -87,9 +90,8 @@ public class BurndownChartView extends JTabbedPane implements ActionListener {
         renderer.setSeriesStroke(1, new BasicStroke(2.0f));
         plot.setRenderer(renderer);
         panel.setVisible(true);
-        this.addTab(tab, panel);
+        tabbedPanel.addTab(tab, panel);
     }
-    
 
     @Override
     public void actionPerformed(ActionEvent e) {
