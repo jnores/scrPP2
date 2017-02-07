@@ -4,7 +4,7 @@
 package pp2.scrum.view;
 
 import junit.framework.TestCase;
-import pp2.scrum.controller.UserStoryOrdenadoController;
+import pp2.scrum.controller.UserStoryFiltradoController;
 import pp2.scrum.model.Backlog;
 import pp2.scrum.model.UserStory;
 
@@ -12,13 +12,13 @@ import pp2.scrum.model.UserStory;
  * @author yoshknight
  *
  */
-public class TestUserStoryOrderableView extends TestCase {
-    UserStoryOrdenadoController usocCargado;
+public class TestUserStoryFiltradoView extends TestCase {
+    UserStoryFiltradoController usfcCargado;
 
     /**
      * @param name
      */
-    public TestUserStoryOrderableView(String name) {
+    public TestUserStoryFiltradoView(String name) {
         super(name);
     }
 
@@ -33,13 +33,13 @@ public class TestUserStoryOrderableView extends TestCase {
         backlogCargado.addUserStory( new UserStory( 2, "Como administrador necesito poder generar un reporte ...", "detalle Administrador...") );
         backlogCargado.addUserStory( new UserStory( 1, "Como recepcionista necesito...", "detalle Recepcionista...") );
         
-        usocCargado = new UserStoryOrdenadoController(backlogCargado);
+        usfcCargado = new UserStoryFiltradoController(backlogCargado);
         
 
     }
     
     public void testInitView() {
-        UserStoryOrderableView view = new UserStoryOrderableView(usocCargado);
+        UserStoryFiltradoView view = new UserStoryFiltradoView(usfcCargado);
         view.update(null, null);
         view.dispose();
     }

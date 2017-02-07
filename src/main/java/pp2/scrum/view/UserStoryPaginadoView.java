@@ -87,10 +87,6 @@ public class UserStoryPaginadoView extends JFrame implements Observer
         setearVista();
     }
 
-    public void showWindow(boolean b) {
-        setVisible(b);
-    }
-
     private void setearVista()
     {
         habilitarBotones(false);
