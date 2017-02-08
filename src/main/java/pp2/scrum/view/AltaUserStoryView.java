@@ -56,6 +56,9 @@ public class AltaUserStoryView extends JFrame {
     public AltaUserStoryView(ProyectoController controlador) {
         this.controlador = controlador;
         setTitle("Alta UserStory");
+        
+        setSize(484,309);
+        
         mostrarSugerencias = true;
         boxVertical = Box.createVerticalBox();
 
@@ -141,7 +144,7 @@ public class AltaUserStoryView extends JFrame {
 
         configurarAcciones();
         insertarEnBox();
-        this.add(boxVertical);
+        getContentPane().add(boxVertical);
         setVisible(true);
     }
 

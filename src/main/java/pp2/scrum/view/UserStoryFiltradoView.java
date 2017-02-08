@@ -47,6 +47,8 @@ public class UserStoryFiltradoView extends JFrame implements Observer {
         this.controller = usFiltradoController;
         controller.addObserver(this);
 
+        setSize(600,300);
+
         listaUserStories = new JPanel();
         listaUserStories
                 .setLayout(new BoxLayout(listaUserStories, BoxLayout.Y_AXIS));

@@ -46,9 +46,11 @@ public class UserStoryOrderableView extends JFrame implements Observer {
         
         listaUserStories = new JPanel();
         listaUserStories.setLayout(new BoxLayout(listaUserStories, BoxLayout.Y_AXIS));
+        
+        setSize(600,300);
 
         JPanel panel = new JPanel();
-        this.
+        
         getContentPane().add(panel, BorderLayout.NORTH);
 
         panel.setLayout(new FlowLayout(FlowLayout.CENTER, 5, 5));

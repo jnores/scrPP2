@@ -42,7 +42,7 @@ public class UserStoryPaginadoView extends JFrame implements Observer
 
         Controller = controller;
         
-        setSize(600,400);
+        setSize(600,300);
 
         btnPrimero = new JButton("");
         btnAnterior = new JButton("");
