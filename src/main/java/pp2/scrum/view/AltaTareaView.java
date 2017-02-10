@@ -4,6 +4,8 @@ import java.awt.BorderLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
+import java.util.List;
+
 import javax.swing.BorderFactory;
 import javax.swing.Box;
 import javax.swing.JButton;
@@ -110,8 +112,8 @@ public class AltaTareaView extends JDialog{
 	    SwingUtilities.updateComponentTreeUI(this);
 	}
 	
-	public ArrayList<Tarea> getTareas(){
-		ArrayList<Tarea> lista=new ArrayList<Tarea>();
+	public List<Tarea> getTareas(){
+		List<Tarea> lista=new ArrayList<Tarea>();
 		for(JTextArea texto:descripcionTareas){
 			String data=texto.getText();
 			if(!data.isEmpty()){

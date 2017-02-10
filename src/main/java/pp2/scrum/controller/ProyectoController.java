@@ -1,7 +1,6 @@
 package pp2.scrum.controller;
 
 import java.security.InvalidParameterException;
-import java.util.ArrayList;
 import java.util.List;
 
 import pp2.scrum.correctorSintaxis.CorrectorSintaxis;
@@ -74,7 +73,7 @@ public class ProyectoController extends Controller {
     }
 
     public void altaUserStory(String titulo, String detalle, String criterios,
-            Integer puntos, ArrayList<Tarea> tareas) {
+            Integer puntos, List<Tarea> tareas) {
         // Falta lo importante
         // if (hs==null)
         // throw new InvalidParameterException("Se esperaba una cantidad de

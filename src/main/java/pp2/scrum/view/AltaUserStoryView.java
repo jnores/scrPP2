@@ -7,7 +7,7 @@ import java.awt.event.FocusEvent;
 import java.awt.event.FocusListener;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
-import java.util.ArrayList;
+import java.util.List;
 
 import javax.swing.BorderFactory;
 import javax.swing.Box;
@@ -56,9 +56,9 @@ public class AltaUserStoryView extends JFrame {
     public AltaUserStoryView(ProyectoController controlador) {
         this.controlador = controlador;
         setTitle("Alta UserStory");
-        
-        setSize(484,309);
-        
+
+        setSize(484, 309);
+
         mostrarSugerencias = true;
         boxVertical = Box.createVerticalBox();
 
@@ -331,11 +331,22 @@ public class AltaUserStoryView extends JFrame {
             public void actionPerformed(ActionEvent e) {
                 String titulo = areaTitulo.getText();
                 String detalle = areaDetalle.getText();
+                // Verifica que el texto no seal el de ejemplo.
                 if (titulo.equals(resumen)) {
                     JOptionPane.showMessageDialog(null,
                             "No se puede guardar el formato de muestra, como una user story.");
                     return;
                 }
+
+                // Verifica si se definieron tareas o no!
+                if (altaTarea != null && altaTarea.isDisplayable()
+                        && 0 == altaTarea.getTareas().size()) {
+                    JOptionPane.showMessageDialog(null,
+                            "Una User Story necesita al menos una Tarea definida. "
+                                    + "No se puede guardar esta User Story");
+                }
+
+                // Solicita confirmacion para no respetar la sugerencia.
                 if ((!titulo.isEmpty()) && (!detalle.isEmpty())) {
                     String sugerencia = controlador
                             .obtenerSugerenciaTitulo(titulo);
@@ -378,14 +389,12 @@ public class AltaUserStoryView extends JFrame {
     }
 
     private void guardarUserStory(String titulo, String detalle) {
-        ArrayList<Tarea> tareas = new ArrayList<Tarea>();
+        List<Tarea> tareas = altaTarea.getTareas();
         String criterio = areaCriterios.getText();
         Integer puntos = 0;
         try {
             puntos = Integer.parseInt(campoPuntos.getText());
-            if (altaTarea != null && altaTarea.isDisplayable()) {
-                tareas = altaTarea.getTareas();
-            }
+
             controlador.altaUserStory(titulo, detalle, criterio, puntos,
                     tareas);
             Logger.log("Nueva Historia creada: " + titulo);
@@ -397,6 +406,7 @@ public class AltaUserStoryView extends JFrame {
             JOptionPane.showMessageDialog(null,
                     "ERROR: Al intentar agregar la user story\n"
                             + excepcion.getMessage());
+            excepcion.printStackTrace();
         }
     }
 

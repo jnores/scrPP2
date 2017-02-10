@@ -2,6 +2,7 @@ package pp2.scrum.controller;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Observer;
 
 import pp2.scrum.model.Backlog;
 import pp2.scrum.model.Estado;
@@ -118,6 +119,11 @@ public class UserStoryPaginadoController extends Controller {
 
     public int getPaginaActual() {
         return paginacionActual.getPagina();
+    }
+
+    public void addObserver(Observer observer) {
+        if (observer != null)
+            backlog.addObserver(observer);
     }
 
 }
