@@ -14,6 +14,7 @@ import javax.swing.DefaultComboBoxModel;
 import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JFrame;
+import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTextArea;
@@ -35,6 +36,7 @@ public class UserStoryFiltradoView extends JFrame implements Observer {
     private JComboBox<UserStoryFilter> cmbOpciones;
     private JToggleButton tglbtnAscdesc;
     private JButton btnOrdenar;
+    private JLabel lblBusqueda;
     private JTextArea txtBusqueda;
     // private JComboBox<Exporter> cmbTipoExport;
     private JPanel listaUserStories;
@@ -62,7 +64,10 @@ public class UserStoryFiltradoView extends JFrame implements Observer {
         cmbOpciones.setModel(new DefaultComboBoxModel<UserStoryFilter>(
                 UserStoryFilter.values()));
         panel.add(cmbOpciones);
-        txtBusqueda = new JTextArea("Busqueda: ");
+        lblBusqueda = new JLabel("Busqueda: ");
+        panel.add(lblBusqueda);
+        txtBusqueda = new JTextArea(1,20);
+        txtBusqueda.setMinimumSize(new Dimension(60, txtBusqueda.getHeight()));
         panel.add(txtBusqueda);
 
         tglbtnAscdesc = new JToggleButton("Contiene");
@@ -84,7 +89,7 @@ public class UserStoryFiltradoView extends JFrame implements Observer {
             public void actionPerformed(ActionEvent arg0) {
                 controller.filterBy(
                         cmbOpciones.getItemAt(cmbOpciones.getSelectedIndex()),
-                        txtBusqueda.getText(), tglbtnAscdesc.isSelected());
+                        txtBusqueda.getText(), !tglbtnAscdesc.isSelected());
                 cargarLista();
             }
         });

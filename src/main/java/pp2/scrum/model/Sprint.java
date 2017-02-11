@@ -20,25 +20,31 @@ public class Sprint {
 
     public Sprint(int idIteracion, Date fechaInicio, int duracion,
             Backlog historias) {
-
-        calendario = (CalendarioService) ServiceRegistry.getInstance()
-                .getService(CalendarioService.SERVICE_NAME);
-        this.idIteracion = idIteracion;
-        this.fechaInicio = fechaInicio;
-        this.duracion = duracion;
-        this.backlog = historias;
-        this.setStoryPointsPactados();
-
-        pizarraEstados = new HashMap<>();
-        ultimoCambio = new HashMap<>();
-
-        // TODO: Esto se debe realizar cuando se commitea el sprint backlog
+     // TODO: Esto se debe realizar cuando se commitea el sprint backlog
         // -- JN 20170114
+        this(idIteracion, fechaInicio, duracion, historias, new HashMap<Tarea, Estado>(),
+                new HashMap<Tarea, Date>());
+        
         Estado estadoAux = Estado.getDefault();
         for (UserStory us : backlog.getList())
             for (Tarea t : us.getTareas())
                 pizarraEstados.put(t, estadoAux);
+    }
 
+    public Sprint(int id, Date fechaInicio, int duracion, Backlog sprintBacklog,
+            Map<Tarea, Estado> pizarraEstados,
+            Map<Tarea, Date> logUltimoCambio) {
+
+        calendario = (CalendarioService) ServiceRegistry.getInstance()
+                .getService(CalendarioService.SERVICE_NAME);
+        this.idIteracion = id;
+        this.fechaInicio = fechaInicio;
+        this.duracion = duracion;
+        this.backlog = sprintBacklog;
+        this.setStoryPointsPactados();
+
+        this.pizarraEstados = pizarraEstados;
+        this.ultimoCambio = logUltimoCambio;
     }
 
     private void setStoryPointsPactados() {
@@ -63,11 +69,11 @@ public class Sprint {
         return this.backlog;
     }
 
-//
-//    public void setUserStory(UserStory historia) {
-//        this.StoryPointsPactados = +historia.getStoryPoints();
-//        this.backlog.add(historia);
-//    }
+    //
+    // public void setUserStory(UserStory historia) {
+    // this.StoryPointsPactados = +historia.getStoryPoints();
+    // this.backlog.add(historia);
+    // }
 
     public int getDuracion() {
         return this.duracion;

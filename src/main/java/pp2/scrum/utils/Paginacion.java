@@ -41,8 +41,6 @@ public class Paginacion<T> {
     }
 
     public List<T> listarPaginacion() {
-        System.out.println("PAGINA: "+getPagina());
-        System.out.println("items Por Pagina: "+getItemsPorPagina());
         int indice = (getPagina() - 1) * getItemsPorPagina();
         List<T> lista = new ArrayList<T>();
         int i = 0;
@@ -50,8 +48,6 @@ public class Paginacion<T> {
                 && indice >= 0) {
             T elemento = model.get(indice + i);
             lista.add(elemento);
-            System.out.println("i : "+i);
-            System.out.println("indice : "+indice);
             i++;
         }
         return lista;

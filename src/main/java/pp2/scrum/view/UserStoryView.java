@@ -23,22 +23,18 @@ public class UserStoryView extends JPanel implements Observer
 	public UserStoryView(UserStory userStory) 
 	{
 		this.userStory =userStory;
-		this.setBounds(0,0,490, 178);
+		this.setBounds(0,0,490, 78);
 		
-		setBorder(BorderFactory.createTitledBorder("User Story #"+userStory.getId()+"]"));
+		setBorder(BorderFactory.createTitledBorder("[ User Story # ]"));
 		this.setLayout(null);
 		
 		JLabel lblTitulo = new JLabel("Titulo");
 		lblTitulo.setBounds(12, 27, 100, 15);
 		this.add(lblTitulo);
-		
-		JLabel lblAutor = new JLabel("Autor");
-		lblAutor.setBounds(12, 122, 100, 15);
-		this.add(lblAutor);
 			
 		txtTitulo = new JTextArea();
 		txtTitulo.setLineWrap(true);
-		txtTitulo.setBounds(110, 25, 368, 81);
+		txtTitulo.setBounds(110, 25, 368, 45);
 		this.add(txtTitulo);
 		txtTitulo.setEditable(false);
 		

@@ -78,7 +78,7 @@ public class UserStoryOrderableView extends JFrame implements Observer {
             public void actionPerformed(ActionEvent arg0) {
                 controller.orderBy(
                         cmbOpciones.getItemAt(cmbOpciones.getSelectedIndex()),
-                        tglbtnAscdesc.isSelected());
+                        !tglbtnAscdesc.isSelected());
                 cargarLista();
             }
         });

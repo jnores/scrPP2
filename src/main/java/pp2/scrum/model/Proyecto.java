@@ -41,6 +41,13 @@ public class Proyecto {
         this.asignaciones = asignaciones;
     }
 
+    public Proyecto(long id, String nombre, Backlog productBacklog,
+            Set<Miembro> miembros, List<Sprint> sprints) {
+        this(id, nombre, productBacklog, miembros,
+                sprints, new HashMap<UserStory, Miembro>());
+
+    }
+
     public long getId() {
         return id;
     }

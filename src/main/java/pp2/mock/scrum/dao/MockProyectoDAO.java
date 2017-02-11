@@ -2,17 +2,21 @@ package pp2.mock.scrum.dao;
 
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.HashMap;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Map;
+import java.util.Set;
 
 import pp2.mock.scrum.calendario.MockCalendario;
 import pp2.scrum.dao.ProyectoDAO;
 import pp2.scrum.model.Backlog;
 import pp2.scrum.model.Estado;
+import pp2.scrum.model.Miembro;
 import pp2.scrum.model.Proyecto;
 import pp2.scrum.model.Sprint;
 import pp2.scrum.model.Tarea;
 import pp2.scrum.model.UserStory;
-import pp2.scrum.servicios.ServiceRegistry;
 
 public class MockProyectoDAO extends ProyectoDAO {
 
@@ -21,15 +25,19 @@ public class MockProyectoDAO extends ProyectoDAO {
     public MockProyectoDAO() {
 
         MockCalendario calendario = new MockCalendario();
-        ServiceRegistry.getInstance().registerService(calendario);
         
-        int diasTranscurridos;
+        int diasTranscurridos = 7;
+        
         int sp1 = 5, sp2 = 10, sp3 = 10, sp4 = 5;
 
         Tarea t1a, t1b, t2a, t2b, t3a, t3b, t4a, t4b;
 
-        Backlog stories = new Backlog();
+        List<Sprint> sprints = new ArrayList<>();
+        Backlog sprintBacklog = new Backlog();
+        Backlog productBacklog = new Backlog();
 
+        // -- Cargo el backlog del sprint
+        
         t1a = new Tarea("tarea a de us 1");
         t1b = new Tarea("tarea b de us 1");
         List<Tarea> tareas1 = new ArrayList<Tarea>();
@@ -58,49 +66,69 @@ public class MockProyectoDAO extends ProyectoDAO {
         tareas5.add(new Tarea("tarea 5"));
         
         List<Tarea> tareas6 = new ArrayList<Tarea>();
-        tareas6.add(new Tarea("tarea 5"));
+        tareas6.add(new Tarea("tarea 6"));
 
-        stories.addUserStory(new UserStory("Titulo1", "Detalle1", sp1, null, tareas1));
-        stories.addUserStory(new UserStory("Titulo2", "Detalle2", sp2, null, tareas2));
-        stories.addUserStory(new UserStory("Titulo3", "Detalle3", sp3, null, tareas3));
-        stories.addUserStory(new UserStory("Titulo4", "Detalle4", sp4, null, tareas4));
-        stories.addUserStory(new UserStory("Titulo5", "Detalle5", sp3, null, tareas5));
-        stories.addUserStory(new UserStory("Titulo6", "Detalle6", sp4, null, tareas6));
+        sprintBacklog.addUserStory(new UserStory("Titulo1", "Detalle1", sp1, null, tareas1));
+        sprintBacklog.addUserStory(new UserStory("Titulo2", "Detalle2", sp2, null, tareas2));
+        sprintBacklog.addUserStory(new UserStory("Titulo3", "Detalle3", sp3, null, tareas3));
+        sprintBacklog.addUserStory(new UserStory("Titulo4", "Detalle4", sp4, null, tareas4));
+        sprintBacklog.addUserStory(new UserStory("Titulo5", "Detalle5", sp3, null, tareas5));
+        sprintBacklog.addUserStory(new UserStory("Titulo6", "Detalle6", sp4, null, tareas6));
 
-        diasTranscurridos = 7;
-        calendario.setFecha(new Date());
+        
         Date inicioSprint = calendario.agregarDias(calendario.getToday(),
                 -diasTranscurridos);
-        Sprint sprintCargado = new Sprint(1, inicioSprint, 21, stories);
         
-        Date fechaAux = calendario.agregarDias(inicioSprint, 1);
-        calendario.setFecha(fechaAux);
-        sprintCargado.changeEstadoTarea(t1a, Estado.Done);
+        // -- Cargo la pizarra de estados y el registro de ultimo cambio.
         
-        fechaAux = calendario.agregarDias(inicioSprint, 2);
-        calendario.setFecha(fechaAux);
-        sprintCargado.changeEstadoTarea(t1b, Estado.Done);
+        Map<Tarea,Date> logUltimoCambio = new HashMap<>();
+        Map<Tarea,Estado> pizarraEstados = new HashMap<>();
         
-        fechaAux = calendario.agregarDias(inicioSprint, 3);
-        calendario.setFecha(fechaAux);
-        sprintCargado.changeEstadoTarea(t2a, Estado.Done);
-        
-        fechaAux = calendario.agregarDias(inicioSprint, 4);
-        calendario.setFecha(fechaAux);
-        sprintCargado.changeEstadoTarea(t2b, Estado.Done);
-        
-        fechaAux = calendario.agregarDias(inicioSprint, 5);
-        calendario.setFecha(fechaAux);
-        sprintCargado.changeEstadoTarea(t3b, Estado.Done);
-        
-        fechaAux = calendario.agregarDias(inicioSprint, 6);
-        calendario.setFecha(fechaAux);
-        sprintCargado.changeEstadoTarea(t4a, Estado.Done);
+        Estado estadoAux = Estado.getDefault();
+        for (UserStory us : sprintBacklog.getList())
+            for (Tarea t : us.getTareas())
+                pizarraEstados.put(t, estadoAux);
 
-        calendario.setFecha(new Date());
-        Proyecto proyecto =  new Proyecto(1, "Test 1");
+        Date fechaAux = calendario.agregarDias(inicioSprint, 1);
+        logUltimoCambio.put(t1a, fechaAux);
+        pizarraEstados.put(t1a, Estado.Done);
+
+        fechaAux = calendario.agregarDias(inicioSprint, 2);
+        logUltimoCambio.put(t1b, fechaAux);
+        pizarraEstados.put(t1b, Estado.Done);
+
+        fechaAux = calendario.agregarDias(inicioSprint, 3);
+        logUltimoCambio.put(t2a, fechaAux);
+        pizarraEstados.put(t2a, Estado.Done);
+
+        fechaAux = calendario.agregarDias(inicioSprint, 4);
+        logUltimoCambio.put(t2b, fechaAux);
+        pizarraEstados.put(t2b, Estado.Done);
+
+        fechaAux = calendario.agregarDias(inicioSprint, 5);
+        logUltimoCambio.put(t3b, fechaAux);
+        pizarraEstados.put(t3b, Estado.Done);
+
+        fechaAux = calendario.agregarDias(inicioSprint, 6);
+        logUltimoCambio.put(t4a, fechaAux);
+        pizarraEstados.put(t4a, Estado.Done);
+        
+        // -- Creo el sprint
+        
+        Sprint sprintCargado = new Sprint(1, inicioSprint, 21, sprintBacklog,pizarraEstados,logUltimoCambio);
+        
+        sprints.add(sprintCargado);
+        
+        Set<Miembro> miembros = new HashSet<>();
+        miembros.add(new Miembro("Ivo"));
+        miembros.add(new Miembro("Nores"));
+        miembros.add(new Miembro("Roger"));
+        miembros.add(new Miembro("Victoria"));
+        
+        Proyecto proyecto =  new Proyecto(1, "Test 1", productBacklog,miembros,sprints);
         
         proyecto.addIteracion(sprintCargado);
+        
         listaProyectos.add(0,proyecto);
 
     }
