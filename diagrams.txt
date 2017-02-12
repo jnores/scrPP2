@@ -1,4 +1,9 @@
 @startuml
+/' 
+  Para generar los diagramas copiar el siguiente texto en la siguiente 
+pagina: https://www.planttext.com/
+'/
+ 
 
 caption Diagrama de clases del Modelo asociado al Proyecto
 
