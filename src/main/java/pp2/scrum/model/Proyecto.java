@@ -18,7 +18,7 @@ import pp2.scrum.servicios.ServiceRegistry;
 public class Proyecto {
     private long id;
     protected String nombre;
-    // private Date fechaInicio,fechaFin;
+    private Date fechaInicio,fechaFin;
     private Backlog backlog;
     protected Set<Miembro> miembros;
     protected List<Sprint> iteraciones;

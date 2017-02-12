@@ -1,0 +1,83 @@
+@startuml
+
+caption Diagrama de clases del Modelo asociado al Proyecto
+
+
+class  Proyecto {
+  - Date FechaInicio
+  - Date FechaFin
+  - String nombre
+  - Backlog productBacklog
+  - List<Sprint> iteraciones
+  - Set<Miembro> miembros
+  + Proyecto(long id, String nombre, Backlog productBacklog,
+            Set<Miembro> miembros, List<Sprint> sprints)
+}
+
+class Miembro {
+  - String nombre
+  - String perfil
+  + Miembro(String nombre, String perfil)
+}
+
+' Modelo base de ProductBacklog y SprintBacklog
+class Backlog {
+  - List<UserStory> listUserStories
+  + Backlog()
+  + void AddUserStory(userStory story)
+  + void removeUserStory(userStory story)
+  + int size()
+}
+
+' Modelo de una user story
+class UserStory {
+  - String titulo
+  - String detalle
+  - int storyPoints
+  - CriterioAceptacion criterio
+  - List<Tarea> tareas
+}
+class CriterioAceptacion {
+  - String descripcion
+  + CriterioAceptacion(String criterio)
+}
+class Tarea {
+  - String detalle
+  - int id
+  + Tarea (String detalle)
+}
+
+' Modelo de la planificacion y seguimiento de una iteracion
+class Sprint {
+  - int idIteracion
+  - Date fechaInicio
+  - int duracion
+  - Backlog sprintBacklog
+  - int storyPointsPactados
+  - Map<Tarea, Estado> pizarraEstados
+  - Map<Tarea, Date> ultimoCambio
+  + Sprint(int id, Date fechaInicio, int duracion, Backlog sprintBacklog,
+            Map<Tarea, Estado> pizarraEstados,Map<Tarea, Date> logUltimoCambio )
+}
+
+enum Estado{
+ ToDo
+ Doing
+ Done
+ + Estado avanzar()
+ + boolean hasSiguiente()
+ + Estado getDefault()
+}
+
+
+Proyecto *-- "1.." Miembro
+Proyecto *-- "0.." Sprint
+Proyecto *-- "1" Backlog
+Sprint *-- "1" Backlog
+Sprint *-- "1.." Estado
+Sprint *-- "1.." Tarea
+Backlog *-- "1.." UserStory
+UserStory *-- "1.." Tarea
+UserStory *-- "1" CriterioAceptacion
+
+@enduml

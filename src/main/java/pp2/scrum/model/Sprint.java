@@ -12,7 +12,7 @@ public class Sprint {
     private int idIteracion;
     private Date fechaInicio;
     private int duracion;
-    private Backlog backlog;
+    private Backlog sprintBacklog;
     private int StoryPointsPactados;
     private Map<Tarea, Estado> pizarraEstados;
     private Map<Tarea, Date> ultimoCambio;
@@ -20,13 +20,13 @@ public class Sprint {
 
     public Sprint(int idIteracion, Date fechaInicio, int duracion,
             Backlog historias) {
-     // TODO: Esto se debe realizar cuando se commitea el sprint backlog
+        // TODO: Esto se debe realizar cuando se commitea el sprint backlog
         // -- JN 20170114
-        this(idIteracion, fechaInicio, duracion, historias, new HashMap<Tarea, Estado>(),
-                new HashMap<Tarea, Date>());
-        
+        this(idIteracion, fechaInicio, duracion, historias,
+                new HashMap<Tarea, Estado>(), new HashMap<Tarea, Date>());
+
         Estado estadoAux = Estado.getDefault();
-        for (UserStory us : backlog.getList())
+        for (UserStory us : sprintBacklog.getList())
             for (Tarea t : us.getTareas())
                 pizarraEstados.put(t, estadoAux);
     }
@@ -40,7 +40,7 @@ public class Sprint {
         this.idIteracion = id;
         this.fechaInicio = fechaInicio;
         this.duracion = duracion;
-        this.backlog = sprintBacklog;
+        this.sprintBacklog = sprintBacklog;
         this.setStoryPointsPactados();
 
         this.pizarraEstados = pizarraEstados;
@@ -49,8 +49,8 @@ public class Sprint {
 
     private void setStoryPointsPactados() {
         int puntos = 0;
-        if (this.backlog != null) {
-            for (UserStory us : this.backlog.getList()) {
+        if (this.sprintBacklog != null) {
+            for (UserStory us : this.sprintBacklog.getList()) {
                 puntos += us.getStoryPoints();
             }
         }
@@ -66,7 +66,7 @@ public class Sprint {
     }
 
     public Backlog getBacklog() {
-        return this.backlog;
+        return this.sprintBacklog;
     }
 
     //
@@ -108,7 +108,7 @@ public class Sprint {
     }
 
     public boolean contieneUserStory(UserStory us) {
-        return backlog.getList().contains(us);
+        return sprintBacklog.getList().contains(us);
     }
 
     public void changeEstadoTarea(Tarea tarea, Estado newEstado)

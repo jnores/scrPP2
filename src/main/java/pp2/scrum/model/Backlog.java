@@ -29,6 +29,13 @@ public class Backlog extends Observable {
             notifyObservers();
         }
     }
+    public void removeUserStory(UserStory userStory) {
+        if (!listUserStories.contains(userStory)) {
+            listUserStories.remove(userStory);
+            setChanged();
+            notifyObservers();
+        }
+    }
 
     public int size() {
         return listUserStories.size();
