@@ -5,8 +5,7 @@ import java.util.List;
 import java.util.Observable;
 import java.util.Observer;
 
-public class UserStory extends Observable implements Observer
-{
+public class UserStory extends Observable implements Observer {
 
     private long id;
     private String titulo;
@@ -15,7 +14,23 @@ public class UserStory extends Observable implements Observer
     private CriterioAceptacion criterio;
     private List<Tarea> tareas;
 
-    public UserStory(String titulo, String detalle, int storyPoints, CriterioAceptacion criterio, List<Tarea> tareas) {
+    public UserStory(String titulo, String detalle) {
+        this(-1, titulo, detalle);
+    }
+
+    public UserStory(long id, String titulo, String detalle) {
+        this(id, titulo, detalle, 0, new CriterioAceptacion(""),
+                new ArrayList<Tarea>());
+    }
+
+    public UserStory(String titulo, String detalle, int storyPoints,
+            CriterioAceptacion criterio, List<Tarea> tareas) {
+        this(-1, titulo, detalle, storyPoints, criterio, tareas);
+    }
+
+    public UserStory(long id, String titulo, String detalle, int storyPoints,
+            CriterioAceptacion criterio, List<Tarea> tareas) {
+        this.id = id;
         this.titulo = titulo;
         this.detalle = detalle;
         this.storyPoints = storyPoints;
@@ -24,19 +39,7 @@ public class UserStory extends Observable implements Observer
         observarTareas(this.tareas);
     }
 
-    public UserStory(String titulo, String detalle) {
-        this(-1,titulo,detalle);
-    }
-    public UserStory(long id,String titulo, String detalle) {
-        this.id = id;
-        this.titulo = titulo;
-        this.detalle = detalle;
-        this.criterio = new CriterioAceptacion("");
-        this.tareas = new ArrayList<Tarea>();
-        observarTareas(this.tareas);
-    }
-
-    public void setId(long id) { //FIXME quitar
+    public void setId(long id) { // FIXME quitar
         this.id = id;
     }
 
@@ -69,7 +72,9 @@ public class UserStory extends Observable implements Observer
         fueModificado(null);
     }
 
-    /* (non-Javadoc)
+    /*
+     * (non-Javadoc)
+     * 
      * @see java.lang.Object#hashCode()
      */
     @Override
@@ -81,7 +86,9 @@ public class UserStory extends Observable implements Observer
         return result;
     }
 
-    /* (non-Javadoc)
+    /*
+     * (non-Javadoc)
+     * 
      * @see java.lang.Object#equals(java.lang.Object)
      */
     @Override
@@ -99,29 +106,24 @@ public class UserStory extends Observable implements Observer
         if (id != other.id) {
             return false;
         }
-        if (! other.titulo.equals(this.titulo))
+        if (!other.titulo.equals(this.titulo))
             return false;
         return true;
     }
 
-    public boolean estaTerminada()
-    {
+    public boolean estaTerminada() {
         boolean termino = true;
-        for (Tarea tarea : tareas)
-        {
-            if( ! tarea.getEstado().equals(Estado.Done) )
-            {
-                termino=false;
+        for (Tarea tarea : tareas) {
+            if (!tarea.getEstado().equals(Estado.Done)) {
+                termino = false;
                 break;
             }
         }
         return termino;
     }
 
-    private void observarTareas(List<Tarea> tareas)
-    {
-        for (Tarea tarea : tareas)
-        {
+    private void observarTareas(List<Tarea> tareas) {
+        for (Tarea tarea : tareas) {
             tarea.addObserver(this);
         }
     }
@@ -132,13 +134,10 @@ public class UserStory extends Observable implements Observer
     }
 
     @Override
-    public void update(Observable o, Object arg)
-    {
+    public void update(Observable o, Object arg) {
         fueModificado(o);
-        //if (estaTerminada())
+        // if (estaTerminada())
 
     }
-
-
 
 }

@@ -1,9 +1,4 @@
 @startuml
-/' 
-  Para generar los diagramas copiar el siguiente texto en la siguiente 
-pagina: https://www.planttext.com/
-'/
- 
 
 caption Diagrama de clases del Modelo asociado al Proyecto
 
@@ -75,14 +70,14 @@ enum Estado{
 }
 
 
-Proyecto *-- "1.." Miembro
-Proyecto *-- "0.." Sprint
-Proyecto *-- "1" Backlog
-Sprint *-- "1" Backlog
+Proyecto *-- "1.." Miembro: Equipo
+Proyecto *-- "0.." Sprint: Iteraciones
+Proyecto *-- "1" Backlog: Product Backlog
+Sprint *-- "1" Backlog: Sprint Backlog
 Sprint *-- "1.." Estado
 Sprint *-- "1.." Tarea
 Backlog *-- "1.." UserStory
-UserStory *-- "1.." Tarea
-UserStory *-- "1" CriterioAceptacion
+UserStory o-- "1.." Tarea
+UserStory o-- "1" CriterioAceptacion
 
 @enduml
