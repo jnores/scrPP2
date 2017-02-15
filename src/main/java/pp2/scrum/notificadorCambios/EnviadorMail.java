@@ -1,4 +1,4 @@
-package pp2.scrum.utils;
+package pp2.scrum.notificadorCambios;
 
 import java.io.DataInputStream;
 import java.io.DataOutputStream;

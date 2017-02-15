@@ -21,8 +21,8 @@ import javax.swing.event.ChangeEvent;
 import javax.swing.event.ChangeListener;
 
 import pp2.scrum.controller.UserStoryOrdenadoController;
+import pp2.scrum.listadoHistorias.UserStoryComparator;
 import pp2.scrum.model.UserStory;
-import pp2.scrum.utils.UserStoryComparator;
 
 public class UserStoryOrderableView extends JFrame implements Observer {
 

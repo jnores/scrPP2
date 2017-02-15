@@ -23,8 +23,8 @@ import javax.swing.event.ChangeEvent;
 import javax.swing.event.ChangeListener;
 
 import pp2.scrum.controller.UserStoryFiltradoController;
+import pp2.scrum.listadoHistorias.UserStoryFilter;
 import pp2.scrum.model.UserStory;
-import pp2.scrum.utils.UserStoryFilter;
 
 public class UserStoryFiltradoView extends JFrame implements Observer {
 

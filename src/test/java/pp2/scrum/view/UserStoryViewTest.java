@@ -10,8 +10,8 @@ import pp2.scrum.controller.MailGateway;
 import pp2.scrum.controller.UserStoryPaginadoController;
 import pp2.scrum.model.Tarea;
 import pp2.scrum.model.UserStory;
-import pp2.scrum.utils.EnviadorMail;
-import pp2.scrum.utils.ObservadorDeHistoria;
+import pp2.scrum.notificadorCambios.EnviadorMail;
+import pp2.scrum.notificadorCambios.ObservadorDeHistoria;
 
 public class UserStoryViewTest extends TestCase {
     private UserStoryPaginadoController controller;

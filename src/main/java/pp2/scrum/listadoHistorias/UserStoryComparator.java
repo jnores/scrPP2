@@ -1,4 +1,4 @@
-package pp2.scrum.utils;
+package pp2.scrum.listadoHistorias;
 
 import java.util.Comparator;
 
@@ -23,7 +23,7 @@ public enum UserStoryComparator implements Comparator<UserStory> {
     TITULO_SORT {
         @Override
         public int compare(UserStory o1, UserStory o2) {
-            return o1.getTitulo().compareTo(o2.getTitulo());
+            return o1.getTitulo().toLowerCase().compareTo(o2.getTitulo().toLowerCase());
         }
 
         @Override

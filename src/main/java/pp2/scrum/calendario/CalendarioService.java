@@ -23,5 +23,8 @@ public abstract class CalendarioService extends Service {
     public abstract Date getDate(String string) throws ParseException;
 
     public abstract Date getToday();
+    
+    public abstract String createString(Date date);
+    
 
 }

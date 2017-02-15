@@ -4,6 +4,7 @@ import junit.framework.Test;
 import junit.framework.TestCase;
 import junit.framework.TestSuite;
 import pp2.scrum.controller.Mail;
+import pp2.scrum.notificadorCambios.EnviadorMail;
 
 public class EnviadorMailTest extends TestCase {
 

@@ -7,9 +7,9 @@ import java.util.List;
 import junit.framework.Test;
 import junit.framework.TestCase;
 import junit.framework.TestSuite;
+import pp2.scrum.listadoHistorias.UserStoryComparator;
 import pp2.scrum.model.Miembro;
 import pp2.scrum.model.UserStory;
-import pp2.scrum.utils.UserStoryComparator;
 
 public class UserStoryComparatorTest extends TestCase {
     List<UserStory> stories;

@@ -6,9 +6,9 @@ import java.util.Observer;
 
 import junit.framework.TestCase;
 import pp2.scrum.controller.UserStoryFiltradoController;
+import pp2.scrum.listadoHistorias.UserStoryFilter;
 import pp2.scrum.model.Backlog;
 import pp2.scrum.model.UserStory;
-import pp2.scrum.utils.UserStoryFilter;
 
 public class TestUSFiltrado extends TestCase implements Observer {
 

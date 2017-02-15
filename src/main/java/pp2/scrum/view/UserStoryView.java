@@ -24,8 +24,12 @@ public class UserStoryView extends JPanel implements Observer
 	{
 		this.userStory =userStory;
 		this.setBounds(0,0,490, 78);
+		String idStory = "#";
 		
-		setBorder(BorderFactory.createTitledBorder("[ User Story # ]"));
+		if (userStory.getId() > 0)
+		    idStory = ""+userStory.getId();
+		
+		setBorder(BorderFactory.createTitledBorder("[ User Story "+idStory+" ]"));
 		this.setLayout(null);
 		
 		JLabel lblTitulo = new JLabel("Titulo");

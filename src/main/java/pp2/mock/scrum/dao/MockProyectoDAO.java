@@ -275,7 +275,6 @@ public class MockProyectoDAO extends ProyectoDAO {
         int i, j = 1;
         for (Tarea t : tareas2) {
             fechaAux = calendario.agregarDias(inicioSprint, j++);
-            System.out.println("T2 : " + fechaAux);
             
             logUltimoCambio.put(t, fechaAux);
             pizarraEstados.put(t, Estado.Done);
@@ -284,7 +283,6 @@ public class MockProyectoDAO extends ProyectoDAO {
         j = 1;
         fechaAux = calendario.agregarDias(inicioSprint, j++);
         for (Tarea t : tareas6) {
-            System.out.println("T6 : " + fechaAux);
 
             logUltimoCambio.put(t, fechaAux);
             pizarraEstados.put(t, Estado.Done);
@@ -296,7 +294,6 @@ public class MockProyectoDAO extends ProyectoDAO {
         j = 3;
         fechaAux = calendario.agregarDias(inicioSprint, j++);
         for (Tarea t : tareas5) {
-            System.out.println("T5 : " + fechaAux);
 
             logUltimoCambio.put(t, fechaAux);
             pizarraEstados.put(t, Estado.Done);

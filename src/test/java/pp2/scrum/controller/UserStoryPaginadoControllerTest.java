@@ -6,9 +6,9 @@ import java.util.List;
 import junit.framework.Test;
 import junit.framework.TestCase;
 import junit.framework.TestSuite;
+import pp2.scrum.listadoHistorias.Paginacion;
 import pp2.scrum.model.Tarea;
 import pp2.scrum.model.UserStory;
-import pp2.scrum.utils.Paginacion;
 
 public class UserStoryPaginadoControllerTest extends TestCase {
     private UserStoryPaginadoController controller;

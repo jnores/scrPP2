@@ -6,9 +6,9 @@ import java.util.Comparator;
 import java.util.List;
 import java.util.Observer;
 
+import pp2.scrum.listadoHistorias.UserStoryComparator;
 import pp2.scrum.model.Backlog;
 import pp2.scrum.model.UserStory;
-import pp2.scrum.utils.UserStoryComparator;
 
 public class UserStoryOrdenadoController {
 

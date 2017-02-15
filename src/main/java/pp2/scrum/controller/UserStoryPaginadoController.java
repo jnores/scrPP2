@@ -4,11 +4,11 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Observer;
 
+import pp2.scrum.listadoHistorias.Paginacion;
 import pp2.scrum.model.Backlog;
 import pp2.scrum.model.Estado;
 import pp2.scrum.model.Tarea;
 import pp2.scrum.model.UserStory;
-import pp2.scrum.utils.Paginacion;
 
 public class UserStoryPaginadoController extends Controller {
     private Paginacion<UserStory> paginacionActual;

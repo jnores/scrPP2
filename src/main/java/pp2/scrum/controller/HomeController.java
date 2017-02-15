@@ -1,6 +1,7 @@
 package pp2.scrum.controller;
 
 import java.awt.event.ActionListener;
+import java.util.Date;
 
 import pp2.scrum.calendario.CalendarioService;
 import pp2.scrum.command.Comando;
@@ -33,12 +34,14 @@ public class HomeController extends Controller implements AppController {
         Sprint iteracion = proyecto.iteracionActual();
         CalendarioService calendario = (CalendarioService) ServiceRegistry
                 .getInstance().getService("calendario");
-        if (iteracion != null)
+        if (iteracion != null) {
+            Date inicio = iteracion.getfechaInicio(),
+                    fin = calendario.agregarDias(iteracion.getfechaInicio(),
+                            iteracion.getDuracion());
             nombre += " - Iteración " + iteracion.getIdIteracion() + "("
-                    + iteracion.getfechaInicio() + " - "
-                    + calendario.agregarDias(iteracion.getfechaInicio(),
-                            iteracion.getDuracion())
-                    + ")";
+                    + calendario.createString(inicio) + " - "
+                    + calendario.createString(fin) + ")";
+        }
         return nombre;
     }
 

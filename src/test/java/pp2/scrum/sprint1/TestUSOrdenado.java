@@ -6,9 +6,9 @@ import java.util.Observer;
 
 import junit.framework.TestCase;
 import pp2.scrum.controller.UserStoryOrdenadoController;
+import pp2.scrum.listadoHistorias.UserStoryComparator;
 import pp2.scrum.model.Backlog;
 import pp2.scrum.model.UserStory;
-import pp2.scrum.utils.UserStoryComparator;
 
 public class TestUSOrdenado extends TestCase implements Observer {
 

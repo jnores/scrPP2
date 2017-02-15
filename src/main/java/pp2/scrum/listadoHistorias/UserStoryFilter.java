@@ -1,4 +1,4 @@
-package pp2.scrum.utils;
+package pp2.scrum.listadoHistorias;
 
 import pp2.scrum.model.UserStory;
 

@@ -4,9 +4,9 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Observer;
 
+import pp2.scrum.listadoHistorias.UserStoryFilter;
 import pp2.scrum.model.Backlog;
 import pp2.scrum.model.UserStory;
-import pp2.scrum.utils.UserStoryFilter;
 
 public class UserStoryFiltradoController {
 

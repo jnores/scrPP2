@@ -13,7 +13,7 @@ import java.util.Date;
  */
 public class Calendario extends CalendarioService {
 
-    private static SimpleDateFormat dateFormat = new SimpleDateFormat("mm/dd/yyyy");
+    private static SimpleDateFormat dateFormat = new SimpleDateFormat("MM/dd/yyyy");
 
     /* (non-Javadoc)
      * @see pp2.scrm.calendario.ClendarioService#getFechaIntermedia(java.util.Date, java.util.Date)
@@ -60,4 +60,13 @@ public class Calendario extends CalendarioService {
     public Date getToday() {
         return new Date();
     }
+    
+    /* (non-Javadoc)
+     * @see pp2.scrm.calendario.ClendarioService#createString(java.util.Date)
+     */
+    @Override
+    public String createString(Date date) {
+        return dateFormat.format(date);
+    }
+    
 }
